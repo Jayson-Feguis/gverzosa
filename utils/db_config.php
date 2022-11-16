@@ -1,8 +1,5 @@
 <?php 
    
-    session_start();
-
-    define('BASE_URL', 'localhost/'); // https:gverzosa.com/
     define('LOCALHOST', 'localhost');
     define('DB_USERNAME', 'root');
     define('DB_PASSWORD', '');

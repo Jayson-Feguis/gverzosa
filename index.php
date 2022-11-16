@@ -1,11 +1,9 @@
 <?php 
-include('component/client/header/header.php');
+    include('component/client/header/header.php');
 ?>
-
-<section id='section1'><?php echo BASE_URL ?></section>
-    
+<section id='section1' class="min-h-full bg-red">HOME</section>
 <?php 
-include('component/client/footer/footer.php');
+    include('component/client/footer/footer.php');
 ?>
 
     
