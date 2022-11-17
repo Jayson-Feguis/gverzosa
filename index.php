@@ -28,18 +28,17 @@
         </h1>
         <div class="swiper mySwiper my-[50px]">
             <div class="swiper-wrapper">
-                <div class="swiper-slide div-center">
-                    <img src="./images/services_1.jpg" alt="Service 1" />
-                </div>
-                <div class="swiper-slide div-center">
-                    <img src="./images/services_2.jpg" alt="Service 2" />
-                </div>
-                <div class="swiper-slide div-center">
-                    <img src="./images/services_3.jpg" alt="Service 3" />
-                </div>
-                <div class="swiper-slide div-center">
-                    <img src="./images/services_4.jpg" alt="Service 4" />
-                </div>
+            <?php
+                    $services_query = "SELECT * FROM tbl_service Where SERVICE_STATUS = 1";
+                    $services_result = $conn -> query($services_query );
+                    if($services_result){
+                        while($rows = mysqli_fetch_array($services_result)){
+                          echo '<div class="swiper-slide div-center">
+                                    <img src="'.$rows['SERVICE_PICTURE'].'" alt="Service 1" />
+                                </div>';
+                        }
+                    }
+              ?>
             </div>
             <div class="swiper-pagination"></div>
         </div>

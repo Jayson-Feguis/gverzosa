@@ -25,35 +25,45 @@
                 Employee's Profile
             </h1>
             <div class="div-center flex-wrap gap-[50px]">
-                <div class="card-container bg-defaultwhite rounded-lg p-[50px] div-center flex-col drop-shadow-md">
-                    <img src="../images/services_1.jpg" alt="sample" class="rounded-full w-[150px]"/>
-                    <h6 class="text-primary text-[24px]">
-                        Taylor Swift
-                    </h6>
+                <?php
+                    $employees_query = "SELECT * FROM tbl_user Where USER_STATUS = 1";
+                    $employees_result = $conn -> query($employees_query);
+                    if($employees_result){
+                        while($rows = mysqli_fetch_array($employees_result)){
+                        echo '<div class="card-container bg-defaultwhite rounded-lg p-[50px] div-center flex-col drop-shadow-md">
+                                    <img src="../'.$rows['USER_PICTURE'].'" alt="sample" class="rounded-full w-[150px]"/>
+                                    <h6 class="text-primary text-[24px]">
+                                    '.$rows['USER_FNAME'].' '.$rows['USER_LNAME'].'
+                                    </h6>
+                                </div>';
+                        }
+                    }
+                ?>
+            </div>
+        </div>
+    </section>
+    <section id='about_section3' class="div-center flex-col w-full py-[7rem]">
+        <div class="getintouch-container div-center flex-col w-full">
+            <h1 class="font-Dancing text-[64px] font-bold text-primary pb-[50px]">
+                Get in Touch
+            </h1>
+            <div class="div-center flex-wrap gap-[50px]">
+                <div>
+                    <img src="../images/map.png" alt="Location">
                 </div>
-                <div class="card-container bg-defaultwhite rounded-lg p-[50px] div-center flex-col drop-shadow-md">
-                    <img src="../images/services_1.jpg" alt="sample" class="rounded-full w-[150px]"/>
-                    <h6 class="text-primary text-[24px]">
-                        Taylor Swift
-                    </h6>
-                </div>
-                <div class="card-container bg-defaultwhite rounded-lg p-[50px] div-center flex-col drop-shadow-md">
-                    <img src="../images/services_1.jpg" alt="sample" class="rounded-full w-[150px]"/>
-                    <h6 class="text-primary text-[24px]">
-                        Taylor Swift
-                    </h6>
-                </div>
-                <div class="card-container bg-defaultwhite rounded-lg p-[50px] div-center flex-col drop-shadow-md">
-                    <img src="../images/services_1.jpg" alt="sample" class="rounded-full w-[150px]"/>
-                    <h6 class="text-primary text-[24px]">
-                        Taylor Swift
-                    </h6>
-                </div>
-                <div class="card-container bg-defaultwhite rounded-lg p-[50px] div-center flex-col drop-shadow-md">
-                    <img src="../images/services_1.jpg" alt="sample" class="rounded-full w-[150px]"/>
-                    <h6 class="text-primary text-[24px]">
-                        Taylor Swift
-                    </h6>
+                <div>
+                    <div>
+                        <i class="fa fa-map-marker"></i>
+                        <h6>244 Kalentong Romualdez St., Brgy. Daang Bakal, Mandaluyong City</h6>
+                    </div>
+                    <div>
+                        <i class="fa fa-envelope"></i>
+                        <h6>gverzosasalonandspa@gmail.com</h6>
+                    </div>
+                    <div>
+                        <i class="fa fa-phone"></i>
+                        <h6>0977 804 9383</h6>
+                    </div>
                 </div>
             </div>
         </div>
