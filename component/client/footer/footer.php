@@ -35,7 +35,7 @@
                         </ul>
                         <h6 class="font-bold pt-[20px]">Are you an admin?</h6>
                         <ul class="nav-link flex flex-col gap-[10px]">
-                            <a class="hover:cursor-pointer hover:text-secondary transition-all duration-300">Login as admin</a>
+                            <a class="hover:cursor-pointer hover:text-secondary transition-all duration-300 " href="../<?php echo LOGIN ?>">Login as admin</a>
                         </ul>
                     </div>
                 </div>
