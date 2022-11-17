@@ -95,6 +95,7 @@ if (isset($_GET['logout'])) {
       <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white"><?php echo $_SESSION['user_name']; ?></span>
   </a>
  
+  
   <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="mobile-menu-2">
     <ul class="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg  md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 ">
       <li>
