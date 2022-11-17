@@ -118,6 +118,14 @@
                         <a class="text-secondary hover:cursor-pointer hover:text-secondary transition-color duration-300" href="">Services</a>
                         <?php
                     }
+                    else if($_SERVER['REQUEST_URI'] == "/gverzosa/pages/login.php"){
+                      ?>
+                      <a class="hover:cursor-pointer hover:text-secondary transition-color duration-300" href="../">Home</a>
+                      <a class="hover:cursor-pointer hover:text-secondary transition-color duration-300" href="../<?php echo ABOUT_US ?>">About Us</a>
+                      <a class="hover:cursor-pointer hover:text-secondary transition-color duration-300" href="">Services</a>
+                      <?php
+                  }
+                    
                 ?>
             </ul>
         </div>
