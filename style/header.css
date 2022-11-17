@@ -2,17 +2,12 @@
   font-family: "Montserrat", sans-serif;
   margin: 0;
   padding: 0;
+  scroll-behavior: smooth;
 }
 
-body {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-}
-
-nav {
+nav,
+footer {
   width: 100%;
-  background-color: red;
 }
 .nav-container {
   width: 100%;
@@ -24,7 +19,13 @@ nav {
   list-style: none;
   display: flex;
 }
-
+.employees-container,
+.footer-container,
+#home-section2,
+#about_section1 {
+  width: 100%;
+  max-width: 1536px;
+}
 .div-center {
   display: flex;
   justify-content: center;
@@ -33,14 +34,22 @@ nav {
 
 /* XL */
 @media only screen and (max-width: 1536px) {
-  .nav-container {
-    width: 1536px;
+  .nav-container,
+  #home-section2,
+  #about_section1,
+  .employees-container,
+  .footer-container {
+    max-width: 1536px;
   }
 }
 /* LG */
 @media only screen and (max-width: 1200px) {
-  .nav-container {
-    width: 1536px;
+  .nav-container,
+  #home-section2,
+  #about_section1,
+  .employees-container,
+  .footer-container {
+    max-width: 1536px;
   }
 }
 /* MD */
