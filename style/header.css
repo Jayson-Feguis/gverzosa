@@ -19,10 +19,12 @@ footer {
   list-style: none;
   display: flex;
 }
+.getintouch-container,
 .employees-container,
 .footer-container,
 #home-section2,
-#about_section1 {
+#about_section1,
+#services_section2 {
   width: 100%;
   max-width: 1536px;
 }
@@ -37,6 +39,8 @@ footer {
   .nav-container,
   #home-section2,
   #about_section1,
+  #services_section2,
+  .getintouch-container,
   .employees-container,
   .footer-container {
     max-width: 1536px;
@@ -47,6 +51,8 @@ footer {
   .nav-container,
   #home-section2,
   #about_section1,
+  #services_section2,
+  .getintouch-container,
   .employees-container,
   .footer-container {
     max-width: 1536px;
