@@ -125,7 +125,7 @@
                       ?>
                       <a class="hover:cursor-pointer hover:text-secondary transition-color duration-300" href="../">Home</a>
                       <a class="hover:cursor-pointer hover:text-secondary transition-color duration-300" href="../<?php echo ABOUT_US ?>">About Us</a>
-                      <a class="hover:cursor-pointer hover:text-secondary transition-color duration-300" href="">Services</a>
+                      <a class="hover:cursor-pointer hover:text-secondary transition-color duration-300" href="../<?php echo SERVICES ?>">Services</a>
                       <?php
                   }
                     
