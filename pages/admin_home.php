@@ -21,7 +21,7 @@ include('../component/admin/header/header.php');
                         <img src="https://img.icons8.com/fluency/48/null/test-account.png" title="user icons" class="rounded-full w-10" alt="Avatar">
                     </div>
                     <div class="grow ml-3">
-                        <p class="text-sm font-semibold text-blue-600">Jason McCoel</p>
+                        <p class="text-sm font-semibold text-blue-600"><?php echo  $_SESSION['fname_name'] . " " . $_SESSION['lname_name']; ?></p>
                     </div>
                 </div>
             </a>

@@ -35,7 +35,7 @@ include('../api/post_product.php');
                         <td><?php echo $row['PRODUCT_PRICE']; ?> </td>
                         <td><?php echo $row['PRODUCT_DATETIME_CREATED']; ?> </td>
                         <td class="text-center">
-                            <button class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-2 border border-blue-500 hover:border-transparent rounded">
+                            <button type="button" class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-2 border border-blue-500 hover:border-transparent rounded" data-bs-toggle="editModal" data-bs-target="#exampleModal">
                                 <img src="https://img.icons8.com/color/48/null/pencil--v1.png" width="20px" heigh="20px" />
                             </button>
                             <button class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-2 border border-blue-500 hover:border-transparent rounded">
