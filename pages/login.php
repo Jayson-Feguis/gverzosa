@@ -1,8 +1,5 @@
-
 <?php 
-
     include('../component/client/header/header.php');
-    include('../api/post_login.php');
 ?>
 
 <div class="flex flex-col w-full">

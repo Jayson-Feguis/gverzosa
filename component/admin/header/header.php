@@ -27,7 +27,6 @@ if (isset($_GET['logout'])) {
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
   <title>G Verzosa - Salon & Spa</title>
-
   <!-- FONTS -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -51,10 +50,11 @@ if (isset($_GET['logout'])) {
   <?php
   }
   ?>
+  <!-- SCHEDULER -->
+  <script src="https://cdn.dhtmlx.com/scheduler/edge/dhtmlxscheduler.js"></script>
+  <link href="https://cdn.dhtmlx.com/scheduler/edge/dhtmlxscheduler_material.css" rel="stylesheet" type="text/css" charset="utf-8" />
   <!-- JQUERY -->
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <!-- datatables -->
 
   <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css" />
@@ -83,17 +83,25 @@ if (isset($_GET['logout'])) {
             defaultwhite: "#F7FBF1",
           },
         },
-        fontFamily: {
-          Montserrat: ["Montserrat", "serif"],
-          Dancing: ["Dancing Script", "cursive"],
-        },
+      },
+      fontFamily: {
+        Montserrat: ["Montserrat", "serif"],
+        Dancing: ["Dancing Script", "cursive"],
       },
     };
   </script>
+  <style>
+    html,
+    body {
+      margin: 0px;
+      padding: 0px;
+      height: 100%;
+      overflow: hidden;
+    }
+  </style>
 </head>
 
 <body class="bg-defaultwhite block">
-
   <nav class="bg-secondary">
     <div class="container flex flex-wrap items-center justify-between mx-auto">
       <a class="flex items-center">

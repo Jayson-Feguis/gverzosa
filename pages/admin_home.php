@@ -1,7 +1,9 @@
 <?php
 include('../component/admin/header/header.php');
-
 ?>
+
+
+
 
 
 <head>
@@ -105,5 +107,29 @@ include('../component/admin/header/header.php');
 
         </ul>
     </div>
+
+    <!-- <div id="scheduler_here" class="dhx_cal_container  ml-60" style="width: 100%; height: 100%; ">
+        <div class="dhx_cal_navline ml-60">
+            <div class="dhx_cal_prev_button">&nbsp;</div>
+            <div class="dhx_cal_next_button">&nbsp;</div>
+            <div class="dhx_cal_today_button"></div>
+            <div class="dhx_cal_date"></div>
+            <div class="dhx_cal_tab" name="day_tab"></div>
+            <div class="dhx_cal_tab" name="week_tab"></div>
+            <div class="dhx_cal_tab" name="month_tab"></div>
+        </div>
+        <div class="dhx_cal_header ml-60"></div>
+        <div class="dhx_cal_data ml-60"></div>
+    </div>
+    <script>
+        scheduler.setLoadMode("week");
+        scheduler.init("scheduler_here", new Date(), "week");
+        scheduler.load("../api/get_events.php");
+
+        var dp = scheduler.createDataProcessor({
+            url: "../api/get_events.php",
+            mode: "JSON"
+        });
+    </script> -->
     <script src="https://unpkg.com/flowbite@1.5.1/dist/flowbite.js"></script>
 </body>

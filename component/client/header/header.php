@@ -50,6 +50,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- JQUERY -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- SWEET ALERT -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <!-- TAILWIND CSS -->
     <script src="https://cdn.tailwindcss.com" ></script>
     <script>
@@ -94,8 +96,11 @@
 <body class="bg-defaultwhite block">
     <nav class="div-center fixed z-[9999] transition-all duration-300">
         <div class="nav-container py-10 transition-all duration-300">
-            <div class="logo"> logo</div>
-            <ul class="nav-items flex justify-center gap-[28px] uppercase">
+            <div class="logo div-center flex-col">
+                <h1 class="font-Dancing text-[2rem]">G. Verzosa</h1>
+                <h5 class="font-Montserrat text-[1rem]">Salon & Spa</5>
+            </div>
+            <ul class="nav-items flex justify-center items-center gap-[28px] uppercase">
                 <?php  
                     // HOME PAGE
                     if($_SERVER['REQUEST_URI'] == "/gverzosa/"){
