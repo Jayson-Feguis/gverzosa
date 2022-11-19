@@ -19,9 +19,9 @@
            $service_name = $row['SERVICE_NAME'];
         }
         
-        $remarks = $fullname." booked a service of ".$service_name.". \n\nDate: ".$descriptive_datetime." \nNumber: ".$mobile_number."\nEmail: ".$email;
+        $text = $fullname." booked a service of ".$service_name.". \n\nDate: ".$descriptive_datetime." \nNumber: ".$mobile_number."\nEmail: ".$email;
 
-        $sql_appointment = "INSERT tbl_appointment (APP_NAME, APP_EMAIL, APP_MOBILE_NUMBER, START_DATE, END_DATE, REMARKS, SERVICE_ID) values ('$fullname', '$email', '$mobile_number', '$newDateTime', '$newDateTime', '$remarks', '$service')";
+        $sql_appointment = "INSERT tbl_appointment (APP_NAME, APP_EMAIL, APP_MOBILE_NUMBER, START_DATE, END_DATE, TEXT, SERVICE_ID) values ('$fullname', '$email', '$mobile_number', '$newDateTime', '$newDateTime', '$text', '$service')";
         $result = mysqli_query($conn, $sql_appointment);
 
         if($result){
