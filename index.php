@@ -91,7 +91,7 @@
                                     type="time"
                                     class="block border border-grey-light w-full p-3 rounded mb-4"
                                     name="time"
-                                    min="10:00" max="21:00"
+                                    min="10:00:00" max="21:00:00"
                                     placeholder="09:00"
                                     required
                                 />

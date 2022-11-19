@@ -121,11 +121,11 @@
                     <td><?php echo $row['PRODUCT_PRICE']; ?> </td>
                     <td><?php echo $row['PRODUCT_DATETIME_CREATED']; ?> </td>
                     <td class="text-center">
-                        <button type="button" class="editProduct bg-transparent hover:bg-gray-300 text-blue-700 font-semibold hover:text-white py-2 px-2 border border-gray-500 hover:border-border-gray-300 rounded">
-                            <img src="https://img.icons8.com/color/48/null/pencil--v1.png" width="20px" heigh="20px" />
+                        <button type="button" class="editProduct bg-transparent hover:bg-gray-300 text-blue-700 font-semibold hover:text-white py-[5px] px-2 border border-gray-500 hover:border-border-gray-300 rounded">
+                            <i class="fa fa-pencil text-[16px]" aria-hidden="true"></i>
                         </button>
-                        <button type="button" class="deleteProduct bg-transparent hover:bg-gray-300 text-blue-700 font-semibold hover:text-white py-2 px-2 border border-gray-500 hover:border-border-gray-300 rounded">
-                            <img src="https://img.icons8.com/color/48/null/delete-forever.png" width="20px" heigh="20px" />
+                        <button type="button" class="deleteProduct bg-transparent hover:bg-gray-300 text-blue-700 font-semibold hover:text-white py-[5px] px-2 border border-gray-500 hover:border-border-gray-300 rounded">
+                            <i class="fa fa-trash-o text-[16px]" aria-hidden="true"></i>
                         </button>
                     </td>
                 </tr>

@@ -36,20 +36,20 @@
             $temp['id'] =  $row['APP_ID'];
             $temp['start_date'] =  $row['START_DATE'];
             $temp['end_date'] = $row['END_DATE'];
-            $temp['text'] =  $row['REMARKS'];
+            $temp['text'] =  $row['TEXT'];
             array_push($events, $temp);
         }
         return $events;
     }
 
     function create($db, $event){
-        $sql = "INSERT tbl_appointment (START_DATE, END_DATE, REMARKS) values ('".$event["start_date"]."', '".$event["end_date"]."', '". $event["text"]."')";
+        $sql = "INSERT tbl_appointment (START_DATE, END_DATE, TEXT) values ('".$event["start_date"]."', '".$event["end_date"]."', '". $event["text"]."')";
         $result = mysqli_query($db, $sql);
         return $result;
     }
     // update an event
     function update($db, $event, $id){
-        $sql = "UPDATE tbl_appointment SET START_DATE = '".$event["start_date"]."', END_DATE='".$event["end_date"]."', REMARKS='".$event["text"]."' WHERE APP_ID = '".$id."'";
+        $sql = "UPDATE tbl_appointment SET START_DATE = '".$event["start_date"]."', END_DATE='".$event["end_date"]."', TEXT='".$event["text"]."' WHERE APP_ID = '".$id."'";
         $result = mysqli_query($db, $sql);
         return $result;
     }
