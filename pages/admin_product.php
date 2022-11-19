@@ -28,9 +28,11 @@
         <div class="fixed inset-0 z-10 overflow-y-auto">
             <div class="flex min-h-full justify-center p-4 text-center items-center sm:p-0">
                 <div class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
-                    <form action="../api/post_product.php" method="post">
+                    <form action="../api/post_product.php" method="post" enctype="multipart/form-data">
                         <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                             <h1 class="font-bold text-primary text-center text-[20px] py-[20px]">Add Product</h1>
+                                <label for="addproductimage">Product Image</label>
+                                <input type="file" name="addproductimage" id="addproductimage" accept="image/*" class="block border border-grey-light w-full p-3 rounded mb-4" required>
                                 <label for="addproductname">Product Name</label>
                                 <input type="text" id="addproductname" name="addproductname" class="block border border-grey-light w-full p-3 rounded mb-4" placeholder="ex. Sunsilk" required>
                                 <label for="addproductdescription">Product Description</label>
@@ -52,10 +54,13 @@
         <div class="fixed inset-0 z-10 overflow-y-auto">
             <div class="flex min-h-full justify-center p-4 text-center items-center sm:p-0">
                 <div class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
-                    <form action="../api/post_product.php" method="post">
+                    <form action="../api/post_product.php" method="post" enctype="multipart/form-data">
                         <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                             <input type="text" id="productid" name="productid" class=" hidden bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="productid" required>
                             <h1 class="font-bold text-primary text-center text-[20px] py-[20px]">Edit Product</h1>
+                            <label for="productimage">Product Image</label>
+                            <img id="img_productimage" src="" class="w-[200px]">
+                            <input type="file" name="productimage" id="productimage" accept="image/*" class="block border border-grey-light w-full p-3 rounded mb-4" required>
                             <label for="productname">Product Name</label>
                             <input type="text" id="productname" name="productname" class="block border border-grey-light w-full p-3 rounded mb-4" placeholder="Sunsilk" required>
                             <label for="productdescription">Product Description</label>
@@ -80,7 +85,6 @@
                     <form action="../api/post_product.php" method="post">
                         <h1 class="font-bold text-primary text-center text-[20px] py-[20px]">Are you sure do want to delete this product?</h1>
                         <input type="text" type="text" id="productidDelete" name="productidDelete" class="hidden bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="productid" required>
-
                         <div class="bg-gray-50 px-4 py-3 gap-5 sm:flex sm:flex-row-reverse sm:px-6">
                             <button type="submit" name="deleteproduct" class="text-white bg-red-500 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:red-blue-800">Delete</button>
                             <button type="button" onclick="closeModaldel()" class="mt-3 inline-flex w-full transition-all duration-300 justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">Cancel</button>
@@ -100,12 +104,12 @@
             <tr>
                 <th style="display: none;">Product ID</th>
                 <th>Product Name</th>
+                <th style="display: none;">Product Picture</th>
                 <th>Picture</th>
                 <th>Description</th>
                 <th>Price</th>
                 <th>Date Created</th>
                 <th>Actions</th>
-
             </tr>
         </thead>
         <tbody>
@@ -116,7 +120,8 @@
                 <tr>
                     <td style="display: none;"><?php echo $row['PRODUCT_ID']; ?> </td>
                     <td><?php echo $row['PRODUCT_NAME']; ?> </td>
-                    <td><?php echo $row['PRODUCT_PICTURE']; ?> </td>
+                    <td style="display: none;"><?php echo $row['PRODUCT_PICTURE']; ?></td>
+                    <td><div class="w-[200px] h-[40px] bg-contain bg-no-repeat" style="background-image: url('../images/<?php echo $row['PRODUCT_PICTURE']; ?>');"></div></td>
                     <td><?php echo $row['PRODUCT_DESCRIPTION']; ?> </td>
                     <td><?php echo $row['PRODUCT_PRICE']; ?> </td>
                     <td><?php echo $row['PRODUCT_DATETIME_CREATED']; ?> </td>
@@ -174,11 +179,15 @@
             var table = $('#data-table').DataTable();
             $('#data-table tbody').on('click', '.editProduct', function () {
                 var data = table.row($(this).parents('tr')).data();
+                const dT = new ClipboardEvent('').clipboardData || new DataTransfer(); 
+                dT.items.add(new File(['foo'], data[2]));
                 $("#modal-edit").removeClass("hidden");
+                productimage.files = dT.files;
+                $('#img_productimage').attr("src", "../images/"+data[2]);
                 $('#productid').val(data[0]);
                 $('#productname').val(data[1]);
-                $('#productdescription').val(data[3]);
-                $('#productprice').val(parseFloat(data[4]));
+                $('#productdescription').val(data[4]);
+                $('#productprice').val(parseFloat(data[5]));
             });
         });
 
