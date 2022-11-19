@@ -19,9 +19,9 @@ if (isset($_POST['login'])) {
         $_SESSION['user_name'] = $row['USER_USERNAME'];
         $_SESSION['user_id'] = $row['USER_ID'];
         $_SESSION['user_type'] = $row['USER_TYPE'];
-
         $_SESSION['fname_name'] = $row['USER_FNAME'];
         $_SESSION['lname_name'] = $row['USER_LNAME'];
+
         header('location: /gverzosa/pages/admin_home.php');
     } else {
         echo "notloggedin";
