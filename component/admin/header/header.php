@@ -63,6 +63,9 @@ if (isset($_GET['logout'])) {
             <?php
          }
     ?>
+    <!-- SCHEDULER -->
+    <script src="https://cdn.dhtmlx.com/scheduler/edge/dhtmlxscheduler.js"></script>
+    <link href="https://cdn.dhtmlx.com/scheduler/edge/dhtmlxscheduler_material.css" rel="stylesheet" type="text/css" charset="utf-8"/>
     <!-- JQUERY -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- TAILWIND CSS -->
@@ -84,22 +87,29 @@ if (isset($_GET['logout'])) {
           },
         },
       };
-
     </script>
+    <style>
+      html,
+      body {
+        margin: 0px;
+        padding: 0px;
+        height: 100%;
+        overflow: hidden;
+      }
+    </style>
 </head>
 <body class="bg-defaultwhite block">
-  
-<nav class="bg-secondary">
-  <div class="container flex flex-wrap items-center justify-between mx-auto">
-  <a  class="flex items-center">
-      <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white"><?php echo $_SESSION['user_name']; ?></span>
-  </a>
-  <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="mobile-menu-2">
-    <ul class="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg  md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 ">
-      <li>
-      <a href="logout.php" name="logout" class="block bg-secondary px-4 py-2 text-sm text-white rounded-lg hover:bg-white hover:text-black ">Sign out</a> 
-      </li>
-    </ul>
-  </div>
-  </div>
-</nav>
+    <nav class="bg-secondary">
+        <div class="container flex flex-wrap items-center justify-between mx-auto">
+            <a  class="flex items-center">
+                <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white"><?php echo $_SESSION['user_name']; ?></span>
+            </a>
+            <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="mobile-menu-2">
+                <ul class="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg  md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 ">
+                    <li>
+                    <a href="logout.php" name="logout" class="block bg-secondary px-4 py-2 text-sm text-white rounded-lg hover:bg-white hover:text-black ">Sign out</a> 
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>

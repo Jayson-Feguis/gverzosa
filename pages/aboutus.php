@@ -30,7 +30,7 @@
                     $employees_result = $conn -> query($employees_query);
                     if($employees_result){
                         while($rows = mysqli_fetch_array($employees_result)){
-                        echo '<div class="card-container bg-defaultwhite rounded-lg p-[50px] div-center flex-col drop-shadow-md">
+                            echo '<div class="card-container bg-defaultwhite rounded-lg p-[50px] div-center flex-col drop-shadow-md">
                                     <img src="../'.$rows['USER_PICTURE'].'" alt="sample" class="rounded-full w-[150px]"/>
                                     <h6 class="text-primary text-[24px]">
                                     '.$rows['USER_FNAME'].' '.$rows['USER_LNAME'].'
@@ -51,18 +51,18 @@
                 <div>
                     <img src="../images/map.png" alt="Location">
                 </div>
-                <div>
-                    <div>
-                        <i class="fa fa-map-marker"></i>
-                        <h6>244 Kalentong Romualdez St., Brgy. Daang Bakal, Mandaluyong City</h6>
+                <div class="flex flex-col gap-[40px]">
+                    <div class="flex items-center">
+                        <i class="w-[50px] text-center text-secondary text-[32px] fa fa-map-marker"></i>
+                        <h6 class="text-[20px]">244 Kalentong Romualdez St., Brgy. Daang Bakal, Mandaluyong City</h6>
                     </div>
-                    <div>
-                        <i class="fa fa-envelope"></i>
-                        <h6>gverzosasalonandspa@gmail.com</h6>
+                    <div class="flex items-center">
+                        <i class="w-[50px] text-center text-secondary text-[32px] fa fa-envelope"></i>
+                        <h6 class="text-[20px]">gverzosasalonandspa@gmail.com</h6>
                     </div>
-                    <div>
-                        <i class="fa fa-phone"></i>
-                        <h6>0977 804 9383</h6>
+                    <div class="flex items-center">
+                        <i class="w-[50px] text-center text-secondary text-[32px] fa fa-phone"></i>
+                        <h6 class="text-[20px]">0977 804 9383</h6>
                     </div>
                 </div>
             </div>
