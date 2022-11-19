@@ -1,5 +1,4 @@
 <?php 
-    session_start();
     include('component/client/header/header.php');
 ?>
 <style>
