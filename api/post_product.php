@@ -20,7 +20,7 @@
                 $old_image = $rows_image['PRODUCT_PICTURE'];
             }
         }
-
+        // CHECK IF THE EXISTING IMAGE IS EQUAL TO IMAGE PAYLOAD, IF YES, DONT UPDATE IMAGE
         if($old_image == $productimage && $productimage != ""){
             $sql = "UPDATE tbl_product SET PRODUCT_NAME = '$productname', PRODUCT_PRICE = '$productprice', PRODUCT_DESCRIPTION = '$productdescription' WHERE PRODUCT_ID = '$productid'";
             $result = mysqli_query($conn, $sql);
@@ -40,8 +40,12 @@
                 $_SESSION['alert-text'] = "Something went wrong";
                 header("Location: ../pages/admin_product.php");
             }
-        }else{
+        }
+        // ELSE, UPDATE ALL INFORMATION TOGETHER WITH PRODUCT PICTURE
+        else{
+            // CHECK IF THERE'S AN IMAGE IN THE PAYLOAD
             if(isset($_FILES['productimage']['name'])){
+                // UPLOAD IMAGE
                 $upload_image = uploadImage($_FILES['productimage']['name'], $_FILES['productimage']['tmp_name'], "Product");
     
                 if(!$upload_image){

@@ -1,6 +1,8 @@
 <?php
     include_once('../utils/db_config.php');
+    include_once('../utils/helper.php');
     date_default_timezone_set('Asia/Manila');
+
     if (isset($_POST['editappointment'])) {
         $appointmentid = $_POST['appointmentid'];
         $appointmentfullname = $_POST['fullname'];
@@ -30,20 +32,37 @@
             $_SESSION['alert-text'] = "Error description: ".mysqli_error($conn);
             header("Location: ../pages/admin_appointment.php");
         }
-    } else if (isset($_POST['acceptappointment'])) {
+    } 
+    else if (isset($_POST['acceptappointment'])) {
         $appointmentid = $_POST['appointmentidAccept'];
+        $appointmentfullname = $_POST['appointmentfullnameAccept'];
+        $appointmentemail = $_POST['appointmentemailAccept'];
+        $appointmentremarks = $_POST['appointmentremarksAccept'];
         $accepted_status = 1;
+        $email_subject = "G. Verzosa - Your booking is Accepted";
+        $email_message = "We would like to inform you that your appointment has been BOOKED. Thank you for choosing our sevice and have a great day.";
 
-        $sql = "UPDATE tbl_appointment SET APP_STATUS = '$accepted_status' WHERE APP_ID = '$appointmentid'";
+        $sql = "UPDATE tbl_appointment SET APP_STATUS = '$accepted_status', REMARKS = '$appointmentremarks' WHERE APP_ID = '$appointmentid'";
         $result = mysqli_query($conn, $sql);
 
         if ($result) {
-            // SUCCESS
-            $_SESSION['alert'] = true;
-            $_SESSION['alert-icon'] = "success";
-            $_SESSION['alert-title'] = "Success";
-            $_SESSION['alert-text'] = "Appointment accepted successfully";
-            header("Location: ../pages/admin_appointment.php");
+            $send_email = sendEmail($appointmentfullname, $appointmentemail, $email_subject, $email_message );
+            if($send_email != 1){
+                // ERROR
+                $_SESSION['alert'] = true;
+                $_SESSION['alert-icon'] = "error";
+                $_SESSION['alert-title'] = "Error";
+                $_SESSION['alert-text'] = "Something went wrong - ".$send_email;
+                header("Location: ../pages/admin_appointment.php");
+            }
+            else if($send_email == 1){
+                // SUCCESS
+                $_SESSION['alert'] = true;
+                $_SESSION['alert-icon'] = "success";
+                $_SESSION['alert-title'] = "Success";
+                $_SESSION['alert-text'] = "Appointment accepted successfully - ".$send_email;
+                header("Location: ../pages/admin_appointment.php");
+            }
         } else {
             // ERROR
             $_SESSION['alert'] = true;
@@ -54,18 +73,34 @@
         }
     } else if (isset($_POST['rejectappointment'])) {
         $appointmentid = $_POST['appointmentidReject'];
+        $appointmentfullname = $_POST['appointmentfullnameReject'];
+        $appointmentemail = $_POST['appointmentemailReject'];
+        $appointmentremarks = $_POST['appointmentremarksReject'];
         $reject_status = 2;
+        $email_subject = "G. Verzosa - Your booking is Rejected";
+        $email_message = "We would like to inform you that your appointment has been REJECTED due to the reason of ".$appointmentremarks.". Thank you for choosing our sevice and have a great day.";
 
-        $sql = "UPDATE tbl_appointment SET APP_STATUS = '$reject_status' WHERE APP_ID = '$appointmentid'";
+        $sql = "UPDATE tbl_appointment SET APP_STATUS = '$reject_status', REMARKS = '$appointmentremarks' WHERE APP_ID = '$appointmentid'";
         $result = mysqli_query($conn, $sql);
 
         if ($result) {
-            // SUCCESS
-            $_SESSION['alert'] = true;
-            $_SESSION['alert-icon'] = "success";
-            $_SESSION['alert-title'] = "Success";
-            $_SESSION['alert-text'] = "Appointment rejected successfully";
-            header("Location: ../pages/admin_appointment.php");
+            $send_email = sendEmail($appointmentfullname, $appointmentemail, $email_subject, $email_message );
+            if($send_email != 1){
+                // ERROR
+                $_SESSION['alert'] = true;
+                $_SESSION['alert-icon'] = "error";
+                $_SESSION['alert-title'] = "Error";
+                $_SESSION['alert-text'] = "Something went wrong";
+                header("Location: ../pages/admin_appointment.php");
+            }
+            else if($send_email == 1){
+                 // SUCCESS
+                $_SESSION['alert'] = true;
+                $_SESSION['alert-icon'] = "success";
+                $_SESSION['alert-title'] = "Success";
+                $_SESSION['alert-text'] = "Appointment rejected successfully";
+                header("Location: ../pages/admin_appointment.php");
+            }
         } else {
             // ERROR
             $_SESSION['alert'] = true;
@@ -76,18 +111,34 @@
         }
     } else if (isset($_POST['cancelappointment'])) {
         $appointmentid = $_POST['appointmentidCancel'];
+        $appointmentfullname = $_POST['appointmentfullnameCancel'];
+        $appointmentemail = $_POST['appointmentemailCancel'];
+        $appointmentremarks = $_POST['appointmentremarksCancel'];
         $cancel_status = 3;
+        $email_subject = "G. Verzosa - Your booking is Canceled";
+        $email_message = "We would like to inform you that your appointment has been CANCELED due to the reason of ".$appointmentremarks.". Thank you for choosing our sevice and have a great day.";
 
-        $sql = "UPDATE tbl_appointment SET APP_STATUS = '$cancel_status' WHERE APP_ID = '$appointmentid'";
+        $sql = "UPDATE tbl_appointment SET APP_STATUS = '$cancel_status', REMARKS = '$appointmentremarks' WHERE APP_ID = '$appointmentid'";
         $result = mysqli_query($conn, $sql);
 
         if ($result) {
-            // SUCCESS
-            $_SESSION['alert'] = true;
-            $_SESSION['alert-icon'] = "success";
-            $_SESSION['alert-title'] = "Success";
-            $_SESSION['alert-text'] = "Appointment canceled successfully";
-            header("Location: ../pages/admin_appointment.php");
+            $send_email = sendEmail($appointmentfullname, $appointmentemail, $email_subject, $email_message );
+            if($send_email != 1){
+                // ERROR
+                $_SESSION['alert'] = true;
+                $_SESSION['alert-icon'] = "error";
+                $_SESSION['alert-title'] = "Error";
+                $_SESSION['alert-text'] = "Something went wrong";
+                header("Location: ../pages/admin_appointment.php");
+            }
+            else if($send_email == 1){
+                 // SUCCESS
+                $_SESSION['alert'] = true;
+                $_SESSION['alert-icon'] = "success";
+                $_SESSION['alert-title'] = "Success";
+                $_SESSION['alert-text'] = "Appointment canceled successfully";
+                header("Location: ../pages/admin_appointment.php");
+            }
         } else {
             // ERROR
             $_SESSION['alert'] = true;

@@ -146,9 +146,13 @@
         <div class="fixed inset-0 z-10 overflow-y-auto">
             <div class="flex min-h-full justify-center p-4 text-center items-center sm:p-0">
                 <div class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
-                    <form action="../api/post_appointment.php" method="post">
+                    <form action="../api/post_appointment.php" method="post" class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                         <h1 class="font-bold text-primary text-center text-[20px] py-[20px]">Are you sure you want to accept this appointment?</h1>
                         <input type="text" type="text" id="appointmentidAccept" name="appointmentidAccept" class="hidden bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="productid" required>
+                        <input type="text" type="text" id="appointmentfullnameAccept" name="appointmentfullnameAccept" class="hidden bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="productid" required>
+                        <input type="text" type="text" id="appointmentemailAccept" name="appointmentemailAccept" class="hidden bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="productid" required>
+                        <label for="remarks">Remarks</label>
+                        <textarea type="text" id="appointmentremarksAccept" name="appointmentremarksAccept" rows="4" class="block border border-grey-light w-full p-3 rounded mb-4" placeholder="(Optional) Type here ..."></textarea>
                         <div class="bg-gray-50 px-4 py-3 gap-5 sm:flex sm:flex-row-reverse sm:px-6">
                             <button type="submit" name="acceptappointment" class="text-white bg-blue-300 hover:bg-blue-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:blue-blue-800">Yes</button>
                             <button type="button" onclick="closeModalAccept()" class="mt-3 inline-flex w-full transition-all duration-300 justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">Cancel</button>
@@ -163,9 +167,13 @@
         <div class="fixed inset-0 z-10 overflow-y-auto">
             <div class="flex min-h-full justify-center p-4 text-center items-center sm:p-0">
                 <div class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
-                    <form action="../api/post_appointment.php" method="post">
+                    <form action="../api/post_appointment.php" method="post" class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                         <h1 class="font-bold text-primary text-center text-[20px] py-[20px]">Are you sure you want to reject this appointment?</h1>
                         <input type="text" type="text" id="appointmentidReject" name="appointmentidReject" class="hidden bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="productid" required>
+                        <input type="text" type="text" id="appointmentfullnameReject" name="appointmentfullnameReject" class="hidden bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="productid" required>
+                        <input type="text" type="text" id="appointmentemailReject" name="appointmentemailReject" class="hidden bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="productid" required>
+                        <label for="remarks">Remarks</label>
+                        <textarea type="text" id="appointmentremarksReject" name="appointmentremarksReject" rows="4" class="block border border-grey-light w-full p-3 rounded mb-4" placeholder="Type here ..." required></textarea>
                         <div class="bg-gray-50 px-4 py-3 gap-5 sm:flex sm:flex-row-reverse sm:px-6">
                             <button type="submit" name="rejectappointment" class="text-white bg-blue-300 hover:bg-blue-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:blue-blue-800">Yes</button>
                             <button type="button" onclick="closeModalReject()" class="mt-3 inline-flex w-full transition-all duration-300 justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">Cancel</button>
@@ -180,9 +188,13 @@
         <div class="fixed inset-0 z-10 overflow-y-auto">
             <div class="flex min-h-full justify-center p-4 text-center items-center sm:p-0">
                 <div class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
-                    <form action="../api/post_appointment.php" method="post">
+                    <form action="../api/post_appointment.php" method="post" class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                         <h1 class="font-bold text-primary text-center text-[20px] py-[20px]">Are you sure you want to cancel this appointment?</h1>
                         <input type="text" type="text" id="appointmentidCancel" name="appointmentidCancel" class="hidden bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="productid" required>
+                        <input type="text" type="text" id="appointmentfullnameCancel" name="appointmentfullnameCancel" class="hidden bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="productid" required>
+                        <input type="text" type="text" id="appointmentemailCancel" name="appointmentemailCancel" class="hidden bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="productid" required>
+                        <label for="remarks">Remarks</label>
+                        <textarea type="text" id="appointmentremarksCancel" name="appointmentremarksCancel" rows="4" class="block border border-grey-light w-full p-3 rounded mb-4" placeholder="Type here ..." required></textarea>
                         <div class="bg-gray-50 px-4 py-3 gap-5 sm:flex sm:flex-row-reverse sm:px-6">
                             <button type="submit" name="cancelappointment" class="text-white bg-blue-300 hover:bg-blue-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:blue-blue-800">Yes</button>
                             <button type="button" onclick="closeModalCancel()" class="mt-3 inline-flex w-full transition-all duration-300 justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">Cancel</button>
@@ -253,9 +265,9 @@
                                 <i class="fa fa-times-circle-o text-[16px]" aria-hidden="true"></i>
                                 </button>';
                         }else if($row['APP_STATUS'] == 2){
-                            echo '<button type="button" title="Cancel" class="cancelAppointment bg-transparent hover:bg-gray-300 text-blue-700 font-semibold hover:text-white py-[5px] px-2   border border-gray-500 hover:border-border-gray-300 rounded">
-                                <i class="fa fa-times-circle-o text-[16px]" aria-hidden="true"></i>
-                                </button>';
+                            // echo '<button type="button" title="Cancel" class="cancelAppointment bg-transparent hover:bg-gray-300 text-blue-700 font-semibold hover:text-white py-[5px] px-2   border border-gray-500 hover:border-border-gray-300 rounded">
+                            //     <i class="fa fa-times-circle-o text-[16px]" aria-hidden="true"></i>
+                            //     </button>';
                         }
                         else if($row['APP_STATUS'] == 3){
                         } 
@@ -303,7 +315,7 @@
         }
 
         function closeModalCancel() {
-            $("#modal-cencel").addClass("hidden");
+            $("#modal-cancel").addClass("hidden");
         }
         // EDIT
         $(document).ready(function() {
@@ -338,6 +350,9 @@
                 var data = table.row($(this).parents('tr')).data();
                 $("#modal-accept").removeClass("hidden");
                 $('#appointmentidAccept').val(data[0]);
+                $('#appointmentfullnameAccept').val(data[1]);
+                $('#appointmentemailAccept').val(data[2]);
+                $('#appointmentremarksAccept').val(data[9]);
             });
         });
         // REJECT
@@ -347,6 +362,10 @@
                 var data = table.row($(this).parents('tr')).data();
                 $("#modal-reject").removeClass("hidden");
                 $('#appointmentidReject').val(data[0]);
+                $('#appointmentfullnameReject').val(data[1]);
+                $('#appointmentemailReject').val(data[2]);
+                $('#appointmentremarksReject').val(data[9]);
+                
             });
         });
         // CANCEL
@@ -356,6 +375,9 @@
                 var data = table.row($(this).parents('tr')).data();
                 $("#modal-cancel").removeClass("hidden");
                 $('#appointmentidCancel').val(data[0]);
+                $('#appointmentfullnameCancel').val(data[1]);
+                $('#appointmentemailCancel').val(data[2]);
+                $('#appointmentremarksCancel').val(data[9]);
             });
         });
         // ADD
