@@ -96,7 +96,7 @@
 <body class="bg-defaultwhite block">
     <nav class="div-center fixed z-[9999] transition-all duration-300">
         <div class="nav-container py-10 transition-all duration-300">
-            <div class="logo div-center flex-col">
+            <div class="logo div-center flex-col font-black">
                 <h1 class="font-Dancing text-[2rem]">G. Verzosa</h1>
                 <h5 class="font-Montserrat text-[1rem]">Salon & Spa</5>
             </div>
@@ -105,17 +105,19 @@
                     // HOME PAGE
                     if($_SERVER['REQUEST_URI'] == "/gverzosa/"){
                         ?> 
-                        <a class="text-secondary hover:cursor-pointer hover:text-secondary transition-color duration-300" href="">Home</a>
+                        <a class="font-bold hover:cursor-pointer hover:text-secondary transition-color duration-300" href="">Home</a>
                         <a class="hover:cursor-pointer hover:text-secondary transition-color duration-300" href="<?php echo ABOUT_US ?>">About Us</a>
                         <a class="hover:cursor-pointer hover:text-secondary transition-color duration-300" href="<?php echo SERVICES ?>">Services</a>
+                        <a class="hover:cursor-pointer hover:text-secondary transition-color duration-300" href="<?php echo PRODUCTS ?>">Products</a>
                         <?php
                     }
                     // ABOUT US PAGE
                     else if($_SERVER['REQUEST_URI'] == "/gverzosa/pages/aboutus.php"){
                         ?>
                         <a class="hover:cursor-pointer hover:text-secondary transition-color duration-300" href="../">Home</a>
-                        <a class="text-secondary hover:cursor-pointer hover:text-secondary transition-color duration-300" href="">About Us</a>
+                        <a class="font-bold hover:cursor-pointer hover:text-secondary transition-color duration-300" href="">About Us</a>
                         <a class="hover:cursor-pointer hover:text-secondary transition-color duration-300" href="../<?php echo SERVICES ?>">Services</a>
+                        <a class="hover:cursor-pointer hover:text-secondary transition-color duration-300" href="../<?php echo PRODUCTS ?>">Products</a>
                         <?php
                     }
                     // SERVICES PAGE
@@ -123,16 +125,26 @@
                         ?>
                         <a class="hover:cursor-pointer hover:text-secondary transition-color duration-300" href="../">Home</a>
                         <a class="hover:cursor-pointer hover:text-secondary transition-color duration-300" href="../<?php echo ABOUT_US ?>">About Us</a>
-                        <a class="text-secondary hover:cursor-pointer hover:text-secondary transition-color duration-300" href="">Services</a>
+                        <a class="font-bold hover:cursor-pointer hover:text-secondary transition-color duration-300" href="">Services</a>
+                        <a class="hover:cursor-pointer hover:text-secondary transition-color duration-300" href="../<?php echo PRODUCTS ?>">Products</a>
                         <?php
+                    }
+                    else if($_SERVER['REQUEST_URI'] == "/gverzosa/pages/products.php"){
+                      ?>
+                      <a class="hover:cursor-pointer hover:text-secondary transition-color duration-300" href="../">Home</a>
+                      <a class="hover:cursor-pointer hover:text-secondary transition-color duration-300" href="../<?php echo ABOUT_US ?>">About Us</a>
+                      <a class="hover:cursor-pointer hover:text-secondary transition-color duration-300" href="../<?php echo SERVICES ?>">Services</a>
+                      <a class="font-bold hover:cursor-pointer hover:text-secondary transition-color duration-300" href="">Products</a>
+                      <?php
                     }
                     else if($_SERVER['REQUEST_URI'] == "/gverzosa/pages/login.php"){
                       ?>
                       <a class="hover:cursor-pointer hover:text-secondary transition-color duration-300" href="../">Home</a>
                       <a class="hover:cursor-pointer hover:text-secondary transition-color duration-300" href="../<?php echo ABOUT_US ?>">About Us</a>
                       <a class="hover:cursor-pointer hover:text-secondary transition-color duration-300" href="../<?php echo SERVICES ?>">Services</a>
+                      <a class="hover:cursor-pointer hover:text-secondary transition-color duration-300" href="../<?php echo PRODUCTS ?>">Products</a>
                       <?php
-                  }
+                    }
                     
                 ?>
             </ul>

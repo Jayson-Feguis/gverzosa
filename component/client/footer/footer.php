@@ -16,9 +16,9 @@ function loginUrl(){
 
         <footer class="bg-primary div-center font-Montserrat text-defaultwhite md:py-[100px]">
             <div class="footer-container flex flex-wrap w-full max-w-[1536px] py-[30px]">
-                <div class="logo w-full md:w-[33%] div-center flex-col">
+                <div class="logo w-full md:w-[33%] div-center flex-col font-black">
                     <h1 class="font-Dancing text-[2rem]">G. Verzosa</h1>
-                    <h5 class="font-Montserrat text-[1rem]">Salon & Spa</5>
+                    <h5 class="font-Montserrat text-[2rem]">Salon & Spa</5>
                 </div>
                 <div class="links w-full sm:w-[50%] md:w-[33%] flex justify-start items-center flex-col py-[30px]">
                     <div class="flex justify-start items-start flex-col gap-[25px] w-[170px]">
@@ -31,6 +31,7 @@ function loginUrl(){
                                 <a class="hover:cursor-pointer hover:text-secondary transition-all duration-300" href="">Home</a>
                                 <a class="hover:cursor-pointer hover:text-secondary transition-all duration-300" href="<?php echo ABOUT_US ?>">About Us</a>
                                 <a class="hover:cursor-pointer hover:text-secondary transition-all duration-300" href="<?php echo SERVICES ?>">Services</a>
+                                <a class="hover:cursor-pointer hover:text-secondary transition-color duration-300" href="../<?php echo PRODUCTS ?>">Products</a>
                                 <?php
                             }
                             // ABOUT US PAGE
@@ -39,6 +40,7 @@ function loginUrl(){
                                 <a class="hover:cursor-pointer hover:text-secondary transition-all duration-300" href="../">Home</a>
                                 <a class="hover:cursor-pointer hover:text-secondary transition-all duration-300" href="">About Us</a>
                                 <a class="hover:cursor-pointer hover:text-secondary transition-all duration-300" href="../<?php echo SERVICES ?>">Services</a>
+                                <a class="hover:cursor-pointer hover:text-secondary transition-color duration-300" href="../<?php echo PRODUCTS ?>">Products</a>
                                 <?php
                             }
                             // SERVICES PAGE
@@ -47,8 +49,17 @@ function loginUrl(){
                                 <a class="hover:cursor-pointer hover:text-secondary transition-all duration-300" href="../">Home</a>
                                 <a class="hover:cursor-pointer hover:text-secondary transition-all duration-300" href="../<?php echo ABOUT_US ?>">About Us</a>
                                 <a class="hover:cursor-pointer hover:text-secondary transition-all duration-300" href="">Services</a>
+                                <a class="hover:cursor-pointer hover:text-secondary transition-color duration-300" href="../<?php echo PRODUCTS ?>">Products</a>
                                 <?php
                             }
+                            else if($_SERVER['REQUEST_URI'] == "/gverzosa/pages/products.php"){
+                                ?>
+                                <a class="hover:cursor-pointer hover:text-secondary transition-color duration-300" href="../">Home</a>
+                                <a class="hover:cursor-pointer hover:text-secondary transition-color duration-300" href="../<?php echo ABOUT_US ?>">About Us</a>
+                                <a class="hover:cursor-pointer hover:text-secondary transition-color duration-300" href="../<?php echo SERVICES ?>">Services</a>
+                                <a class="hover:cursor-pointer hover:text-secondary transition-color duration-300" href="">Products</a>
+                                <?php
+                              }
                         ?>
                         </ul>
                         <h6 class="font-bold pt-[20px]">Are you an admin?</h6>

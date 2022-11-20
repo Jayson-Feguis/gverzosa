@@ -18,24 +18,83 @@
     unset($_SESSION['alert-text']);
 ?>
 <div class="flex-col w-full min-h-screen pl-[270px] mt-[90px] pr-[20px] pb-[150px] overflow-auto">
+    <div class="text-left w-full mb-5">
+        <button onclick="openModalAdd()" class="addAppointment bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 border border-blue-700 rounded">
+            Add Appointment
+        </button>
+    </div>
     <div id="modal-add" class="relative z-[10000] hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
         <div class="fixed inset-0 bg-primary bg-opacity-75 transition-opacity"></div>
         <div class="fixed inset-0 z-10 overflow-y-auto">
             <div class="flex min-h-full justify-center p-4 text-center items-center sm:p-0">
                 <div class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
-                    <form action="../api/post_product.php" method="post">
+                    <form action="../api/post_appointment.php" method="post">
                         <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-                            <h1 class="font-bold text-primary text-center text-[20px] py-[20px]">Add Product</h1>
-                                <label for="addproductname">Product Name</label>
-                                <input type="text" id="addproductname" name="addproductname" class="block border border-grey-light w-full p-3 rounded mb-4" placeholder="ex. Sunsilk" required>
-                                <label for="addproductdescription">Product Description</label>
-                                <textarea type="text" id="addproductdescription" name="addproductdescription" class="block border border-grey-light w-full p-3 rounded mb-4" placeholder="ex. Use for hair" required></textarea>
-                                <label for="addproductprice">Product Price</label>
-                                <input type="number" id="addproductprice" name="addproductprice" class="block border border-grey-light w-full p-3 rounded mb-4" placeholder="ex. 20" required>
-                            <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
-                                <button type="submit" name="addproduct" class="inline-flex w-full transition-all duration-300 justify-center rounded-md border border-transparent bg-secondary px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-opacity-70 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm">Confirm</button>
-                                <button type="button" onclick="closeModalAdd()" class="mt-3 inline-flex w-full transition-all duration-300 justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">Cancel</button>
-                            </div>
+                            <h1 class="font-bold text-primary text-center text-[20px] py-[20px]">Add an appointment</h1>
+                            <label for="fullname">Full Name</label>
+                            <input 
+                                id="fullname"
+                                type="text"
+                                class="block border border-grey-light w-full p-3 rounded mb-4"
+                                name="fullname"
+                                placeholder="ex. Juan Dela Cruz"
+                                required
+                            />
+                            <label for="email">Email</label>
+                            <input 
+                                id="email"
+                                type="email"
+                                class="block border border-grey-light w-full p-3 rounded mb-4"
+                                name="email"
+                                placeholder="ex. youremail@example.com"
+                                required
+                            />
+                            <label for="mobilenumber">Mobile Number</label>
+                            <input 
+                                id="mobilenumber"
+                                type="phone"
+                                class="block border border-grey-light w-full p-3 rounded mb-4"
+                                name="mobilenumber"
+                                placeholder="09123456789"
+                                pattern="[0,9]{2}[0-9]{9}"
+                                required
+                            />
+                            <label for="date">Appointment Date</label>
+                            <input 
+                                id="date"
+                                type="date"
+                                class="block border border-grey-light w-full p-3 rounded mb-4"
+                                name="date"
+                                placeholder="11/17/2022"
+                                min="<?php echo date("Y-m-d"); ?>"
+                                required
+                            />
+                            <label for="time">Appointment Time (opening hours 10:00 - 21:00)</label>
+                            <input 
+                                id="time"
+                                type="time"
+                                class="block border border-grey-light w-full p-3 rounded mb-4"
+                                name="time"
+                                min="10:00:00" max="21:00:00"
+                                placeholder="09:00"
+                                required
+                            />
+                            <label for="service">What kind of service we'll set up for you?</label>
+                            <select name="service" id="service" class="block border border-grey-light w-full p-3 rounded mb-4">
+                                <?php
+                                    $services_query = "SELECT SERVICE_ID, SERVICE_NAME FROM tbl_service Where SERVICE_STATUS = 1";
+                                    $services_result = $conn -> query($services_query );
+                                    if($services_result){
+                                        while($rows = mysqli_fetch_array($services_result)){
+                                        echo '<option value="'.$rows['SERVICE_ID'].'">'.$rows['SERVICE_NAME'].'</option>';
+                                        }
+                                    }
+                                ?>
+                            </select>
+                        </div>
+                        <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+                            <button type="submit" name="addappointment" class="inline-flex w-full transition-all duration-300 justify-center rounded-md border border-transparent bg-secondary px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-opacity-70 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm">Confirm</button>
+                            <button type="button" onclick="closeModalAdd()" class="mt-3 inline-flex w-full transition-all duration-300 justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">Cancel</button>
                         </div>
                     </form>
                 </div>
@@ -252,7 +311,7 @@
                     <td><?php echo $row['SERVICE_NAME']; ?> </td>
                     <td style="display: none;"><?php echo $row['SERVICE_ID']; ?> </td>
                     <td><?php echo $row['REMARKS']; ?> </td>
-                    <td class="text-center">
+                    <td>
                         <?php if($row['APP_STATUS'] == 0){
                             echo '<button type="button" title="Accept" class="acceptAppointment bg-transparent hover:bg-gray-300 text-blue-700 font-semibold hover:text-white py-[5px] px-2   border border-gray-500 hover:border-border-gray-300 rounded">
                                     <i class="fa fa-check text-[16px]" aria-hidden="true"></i>
@@ -296,6 +355,10 @@
 
         function closeModal() {
             $("#modal-edit").addClass("hidden");
+        }
+
+        function openModalAdd() {
+            $("#modal-add").removeClass("hidden");
         }
 
         function closeModaldel() {

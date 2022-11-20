@@ -37,6 +37,7 @@
             $temp['start_date'] =  $row['START_DATE'];
             $temp['end_date'] = $row['END_DATE'];
             $temp['text'] =  $row['TEXT'];
+            $temp['type'] =  $row['APP_STATUS'];
             array_push($events, $temp);
         }
         return $events;

@@ -24,7 +24,8 @@ footer {
 .footer-container,
 #home-section2,
 #about_section1,
-#services_section2 {
+#services_section2,
+#products_section1 {
   width: 100%;
   max-width: 1536px;
 }
@@ -40,6 +41,7 @@ footer {
   #home-section2,
   #about_section1,
   #services_section2,
+  #products_section1,
   .getintouch-container,
   .employees-container,
   .footer-container {
@@ -52,6 +54,7 @@ footer {
   #home-section2,
   #about_section1,
   #services_section2,
+  #products_section1,
   .getintouch-container,
   .employees-container,
   .footer-container {
