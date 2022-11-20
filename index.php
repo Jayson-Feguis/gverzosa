@@ -151,7 +151,7 @@
         slidesPerView: 'auto',
         loop: true,
         coverflowEffect: {
-            rotate: 50,
+            rotate: 30,
             stretch: 0,
             depth: 100,
             modifier: 1,
