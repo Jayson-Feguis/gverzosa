@@ -1,21 +1,21 @@
 <?php
-    include('../component/admin/header/header.php');
+include('../component/admin/header/header.php');
 ?>
-<?php 
-    if(isset($_SESSION['alert'])){
-        echo "<script>
+<?php
+if (isset($_SESSION['alert'])) {
+    echo "<script>
                 Swal.fire({
-                    icon: '".$_SESSION['alert-icon']."',
-                    title: '".$_SESSION['alert-title']."',
-                    text: '".$_SESSION['alert-text']."',
+                    icon: '" . $_SESSION['alert-icon'] . "',
+                    title: '" . $_SESSION['alert-title'] . "',
+                    text: '" . $_SESSION['alert-text'] . "',
                     showConfirmButton: false
                 })
             </script>";
-    }
-    unset($_SESSION['alert']);
-    unset($_SESSION['alert-icon']);
-    unset($_SESSION['alert-title']);
-    unset($_SESSION['alert-text']);
+}
+unset($_SESSION['alert']);
+unset($_SESSION['alert-icon']);
+unset($_SESSION['alert-title']);
+unset($_SESSION['alert-text']);
 ?>
 <div class="flex-col w-full min-h-screen pl-[270px] mt-[90px] pr-[20px] pb-[150px] overflow-auto">
     <div class="text-left w-full mb-5">
@@ -31,14 +31,14 @@
                     <form action="../api/post_product.php" method="post" enctype="multipart/form-data">
                         <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                             <h1 class="font-bold text-primary text-center text-[20px] py-[20px]">Add Product</h1>
-                                <label for="addproductimage">Product Image</label>
-                                <input type="file" name="addproductimage" id="addproductimage" accept="image/*" class="block border border-grey-light w-full p-3 rounded mb-4" required>
-                                <label for="addproductname">Product Name</label>
-                                <input type="text" id="addproductname" name="addproductname" class="block border border-grey-light w-full p-3 rounded mb-4" placeholder="ex. Sunsilk" required>
-                                <label for="addproductdescription">Product Description</label>
-                                <textarea type="text" id="addproductdescription" name="addproductdescription" class="block border border-grey-light w-full p-3 rounded mb-4" placeholder="ex. Use for hair" required></textarea>
-                                <label for="addproductprice">Product Price</label>
-                                <input type="number" id="addproductprice" name="addproductprice" class="block border border-grey-light w-full p-3 rounded mb-4" placeholder="ex. 20" step=".01" required>
+                            <label for="addproductimage">Product Image</label>
+                            <input type="file" name="addproductimage" id="addproductimage" accept="image/*" class="block border border-grey-light w-full p-3 rounded mb-4" required>
+                            <label for="addproductname">Product Name</label>
+                            <input type="text" id="addproductname" name="addproductname" class="block border border-grey-light w-full p-3 rounded mb-4" placeholder="ex. Sunsilk" required>
+                            <label for="addproductdescription">Product Description</label>
+                            <textarea type="text" id="addproductdescription" name="addproductdescription" class="block border border-grey-light w-full p-3 rounded mb-4" placeholder="ex. Use for hair" required></textarea>
+                            <label for="addproductprice">Product Price</label>
+                            <input type="number" id="addproductprice" name="addproductprice" class="block border border-grey-light w-full p-3 rounded mb-4" placeholder="ex. 20" step=".01" required>
                             <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
                                 <button type="submit" name="addproduct" class="inline-flex w-full transition-all duration-300 justify-center rounded-md border border-transparent bg-secondary px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-opacity-70 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm">Confirm</button>
                                 <button type="button" onclick="closeModalAdd()" class="mt-3 inline-flex w-full transition-all duration-300 justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">Cancel</button>
@@ -96,8 +96,8 @@
         </div>
     </div>
     <?php
-        $query = "SELECT * FROM tbl_product WHERE PRODUCT_STATUS = 1 ORDER BY PRODUCT_DATETIME_CREATED DESC";
-        $query_run = mysqli_query($conn, $query);
+    $query = "SELECT * FROM tbl_product WHERE PRODUCT_STATUS = 1 ORDER BY PRODUCT_DATETIME_CREATED DESC";
+    $query_run = mysqli_query($conn, $query);
     ?>
     <table id="data-table" class="display" style="width:100%">
         <thead>
@@ -117,23 +117,25 @@
             if (mysqli_num_rows($query_run) > 0) {
                 while ($row = mysqli_fetch_assoc($query_run)) {
             ?>
-                <tr>
-                    <td style="display: none;"><?php echo $row['PRODUCT_ID']; ?> </td>
-                    <td><?php echo $row['PRODUCT_NAME']; ?> </td>
-                    <td style="display: none;"><?php echo $row['PRODUCT_PICTURE']; ?></td>
-                    <td><div class="w-[200px] h-[40px] bg-contain bg-no-repeat" style="background-image: url('../images/<?php echo $row['PRODUCT_PICTURE']; ?>');"></div></td>
-                    <td><?php echo $row['PRODUCT_DESCRIPTION']; ?> </td>
-                    <td><?php echo $row['PRODUCT_PRICE']; ?> </td>
-                    <td><?php echo $row['PRODUCT_DATETIME_CREATED']; ?> </td>
-                    <td class="text-center">
-                        <button type="button" class="editProduct bg-transparent hover:bg-gray-300 text-blue-700 font-semibold hover:text-white py-[5px] px-2 border border-gray-500 hover:border-border-gray-300 rounded">
-                            <i class="fa fa-pencil text-[16px]" aria-hidden="true"></i>
-                        </button>
-                        <button type="button" class="deleteProduct bg-transparent hover:bg-gray-300 text-blue-700 font-semibold hover:text-white py-[5px] px-2 border border-gray-500 hover:border-border-gray-300 rounded">
-                            <i class="fa fa-trash-o text-[16px]" aria-hidden="true"></i>
-                        </button>
-                    </td>
-                </tr>
+                    <tr>
+                        <td style="display: none;"><?php echo $row['PRODUCT_ID']; ?> </td>
+                        <td><?php echo $row['PRODUCT_NAME']; ?> </td>
+                        <td style="display: none;"><?php echo $row['PRODUCT_PICTURE']; ?></td>
+                        <td>
+                            <div class="w-[200px] h-[40px] bg-contain bg-no-repeat" style="background-image: url('../images/<?php echo $row['PRODUCT_PICTURE']; ?>');"></div>
+                        </td>
+                        <td><?php echo $row['PRODUCT_DESCRIPTION']; ?> </td>
+                        <td><?php echo $row['PRODUCT_PRICE']; ?> </td>
+                        <td><?php echo $row['PRODUCT_DATETIME_CREATED']; ?> </td>
+                        <td class="text-center">
+                            <button type="button" class="editProduct bg-transparent hover:bg-gray-300 text-blue-700 font-semibold hover:text-white py-[5px] px-2 border border-gray-500 hover:border-border-gray-300 rounded">
+                                <i class="fa fa-pencil text-[16px]" aria-hidden="true"></i>
+                            </button>
+                            <button type="button" class="deleteProduct bg-transparent hover:bg-gray-300 text-blue-700 font-semibold hover:text-white py-[5px] px-2 border border-gray-500 hover:border-border-gray-300 rounded">
+                                <i class="fa fa-trash-o text-[16px]" aria-hidden="true"></i>
+                            </button>
+                        </td>
+                    </tr>
             <?php
                 }
             }
@@ -175,13 +177,13 @@
 
             // });
             var table = $('#data-table').DataTable();
-            $('#data-table tbody').on('click', '.editProduct', function () {
+            $('#data-table tbody').on('click', '.editProduct', function() {
                 var data = table.row($(this).parents('tr')).data();
-                const dT = new ClipboardEvent('').clipboardData || new DataTransfer(); 
+                const dT = new ClipboardEvent('').clipboardData || new DataTransfer();
                 dT.items.add(new File(['foo'], data[2]));
                 $("#modal-edit").removeClass("hidden");
                 productimage.files = dT.files;
-                $('#img_productimage').attr("src", "../images/"+data[2]);
+                $('#img_productimage').attr("src", "../images/" + data[2]);
                 $('#productid').val(data[0]);
                 $('#productname').val(data[1]);
                 $('#productdescription').val(data[4]);
@@ -205,12 +207,12 @@
             // });
 
             var table = $('#data-table').DataTable();
-            $('#data-table tbody').on('click', '.deleteProduct', function () {
+            $('#data-table tbody').on('click', '.deleteProduct', function() {
                 var data = table.row($(this).parents('tr')).data();
                 $("#modal-delete").removeClass("hidden");
                 $('#productidDelete').val(data[0]);
             });
-            
+
         });
 
         $(document).ready(function() {
