@@ -1,15 +1,15 @@
 <?php
-  include('../utils/db_config.php');
-  include('../utils/routes.php');
-  if (!isset($_SESSION['user_name'])) {
+include('../utils/db_config.php');
+include('../utils/routes.php');
+if (!isset($_SESSION['user_name'])) {
     header('location: login.php');
-  }
+}
 
-  if (isset($_GET['logout'])) {
+if (isset($_GET['logout'])) {
     session_destroy();
     unset($_SESSION['user_name']);
     header("location: login.php");
-  }
+}
 ?>
 
 <!DOCTYPE html>
@@ -60,7 +60,7 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css" />
     <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             $('#data-table').DataTable({
                 scrollX: true,
                 lengthMenu: [
@@ -75,20 +75,20 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
-        theme: {
-            extend: {
-            colors: {
-                primary: "#4B3D40",
-                secondary: "#7BC228",
-                tertiary: "#A3D469",
-                defaultwhite: "#F7FBF1",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#4B3D40",
+                        secondary: "#7BC228",
+                        tertiary: "#A3D469",
+                        defaultwhite: "#F7FBF1",
+                    },
+                },
             },
+            fontFamily: {
+                Montserrat: ["Montserrat", "serif"],
+                Dancing: ["Dancing Script", "cursive"],
             },
-        },
-        fontFamily: {
-            Montserrat: ["Montserrat", "serif"],
-            Dancing: ["Dancing Script", "cursive"],
-        },
         };
     </script>
     <style>
@@ -99,11 +99,13 @@
             height: 100%;
             overflow: hidden;
         }
-        .dataTables_length select { 
+
+        .dataTables_length select {
             width: 60px;
         }
     </style>
 </head>
+
 <body class="bg-defaultwhite block flex">
     <nav class="bg-secondary fixed z-[5]">
         <div class="container flex flex-wrap items-center justify-between mx-auto">
@@ -112,14 +114,20 @@
             </a>
             <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="mobile-menu-2">
                 <ul class="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg  md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 ">
-                <li>
-                    <a href="logout.php" name="logout" class="block bg-secondary px-4 py-2 text-sm text-white rounded-lg hover:bg-white hover:text-black ">Sign out</a>
-                </li>
+                    <li>
+                        <a href="logout.php" name="logout" class="block bg-secondary px-4 py-2 text-sm text-white rounded-lg hover:bg-white hover:text-black ">Sign out</a>
+                    </li>
                 </ul>
             </div>
         </div>
+
+        <!-- top: 0;
+    bottom:0;
+    position:fixed;
+    overflow-y:scroll;
+    overflow-x:hidden; -->
     </nav>
-    <div class="w-60 min-h-screen shadow-md bg-white fixed pt-[100px] z-[4]" id="sidenavSecExample">
+    <div class="w-60 min-h-full shadow-md bg-white inset-y-0 fixed overflow-y-auto overflow-x-hidden pt-[100px] z-[4]" id="sidenavSecExample">
         <div class="pt-4 pb-2 px-6">
             <a href="#!">
                 <div class="flex items-center">
@@ -166,13 +174,16 @@
                 </button>
                 <ul id="dropdown-example2" class="hidden py-2 space-y-2">
                     <li>
-                        <a href="#" class="flex items-center p-2 pl-11 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100">Customer</a>
+                        <a href="admin_customer.php" class="flex items-center p-2 pl-11 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100">Customers</a>
+                    </li>
+                    <li>
+                        <a href="admin_feedback.php" class="flex items-center p-2 pl-11 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100">Feedback</a>
                     </li>
                     <li>
                         <a href="admin_product.php" class="flex items-center p-2 pl-11 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100">Products</a>
                     </li>
                     <li>
-                        <a href="#" class="flex items-center p-2 pl-11 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100">Promotions</a>
+                        <a href="admin_promotion.php" class="flex items-center p-2 pl-11 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100">Promotions</a>
                     </li>
                     <button type="button" class="flex items-center p-2 pl-11 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100" aria-controls="dropdown-example4" data-collapse-toggle="dropdown-example4">
                         <span class="flex-1 text-left whitespace-nowrap" sidebar-toggle-item>Services</span>
@@ -188,6 +199,9 @@
                             <a href="#" class="flex items-center p-2 pl-7 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100">Sub Category</a>
                         </li>
                     </ul>
+                    <li>
+                        <a href="admin_user.php" class="flex items-center p-2 pl-11 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100">Users</a>
+                    </li>
                 </ul>
             </li>
             <li>
