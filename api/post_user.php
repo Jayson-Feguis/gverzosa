@@ -40,7 +40,7 @@ if (isset($_POST['edituser'])) {
             $_SESSION['alert'] = true;
             $_SESSION['alert-icon'] = "success";
             $_SESSION['alert-title'] = "Success";
-            $_SESSION['alert-text'] = "Product updated successfully1";
+            $_SESSION['alert-text'] = "Product updated successfully";
             header("Location: ../pages/admin_user.php");
         } else {
             // ERROR
@@ -74,14 +74,14 @@ if (isset($_POST['edituser'])) {
                 $_SESSION['alert'] = true;
                 $_SESSION['alert-icon'] = "success";
                 $_SESSION['alert-title'] = "Success";
-                $_SESSION['alert-text'] = "User updated successfully2" . $edituserimage;
+                $_SESSION['alert-text'] = "User updated successfully" . $edituserimage;
                 header("Location: ../pages/admin_user.php");
             } else {
                 // ERROR
                 $_SESSION['alert'] = true;
                 $_SESSION['alert-icon'] = "error";
                 $_SESSION['alert-title'] = "Error";
-                $_SESSION['alert-text'] = "Something2 went wrong";
+                $_SESSION['alert-text'] = "Something went wrong";
                 header("Location: ../pages/admin_user.php");
             }
         } else {
