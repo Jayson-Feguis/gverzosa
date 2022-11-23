@@ -10,7 +10,7 @@ if (isset($_POST['editservice'])) {
 
     $old_image = '';
 
-    $sql_image = "SELECT BANNER_IMAGE FROM tbl_banner WHERE BANNER_ID = '$proMOTIONid'";
+    $sql_image = "SELECT BANNER_IMAGE FROM tbl_banner WHERE BANNER_ID = '$promotionid'";
     $res_image = mysqli_query($conn, $sql_image);
     if ($sql_image == TRUE) {
         $count_image = mysqli_num_rows($res_image);
@@ -21,7 +21,7 @@ if (isset($_POST['editservice'])) {
         }
     }
     // CHECK IF THE EXISTING IMAGE IS EQUAL TO IMAGE PAYLOAD, IF YES, DONT UPDATE IMAGE
-    if ($old_image ==   $promotionimage && $promotionimage != "") {
+    if ($old_image == $promotionimage && $promotionimage != "") {
         $sql = "UPDATE tbl_banner SET BANNER_NAME = '$promotionname',  BANNER_STATUS = '$promotionstatus' WHERE PRODUCT_ID = '$productid'";
         $result = mysqli_query($conn, $sql);
 

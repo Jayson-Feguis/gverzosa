@@ -108,58 +108,58 @@
                 <div class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
                     <form action="../api/post_appointment.php" method="post">
                         <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-                            <input type="text" id="appointmentid" name="appointmentid" class=" hidden bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="appointmentid" required>
+                            <input type="text" id="editappointmentid" name="editappointmentid" class=" hidden bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="appointmentid" required>
                             <h1 class="font-bold text-primary text-center text-[20px] py-[20px]">Edit Appointment</h1>
-                            <label for="fullname">Full Name</label>
+                            <label for="editfullname">Full Name</label>
                                 <input 
-                                    id="fullname"
+                                    id="editfullname"
                                     type="text"
                                     class="block border border-grey-light w-full p-3 rounded mb-4"
-                                    name="fullname"
+                                    name="editfullname"
                                     placeholder="ex. Juan Dela Cruz"
                                     required
                                 />
-                                <label for="email">Email</label>
+                                <label for="editemail">Email</label>
                                 <input 
-                                    id="email"
+                                    id="editemail"
                                     type="email"
                                     class="block border border-grey-light w-full p-3 rounded mb-4"
-                                    name="email"
+                                    name="editemail"
                                     placeholder="ex. youremail@example.com"
                                     required
                                 />
-                                <label for="mobilenumber">Mobile Number</label>
+                                <label for="editmobilenumber">Mobile Number</label>
                                 <input 
-                                    id="mobilenumber"
+                                    id="editmobilenumber"
                                     type="phone"
                                     class="block border border-grey-light w-full p-3 rounded mb-4"
-                                    name="mobilenumber"
+                                    name="editmobilenumber"
                                     placeholder="09123456789"
                                     pattern="[0,9]{2}[0-9]{9}"
                                     required
                                 />
-                                <label for="date">Booked Date</label>
+                                <label for="editdate">Booked Date</label>
                                 <input 
-                                    id="date"
+                                    id="editdate"
                                     type="date"
                                     class="block border border-grey-light w-full p-3 rounded mb-4"
-                                    name="date"
+                                    name="editdate"
                                     placeholder="11/17/2022"
                                     min="<?php echo date("Y-m-d"); ?>"
                                     required
                                 />
-                                <label for="time">Booked Time</label>
+                                <label for="edittime">Booked Time</label>
                                 <input 
-                                    id="time"
+                                    id="edittime"
                                     type="time"
                                     class="block border border-grey-light w-full p-3 rounded mb-4"
-                                    name="time"
+                                    name="edittime"
                                     min="10:00:00" max="21:00:00"
                                     placeholder="09:00:00"
                                     required
                                 />
-                                <label for="service">Service</label>
-                                <select name="service" id="service" class="block border border-grey-light w-full p-3 rounded mb-4">
+                                <label for="editservice">Service</label>
+                                <select name="editservice" id="editservice" class="block border border-grey-light w-full p-3 rounded mb-4">
                                     <?php
                                         $services_query = "SELECT SERVICE_ID, SERVICE_NAME FROM tbl_service Where SERVICE_STATUS = 1";
                                         $services_result = $conn -> query($services_query );
@@ -170,8 +170,8 @@
                                         }
                                     ?>
                                 </select>
-                            <label for="remarks">Remarks</label>
-                            <textarea type="text" id="appointmentremarks" name="appointmentremarks" rows="4" class="block border border-grey-light w-full p-3 rounded mb-4" placeholder="Type here ..." required></textarea>
+                            <label for="editremarks">Remarks</label>
+                            <textarea type="text" id="editappointmentremarks" name="editappointmentremarks" rows="4" class="block border border-grey-light w-full p-3 rounded mb-4" placeholder="Type here ..." required></textarea>
                             <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
                                 <button type="submit" name="editappointment" class="inline-flex w-full transition-all duration-300 justify-center rounded-md border border-transparent bg-secondary px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-opacity-70 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm">Save</button>
                                 <button type="button" onclick="closeModal()" class="mt-3 inline-flex w-full transition-all duration-300 justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">Cancel</button>
@@ -190,7 +190,6 @@
                     <form action="../api/post_appointment.php" method="post">
                         <h1 class="font-bold text-primary text-center text-[20px] py-[20px]">Are you sure do want to delete this appointment?</h1>
                         <input type="text" type="text" id="appointmentidDelete" name="appointmentidDelete" class="hidden bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="productid" required>
-
                         <div class="bg-gray-50 px-4 py-3 gap-5 sm:flex sm:flex-row-reverse sm:px-6">
                             <button type="submit" name="deleteappointment" class="text-white bg-red-500 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:red-blue-800">Delete</button>
                             <button type="button" onclick="closeModaldel()" class="mt-3 inline-flex w-full transition-all duration-300 justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">Cancel</button>
@@ -276,6 +275,7 @@
                 <th>Mobile Number</th>
                 <th>Apply Date</th>
                 <th>Booked Date</th>
+                <th style="display: none;">DateTime</th>
                 <th>Status</th>
                 <th>Service</th>
                 <th style="display: none;">Service ID</th>
@@ -293,8 +293,9 @@
                     <td><?php echo $row['APP_NAME']; ?> </td>
                     <td><?php echo $row['APP_EMAIL']; ?> </td>
                     <td><?php echo $row['APP_MOBILE_NUMBER']; ?> </td>
-                    <td><?php echo $row['APP_APPLY_DATE']; ?> </td>
-                    <td><?php echo $row['START_DATE']; ?> </td>
+                    <td><?php echo date('F j, Y, g:i a', strtotime($row['APP_APPLY_DATE'])); ?> </td>
+                    <td><?php echo date('F j, Y, g:i a', strtotime($row['START_DATE'])); ?> </td>
+                    <td style="display: none;"><?php echo $row['START_DATE']; ?> </td>
                     <td><?php if($row['APP_STATUS'] == 0){
                         echo '<span class="bg-yellow-200 p-2 text-[14px] border border-gray-500 rounded-sm">Pending</span>';
                     }else if($row['APP_STATUS'] == 1){
@@ -385,16 +386,16 @@
             var table = $('#data-table').DataTable();
             $('#data-table tbody').on('click', '.editAppointment', function () {
                 var data = table.row($(this).parents('tr')).data();
-                const [date, time] = data[5].split(" ");
+                const [date, time] = data[6].split(" ");
                 $("#modal-edit").removeClass("hidden");
-                $('#appointmentid').val(data[0]);
-                $('#fullname').val(data[1]);
-                $('#email').val(data[2]);
-                $('#mobilenumber').val('0'+data[3]);
-                $('#date').val(date);
-                $('#time').val(time);
-                $('#service').val(data[8]).change();
-                $('#appointmentremarks').val(data[9]);
+                $('#editappointmentid').val(data[0]);
+                $('#editfullname').val(data[1]);
+                $('#editemail').val(data[2]);
+                $('#editmobilenumber').val('0'+data[3]);
+                $('#editdate').val(date);
+                $('#edittime').val(time);
+                $('#editservice').val(data[9]).change();
+                $('#editappointmentremarks').val(data[10]);
             });
         });
         // DELETE
@@ -415,7 +416,7 @@
                 $('#appointmentidAccept').val(data[0]);
                 $('#appointmentfullnameAccept').val(data[1]);
                 $('#appointmentemailAccept').val(data[2]);
-                $('#appointmentremarksAccept').val(data[9]);
+                $('#appointmentremarksAccept').val(data[10]);
             });
         });
         // REJECT
@@ -427,7 +428,7 @@
                 $('#appointmentidReject').val(data[0]);
                 $('#appointmentfullnameReject').val(data[1]);
                 $('#appointmentemailReject').val(data[2]);
-                $('#appointmentremarksReject').val(data[9]);
+                $('#appointmentremarksReject').val(data[10]);
                 
             });
         });
@@ -440,7 +441,7 @@
                 $('#appointmentidCancel').val(data[0]);
                 $('#appointmentfullnameCancel').val(data[1]);
                 $('#appointmentemailCancel').val(data[2]);
-                $('#appointmentremarksCancel').val(data[9]);
+                $('#appointmentremarksCancel').val(data[10]);
             });
         });
         // ADD

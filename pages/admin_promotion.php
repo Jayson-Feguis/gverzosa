@@ -1,21 +1,21 @@
 <?php
-include('../component/admin/header/header.php');
+    include('../component/admin/header/header.php');
 ?>
 <?php
-if (isset($_SESSION['alert'])) {
-    echo "<script>
-                Swal.fire({
-                    icon: '" . $_SESSION['alert-icon'] . "',
-                    title: '" . $_SESSION['alert-title'] . "',
-                    text: '" . $_SESSION['alert-text'] . "',
-                    showConfirmButton: false
-                })
-            </script>";
-}
-unset($_SESSION['alert']);
-unset($_SESSION['alert-icon']);
-unset($_SESSION['alert-title']);
-unset($_SESSION['alert-text']);
+    if (isset($_SESSION['alert'])) {
+        echo "<script>
+                    Swal.fire({
+                        icon: '" . $_SESSION['alert-icon'] . "',
+                        title: '" . $_SESSION['alert-title'] . "',
+                        text: '" . $_SESSION['alert-text'] . "',
+                        showConfirmButton: false
+                    })
+                </script>";
+    }
+    unset($_SESSION['alert']);
+    unset($_SESSION['alert-icon']);
+    unset($_SESSION['alert-title']);
+    unset($_SESSION['alert-text']);
 ?>
 <div class="flex-col w-full min-h-screen pl-[270px] mt-[90px] pr-[20px] pb-[150px] overflow-auto">
     <div class="text-left w-full mb-5">
@@ -75,7 +75,7 @@ unset($_SESSION['alert-text']);
             <div class="flex min-h-full justify-center p-4 text-center items-center sm:p-0">
                 <div class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
                     <form action="../api/post_promotion.php" method="post">
-                        <h1 class="font-bold text-primary text-center text-[20px] py-[20px]">Are you sure do want to delete this promotion?</h1>
+                        <h1 class="font-bold text-primary text-center text-[20px] py-[20px] px-[10px]">Are you sure do want to delete this promotion?</h1>
                         <input type="text" type="text" id="promotionidDelete" name="promotionidDelete" class="hidden bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="productid" required>
                         <div class="bg-gray-50 px-4 py-3 gap-5 sm:flex sm:flex-row-reverse sm:px-6">
                             <button type="submit" name="deletepromotion" class="text-white bg-red-500 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:red-blue-800">Delete</button>

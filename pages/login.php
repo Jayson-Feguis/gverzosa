@@ -1,7 +1,22 @@
 <?php 
     include('../component/client/header/header.php');
 ?>
-
+<?php
+    if (isset($_SESSION['alert'])) {
+        echo "<script>
+                    Swal.fire({
+                        icon: '" . $_SESSION['alert-icon'] . "',
+                        title: '" . $_SESSION['alert-title'] . "',
+                        text: '" . $_SESSION['alert-text'] . "',
+                        showConfirmButton: false
+                    })
+                </script>";
+    }
+    unset($_SESSION['alert']);
+    unset($_SESSION['alert-icon']);
+    unset($_SESSION['alert-title']);
+    unset($_SESSION['alert-text']);
+?>
 <div class="flex flex-col w-full">
     <div class="bg-grey-lighter min-h-screen flex flex-col">
         <div class="container max-w-sm mx-auto flex-1 pt-10 flex flex-col items-center justify-center px-2">

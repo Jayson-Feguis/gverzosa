@@ -18,7 +18,8 @@ function loginUrl(){
             <div class="footer-container flex flex-wrap w-full max-w-[1536px] py-[30px]">
                 <div class="logo w-full md:w-[33%] div-center flex-col font-black">
                     <h1 class="font-Dancing text-[2rem]">G. Verzosa</h1>
-                    <h5 class="font-Montserrat text-[2rem]">Salon & Spa</5>
+                    <h5 class="font-Montserrat text-[2rem]">Salon & Spa</h5>
+                    <button id="btn-book" onclick="openBookModal()" class="bg-secondary mt-5 text-defaultwhite text-[20px] font-bold py-[5px] px-[10px] rounded-md font-Montserrat transition-all duration-300 hover:bg-tertiary">Book Now</button>
                 </div>
                 <div class="links w-full sm:w-[50%] md:w-[33%] flex justify-start items-center flex-col py-[30px]">
                     <div class="flex justify-start items-start flex-col gap-[25px] w-[170px]">
@@ -72,8 +73,14 @@ function loginUrl(){
                     <div class="flex justify-center items-start flex-col gap-[25px] w-[170px]">
                         <h6 class="font-bold">Social Media</h6>
                         <ul class="social-media  flex flex-col gap-[10px]">
-                            <a class="hover:cursor-pointer hover:text-secondary transition-all duration-300">Facebook</a>
-                            <a class="hover:cursor-pointer hover:text-secondary transition-all duration-300">Instagram</a>
+                            <a class="hover:cursor-pointer hover:text-secondary transition-all duration-300">
+                                <i class="fa fa-facebook w-[20px] text-center" aria-hidden="true"></i>
+                                <span>Facebook</span>
+                            </a>
+                            <a class="hover:cursor-pointer hover:text-secondary transition-all duration-300">
+                                <i class="fa fa-instagram w-[20px] text-center" aria-hidden="true"></i>
+                                <span>Instagram</span>
+                            </a>
                         </ul>
                     </div>
                 </div>

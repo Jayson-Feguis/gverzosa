@@ -40,9 +40,15 @@
     <section id='services_section1' class="div-center flex-col w-full pt-[7rem]">
         <div class="swiper mySwiper">
             <div class="swiper-wrapper">
-                <div class="swiper-slide w-[100%] min-h-[500px] flex-wrap bg-no-repeat bg-contain bg-center" style="background-image: url(../images/ads1.jpg);"></div>
-                <div class="swiper-slide w-[100%] min-h-[500px] flex-wrap bg-no-repeat bg-contain bg-center" style="background-image: url(../images/ads2.jpg);"></div>
-                <div class="swiper-slide w-[100%] min-h-[500px] flex-wrap bg-no-repeat bg-contain bg-center" style="background-image: url(../images/ads3.jpg);"></div>
+                <?php 
+                    $promotion_query = "SELECT BANNER_IMAGE FROM tbl_banner WHERE BANNER_STATUS = 1";
+                    $promotion_result = $conn -> query($promotion_query);
+                    if($promotion_result){
+                        while($row_service = mysqli_fetch_array($promotion_result)){
+                        echo '<div class="swiper-slide w-[100%] min-h-[500px] flex-wrap" style="background-image: url(../images/'.$row_service['BANNER_IMAGE'].'); background-size: auto 100%; background-position: center;"></div>';
+                        }
+                    }
+                ?>
             </div>
             <div class="swiper-button-next"></div>
             <div class="swiper-button-prev"></div>
@@ -51,7 +57,7 @@
     </section>
     <section id='services_section2' class="div-center flex-col w-full py-[7rem] max-w-[1536px]">
         <h1 class="font-Dancing text-[64px] font-bold text-primary mb-[70px]">
-            Price List
+            Pricelist
         </h1>
         <div class="flex justify-center items-start flex-wrap gap-[100px]">
           <?php
@@ -64,18 +70,18 @@
                             <div class="w-[400px] flex justify-start items-end pt-[24px] pr-[12px]  pb-[12px] pl-[12px] bg-tertiary text-defaultwhite text-[24px] font-bold mb-[20px]">
                                 <h1><?php echo $rows['CATEGORY_NAME'] ?></h1>
                             </div>
-                            <div class="flex flex-col gap-[10px] w-[500px]">
+                            <div class="flex flex-col gap-[10px]">
                                 <?php 
-                                $service_query = "SELECT SERVICE_NAME, SERVICE_PRICE FROM tbl_service WHERE SERVICE_STATUS = 1 AND CATEGORY_ID = ".$rows['CATEGORY_ID'];
-                                $service_result = $conn -> query($service_query);
-                                if($service_result){
-                                    while($row_service = mysqli_fetch_array($service_result)){
-                                    echo '<div class="w-full flex justify-between text-[20px]">
-                                            <h4>'.$row_service['SERVICE_NAME'].'</h4>
-                                            <h4>P '.$row_service['SERVICE_PRICE'].'</h4>
-                                        </div>';
+                                    $service_query = "SELECT SERVICE_NAME, SERVICE_PRICE FROM tbl_service WHERE SERVICE_STATUS = 1 AND CATEGORY_ID = ".$rows['CATEGORY_ID'];
+                                    $service_result = $conn -> query($service_query);
+                                    if($service_result){
+                                        while($row_service = mysqli_fetch_array($service_result)){
+                                        echo '<div class="w-full flex justify-between text-[20px]">
+                                                <h4>'.$row_service['SERVICE_NAME'].'</h4>
+                                                <h4>P '.$row_service['SERVICE_PRICE'].'</h4>
+                                            </div>';
+                                        }
                                     }
-                                }
                                 ?>
                             </div>
                         </div>
