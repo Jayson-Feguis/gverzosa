@@ -54,14 +54,14 @@
         }
     }
     else if (isset($_POST['editappointment'])) {
-        $appointmentid = $_POST['appointmentid'];
-        $appointmentfullname = $_POST['fullname'];
-        $appointmentemail = $_POST['email'];
-        $appointmentmobilenumber = $_POST['mobilenumber'];
-        $date = $_POST['date'];
-        $time = $_POST['time'];
-        $appointmentservice = $_POST['service'];
-        $appointmentremarks = $_POST['appointmentremarks'];
+        $appointmentid = $_POST['editappointmentid'];
+        $appointmentfullname = $_POST['editfullname'];
+        $appointmentemail = $_POST['editemail'];
+        $appointmentmobilenumber = $_POST['editmobilenumber'];
+        $date = $_POST['editdate'];
+        $time = $_POST['edittime'];
+        $appointmentservice = $_POST['editservice'];
+        $appointmentremarks = $_POST['editappointmentremarks'];
         $newDateTime = date('Y-m-d H:i:s', strtotime("$date $time"));
 
         $sql = "UPDATE `tbl_appointment` SET `APP_NAME`='$appointmentfullname',`APP_EMAIL`='$appointmentemail',`APP_MOBILE_NUMBER`='$appointmentmobilenumber',`START_DATE`='$newDateTime',`END_DATE`='$newDateTime',`REMARKS`='$appointmentremarks', `SERVICE_ID`='$appointmentservice' WHERE APP_ID = '$appointmentid'";

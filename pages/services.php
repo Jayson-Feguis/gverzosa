@@ -70,7 +70,7 @@
                             <div class="w-[400px] flex justify-start items-end pt-[24px] pr-[12px]  pb-[12px] pl-[12px] bg-tertiary text-defaultwhite text-[24px] font-bold mb-[20px]">
                                 <h1><?php echo $rows['CATEGORY_NAME'] ?></h1>
                             </div>
-                            <div class="flex flex-col gap-[10px] w-[500px]">
+                            <div class="flex flex-col gap-[10px]">
                                 <?php 
                                     $service_query = "SELECT SERVICE_NAME, SERVICE_PRICE FROM tbl_service WHERE SERVICE_STATUS = 1 AND CATEGORY_ID = ".$rows['CATEGORY_ID'];
                                     $service_result = $conn -> query($service_query);

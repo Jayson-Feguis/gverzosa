@@ -160,7 +160,7 @@ if (isset($_GET['logout'])) {
                         <a href="admin_appointment.php" class="flex items-center p-2 pl-11 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100">Appointment</a>
                     </li>
                     <li>
-                        <a href="#" class="flex items-center p-2 pl-11 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100">Report</a>
+                        <a href="admin_appointment_report.php" class="flex items-center p-2 pl-11 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100">Report</a>
                     </li>
                 </ul>
             </li>

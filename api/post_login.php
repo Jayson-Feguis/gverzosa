@@ -18,8 +18,12 @@
             $_SESSION['lname_name'] = $row['USER_LNAME'];
             header('location: /gverzosa/pages/admin_dashboard.php');
         } else {
-            echo "notloggedin";
-            echo $password;
+            // ERROR
+            $_SESSION['alert'] = true;
+            $_SESSION['alert-icon'] = "error";
+            $_SESSION['alert-title'] = "Oops!";
+            $_SESSION['alert-text'] = "Invalid username and password";
+            header('location: /gverzosa/pages/login.php');
         }
     }
 ?>
