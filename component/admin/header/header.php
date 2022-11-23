@@ -193,10 +193,10 @@ if (isset($_GET['logout'])) {
                     </button>
                     <ul id="dropdown-example4" class="hidden py-2  pl-7 space-y-2">
                         <li>
-                            <a href="#" class="flex items-center p-2 pl-7 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100">Category</a>
+                            <a href="admin_category.php" class="flex items-center p-2 pl-7 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100">Category</a>
                         </li>
                         <li>
-                            <a href="#" class="flex items-center p-2 pl-7 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100">Sub Category</a>
+                            <a href="admin_service.php" class="flex items-center p-2 pl-7 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100">Sub Category</a>
                         </li>
                     </ul>
                     <li>

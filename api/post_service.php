@@ -3,26 +3,26 @@ include_once('../utils/db_config.php');
 include_once('../utils/helper.php');
 
 if (isset($_POST['editservice'])) {
-    $promotionid = $_POST['promotionid'];
-    $promotionimage = $_POST['promotionimage'];
-    $promotionname = $_POST['promotionname'];
-    $promotionstatus = 1;
-
+    $id = $_POST['serviceid'];
+    $image = $_POST['serviceimage'];
+    $name = $_POST['servicename'];
+    $price = $_POST['serviceprice'];
+    $category = $_POST['servicecategory'];
     $old_image = '';
 
-    $sql_image = "SELECT BANNER_IMAGE FROM tbl_banner WHERE BANNER_ID = '$promotionid'";
+    $sql_image = "SELECT SERVICE_PICTURE FROM tbl_service WHERE SERVICE_ID = '$id'";
     $res_image = mysqli_query($conn, $sql_image);
     if ($sql_image == TRUE) {
         $count_image = mysqli_num_rows($res_image);
     }
     if ($count_image > 0) {
         while ($rows_image = mysqli_fetch_assoc($res_image)) {
-            $old_image = $rows_image['BANNER_IMAGE'];
+            $old_image = $rows_image['SERVICE_PICTURE'];
         }
     }
     // CHECK IF THE EXISTING IMAGE IS EQUAL TO IMAGE PAYLOAD, IF YES, DONT UPDATE IMAGE
-    if ($old_image == $promotionimage && $promotionimage != "") {
-        $sql = "UPDATE tbl_banner SET BANNER_NAME = '$promotionname',  BANNER_STATUS = '$promotionstatus' WHERE PRODUCT_ID = '$productid'";
+    if ($old_image ==    $image &&  $image != "") {
+        $sql = "UPDATE tbl_service SET SERVICE_NAME = '$name',  SERVICE_PRICE = '$price', CATEGORY_ID = '$id' WHERE SERVICE_ID = '$id'";
         $result = mysqli_query($conn, $sql);
 
         if ($result) {
@@ -30,33 +30,33 @@ if (isset($_POST['editservice'])) {
             $_SESSION['alert'] = true;
             $_SESSION['alert-icon'] = "success";
             $_SESSION['alert-title'] = "Success";
-            $_SESSION['alert-text'] = "Promotion updated successfully";
-            header("Location: ../pages/admin_promotion.php");
+            $_SESSION['alert-text'] = "Service updated successfully";
+            header("Location: ../pages/admin_service.php");
         } else {
             // ERROR
             $_SESSION['alert'] = true;
             $_SESSION['alert-icon'] = "error";
             $_SESSION['alert-title'] = "Error";
             $_SESSION['alert-text'] = "Something went wrong";
-            header("Location: ../pages/admin_promotion.php");
+            header("Location: ../pages/admin_service.php");
         }
     }
     // ELSE, UPDATE ALL INFORMATION TOGETHER WITH PRODUCT PICTURE
     else {
         // CHECK IF THERE'S AN IMAGE IN THE PAYLOAD
-        if (isset($_FILES['promotionimage']['name'])) {
+        if (isset($_FILES['serviceimage']['name'])) {
             // UPLOAD IMAGE
-            $upload_image = uploadImage($_FILES['promotionimage']['name'], $_FILES['promotionimage']['tmp_name'], "Promotion");
+            $upload_image = uploadImage($_FILES['serviceimage']['name'], $_FILES['serviceimage']['tmp_name'], "Service");
 
             if (!$upload_image) {
                 $_SESSION['alert'] = true;
                 $_SESSION['alert-icon'] = "error";
                 $_SESSION['alert-title'] = "Error";
                 $_SESSION['alert-text'] = "Failed to upload image";
-                header("Location: ../pages/admin_promotion.php");
+                header("Location: ../pages/admin_service.php");
             }
 
-            $sql = "UPDATE tbl_banner SET BANNER_NAME = '$promotionname', BANNER_IMAGE = '$upload_image', BANNER_STATUS = '$promotionstatus' WHERE BANNER_ID = '$promotionid'";
+            $sql = "UPDATE tbl_service SET SERVICE_NAME = '$name',  SERVICE_PRICE = '$price', CATEGORY_ID = '$category', SERVICE_PICTURE = '$upload_image' WHERE SERVICE_ID = '$id'";
             $result = mysqli_query($conn, $sql);
 
             if ($result) {
@@ -64,29 +64,29 @@ if (isset($_POST['editservice'])) {
                 $_SESSION['alert'] = true;
                 $_SESSION['alert-icon'] = "success";
                 $_SESSION['alert-title'] = "Success";
-                $_SESSION['alert-text'] = "Promotion updated successfully" . $promotionimage;
-                header("Location: ../pages/admin_promotion.php");
+                $_SESSION['alert-text'] = "Service updated successfully" . $image;
+                header("Location: ../pages/admin_service.php");
             } else {
                 // ERROR
                 $_SESSION['alert'] = true;
                 $_SESSION['alert-icon'] = "error";
                 $_SESSION['alert-title'] = "Error";
-                $_SESSION['alert-text'] = "Something went wrong";
-                header("Location: ../pages/admin_promotion.php");
+                $_SESSION['alert-text'] = "Something went4 wrong";
+                header("Location: ../pages/admin_service.php");
             }
         } else {
             $_SESSION['alert'] = true;
             $_SESSION['alert-icon'] = "info";
             $_SESSION['alert-title'] = "Error";
-            $_SESSION['alert-text'] = "Please upload an image | " . $promotionimage;
-            header("Location: ../pages/admin_promotion.php");
+            $_SESSION['alert-text'] = "Please upload an image | " .  $image;
+            header("Location: ../pages/admin_service.php");
         }
     }
-} else if (isset($_POST['deletepromotion'])) {
-    $promotionid = $_POST['promotionidDelete'];
-    $promotionstatus = 0;
+} else if (isset($_POST['deleteservice'])) {
+    $id = $_POST['serviceidDelete'];
+    $status = 0;
 
-    $sql = "UPDATE tbl_banner SET BANNER_STATUS = '$promotionstatus' WHERE BANNER_ID = '$promotionid'";
+    $sql = "UPDATE tbl_service SET SERVICE_STATUS = '$status' WHERE SERVICE_ID = '$id'";
     $result = mysqli_query($conn, $sql);
 
     if ($result) {
@@ -94,32 +94,35 @@ if (isset($_POST['editservice'])) {
         $_SESSION['alert'] = true;
         $_SESSION['alert-icon'] = "success";
         $_SESSION['alert-title'] = "Success";
-        $_SESSION['alert-text'] = "Promotion deleted successfully";
-        header("Location: ../pages/admin_promotion.php");
+        $_SESSION['alert-text'] = "Service deleted successfully";
+        header("Location: ../pages/admin_service.php");
     } else {
         // ERROR
         $_SESSION['alert'] = true;
         $_SESSION['alert-icon'] = "error";
         $_SESSION['alert-title'] = "Error";
         $_SESSION['alert-text'] = "Something went wrong";
-        header("Location: ../pages/admin_promotion.php");
+        header("Location: ../pages/admin_service.php");
     }
-} else if (isset($_POST['addpromotion'])) {
-    $promotionname = $_POST['addpromotionname'];
-    $promotiontprice = $_POST['addpromotionprice'];
-    $promotionstatus = 1;
-    if (isset($_FILES['addpromotionimage']['name'])) {
-        $upload_image = uploadImage($_FILES['addpromotionimage']['name'], $_FILES['addpromotionimage']['tmp_name'], "Promotion");
+} else if (isset($_POST['addservice'])) {
+
+    $service = $_POST['addservicename'];
+    $category =  $_POST['addservicecategory'];
+    $price =  $_POST['addserviceprice'];
+    $status = 1;
+
+    if (isset($_FILES['addserviceimage']['name'])) {
+        $upload_image = uploadImage($_FILES['addserviceimage']['name'], $_FILES['addserviceimage']['tmp_name'], "Service");
 
         if (!$upload_image) {
             $_SESSION['alert'] = true;
             $_SESSION['alert-icon'] = "error";
             $_SESSION['alert-title'] = "Error";
             $_SESSION['alert-text'] = "Failed to upload image";
-            header("Location: ../pages/admin_promotion.php");
+            header("Location: ../pages/admin_service.php");
         }
 
-        $sql = "INSERT INTO tbl_banner (BANNER_NAME, BANNER_IMAGE, BANNER_STATUS ) VALUES ('$promotionname', '$upload_image', '$promotionstatus')";
+        $sql = "INSERT INTO tbl_service (SERVICE_NAME, CATEGORY_ID, SERVICE_PRICE, SERVICE_STATUS, SERVICE_PICTURE ) VALUES ('$service', '$category', '$price', '$status' ,'$upload_image')";
         $result = mysqli_query($conn, $sql);
 
         if ($result) {
@@ -127,22 +130,22 @@ if (isset($_POST['editservice'])) {
             $_SESSION['alert'] = true;
             $_SESSION['alert-icon'] = "success";
             $_SESSION['alert-title'] = "Success";
-            $_SESSION['alert-text'] = 'Promotion added successfully';
-            header("Location: ../pages/admin_promotion.php");
+            $_SESSION['alert-text'] = 'Service added successfully';
+            header("Location: ../pages/admin_service.php");
         } else {
             // ERROR
             $_SESSION['alert'] = true;
             $_SESSION['alert-icon'] = "error";
             $_SESSION['alert-title'] = "Error";
             $_SESSION['alert-text'] = "Something went wrong";
-            header("Location: ../pages/admin_promotion.php");
+            header("Location: ../pages/admin_service.php");
         }
     } else {
         $_SESSION['alert'] = true;
         $_SESSION['alert-icon'] = "info";
         $_SESSION['alert-title'] = "Error";
         $_SESSION['alert-text'] = "Please upload an image";
-        header("Location: ../pages/admin_promotion.php");
+        header("Location: ../pages/admin_service.php");
     }
 } else if (isset($_POST['retrieveproduct'])) {
     $productid = $_POST['productidArchive'];

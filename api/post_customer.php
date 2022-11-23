@@ -2,27 +2,24 @@
 include_once('../utils/db_config.php');
 include_once('../utils/helper.php');
 
-if (isset($_POST['edituser'])) {
+if (isset($_POST['editcustomer'])) {
 
-    $id = $_POST['edituserid'];
-    $edituserimage = $_POST['edituserimage'];
-    $fname = $_POST['edituserfname'];
-    $lname = $_POST['edituserlname'];
-    $email = $_POST['edituseremail'];
-    $number = $_POST['editusernumber'];
-    $username = $_POST['editusername'];
-    $password = $_POST['edituserpassword'];
-    $type = $_POST['editusertype'];
-    $old_image = '';
+    $id = $_POST['editcustomerid'];
+    $editcustomerimage = $_POST['editcustomerimage'];
+    $name = $_POST['editcustomername'];
+    $email = $_POST['editcustomername'];
+    $number = $_POST['editcustomernumber'];
+    $address = $_POST['editcustomeraddress'];
+    $gender = $_POST['editcustomergender'];
 
-    $sql_image = "SELECT  FROM tbl_user WHERE USER_ID = '$id'";
+    $sql_image = "SELECT  FROM tbl_customer WHERE CUSTOMER_ID = '$id'";
     $res_image = mysqli_query($conn, $sql_image);
     if ($sql_image == TRUE) {
         $count_image = mysqli_num_rows($res_image);
     }
     if ($count_image > 0) {
         while ($rows_image = mysqli_fetch_assoc($res_image)) {
-            $old_image = $rows_image['USER_PICTURE'];
+            $old_image = $rows_image['CUSTOMER_PICTURE'];
         }
     }
 
@@ -31,8 +28,8 @@ if (isset($_POST['edituser'])) {
 
 
     // CHECK IF THE EXISTING IMAGE IS EQUAL TO IMAGE PAYLOAD, IF YES, DONT UPDATE IMAGE
-    if ($old_image == $edituserimage && $edituserimage != "") {
-        $sql = "UPDATE tbl_user SET USER_FNAME '$fname', USER_LNAME = '$lname', USER_MOBILE_NUMBER = '$number', USER_EMAIL = '$email', USER_TYPE = '$type', USER_USERNAME = '$username', USER_PASSWORD = '$password' WHERE USER_ID = '$id'";
+    if ($old_image ==  $editcustomerimage &&  $editcustomerimage != "") {
+        $sql = "UPDATE tbl_customer SET CUSTOMER_NAME = '$name', CUSTOMER_ADDRESS = '$address', CUSTOMER_NUMBER = '$number', CUSTOMER_GENDER = '$gender' WHERE CUSTOMER_ID = '$id'";
         $result = mysqli_query($conn, $sql);
 
         if ($result) {
@@ -40,33 +37,33 @@ if (isset($_POST['edituser'])) {
             $_SESSION['alert'] = true;
             $_SESSION['alert-icon'] = "success";
             $_SESSION['alert-title'] = "Success";
-            $_SESSION['alert-text'] = "Product updated successfully1";
-            header("Location: ../pages/admin_user.php");
+            $_SESSION['alert-text'] = "Customer updated successfully1";
+            header("Location: ../pages/admin_customer.php");
         } else {
             // ERROR
             $_SESSION['alert'] = true;
             $_SESSION['alert-icon'] = "error";
             $_SESSION['alert-title'] = "Error";
             $_SESSION['alert-text'] = "Something1 went wrong";
-            header("Location: ../pages/admin_user.php");
+            header("Location: ../pages/admin_customer.php");
         }
     }
     // ELSE, UPDATE ALL INFORMATION TOGETHER WITH PRODUCT PICTURE
     else {
         // CHECK IF THERE'S AN IMAGE IN THE PAYLOAD
-        if (isset($_FILES['edituserimage']['name'])) {
+        if (isset($_FILES['editcustomerimage']['name'])) {
             // UPLOAD IMAGE
-            $upload_image = uploadImage($_FILES['edituserimage']['name'], $_FILES['edituserimage']['tmp_name'], "User");
+            $upload_image = uploadImage($_FILES['editcustomerimage']['name'], $_FILES['editcustomerimage']['tmp_name'], "Customer");
 
             if (!$upload_image) {
                 $_SESSION['alert'] = true;
                 $_SESSION['alert-icon'] = "error";
                 $_SESSION['alert-title'] = "Error";
                 $_SESSION['alert-text'] = "Failed to upload image";
-                header("Location: ../pages/admin_user.php");
+                header("Location: ../pages/admin_customer.php");
             }
 
-            $sql = "UPDATE tbl_user SET USER_FNAME = '$fname', USER_PICTURE = '$upload_image',  USER_LNAME = '$lname', USER_MOBILE_NUMBER = '$number', USER_EMAIL = '$email', USER_TYPE = '$type', USER_USERNAME = '$username', USER_PASSWORD = '$password' WHERE USER_ID = '$id'";
+            $sql = "UPDATE tbl_customer SET CUSTOMER_PICTURE = '$upload_image', CUSTOMER_NAME = '$name', CUSTOMER_ADDRESS = '$address', CUSTOMER_MOBILE_NUMBER = '$number', CUSTOMER_GENDER = '$gender' WHERE CUSTOMER_ID = '$id'";
             $result = mysqli_query($conn, $sql);
 
             if ($result) {
@@ -74,29 +71,29 @@ if (isset($_POST['edituser'])) {
                 $_SESSION['alert'] = true;
                 $_SESSION['alert-icon'] = "success";
                 $_SESSION['alert-title'] = "Success";
-                $_SESSION['alert-text'] = "User updated successfully2" . $edituserimage;
-                header("Location: ../pages/admin_user.php");
+                $_SESSION['alert-text'] = "Customer updated successfully" . $editcustomerimage;
+                header("Location: ../pages/admin_customer.php");
             } else {
                 // ERROR
                 $_SESSION['alert'] = true;
                 $_SESSION['alert-icon'] = "error";
                 $_SESSION['alert-title'] = "Error";
                 $_SESSION['alert-text'] = "Something2 went wrong";
-                header("Location: ../pages/admin_user.php");
+                header("Location: ../pages/admin_customer.php");
             }
         } else {
             $_SESSION['alert'] = true;
             $_SESSION['alert-icon'] = "info";
             $_SESSION['alert-title'] = "Error";
-            $_SESSION['alert-text'] = "Please upload an image | " . $edituserimage;
-            header("Location: ../pages/admin_user.php");
+            $_SESSION['alert-text'] = "Please upload an image | " . $editcustomerimage;
+            header("Location: ../pages/admin_customer.php");
         }
     }
-} else if (isset($_POST['deleteuser'])) {
-    $userid = $_POST['userDelete'];
-    $userstatus = 0;
+} else if (isset($_POST['deletecustomer'])) {
+    $id = $_POST['customerDelete'];
+    $status = 0;
 
-    $sql = "UPDATE tbl_user SET USER_STATUS = '$userstatus' WHERE USER_ID = '$userid'";
+    $sql = "UPDATE tbl_customer SET CUSTOMER_STATUS = '$status' WHERE CUSTOMER_ID = '$id'";
     $result = mysqli_query($conn, $sql);
 
     if ($result) {
@@ -104,15 +101,15 @@ if (isset($_POST['edituser'])) {
         $_SESSION['alert'] = true;
         $_SESSION['alert-icon'] = "success";
         $_SESSION['alert-title'] = "Success";
-        $_SESSION['alert-text'] = "User deleted successfully";
-        header("Location: ../pages/admin_user.php");
+        $_SESSION['alert-text'] = "Customer deleted successfully";
+        header("Location: ../pages/admin_customer.php");
     } else {
         // ERROR
         $_SESSION['alert'] = true;
         $_SESSION['alert-icon'] = "error";
         $_SESSION['alert-title'] = "Error";
         $_SESSION['alert-text'] = "Something went wrong";
-        header("Location: ../pages/admin_user.php");
+        header("Location: ../pages/admin_customer.php");
     }
 } else if (isset($_POST['addcustomer'])) {
 
@@ -159,11 +156,11 @@ if (isset($_POST['edituser'])) {
         $_SESSION['alert-text'] = "Please upload an image";
         header("Location: ../pages/admin_customer.php");
     }
-} else if (isset($_POST['retrieveuser'])) {
-    $userid = $_POST['useridArchive'];
-    $userstatus = 1;
+} else if (isset($_POST['retrievecustomer'])) {
+    $id = $_POST['customeridArchive'];
+    $status = 1;
 
-    $sql = "UPDATE tbl_user SET USER_STATUS = '$userstatus' WHERE USER_ID = '$productid'";
+    $sql = "UPDATE tbl_customer SET CUSTOMER_STATUS = '$status' WHERE CUSTOMER_ID = '$id'";
     $result = mysqli_query($conn, $sql);
 
     if ($result) {
@@ -171,14 +168,105 @@ if (isset($_POST['edituser'])) {
         $_SESSION['alert'] = true;
         $_SESSION['alert-icon'] = "success";
         $_SESSION['alert-title'] = "Success";
-        $_SESSION['alert-text'] = "User retrieved successfully";
-        header("Location: ../pages/admin_product.php");
+        $_SESSION['alert-text'] = "Customer retrieved successfully";
+        header("Location: ../pages/admin_customer.php");
     } else {
         // ERROR
         $_SESSION['alert'] = true;
         $_SESSION['alert-icon'] = "error";
         $_SESSION['alert-title'] = "Error";
         $_SESSION['alert-text'] = "Something went wrong";
-        header("Location: ../pages/admin_product.php");
+        header("Location: ../pages/admin_customer.php");
+    }
+} else if (isset($_POST['feedbackcustomer'])) {
+    $id = $_POST['feedbackcustomerid'];
+    $content = $_POST['feedbackcontent'];
+    $status = 1;
+    $sql = "INSERT tbl_feedback (FEEDBACK_CONTENT, FEEDBACK_STATUS, CUSTOMER_ID) VALUES ('$content', '$status', '$id')";
+    $result = mysqli_query($conn, $sql);
+
+    if ($result) {
+        // SUCCESS
+        $_SESSION['alert'] = true;
+        $_SESSION['alert-icon'] = "success";
+        $_SESSION['alert-title'] = "Success";
+        $_SESSION['alert-text'] = "Feedback added successfully";
+        header("Location: ../pages/admin_feedback.php");
+    } else {
+        // ERROR
+        $_SESSION['alert'] = true;
+        $_SESSION['alert-icon'] = "error";
+        $_SESSION['alert-title'] = "Error";
+        $_SESSION['alert-text'] = "Something went wrong";
+        header("Location: ../pages/admin_feedback.php");
+    }
+} else if (isset($_POST['editfeedback'])) {
+    $cid = $_POST['editcustomerid'];
+    $fid = $_POST['editfeedbackid'];
+    $content = $_POST['contentedit'];
+
+    $sql = "UPDATE tbl_feedback SET FEEDBACK_CONTENT = '$content' WHERE FEEDBACK_ID = '$fid'";
+    $result = mysqli_query($conn, $sql);
+
+    if ($result) {
+        // SUCCESS
+        $_SESSION['alert'] = true;
+        $_SESSION['alert-icon'] = "success";
+        $_SESSION['alert-title'] = "Success";
+        $_SESSION['alert-text'] = "Feedback updated successfully";
+        header("Location: ../pages/admin_feedback.php");
+    } else {
+        // ERROR
+        $_SESSION['alert'] = true;
+        $_SESSION['alert-icon'] = "error";
+        $_SESSION['alert-title'] = "Error";
+        $_SESSION['alert-text'] = "Something went wrong";
+        header("Location: ../pages/admin_feedback.php");
+    }
+} else if (isset($_POST['deletefeedback'])) {
+
+    $fid = $_POST['feedbackDelete'];
+    $status = 0;
+
+    $sql = "UPDATE tbl_feedback SET FEEDBACK_STATUS = '$content' WHERE FEEDBACK_ID = '$fid'";
+    $result = mysqli_query($conn, $sql);
+
+    if ($result) {
+        // SUCCESS
+        $_SESSION['alert'] = true;
+        $_SESSION['alert-icon'] = "success";
+        $_SESSION['alert-title'] = "Success";
+        $_SESSION['alert-text'] = "Feedback deleted successfully";
+        header("Location: ../pages/admin_feedback.php");
+    } else {
+        // ERROR
+        $_SESSION['alert'] = true;
+        $_SESSION['alert-icon'] = "error";
+        $_SESSION['alert-title'] = "Error";
+        $_SESSION['alert-text'] = "Something went wrong";
+        header("Location: ../pages/admin_feedback.php");
+    }
+} else if (isset($_POST['retrievefeedback'])) {
+
+    $fid = $_POST['retrievefeedbackid'];
+    $status = 1;
+
+    $sql = "UPDATE tbl_feedback SET FEEDBACK_STATUS = '$content' WHERE FEEDBACK_ID = '$fid'";
+    $result = mysqli_query($conn, $sql);
+
+    if ($result) {
+        // SUCCESS
+        $_SESSION['alert'] = true;
+        $_SESSION['alert-icon'] = "success";
+        $_SESSION['alert-title'] = "Success";
+        $_SESSION['alert-text'] = "Feedback restrieved successfully";
+        header("Location: ../pages/admin_feedback.php");
+    } else {
+        // ERROR
+        $_SESSION['alert'] = true;
+        $_SESSION['alert-icon'] = "error";
+        $_SESSION['alert-title'] = "Error";
+        $_SESSION['alert-text'] = "Something went wrong";
+        header("Location: ../pages/admin_feedback.php");
     }
 }
