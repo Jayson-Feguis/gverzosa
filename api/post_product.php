@@ -20,6 +20,11 @@ if (isset($_POST['editproduct'])) {
             $old_image = $rows_image['PRODUCT_PICTURE'];
         }
     }
+    $idaudit =  $_SESSION['user_id']; //id
+    $descriptionaudit = "Edited product " . $productname; // description plus banner name
+    $audit = "INSERT INTO tbl_audit (USER_ID, AUDIT_ACTIVITY) VALUES ('$idaudit', '$descriptionaudit' )";
+    $query_audit = mysqli_query($conn, $audit);
+
     // CHECK IF THE EXISTING IMAGE IS EQUAL TO IMAGE PAYLOAD, IF YES, DONT UPDATE IMAGE
     if ($old_image == $productimage && $productimage != "") {
         $sql = "UPDATE tbl_product SET PRODUCT_NAME = '$productname', PRODUCT_PRICE = '$productprice', PRODUCT_DESCRIPTION = '$productdescription' WHERE PRODUCT_ID = '$productid'";
@@ -89,6 +94,10 @@ if (isset($_POST['editproduct'])) {
     $sql = "UPDATE tbl_product SET PRODUCT_STATUS = '$productstatus' WHERE PRODUCT_ID = '$productid'";
     $result = mysqli_query($conn, $sql);
 
+    $idaudit =  $_SESSION['user_id']; //id
+    $descriptionaudit = "Deleted product id" .  $productid; // description plus banner name
+    $audit = "INSERT INTO tbl_audit (USER_ID, AUDIT_ACTIVITY) VALUES ('$idaudit', '$descriptionaudit' )";
+    $query_audit = mysqli_query($conn, $audit);
     if ($result) {
         // SUCCESS
         $_SESSION['alert'] = true;
@@ -109,6 +118,13 @@ if (isset($_POST['editproduct'])) {
     $productprice = $_POST['addproductprice'];
     $productdescription = $_POST['addproductdescription'];
     $productstatus = 1;
+
+
+    $idaudit =  $_SESSION['user_id']; //id
+    $descriptionaudit = "Deleted product id" .  $productname; // description plus banner name
+    $audit = "INSERT INTO tbl_audit (USER_ID, AUDIT_ACTIVITY) VALUES ('$idaudit', '$descriptionaudit' )";
+    $query_audit = mysqli_query($conn, $audit);
+
     if (isset($_FILES['addproductimage']['name'])) {
         $upload_image = uploadImage($_FILES['addproductimage']['name'], $_FILES['addproductimage']['tmp_name'], "Product");
 
@@ -151,6 +167,11 @@ if (isset($_POST['editproduct'])) {
 
     $sql = "UPDATE tbl_product SET PRODUCT_STATUS = '$productstatus' WHERE PRODUCT_ID = '$productid'";
     $result = mysqli_query($conn, $sql);
+
+    $idaudit =  $_SESSION['user_id']; //id
+    $descriptionaudit = "Retrieved product id" .   $productid; // description plus banner name
+    $audit = "INSERT INTO tbl_audit (USER_ID, AUDIT_ACTIVITY) VALUES ('$idaudit', '$descriptionaudit' )";
+    $query_audit = mysqli_query($conn, $audit);
 
     if ($result) {
         // SUCCESS

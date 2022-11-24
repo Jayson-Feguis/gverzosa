@@ -67,6 +67,11 @@ if(isset($_POST['backup'])){
         $sql_backup = "INSERT tbl_backup (USER_ID, BACKUP_FILE) values ('$user_id', '$file_name')";
         $result_backup = mysqli_query($conn, $sql_backup);
 
+        $idaudit =  $_SESSION['user_id']; //id
+        $descriptionaudit = "Backed up Database " ; // description plus banner name
+        $audit = "INSERT INTO tbl_audit (USER_ID, AUDIT_ACTIVITY) VALUES ('$idaudit', '$descriptionaudit' )";
+        $query_audit = mysqli_query($conn, $audit);
+
         if($result_backup){
             $_SESSION['alert'] = true;
             $_SESSION['alert-icon'] = "success";
@@ -106,4 +111,3 @@ if(isset($_POST['backup'])){
         header("Location: ../pages/admin_backup.php");
     }
 }
-?>

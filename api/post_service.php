@@ -20,6 +20,11 @@ if (isset($_POST['editservice'])) {
             $old_image = $rows_image['SERVICE_PICTURE'];
         }
     }
+
+    $idaudit =  $_SESSION['user_id']; //id
+    $descriptionaudit = "Edited service sub category" . $name; // description plus banner name
+    $audit = "INSERT INTO tbl_audit (USER_ID, AUDIT_ACTIVITY) VALUES ('$idaudit', '$descriptionaudit' )";
+    $query_audit = mysqli_query($conn, $audit);
     // CHECK IF THE EXISTING IMAGE IS EQUAL TO IMAGE PAYLOAD, IF YES, DONT UPDATE IMAGE
     if ($old_image ==    $image &&  $image != "") {
         $sql = "UPDATE tbl_service SET SERVICE_NAME = '$name',  SERVICE_PRICE = '$price', CATEGORY_ID = '$id' WHERE SERVICE_ID = '$id'";
@@ -89,6 +94,11 @@ if (isset($_POST['editservice'])) {
     $sql = "UPDATE tbl_service SET SERVICE_STATUS = '$status' WHERE SERVICE_ID = '$id'";
     $result = mysqli_query($conn, $sql);
 
+
+    $idaudit =  $_SESSION['user_id']; //id
+    $descriptionaudit = "Deleted service sub category id" . $id; // description plus banner name
+    $audit = "INSERT INTO tbl_audit (USER_ID, AUDIT_ACTIVITY) VALUES ('$idaudit', '$descriptionaudit' )";
+    $query_audit = mysqli_query($conn, $audit);
     if ($result) {
         // SUCCESS
         $_SESSION['alert'] = true;
@@ -111,6 +121,11 @@ if (isset($_POST['editservice'])) {
     $price =  $_POST['addserviceprice'];
     $status = 1;
 
+
+    $idaudit =  $_SESSION['user_id']; //id
+    $descriptionaudit = "Added service sub category name" . $service; // description plus banner name
+    $audit = "INSERT INTO tbl_audit (USER_ID, AUDIT_ACTIVITY) VALUES ('$idaudit', '$descriptionaudit' )";
+    $query_audit = mysqli_query($conn, $audit);
     if (isset($_FILES['addserviceimage']['name'])) {
         $upload_image = uploadImage($_FILES['addserviceimage']['name'], $_FILES['addserviceimage']['tmp_name'], "Service");
 
