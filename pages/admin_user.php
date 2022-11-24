@@ -86,6 +86,7 @@ function userType($num)
                             <label for="edituserimage">User Image</label>
                             <img id="img_edituserimage" src="" class="w-[200px]">
                             <input type="file" name="edituserimage" id="edituserimage" accept="image/*" class="block border border-grey-light w-full p-3 rounded mb-4" required>
+                            <input type="text" id="edituserimagetext" name="edituserimagetext" class="hidden border border-grey-light w-full p-3 rounded mb-4" placeholder="ex. Juan" required>
                             <label for="edituserfname">Firstname</label>
                             <input type="text" id="edituserfname" name="edituserfname" class="block border border-grey-light w-full p-3 rounded mb-4" placeholder="ex. Juan" required>
                             <label for="edituserlname">Lastname</label>
@@ -150,6 +151,7 @@ function userType($num)
                 <th>Email</th>
                 <th>Mobile Number</th>
                 <th>User Type</th>
+                <th style="display: none;">User Type</th>
                 <th>Date Created</th>
                 <th>Actions</th>
             </tr>
@@ -172,6 +174,7 @@ function userType($num)
                         <td><?php echo $row['USER_EMAIL']; ?> </td>
                         <td><?php echo $row['USER_MOBILE_NUMBER']; ?> </td>
                         <td><?php echo userType($row['USER_TYPE']); ?></td>
+                        <td style="display: none;"><?php echo $row['USER_TYPE']; ?> </td>
                         <td><?php echo $row['USER_DATETIME_CREATED']; ?> </td>
                         <td class="text-center">
                             <button type="button" class="editUser bg-transparent hover:bg-gray-300 text-blue-700 font-semibold hover:text-white py-[5px] px-2 border border-gray-500 hover:border-border-gray-300 rounded">
@@ -233,13 +236,19 @@ function userType($num)
                 edituserimage.files = dT.files;
                 $('#img_edituserimage').attr("src", "../images/" + data[2]);
                 $('#edituserid').val(data[0]);
-                $('#edituserlname').val(data[1]);
-                $('#edituserfname').val(data[3]);
+                $('#edituserimagetext').val(data[2]);
+                $('#edituserlname').val(data[3]);
+                $('#edituserfname').val(data[1]);
                 $('#edituseremail').val(data[7]);
                 $('#editusernumber').val(data[8]);
-                $('#editusertype').val(data[9]);
+                $('#editusertype').val(data[10]);
                 $('#editusername').val(data[5]);
                 $('#edituserpassword').val(data[6]);
+                console.log(data);
+            });
+
+            $("#edituserimage").change(function(){
+                $('#edituserimagetext').val($("#edituserimage").val());
             });
         });
 

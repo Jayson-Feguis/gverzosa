@@ -17,12 +17,8 @@ unset($_SESSION['alert-icon']);
 unset($_SESSION['alert-title']);
 unset($_SESSION['alert-text']);
 
-function getCustomerName($id)
+function getCustomerName($id, $conn)
 {
-
-
-    $conn = mysqli_connect(LOCALHOST, DB_USERNAME, DB_PASSWORD) or die(mysqli_error($conn));
-    $db_select = mysqli_select_db($conn, DB_NAME) or die(mysqli_error($conn));
     $sql = "SELECT * FROM `tbl_customer` WHERE CUSTOMER_ID = '$id'";
     $result = mysqli_query($conn, $sql);
     if (mysqli_num_rows($result) === 1) {
@@ -98,7 +94,7 @@ function getCustomerName($id)
             ?>
                     <tr>
                         <td style="display: none;"><?php echo $row['FEEDBACK_ID']; ?> </td>
-                        <td><?php echo getCustomerName($row['CUSTOMER_ID']); ?> </td>
+                        <td><?php echo getCustomerName($row['CUSTOMER_ID'], $conn); ?> </td>
                         <td><?php echo $row['FEEDBACK_CONTENT']; ?> </td>
                         <td><?php echo $row['FEEDBACK_DATETIME_CREATED']; ?> </td>
                         <td class="text-center">

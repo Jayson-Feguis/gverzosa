@@ -5,7 +5,7 @@ include_once('../utils/helper.php');
 if (isset($_POST['edituser'])) {
 
     $id = $_POST['edituserid'];
-    $edituserimage = $_POST['edituserimage'];
+    $edituserimagetext = $_POST['edituserimagetext'];
     $fname = $_POST['edituserfname'];
     $lname = $_POST['edituserlname'];
     $email = $_POST['edituseremail'];
@@ -15,24 +15,17 @@ if (isset($_POST['edituser'])) {
     $type = $_POST['editusertype'];
     $old_image = '';
 
-    $sql_image = "SELECT  FROM tbl_user WHERE USER_ID = '$id'";
+    $sql_image = "SELECT * FROM tbl_user WHERE USER_ID = '$id'";
     $res_image = mysqli_query($conn, $sql_image);
-    if ($sql_image == TRUE) {
-        $count_image = mysqli_num_rows($res_image);
-    }
-    if ($count_image > 0) {
+    if ($res_image) {
         while ($rows_image = mysqli_fetch_assoc($res_image)) {
             $old_image = $rows_image['USER_PICTURE'];
         }
     }
 
-
-
-
-
     // CHECK IF THE EXISTING IMAGE IS EQUAL TO IMAGE PAYLOAD, IF YES, DONT UPDATE IMAGE
-    if ($old_image == $edituserimage && $edituserimage != "") {
-        $sql = "UPDATE tbl_user SET USER_FNAME '$fname', USER_LNAME = '$lname', USER_MOBILE_NUMBER = '$number', USER_EMAIL = '$email', USER_TYPE = '$type', USER_USERNAME = '$username', USER_PASSWORD = '$password' WHERE USER_ID = '$id'";
+    if ($old_image == $edituserimagetext && $edituserimagetext != "") {
+        $sql = "UPDATE tbl_user SET USER_FNAME = '$fname', USER_LNAME = '$lname', USER_MOBILE_NUMBER = '$number', USER_EMAIL = '$email', USER_TYPE = '$type', USER_USERNAME = '$username', USER_PASSWORD = '$password' WHERE USER_ID = '$id'";
         $result = mysqli_query($conn, $sql);
 
         if ($result) {
@@ -47,7 +40,7 @@ if (isset($_POST['edituser'])) {
             $_SESSION['alert'] = true;
             $_SESSION['alert-icon'] = "error";
             $_SESSION['alert-title'] = "Error";
-            $_SESSION['alert-text'] = "Something1 went wrong";
+            $_SESSION['alert-text'] = "Something1 went wrong".mysqli_error($conn);
             header("Location: ../pages/admin_user.php");
         }
     }
