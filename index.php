@@ -49,7 +49,7 @@
                     if($services_result){
                         while($rows = mysqli_fetch_array($services_result)){
                           echo '<div class="swiper-slide div-center">
-                                    <img src="'.$rows['SERVICE_PICTURE'].'" alt="Service 1" />
+                                    <img src="./images/'.$rows['SERVICE_PICTURE'].'" alt="Service 1" />
                                 </div>';
                         }
                     }
@@ -59,6 +59,32 @@
         </div>
     </section>
 </div>
+<section id='about_section2' class="div-center bg-tertiary flex-col w-full py-[7rem]">
+        <div class="employees-container div-center flex-col w-full">
+            <h1 class="font-Dancing text-[64px] font-bold text-defaultwhite pb-[50px]">
+                Customers' Feedback
+            </h1>
+            <div class="div-center flex-wrap gap-[50px]">
+                <?php
+                    $feedback_query = "SELECT tbl_customer.CUSTOMER_PICTURE, tbl_customer.CUSTOMER_NAME, tbl_feedback.FEEDBACK_CONTENT FROM tbl_feedback INNER JOIN tbl_customer ON tbl_feedback.CUSTOMER_ID = tbl_customer.CUSTOMER_ID LIMIT 3";
+                    $feedback_result = $conn -> query($feedback_query);
+                    if($feedback_result){
+                        while($rows = mysqli_fetch_array($feedback_result)){
+                            echo '<div class="card-container bg-defaultwhite rounded-lg p-[20px] div-center flex-col drop-shadow-md max-w-[350px]">
+                                    <img src="./images/'.$rows['CUSTOMER_PICTURE'].'" alt="sample" class="rounded-full w-[100px]"/>
+                                    <h6 class="text-primary text-[18px] mb-5">
+                                    '.$rows['CUSTOMER_NAME'].'
+                                    </h6>
+                                    <p class="text-primary text-[14px] text-center">
+                                    "'.$rows['FEEDBACK_CONTENT'].'"
+                                    </p>
+                                </div>';
+                        }
+                    }
+                ?>
+            </div>
+        </div>
+    </section>
 <!-- SWIPER JS -->
 <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
 <!-- INITIALIZE SWIPER -->

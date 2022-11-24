@@ -82,6 +82,7 @@ unset($_SESSION['alert-text']);
                             <label for="editcustomerimage">Customer Image</label>
                             <img id="img_editcustomerimage" src="" class="w-[200px]">
                             <input type="file" name="editcustomerimage" id="editcustomerimage" accept="image/*" class="block border border-grey-light w-full p-3 rounded mb-4" required>
+                            <input type="text" id="editcustomerimagetext" name="editcustomerimagetext" class="block border border-grey-light w-full p-3 rounded mb-4" placeholder="ex. Juan" required>
                             <label for="editcustomername">Customer Name</label>
                             <input type="text" id="editcustomername" name="editcustomername" class="block border border-grey-light w-full p-3 rounded mb-4" required>
                             <label for="editcustomeremail">Email</label>
@@ -94,13 +95,13 @@ unset($_SESSION['alert-text']);
                             <div class="flex flex-row justify-flex-start">
                                 <div class="flex-row">
                                     <div class="form-check">
-                                        <input class="form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="radio" name="editcustomergender" value="Male" id="customergender">
+                                        <input class="form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="radio" name="editcustomergender" value="Male" id="Male">
                                         <label class="form-check-label inline-block text-gray-800" for="customergender">
                                             Male
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="radio" name="editcustomergender" value="Female" id="flexRadioDefault2">
+                                        <input class="form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="radio" name="editcustomergender" value="Female" id="Female">
                                         <label class="form-check-label inline-block text-gray-800" for="flexRadioDefault2">
                                             Female
                                         </label>
@@ -157,8 +158,8 @@ unset($_SESSION['alert-text']);
         </div>
     </div>
     <?php
-    $query = "SELECT * FROM tbl_customer WHERE CUSTOMER_STATUS = 1 ORDER BY CUSTOMER_ID DESC";
-    $query_run = mysqli_query($conn, $query);
+        $query = "SELECT * FROM tbl_customer WHERE CUSTOMER_STATUS = 1 ORDER BY CUSTOMER_ID DESC";
+        $query_run = mysqli_query($conn, $query);
     ?>
     <table id="data-table" class="display" style="width:100%">
         <thead>
@@ -177,7 +178,7 @@ unset($_SESSION['alert-text']);
         </thead>
         <tbody>
             <?php
-            if (mysqli_num_rows($query_run) > 0) {
+            if ($query_run) {
                 while ($row = mysqli_fetch_assoc($query_run)) {
             ?>
                     <tr>
@@ -206,8 +207,6 @@ unset($_SESSION['alert-text']);
                     </tr>
             <?php
                 }
-            } else {
-                echo "No record found";
             }
             ?>
         </tbody>
@@ -258,11 +257,22 @@ unset($_SESSION['alert-text']);
                 $("#modal-edit").removeClass("hidden");
                 editcustomerimage.files = dT.files;
                 $('#img_editcustomerimage').attr("src", "../images/" + data[2]);
+                $('#editcustomerimagetext').val(data[2]);
                 $('#editcustomerid').val(data[0]);
                 $('#editcustomername').val(data[1]);
                 $('#editcustomeremail').val(data[5]);
                 $('#editcustomernumber').val(data[6]);
                 $('#editcustomeraddress').val(data[7]);
+                $('#editcustomergender').val(data[3]);
+                if( data[3] === 'Male'){
+                    $('#Male').attr('checked', true);
+                }else{
+                    $('#Female').attr('checked', true);
+                }
+            });
+
+            $("#editcustomerimage").change(function(){
+                $('#editcustomerimagetext').val($("#editcustomerimage").val());
             });
         });
 

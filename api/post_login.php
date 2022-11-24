@@ -8,7 +8,7 @@
         $sql = "SELECT * FROM `tbl_user` WHERE USER_USERNAME = '$username' && USER_PASSWORD = '$password'";
         $result = mysqli_query($conn, $sql);
 
-        if (mysqli_num_rows($result) === 1) {
+        if ($result) {
             $row = mysqli_fetch_assoc($result);
             session_start();
             $_SESSION['user_name'] = $row['USER_USERNAME'];

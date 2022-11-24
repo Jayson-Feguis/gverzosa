@@ -5,7 +5,7 @@ include_once('../utils/helper.php');
 if (isset($_POST['editcustomer'])) {
 
     $id = $_POST['editcustomerid'];
-    $editcustomerimage = $_POST['editcustomerimage'];
+    $editcustomerimagetext = $_POST['editcustomerimagetext'];
     $name = $_POST['editcustomername'];
     $email = $_POST['editcustomername'];
     $number = $_POST['editcustomernumber'];
@@ -14,21 +14,14 @@ if (isset($_POST['editcustomer'])) {
 
     $sql_image = "SELECT  FROM tbl_customer WHERE CUSTOMER_ID = '$id'";
     $res_image = mysqli_query($conn, $sql_image);
-    if ($sql_image == TRUE) {
-        $count_image = mysqli_num_rows($res_image);
-    }
-    if ($count_image > 0) {
+    if ($res_image) {
         while ($rows_image = mysqli_fetch_assoc($res_image)) {
             $old_image = $rows_image['CUSTOMER_PICTURE'];
         }
     }
 
-
-
-
-
     // CHECK IF THE EXISTING IMAGE IS EQUAL TO IMAGE PAYLOAD, IF YES, DONT UPDATE IMAGE
-    if ($old_image ==  $editcustomerimage &&  $editcustomerimage != "") {
+    if ($old_image ==  $editcustomerimagetext &&  $editcustomerimagetext != "") {
         $sql = "UPDATE tbl_customer SET CUSTOMER_NAME = '$name', CUSTOMER_ADDRESS = '$address', CUSTOMER_NUMBER = '$number', CUSTOMER_GENDER = '$gender' WHERE CUSTOMER_ID = '$id'";
         $result = mysqli_query($conn, $sql);
 
@@ -114,7 +107,7 @@ if (isset($_POST['editcustomer'])) {
 } else if (isset($_POST['addcustomer'])) {
 
     $name = $_POST['addcustomername'];
-    $email = $_POST['addcustomername'];
+    $email = $_POST['addcustomeremail'];
     $number = $_POST['addcustomernumber'];
     $address = $_POST['addcustomeraddress'];
     $gender = $_POST['addcustomergender'];
@@ -146,7 +139,7 @@ if (isset($_POST['editcustomer'])) {
             $_SESSION['alert'] = true;
             $_SESSION['alert-icon'] = "error";
             $_SESSION['alert-title'] = "Error";
-            $_SESSION['alert-text'] = "Something went wrong";
+            $_SESSION['alert-text'] = "Something went wrong".$conn -> error;
             header("Location: ../pages/admin_customer.php");
         }
     } else {

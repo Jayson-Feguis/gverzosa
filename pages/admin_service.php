@@ -210,7 +210,8 @@ unset($_SESSION['alert-text']);
                 $('#serviceid').val(data[0]);
                 $('#servicename').val(data[1]);
                 $('#serviceprice').val(data[5]);
-                $('#servicecategory').val(data[5]);
+                $('#servicecategory').val(data[4]);
+                console.log(data);
             });
         });
         $(document).ready(function() {
