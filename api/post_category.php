@@ -10,6 +10,12 @@ if (isset($_POST['editcategory'])) {
     $sql = "UPDATE tbl_category SET CATEGORY_NAME = '$name',  CATEGORY_DESCRIPTION = '$description' WHERE CATEGORY_ID = '$id'";
     $result = mysqli_query($conn, $sql);
 
+
+    $idaudit =  $_SESSION['user_id']; //id
+    $descriptionaudit = "Edited service category " . $name; // description plus banner name
+    $audit = "INSERT INTO tbl_audit (USER_ID, AUDIT_ACTIVITY) VALUES ('$idaudit', '$descriptionaudit' )";
+    $query_audit = mysqli_query($conn, $audit);
+
     if ($result) {
         // SUCCESS
         $_SESSION['alert'] = true;
@@ -31,7 +37,10 @@ if (isset($_POST['editcategory'])) {
     $sql = "UPDATE tbl_category SET CATEGORY_STATUS = '$status' WHERE CATEGORY_ID = '$id'";
     $result = mysqli_query($conn, $sql);
 
-
+    $idaudit =  $_SESSION['user_id']; //id
+    $descriptionaudit = "Deleted service category " . $id; // description plus banner name
+    $audit = "INSERT INTO tbl_audit (USER_ID, AUDIT_ACTIVITY) VALUES ('$idaudit', '$descriptionaudit' )";
+    $query_audit = mysqli_query($conn, $audit);
     if ($result) {
         // SUCCESS
         $_SESSION['alert'] = true;
@@ -54,6 +63,10 @@ if (isset($_POST['editcategory'])) {
     $sql = "INSERT INTO tbl_category (CATEGORY_NAME, CATEGORY_DESCRIPTION, CATEGORY_STATUS ) VALUES ('$name', '$description', '$status')";
     $result = mysqli_query($conn, $sql);
 
+    $idaudit =  $_SESSION['user_id']; //id
+    $descriptionaudit = "Added service category " . $name; // description plus banner name
+    $audit = "INSERT INTO tbl_audit (USER_ID, AUDIT_ACTIVITY) VALUES ('$idaudit', '$descriptionaudit' )";
+    $query_audit = mysqli_query($conn, $audit);
     if ($result) {
         // SUCCESS
         $_SESSION['alert'] = true;

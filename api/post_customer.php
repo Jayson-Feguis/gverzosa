@@ -21,6 +21,12 @@ if (isset($_POST['editcustomer'])) {
         }
     }
 
+
+
+    $idaudit =  $_SESSION['user_id']; //id
+    $descriptionaudit = "Edited customer " . $name; // description plus banner name
+    $audit = "INSERT INTO tbl_audit (USER_ID, AUDIT_ACTIVITY) VALUES ('$idaudit', '$descriptionaudit' )";
+    $query_audit = mysqli_query($conn, $audit);
     // CHECK IF THE EXISTING IMAGE IS EQUAL TO IMAGE PAYLOAD, IF YES, DONT UPDATE IMAGE
     if ($old_image ==  $editcustomerimagetext &&  $editcustomerimagetext != "") {
         $sql = "UPDATE tbl_customer SET CUSTOMER_NAME = '$name', CUSTOMER_ADDRESS = '$address', CUSTOMER_MOBILE_NUMBER = '$number', CUSTOMER_GENDER = '$gender' WHERE CUSTOMER_ID = '$id'";
@@ -90,6 +96,12 @@ if (isset($_POST['editcustomer'])) {
     $sql = "UPDATE tbl_customer SET CUSTOMER_STATUS = '$status' WHERE CUSTOMER_ID = '$id'";
     $result = mysqli_query($conn, $sql);
 
+
+    $idaudit =  $_SESSION['user_id']; //id
+    $descriptionaudit = "Deleted customer " . $id; // description plus banner name
+    $audit = "INSERT INTO tbl_audit (USER_ID, AUDIT_ACTIVITY) VALUES ('$idaudit', '$descriptionaudit' )";
+    $query_audit = mysqli_query($conn, $audit);
+
     if ($result) {
         // SUCCESS
         $_SESSION['alert'] = true;
@@ -113,6 +125,11 @@ if (isset($_POST['editcustomer'])) {
     $address = $_POST['addcustomeraddress'];
     $gender = $_POST['addcustomergender'];
     $status = 1;
+
+    $idaudit =  $_SESSION['user_id']; //id
+    $descriptionaudit = "Added customer " . $name; // description plus banner name
+    $audit = "INSERT INTO tbl_audit (USER_ID, AUDIT_ACTIVITY) VALUES ('$idaudit', '$descriptionaudit' )";
+    $query_audit = mysqli_query($conn, $audit);
 
     if (isset($_FILES['addcustomerimage']['name'])) {
         $upload_image = uploadImage($_FILES['addcustomerimage']['name'], $_FILES['addcustomerimage']['tmp_name'], "Customer");
@@ -140,7 +157,7 @@ if (isset($_POST['editcustomer'])) {
             $_SESSION['alert'] = true;
             $_SESSION['alert-icon'] = "error";
             $_SESSION['alert-title'] = "Error";
-            $_SESSION['alert-text'] = "Something went wrong".$conn -> error;
+            $_SESSION['alert-text'] = "Something went wrong" . $conn->error;
             header("Location: ../pages/admin_customer.php");
         }
     } else {
@@ -179,6 +196,12 @@ if (isset($_POST['editcustomer'])) {
     $sql = "INSERT tbl_feedback (FEEDBACK_CONTENT, FEEDBACK_STATUS, CUSTOMER_ID) VALUES ('$content', '$status', '$id')";
     $result = mysqli_query($conn, $sql);
 
+
+    $idaudit =  $_SESSION['user_id']; //id
+    $descriptionaudit = "Added feedback of customer id " . $id; // description plus banner name
+    $audit = "INSERT INTO tbl_audit (USER_ID, AUDIT_ACTIVITY) VALUES ('$idaudit', '$descriptionaudit' )";
+    $query_audit = mysqli_query($conn, $audit);
+
     if ($result) {
         // SUCCESS
         $_SESSION['alert'] = true;
@@ -201,6 +224,11 @@ if (isset($_POST['editcustomer'])) {
 
     $sql = "UPDATE tbl_feedback SET FEEDBACK_CONTENT = '$content' WHERE FEEDBACK_ID = '$fid'";
     $result = mysqli_query($conn, $sql);
+
+    $idaudit =  $_SESSION['user_id']; //id
+    $descriptionaudit = "Edited feedback id " . $fid; // description plus banner name
+    $audit = "INSERT INTO tbl_audit (USER_ID, AUDIT_ACTIVITY) VALUES ('$idaudit', '$descriptionaudit' )";
+    $query_audit = mysqli_query($conn, $audit);
 
     if ($result) {
         // SUCCESS
@@ -225,6 +253,12 @@ if (isset($_POST['editcustomer'])) {
     $sql = "UPDATE tbl_feedback SET FEEDBACK_STATUS = '$content' WHERE FEEDBACK_ID = '$fid'";
     $result = mysqli_query($conn, $sql);
 
+
+    $idaudit =  $_SESSION['user_id']; //id
+    $descriptionaudit = "Deleted feedback  id" . $fid; // description plus banner name
+    $audit = "INSERT INTO tbl_audit (USER_ID, AUDIT_ACTIVITY) VALUES ('$idaudit', '$descriptionaudit' )";
+    $query_audit = mysqli_query($conn, $audit);
+
     if ($result) {
         // SUCCESS
         $_SESSION['alert'] = true;
@@ -247,6 +281,12 @@ if (isset($_POST['editcustomer'])) {
 
     $sql = "UPDATE tbl_feedback SET FEEDBACK_STATUS = '$content' WHERE FEEDBACK_ID = '$fid'";
     $result = mysqli_query($conn, $sql);
+
+
+    $idaudit =  $_SESSION['user_id']; //id
+    $descriptionaudit = "Retrieved feedback  id" . $fid; // description plus banner name
+    $audit = "INSERT INTO tbl_audit (USER_ID, AUDIT_ACTIVITY) VALUES ('$idaudit', '$descriptionaudit' )";
+    $query_audit = mysqli_query($conn, $audit);
 
     if ($result) {
         // SUCCESS

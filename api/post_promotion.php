@@ -18,6 +18,11 @@ if (isset($_POST['editpromotion'])) {
             $old_image = $rows_image['BANNER_IMAGE'];
         }
     }
+
+    $idaudit =  $_SESSION['user_id']; //id
+    $descriptionaudit = "Edited promotion name" .   $promotionname; // description plus banner name
+    $audit = "INSERT INTO tbl_audit (USER_ID, AUDIT_ACTIVITY) VALUES ('$idaudit', '$descriptionaudit' )";
+    $query_audit = mysqli_query($conn, $audit);
     // CHECK IF THE EXISTING IMAGE IS EQUAL TO IMAGE PAYLOAD, IF YES, DONT UPDATE IMAGE
     if ($old_image == $promotionimagetext && $promotionimagetext != "") {
         $sql = "UPDATE tbl_banner SET BANNER_NAME = '$promotionname',  BANNER_STATUS = '$promotionstatus' WHERE BANNER_ID = '$promotionid'";
@@ -87,6 +92,11 @@ if (isset($_POST['editpromotion'])) {
     $sql = "UPDATE tbl_banner SET BANNER_STATUS = '$promotionstatus' WHERE BANNER_ID = '$promotionid'";
     $result = mysqli_query($conn, $sql);
 
+    $idaudit =  $_SESSION['user_id']; //id
+    $descriptionaudit = "Deleted promotion id" . $promotionid; // description plus banner name
+    $audit = "INSERT INTO tbl_audit (USER_ID, AUDIT_ACTIVITY) VALUES ('$idaudit', '$descriptionaudit' )";
+    $query_audit = mysqli_query($conn, $audit);
+
     if ($result) {
         // SUCCESS
         $_SESSION['alert'] = true;
@@ -106,6 +116,12 @@ if (isset($_POST['editpromotion'])) {
     $promotionname = $_POST['addpromotionname'];
     $promotiontprice = $_POST['addpromotionprice'];
     $promotionstatus = 1;
+
+
+    $idaudit =  $_SESSION['user_id']; //id
+    $descriptionaudit = "Added promotion " . $promotionname; // description plus banner name
+    $audit = "INSERT INTO tbl_audit (USER_ID, AUDIT_ACTIVITY) VALUES ('$idaudit', '$descriptionaudit' )";
+    $query_audit = mysqli_query($conn, $audit);
     if (isset($_FILES['addpromotionimage']['name'])) {
         $upload_image = uploadImage($_FILES['addpromotionimage']['name'], $_FILES['addpromotionimage']['tmp_name'], "Promotion");
 
