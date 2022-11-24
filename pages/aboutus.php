@@ -31,7 +31,7 @@
                     if($employees_result){
                         while($rows = mysqli_fetch_array($employees_result)){
                             echo '<div class="card-container bg-defaultwhite rounded-lg p-[50px] div-center flex-col drop-shadow-md">
-                                    <img src="../'.$rows['USER_PICTURE'].'" alt="sample" class="rounded-full w-[150px]"/>
+                                    <img src="../images/'.$rows['USER_PICTURE'].'" alt="sample" class="rounded-full w-[150px]"/>
                                     <h6 class="text-primary text-[24px]">
                                     '.$rows['USER_FNAME'].' '.$rows['USER_LNAME'].'
                                     </h6>

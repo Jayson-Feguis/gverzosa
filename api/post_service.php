@@ -4,7 +4,7 @@ include_once('../utils/helper.php');
 
 if (isset($_POST['editservice'])) {
     $id = $_POST['serviceid'];
-    $image = $_POST['serviceimage'];
+    $image = $_POST['serviceimagetext'];
     $name = $_POST['servicename'];
     $price = $_POST['serviceprice'];
     $category = $_POST['servicecategory'];
@@ -12,17 +12,14 @@ if (isset($_POST['editservice'])) {
 
     $sql_image = "SELECT SERVICE_PICTURE FROM tbl_service WHERE SERVICE_ID = '$id'";
     $res_image = mysqli_query($conn, $sql_image);
-    if ($sql_image == TRUE) {
-        $count_image = mysqli_num_rows($res_image);
-    }
-    if ($count_image > 0) {
+    if ($res_image) {
         while ($rows_image = mysqli_fetch_assoc($res_image)) {
             $old_image = $rows_image['SERVICE_PICTURE'];
         }
     }
     // CHECK IF THE EXISTING IMAGE IS EQUAL TO IMAGE PAYLOAD, IF YES, DONT UPDATE IMAGE
-    if ($old_image ==    $image &&  $image != "") {
-        $sql = "UPDATE tbl_service SET SERVICE_NAME = '$name',  SERVICE_PRICE = '$price', CATEGORY_ID = '$id' WHERE SERVICE_ID = '$id'";
+    if ($old_image == $image &&  $image != "") {
+        $sql = "UPDATE tbl_service SET SERVICE_NAME = '$name',  SERVICE_PRICE = '$price', CATEGORY_ID = '$category' WHERE SERVICE_ID = '$id'";
         $result = mysqli_query($conn, $sql);
 
         if ($result) {
@@ -64,7 +61,7 @@ if (isset($_POST['editservice'])) {
                 $_SESSION['alert'] = true;
                 $_SESSION['alert-icon'] = "success";
                 $_SESSION['alert-title'] = "Success";
-                $_SESSION['alert-text'] = "Service updated successfully" . $image;
+                $_SESSION['alert-text'] = "Service updated successfully";
                 header("Location: ../pages/admin_service.php");
             } else {
                 // ERROR
@@ -78,7 +75,7 @@ if (isset($_POST['editservice'])) {
             $_SESSION['alert'] = true;
             $_SESSION['alert-icon'] = "info";
             $_SESSION['alert-title'] = "Error";
-            $_SESSION['alert-text'] = "Please upload an image | " .  $image;
+            $_SESSION['alert-text'] = "Please upload an image";
             header("Location: ../pages/admin_service.php");
         }
     }

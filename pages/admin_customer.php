@@ -82,7 +82,7 @@ unset($_SESSION['alert-text']);
                             <label for="editcustomerimage">Customer Image</label>
                             <img id="img_editcustomerimage" src="" class="w-[200px]">
                             <input type="file" name="editcustomerimage" id="editcustomerimage" accept="image/*" class="block border border-grey-light w-full p-3 rounded mb-4" required>
-                            <input type="text" id="editcustomerimagetext" name="editcustomerimagetext" class="block border border-grey-light w-full p-3 rounded mb-4" placeholder="ex. Juan" required>
+                            <input type="text" id="editcustomerimagetext" name="editcustomerimagetext" class="hidden border border-grey-light w-full p-3 rounded mb-4" placeholder="ex. Juan" required>
                             <label for="editcustomername">Customer Name</label>
                             <input type="text" id="editcustomername" name="editcustomername" class="block border border-grey-light w-full p-3 rounded mb-4" required>
                             <label for="editcustomeremail">Email</label>
@@ -96,13 +96,13 @@ unset($_SESSION['alert-text']);
                                 <div class="flex-row">
                                     <div class="form-check">
                                         <input class="form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="radio" name="editcustomergender" value="Male" id="Male">
-                                        <label class="form-check-label inline-block text-gray-800" for="customergender">
+                                        <label class="form-check-label inline-block text-gray-800" for="Male">
                                             Male
                                         </label>
                                     </div>
                                     <div class="form-check">
                                         <input class="form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="radio" name="editcustomergender" value="Female" id="Female">
-                                        <label class="form-check-label inline-block text-gray-800" for="flexRadioDefault2">
+                                        <label class="form-check-label inline-block text-gray-800" for="Female">
                                             Female
                                         </label>
                                     </div>

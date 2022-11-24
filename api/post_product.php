@@ -4,7 +4,7 @@ include_once('../utils/helper.php');
 
 if (isset($_POST['editproduct'])) {
     $productid = $_POST['productid'];
-    $productimage = $_POST['productimage'];
+    $productimagetext = $_POST['productimagetext'];
     $productname = $_POST['productname'];
     $productprice = $_POST['productprice'];
     $productdescription = $_POST['productdescription'];
@@ -12,16 +12,13 @@ if (isset($_POST['editproduct'])) {
 
     $sql_image = "SELECT PRODUCT_PICTURE FROM tbl_product WHERE PRODUCT_ID = '$productid'";
     $res_image = mysqli_query($conn, $sql_image);
-    if ($sql_image == TRUE) {
-        $count_image = mysqli_num_rows($res_image);
-    }
-    if ($count_image > 0) {
+    if ($res_image) {
         while ($rows_image = mysqli_fetch_assoc($res_image)) {
             $old_image = $rows_image['PRODUCT_PICTURE'];
         }
     }
     // CHECK IF THE EXISTING IMAGE IS EQUAL TO IMAGE PAYLOAD, IF YES, DONT UPDATE IMAGE
-    if ($old_image == $productimage && $productimage != "") {
+    if ($old_image == $productimagetext && $productimagetext != "") {
         $sql = "UPDATE tbl_product SET PRODUCT_NAME = '$productname', PRODUCT_PRICE = '$productprice', PRODUCT_DESCRIPTION = '$productdescription' WHERE PRODUCT_ID = '$productid'";
         $result = mysqli_query($conn, $sql);
 
