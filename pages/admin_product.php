@@ -61,6 +61,7 @@ unset($_SESSION['alert-text']);
                             <label for="productimage">Product Image</label>
                             <img id="img_productimage" src="" class="w-[200px]">
                             <input type="file" name="productimage" id="productimage" accept="image/*" class="block border border-grey-light w-full p-3 rounded mb-4" required>
+                            <input type="text" id="productimagetext" name="productimagetext" class="hidden border border-grey-light w-full p-3 rounded mb-4" placeholder="ex. Juan" required>
                             <label for="productname">Product Name</label>
                             <input type="text" id="productname" name="productname" class="block border border-grey-light w-full p-3 rounded mb-4" placeholder="Sunsilk" required>
                             <label for="productdescription">Product Description</label>
@@ -184,10 +185,15 @@ unset($_SESSION['alert-text']);
                 $("#modal-edit").removeClass("hidden");
                 productimage.files = dT.files;
                 $('#img_productimage').attr("src", "../images/" + data[2]);
+                $('#productimagetext').val(data[2]);
                 $('#productid').val(data[0]);
                 $('#productname').val(data[1]);
                 $('#productdescription').val(data[4]);
                 $('#productprice').val(parseFloat(data[5]));
+            });
+
+            $("#productimage").change(function(){
+                $('#productimagetext').val($("#productimage").val());
             });
         });
 

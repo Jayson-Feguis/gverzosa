@@ -2,9 +2,9 @@
 include_once('../utils/db_config.php');
 include_once('../utils/helper.php');
 
-if (isset($_POST['editservice'])) {
+if (isset($_POST['editpromotion'])) {
     $promotionid = $_POST['promotionid'];
-    $promotionimage = $_POST['promotionimage'];
+    $promotionimagetext = $_POST['promotionimagetext'];
     $promotionname = $_POST['promotionname'];
     $promotionstatus = 1;
 
@@ -12,17 +12,15 @@ if (isset($_POST['editservice'])) {
 
     $sql_image = "SELECT BANNER_IMAGE FROM tbl_banner WHERE BANNER_ID = '$promotionid'";
     $res_image = mysqli_query($conn, $sql_image);
-    if ($sql_image == TRUE) {
-        $count_image = mysqli_num_rows($res_image);
-    }
-    if ($count_image > 0) {
+    
+    if ($res_image) {
         while ($rows_image = mysqli_fetch_assoc($res_image)) {
             $old_image = $rows_image['BANNER_IMAGE'];
         }
     }
     // CHECK IF THE EXISTING IMAGE IS EQUAL TO IMAGE PAYLOAD, IF YES, DONT UPDATE IMAGE
-    if ($old_image == $promotionimage && $promotionimage != "") {
-        $sql = "UPDATE tbl_banner SET BANNER_NAME = '$promotionname',  BANNER_STATUS = '$promotionstatus' WHERE PRODUCT_ID = '$productid'";
+    if ($old_image == $promotionimagetext && $promotionimagetext != "") {
+        $sql = "UPDATE tbl_banner SET BANNER_NAME = '$promotionname',  BANNER_STATUS = '$promotionstatus' WHERE BANNER_ID = '$promotionid'";
         $result = mysqli_query($conn, $sql);
 
         if ($result) {
@@ -37,7 +35,7 @@ if (isset($_POST['editservice'])) {
             $_SESSION['alert'] = true;
             $_SESSION['alert-icon'] = "error";
             $_SESSION['alert-title'] = "Error";
-            $_SESSION['alert-text'] = "Something went wrong";
+            $_SESSION['alert-text'] = "Something went wrong1".mysqli_error($conn);
             header("Location: ../pages/admin_promotion.php");
         }
     }
@@ -71,7 +69,7 @@ if (isset($_POST['editservice'])) {
                 $_SESSION['alert'] = true;
                 $_SESSION['alert-icon'] = "error";
                 $_SESSION['alert-title'] = "Error";
-                $_SESSION['alert-text'] = "Something went wrong";
+                $_SESSION['alert-text'] = "Something went wrong2";
                 header("Location: ../pages/admin_promotion.php");
             }
         } else {

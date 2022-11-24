@@ -1,16 +1,16 @@
 <?php
-include('../utils/db_config.php');
-include('../utils/routes.php');
-if (!isset($_SESSION['user_name'])) {
-    header('location: login.php');
-}
+    include('../utils/db_config.php');
+    include('../utils/routes.php');
+    if (!isset($_SESSION['user_name'])) {
+        header('location: login.php');
+    }
 
-if (isset($_GET['logout'])) {
-    session_destroy();
-    unset($_SESSION['user_name']);
-    header("location: login.php");
-}
-?>
+    if (isset($_GET['logout'])) {
+        session_destroy();
+        unset($_SESSION['user_name']);
+        header("location: login.php");
+    }
+?> 
 
 <!DOCTYPE html>
 <html lang="en">

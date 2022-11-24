@@ -11,8 +11,9 @@ if (isset($_POST['editcustomer'])) {
     $number = $_POST['editcustomernumber'];
     $address = $_POST['editcustomeraddress'];
     $gender = $_POST['editcustomergender'];
+    $old_image = '';
 
-    $sql_image = "SELECT  FROM tbl_customer WHERE CUSTOMER_ID = '$id'";
+    $sql_image = "SELECT * FROM tbl_customer WHERE CUSTOMER_ID = '$id'";
     $res_image = mysqli_query($conn, $sql_image);
     if ($res_image) {
         while ($rows_image = mysqli_fetch_assoc($res_image)) {
@@ -22,7 +23,7 @@ if (isset($_POST['editcustomer'])) {
 
     // CHECK IF THE EXISTING IMAGE IS EQUAL TO IMAGE PAYLOAD, IF YES, DONT UPDATE IMAGE
     if ($old_image ==  $editcustomerimagetext &&  $editcustomerimagetext != "") {
-        $sql = "UPDATE tbl_customer SET CUSTOMER_NAME = '$name', CUSTOMER_ADDRESS = '$address', CUSTOMER_NUMBER = '$number', CUSTOMER_GENDER = '$gender' WHERE CUSTOMER_ID = '$id'";
+        $sql = "UPDATE tbl_customer SET CUSTOMER_NAME = '$name', CUSTOMER_ADDRESS = '$address', CUSTOMER_MOBILE_NUMBER = '$number', CUSTOMER_GENDER = '$gender' WHERE CUSTOMER_ID = '$id'";
         $result = mysqli_query($conn, $sql);
 
         if ($result) {
@@ -30,14 +31,14 @@ if (isset($_POST['editcustomer'])) {
             $_SESSION['alert'] = true;
             $_SESSION['alert-icon'] = "success";
             $_SESSION['alert-title'] = "Success";
-            $_SESSION['alert-text'] = "Customer updated successfully1";
+            $_SESSION['alert-text'] = "Customer updated successfully";
             header("Location: ../pages/admin_customer.php");
         } else {
             // ERROR
             $_SESSION['alert'] = true;
             $_SESSION['alert-icon'] = "error";
             $_SESSION['alert-title'] = "Error";
-            $_SESSION['alert-text'] = "Something1 went wrong";
+            $_SESSION['alert-text'] = "Something1 went wrong".mysqli_error($conn);
             header("Location: ../pages/admin_customer.php");
         }
     }
@@ -64,7 +65,7 @@ if (isset($_POST['editcustomer'])) {
                 $_SESSION['alert'] = true;
                 $_SESSION['alert-icon'] = "success";
                 $_SESSION['alert-title'] = "Success";
-                $_SESSION['alert-text'] = "Customer updated successfully" . $editcustomerimage;
+                $_SESSION['alert-text'] = "Customer updated successfully".$editcustomerimagetext;
                 header("Location: ../pages/admin_customer.php");
             } else {
                 // ERROR
@@ -78,7 +79,7 @@ if (isset($_POST['editcustomer'])) {
             $_SESSION['alert'] = true;
             $_SESSION['alert-icon'] = "info";
             $_SESSION['alert-title'] = "Error";
-            $_SESSION['alert-text'] = "Please upload an image | " . $editcustomerimage;
+            $_SESSION['alert-text'] = "Please upload an image";
             header("Location: ../pages/admin_customer.php");
         }
     }

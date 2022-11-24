@@ -57,6 +57,7 @@
                             <label for="promotionimage">Promotion Image</label>
                             <img id="img_promotionimage" src="" class="w-[200px]">
                             <input type="file" name="promotionimage" id="promotionimage" accept="image/*" class="block border border-grey-light w-full p-3 rounded mb-4" required>
+                            <input type="text" id="promotionimagetext" name="promotionimagetext" class="hidden border border-grey-light w-full p-3 rounded mb-4" placeholder="ex. Juan" required>
                             <label for="promotionname">Promotion Name</label>
                             <input type="text" id="promotionname" name="promotionname" class="block border border-grey-light w-full p-3 rounded mb-4" required>
                             <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
@@ -173,9 +174,13 @@
                 $("#modal-edit").removeClass("hidden");
                 promotionimage.files = dT.files;
                 $('#img_promotionimage').attr("src", "../images/" + data[2]);
+                $('#promotionimagetext').val(data[2]);
                 $('#promotionid').val(data[0]);
                 $('#promotionname').val(data[1]);
 
+            });
+            $("#promotionimage").change(function(){
+                $('#promotionimagetext').val($("#promotionimage").val());
             });
         });
 

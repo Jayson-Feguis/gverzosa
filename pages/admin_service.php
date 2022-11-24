@@ -72,6 +72,7 @@ unset($_SESSION['alert-text']);
                             <label for="serviceimage">Service Image</label>
                             <img id="img_serviceimage" src="" class="w-[200px]">
                             <input type="file" name="serviceimage" id="serviceimage" accept="image/*" class="block border border-grey-light w-full p-3 rounded mb-4" required>
+                            <input type="text" id="serviceimagetext" name="serviceimagetext" class="hidden border border-grey-light w-full p-3 rounded mb-4" placeholder="ex. Juan" required>
                             <label for="servicename">Service Name</label>
                             <input type="text" id="servicename" name="servicename" class="block border border-grey-light w-full p-3 rounded mb-4" required>
                             <label for="serviceprice">Service Price</label>
@@ -207,11 +208,15 @@ unset($_SESSION['alert-text']);
                 $("#modal-edit").removeClass("hidden");
                 serviceimage.files = dT.files;
                 $('#img_serviceimage').attr("src", "../images/" + data[2]);
+                $('#serviceimagetext').val(data[2]);
                 $('#serviceid').val(data[0]);
                 $('#servicename').val(data[1]);
                 $('#serviceprice').val(data[5]);
-                $('#servicecategory').val(data[4]);
+                $('#servicecategory').val(data[4]).change();
                 console.log(data);
+            });
+            $("#serviceimage").change(function(){
+                $('#serviceimagetext').val($("#serviceimage").val());
             });
         });
         $(document).ready(function() {

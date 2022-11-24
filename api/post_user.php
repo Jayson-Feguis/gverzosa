@@ -40,7 +40,7 @@ if (isset($_POST['edituser'])) {
             $_SESSION['alert'] = true;
             $_SESSION['alert-icon'] = "error";
             $_SESSION['alert-title'] = "Error";
-            $_SESSION['alert-text'] = "Something1 went wrong".mysqli_error($conn);
+            $_SESSION['alert-text'] = "Something went wrong".mysqli_error($conn);
             header("Location: ../pages/admin_user.php");
         }
     }
