@@ -18,7 +18,7 @@ if (isset($_POST['editproduct'])) {
         }
     }
     $idaudit =  $_SESSION['user_id']; //id
-    $descriptionaudit = "Edited product " . $productname; // description plus banner name
+    $descriptionaudit = "Edited product id " . $productid; // description plus banner name
     $audit = "INSERT INTO tbl_audit (USER_ID, AUDIT_ACTIVITY) VALUES ('$idaudit', '$descriptionaudit' )";
     $query_audit = mysqli_query($conn, $audit);
 
@@ -92,7 +92,7 @@ if (isset($_POST['editproduct'])) {
     $result = mysqli_query($conn, $sql);
 
     $idaudit =  $_SESSION['user_id']; //id
-    $descriptionaudit = "Deleted product id" .  $productid; // description plus banner name
+    $descriptionaudit = "Deleted product id " .  $productid; // description plus banner name
     $audit = "INSERT INTO tbl_audit (USER_ID, AUDIT_ACTIVITY) VALUES ('$idaudit', '$descriptionaudit' )";
     $query_audit = mysqli_query($conn, $audit);
     if ($result) {
@@ -118,7 +118,7 @@ if (isset($_POST['editproduct'])) {
 
 
     $idaudit =  $_SESSION['user_id']; //id
-    $descriptionaudit = "Deleted product id" .  $productname; // description plus banner name
+    $descriptionaudit = "Added product " .  $productname; // description plus banner name
     $audit = "INSERT INTO tbl_audit (USER_ID, AUDIT_ACTIVITY) VALUES ('$idaudit', '$descriptionaudit' )";
     $query_audit = mysqli_query($conn, $audit);
 
@@ -158,8 +158,8 @@ if (isset($_POST['editproduct'])) {
         $_SESSION['alert-text'] = "Please upload an image";
         header("Location: ../pages/admin_product.php");
     }
-} else if (isset($_POST['retrieveproduct'])) {
-    $productid = $_POST['productidArchive'];
+} else if (isset($_POST['archiveproduct'])) {
+    $productid = $_POST['productid'];
     $productstatus = 1;
 
     $sql = "UPDATE tbl_product SET PRODUCT_STATUS = '$productstatus' WHERE PRODUCT_ID = '$productid'";
@@ -176,13 +176,13 @@ if (isset($_POST['editproduct'])) {
         $_SESSION['alert-icon'] = "success";
         $_SESSION['alert-title'] = "Success";
         $_SESSION['alert-text'] = "Product retrieved successfully";
-        header("Location: ../pages/admin_product.php");
+        header("Location: ../pages/archive_product.php");
     } else {
         // ERROR
         $_SESSION['alert'] = true;
         $_SESSION['alert-icon'] = "error";
         $_SESSION['alert-title'] = "Error";
         $_SESSION['alert-text'] = "Something went wrong";
-        header("Location: ../pages/admin_product.php");
+        header("Location: ../pages/archive_product.php");
     }
 }

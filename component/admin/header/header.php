@@ -1,32 +1,32 @@
 <?php
-    include('../utils/db_config.php');
-    include('../utils/routes.php');
-    if (!isset($_SESSION['user_name'])) {
-        header('location: login.php');
-    }
+include('../utils/db_config.php');
+include('../utils/routes.php');
+if (!isset($_SESSION['user_name'])) {
+    header('location: login.php');
+}
 
-    if (isset($_GET['logout'])) {
-        session_destroy();
-        unset($_SESSION['user_name']);
-        header("location: login.php");
-    }
+if (isset($_GET['logout'])) {
+    session_destroy();
+    unset($_SESSION['user_name']);
+    header("location: login.php");
+}
 
-    if($_SESSION['user_type'] == 2 || $_SESSION['user_type'] == 3){
-        if($_SERVER['REQUEST_URI'] != "/gverzosa/pages/admin_dashboard.php"){
-            if($_SERVER['REQUEST_URI'] != "/gverzosa/pages/admin_appointment.php"){
-                if($_SERVER['REQUEST_URI'] != "/gverzosa/pages/admin_product.php"){
-                    if($_SERVER['REQUEST_URI'] != "/gverzosa/pages/admin_promotion.php"){
-                        if($_SERVER['REQUEST_URI'] != "/gverzosa/pages/admin_category.php"){
-                            if($_SERVER['REQUEST_URI'] != "/gverzosa/pages/admin_service.php"){
-                                header("location: login.php");
-                            }
+if ($_SESSION['user_type'] == 2 || $_SESSION['user_type'] == 3) {
+    if ($_SERVER['REQUEST_URI'] != "/gverzosa/pages/admin_dashboard.php") {
+        if ($_SERVER['REQUEST_URI'] != "/gverzosa/pages/admin_appointment.php") {
+            if ($_SERVER['REQUEST_URI'] != "/gverzosa/pages/admin_product.php") {
+                if ($_SERVER['REQUEST_URI'] != "/gverzosa/pages/admin_promotion.php") {
+                    if ($_SERVER['REQUEST_URI'] != "/gverzosa/pages/admin_category.php") {
+                        if ($_SERVER['REQUEST_URI'] != "/gverzosa/pages/admin_service.php") {
+                            header("location: login.php");
                         }
                     }
                 }
             }
         }
     }
-?> 
+}
+?>
 
 
 <!DOCTYPE html>
@@ -152,16 +152,15 @@
         <div class="container flex flex-wrap items-center justify-between mx-auto">
             <a class="flex items-center">
                 <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
-                    <?php  
-                        if($_SESSION['user_type'] == 1) {
-                            echo 'Super Admin';
-                        } 
-                        else if($_SESSION['user_type'] == 2) {
-                            echo 'Admin';
-                        } 
-                        if($_SESSION['user_type'] == 3) {
-                            echo 'Employee';
-                        } 
+                    <?php
+                    if ($_SESSION['user_type'] == 1) {
+                        echo 'Super Admin';
+                    } else if ($_SESSION['user_type'] == 2) {
+                        echo 'Admin';
+                    }
+                    if ($_SESSION['user_type'] == 3) {
+                        echo 'Employee';
+                    }
                     ?>
                 </span>
             </a>
@@ -200,9 +199,9 @@
                 </a>
             </li>
         </ul>
-        <?php 
-            if($_SESSION['user_type'] == 1){
-                echo '
+        <?php
+        if ($_SESSION['user_type'] == 1) {
+            echo '
                     <ul class="relative">
                         <li>
                             <button type="button" class="flex items-center p-2 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100" aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
@@ -282,9 +281,8 @@
                         </li>
                     </ul>
                 ';
-            }
-            else if($_SESSION['user_type'] == 2 || $_SESSION['user_type'] == 3){
-                echo '
+        } else if ($_SESSION['user_type'] == 2 || $_SESSION['user_type'] == 3) {
+            echo '
                     <ul class="relative">
                         <li>
                             <button type="button" class="flex items-center p-2 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100" aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
@@ -332,7 +330,7 @@
                         </li>
                     </ul>
                 ';
-            }
+        }
         ?>
-        
+
     </div>

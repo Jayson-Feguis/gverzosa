@@ -19,7 +19,7 @@ if (isset($_POST['editservice'])) {
     }
 
     $idaudit =  $_SESSION['user_id']; //id
-    $descriptionaudit = "Edited service sub category" . $name; // description plus banner name
+    $descriptionaudit = "Edited service sub category " . $id; // description plus banner name
     $audit = "INSERT INTO tbl_audit (USER_ID, AUDIT_ACTIVITY) VALUES ('$idaudit', '$descriptionaudit' )";
     $query_audit = mysqli_query($conn, $audit);
     // CHECK IF THE EXISTING IMAGE IS EQUAL TO IMAGE PAYLOAD, IF YES, DONT UPDATE IMAGE
@@ -93,7 +93,7 @@ if (isset($_POST['editservice'])) {
 
 
     $idaudit =  $_SESSION['user_id']; //id
-    $descriptionaudit = "Deleted service sub category id" . $id; // description plus banner name
+    $descriptionaudit = "Deleted service sub category id " . $id; // description plus banner name
     $audit = "INSERT INTO tbl_audit (USER_ID, AUDIT_ACTIVITY) VALUES ('$idaudit', '$descriptionaudit' )";
     $query_audit = mysqli_query($conn, $audit);
     if ($result) {
@@ -120,7 +120,7 @@ if (isset($_POST['editservice'])) {
 
 
     $idaudit =  $_SESSION['user_id']; //id
-    $descriptionaudit = "Added service sub category name" . $service; // description plus banner name
+    $descriptionaudit = "Added service sub category " . $service; // description plus banner name
     $audit = "INSERT INTO tbl_audit (USER_ID, AUDIT_ACTIVITY) VALUES ('$idaudit', '$descriptionaudit' )";
     $query_audit = mysqli_query($conn, $audit);
     if (isset($_FILES['addserviceimage']['name'])) {
@@ -159,26 +159,33 @@ if (isset($_POST['editservice'])) {
         $_SESSION['alert-text'] = "Please upload an image";
         header("Location: ../pages/admin_service.php");
     }
-} else if (isset($_POST['retrieveproduct'])) {
-    $productid = $_POST['productidArchive'];
-    $productstatus = 1;
+} else if (isset($_POST['archiveservice'])) {
+    $id = $_POST['serviceid'];
+    $status = 1;
 
-    $sql = "UPDATE tbl_product SET PRODUCT_STATUS = '$productstatus' WHERE PRODUCT_ID = '$productid'";
+    $sql = "UPDATE tbl_service SET SERVICE_STATUS = '$status' WHERE SERVICE_ID = '$id'";
     $result = mysqli_query($conn, $sql);
+
+
+
+    $idaudit =  $_SESSION['user_id']; //id
+    $descriptionaudit = "Retrieved service category id " . $id; // description plus banner name
+    $audit = "INSERT INTO tbl_audit (USER_ID, AUDIT_ACTIVITY) VALUES ('$idaudit', '$descriptionaudit' )";
+    $query_audit = mysqli_query($conn, $audit);
 
     if ($result) {
         // SUCCESS
         $_SESSION['alert'] = true;
         $_SESSION['alert-icon'] = "success";
         $_SESSION['alert-title'] = "Success";
-        $_SESSION['alert-text'] = "Product retrieved successfully";
-        header("Location: ../pages/admin_product.php");
+        $_SESSION['alert-text'] = "Service retrieved successfully";
+        header("Location: ../pages/archive_service.php");
     } else {
         // ERROR
         $_SESSION['alert'] = true;
         $_SESSION['alert-icon'] = "error";
         $_SESSION['alert-title'] = "Error";
         $_SESSION['alert-text'] = "Something went wrong";
-        header("Location: ../pages/admin_product.php");
+        header("Location: ../pages/archive_service.php");
     }
 }

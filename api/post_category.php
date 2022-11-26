@@ -12,7 +12,7 @@ if (isset($_POST['editcategory'])) {
 
 
     $idaudit =  $_SESSION['user_id']; //id
-    $descriptionaudit = "Edited service category " . $name; // description plus banner name
+    $descriptionaudit = "Edited service category id " . $id; // description plus banner name
     $audit = "INSERT INTO tbl_audit (USER_ID, AUDIT_ACTIVITY) VALUES ('$idaudit', '$descriptionaudit' )";
     $query_audit = mysqli_query($conn, $audit);
 
@@ -38,7 +38,7 @@ if (isset($_POST['editcategory'])) {
     $result = mysqli_query($conn, $sql);
 
     $idaudit =  $_SESSION['user_id']; //id
-    $descriptionaudit = "Deleted service category " . $id; // description plus banner name
+    $descriptionaudit = "Deleted service category id " . $id; // description plus banner name
     $audit = "INSERT INTO tbl_audit (USER_ID, AUDIT_ACTIVITY) VALUES ('$idaudit', '$descriptionaudit' )";
     $query_audit = mysqli_query($conn, $audit);
     if ($result) {
@@ -82,26 +82,30 @@ if (isset($_POST['editcategory'])) {
         $_SESSION['alert-text'] = "Something went wrong";
         header("Location: ../pages/admin_category.php");
     }
-} else if (isset($_POST['retrieveproduct'])) {
-    $productid = $_POST['productidArchive'];
-    $productstatus = 1;
-
-    $sql = "UPDATE tbl_product SET PRODUCT_STATUS = '$productstatus' WHERE PRODUCT_ID = '$productid'";
+} else if (isset($_POST['archivecategory'])) {
+    $id = $_POST['categoryid'];
+    $status = 1;
+    $sql = "UPDATE tbl_category SET CATEGORY_STATUS = '$status' WHERE CATEGORY_ID = '$id'";
     $result = mysqli_query($conn, $sql);
+
+    $idaudit =  $_SESSION['user_id']; //id
+    $descriptionaudit = "Retrieved service category id " . $id; // description plus banner name
+    $audit = "INSERT INTO tbl_audit (USER_ID, AUDIT_ACTIVITY) VALUES ('$idaudit', '$descriptionaudit' )";
+    $query_audit = mysqli_query($conn, $audit);
 
     if ($result) {
         // SUCCESS
         $_SESSION['alert'] = true;
         $_SESSION['alert-icon'] = "success";
         $_SESSION['alert-title'] = "Success";
-        $_SESSION['alert-text'] = "Product retrieved successfully";
-        header("Location: ../pages/admin_product.php");
+        $_SESSION['alert-text'] = "Sevice category retrieved successfully";
+        header("Location: ../pages/archive_category.php");
     } else {
         // ERROR
         $_SESSION['alert'] = true;
         $_SESSION['alert-icon'] = "error";
         $_SESSION['alert-title'] = "Error";
         $_SESSION['alert-text'] = "Something went wrong";
-        header("Location: ../pages/admin_product.php");
+        header("Location: ../pages/archive_category.php");
     }
 }

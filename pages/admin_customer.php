@@ -158,13 +158,13 @@ unset($_SESSION['alert-text']);
         </div>
     </div>
     <?php
-        $query = "SELECT * FROM tbl_customer WHERE CUSTOMER_STATUS = 1 ORDER BY CUSTOMER_ID DESC";
-        $query_run = mysqli_query($conn, $query);
+    $query = "SELECT * FROM tbl_customer WHERE CUSTOMER_STATUS = 1 ORDER BY CUSTOMER_ID DESC";
+    $query_run = mysqli_query($conn, $query);
     ?>
     <table id="data-table" class="display" style="width:100%">
         <thead>
             <tr>
-                <th style="display: none;">Customer ID</th>
+                <th>Customer ID</th>
                 <th>Name</th>
                 <th style="display: none;">Picture</th>
                 <th>Gender</th>
@@ -182,7 +182,7 @@ unset($_SESSION['alert-text']);
                 while ($row = mysqli_fetch_assoc($query_run)) {
             ?>
                     <tr>
-                        <td style="display: none;"><?php echo $row['CUSTOMER_ID']; ?> </td>
+                        <td><?php echo $row['CUSTOMER_ID']; ?> </td>
                         <td><?php echo $row['CUSTOMER_NAME']; ?> </td>
                         <td style="display: none;"><?php echo $row['CUSTOMER_PICTURE']; ?> </td>
                         <td><?php echo $row['CUSTOMER_GENDER']; ?> </td>
@@ -264,14 +264,14 @@ unset($_SESSION['alert-text']);
                 $('#editcustomernumber').val(data[6]);
                 $('#editcustomeraddress').val(data[7]);
                 $('#editcustomergender').val(data[3]);
-                if( data[3] === 'Male'){
+                if (data[3] === 'Male') {
                     $('#Male').attr('checked', true);
-                }else{
+                } else {
                     $('#Female').attr('checked', true);
                 }
             });
 
-            $("#editcustomerimage").change(function(){
+            $("#editcustomerimage").change(function() {
                 $('#editcustomerimagetext').val($("#editcustomerimage").val());
             });
         });

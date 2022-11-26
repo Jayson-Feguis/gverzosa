@@ -107,7 +107,7 @@ unset($_SESSION['alert-text']);
     <table id="data-table" class="display" style="width:100%">
         <thead>
             <tr>
-                <th style="display: none;">Product ID</th>
+                <th>Product ID</th>
                 <th>Product Name</th>
                 <th style="display: none;">Product Picture</th>
                 <th>Picture</th>
@@ -127,7 +127,7 @@ unset($_SESSION['alert-text']);
                 while ($row = mysqli_fetch_assoc($query_run)) {
             ?>
                     <tr>
-                        <td style="display: none;"><?php echo $row['PRODUCT_ID']; ?> </td>
+                        <td><?php echo $row['PRODUCT_ID']; ?> </td>
                         <td><?php echo $row['PRODUCT_NAME']; ?> </td>
                         <td style="display: none;"><?php echo $row['PRODUCT_PICTURE']; ?></td>
                         <td>
@@ -204,7 +204,7 @@ unset($_SESSION['alert-text']);
                 $('#productprice').val(parseFloat(data[5]));
             });
 
-            $("#productimage").change(function(){
+            $("#productimage").change(function() {
                 $('#productimagetext').val($("#productimage").val());
             });
         });

@@ -16,6 +16,20 @@ unset($_SESSION['alert']);
 unset($_SESSION['alert-icon']);
 unset($_SESSION['alert-title']);
 unset($_SESSION['alert-text']);
+
+
+function getServiceCategory($id, $conn)
+{
+    $sql = "SELECT * FROM `tbl_category` WHERE CATEGORY_ID = '$id'";
+    $result = mysqli_query($conn, $sql);
+    if (mysqli_num_rows($result) === 1) {
+        $row = mysqli_fetch_assoc($result);
+        return $row['CATEGORY_NAME'];
+    } else {
+        return "Category not found";
+    }
+}
+
 ?>
 <div class="flex-col w-full min-h-screen pl-[270px] mt-[90px] pr-[20px] pb-[150px] overflow-auto">
     <?php 
@@ -153,7 +167,7 @@ unset($_SESSION['alert-text']);
                         <td>
                             <div class="w-[200px] h-[40px] bg-contain bg-no-repeat" style="background-image: url('../images/<?php echo $row['SERVICE_PICTURE']; ?>');"></div>
                         </td>
-                        <td><?php echo $row['CATEGORY_ID']; ?></td>
+                        <td><?php echo getServiceCategory($row['CATEGORY_ID'], $conn); ?></td>
                         <td><?php echo $row['SERVICE_PRICE']; ?></td>
                         <td><?php echo $row['SERVICE_DATETIME_CREATED']; ?> </td>
                         <?php 
@@ -226,7 +240,7 @@ unset($_SESSION['alert-text']);
                 $('#servicecategory').val(data[4]).change();
                 console.log(data);
             });
-            $("#serviceimage").change(function(){
+            $("#serviceimage").change(function() {
                 $('#serviceimagetext').val($("#serviceimage").val());
             });
         });
