@@ -312,7 +312,7 @@
                     <td><?php echo $row['SERVICE_NAME']; ?> </td>
                     <td style="display: none;"><?php echo $row['SERVICE_ID']; ?> </td>
                     <td><?php echo $row['REMARKS']; ?> </td>
-                    <td>
+                    <td class="flex gap-1 flex-wrap min-w-[120px] h-full">
                         <?php if($row['APP_STATUS'] == 0){
                             echo '<button type="button" title="Accept" class="acceptAppointment bg-transparent hover:bg-gray-300 text-blue-700 font-semibold hover:text-white py-[5px] px-2   border border-gray-500 hover:border-border-gray-300 rounded">
                                     <i class="fa fa-check text-[16px]" aria-hidden="true"></i>
