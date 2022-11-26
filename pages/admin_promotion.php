@@ -1,9 +1,9 @@
 <?php
-    include('../component/admin/header/header.php');
+include('../component/admin/header/header.php');
 ?>
 <?php
-    if (isset($_SESSION['alert'])) {
-        echo "<script>
+if (isset($_SESSION['alert'])) {
+    echo "<script>
                     Swal.fire({
                         icon: '" . $_SESSION['alert-icon'] . "',
                         title: '" . $_SESSION['alert-title'] . "',
@@ -11,11 +11,11 @@
                         showConfirmButton: false
                     })
                 </script>";
-    }
-    unset($_SESSION['alert']);
-    unset($_SESSION['alert-icon']);
-    unset($_SESSION['alert-title']);
-    unset($_SESSION['alert-text']);
+}
+unset($_SESSION['alert']);
+unset($_SESSION['alert-icon']);
+unset($_SESSION['alert-title']);
+unset($_SESSION['alert-text']);
 ?>
 <div class="flex-col w-full min-h-screen pl-[270px] mt-[90px] pr-[20px] pb-[150px] overflow-auto">
     <div class="text-left w-full mb-5">
@@ -94,7 +94,7 @@
     <table id="data-table" class="display" style="width:100%">
         <thead>
             <tr>
-                <th style="display: none;">Promotion ID</th>
+                <th>Promotion ID</th>
                 <th>Promotion Name</th>
                 <th style="display: none;">Product Picture</th>
                 <th>Promotion Picture</th>
@@ -108,7 +108,7 @@
                 while ($row = mysqli_fetch_assoc($query_run)) {
             ?>
                     <tr>
-                        <td style="display: none;"><?php echo $row['BANNER_ID']; ?></td>
+                        <td><?php echo $row['BANNER_ID']; ?></td>
                         <td><?php echo $row['BANNER_NAME']; ?></td>
                         <td style="display: none;"><?php echo $row['BANNER_IMAGE']; ?></td>
                         <td>
@@ -179,7 +179,7 @@
                 $('#promotionname').val(data[1]);
 
             });
-            $("#promotionimage").change(function(){
+            $("#promotionimage").change(function() {
                 $('#promotionimagetext').val($("#promotionimage").val());
             });
         });

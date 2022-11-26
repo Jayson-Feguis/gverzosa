@@ -92,7 +92,7 @@ unset($_SESSION['alert-text']);
     <table id="data-table" class="display" style="width:100%">
         <thead>
             <tr>
-                <th style="display: none;">Category ID</th>
+                <th>Category ID</th>
                 <th>Category Name</th>
                 <th>Category Description</th>
                 <th>Date Created</th>
@@ -105,7 +105,7 @@ unset($_SESSION['alert-text']);
                 while ($row = mysqli_fetch_assoc($query_run)) {
             ?>
                     <tr>
-                        <td style="display: none;"><?php echo $row['CATEGORY_ID']; ?></td>
+                        <td><?php echo $row['CATEGORY_ID']; ?></td>
                         <td><?php echo $row['CATEGORY_NAME']; ?></td>
                         <td><?php echo $row['CATEGORY_DESCRIPTION']; ?></td>
                         <td><?php echo $row['CATEGORY_DATETIME_CREATED']; ?> </td>

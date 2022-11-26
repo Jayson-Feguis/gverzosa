@@ -12,7 +12,7 @@ if (isset($_POST['editpromotion'])) {
 
     $sql_image = "SELECT BANNER_IMAGE FROM tbl_banner WHERE BANNER_ID = '$promotionid'";
     $res_image = mysqli_query($conn, $sql_image);
-    
+
     if ($res_image) {
         while ($rows_image = mysqli_fetch_assoc($res_image)) {
             $old_image = $rows_image['BANNER_IMAGE'];
@@ -20,7 +20,7 @@ if (isset($_POST['editpromotion'])) {
     }
 
     $idaudit =  $_SESSION['user_id']; //id
-    $descriptionaudit = "Edited promotion name" .   $promotionname; // description plus banner name
+    $descriptionaudit = "Edited promotion id " .   $promotionid; // description plus banner name
     $audit = "INSERT INTO tbl_audit (USER_ID, AUDIT_ACTIVITY) VALUES ('$idaudit', '$descriptionaudit' )";
     $query_audit = mysqli_query($conn, $audit);
     // CHECK IF THE EXISTING IMAGE IS EQUAL TO IMAGE PAYLOAD, IF YES, DONT UPDATE IMAGE
@@ -40,7 +40,7 @@ if (isset($_POST['editpromotion'])) {
             $_SESSION['alert'] = true;
             $_SESSION['alert-icon'] = "error";
             $_SESSION['alert-title'] = "Error";
-            $_SESSION['alert-text'] = "Something went wrong1".mysqli_error($conn);
+            $_SESSION['alert-text'] = "Something went wrong1" . mysqli_error($conn);
             header("Location: ../pages/admin_promotion.php");
         }
     }
@@ -93,7 +93,7 @@ if (isset($_POST['editpromotion'])) {
     $result = mysqli_query($conn, $sql);
 
     $idaudit =  $_SESSION['user_id']; //id
-    $descriptionaudit = "Deleted promotion id" . $promotionid; // description plus banner name
+    $descriptionaudit = "Deleted promotion id " . $promotionid; // description plus banner name
     $audit = "INSERT INTO tbl_audit (USER_ID, AUDIT_ACTIVITY) VALUES ('$idaudit', '$descriptionaudit' )";
     $query_audit = mysqli_query($conn, $audit);
 
@@ -158,26 +158,32 @@ if (isset($_POST['editpromotion'])) {
         $_SESSION['alert-text'] = "Please upload an image";
         header("Location: ../pages/admin_promotion.php");
     }
-} else if (isset($_POST['retrieveproduct'])) {
-    $productid = $_POST['productidArchive'];
-    $productstatus = 1;
+} else if (isset($_POST['archivepromotion'])) {
+    $promotionid = $_POST['promotionid'];
+    $promotionstatus = 1;
 
-    $sql = "UPDATE tbl_product SET PRODUCT_STATUS = '$productstatus' WHERE PRODUCT_ID = '$productid'";
+    $sql = "UPDATE tbl_banner SET BANNER_STATUS = '$promotionstatus' WHERE BANNER_ID = '$promotionid'";
     $result = mysqli_query($conn, $sql);
+
+
+    $idaudit =  $_SESSION['user_id']; //id
+    $descriptionaudit = "Retrieved promotion id " . $id; // description plus banner name
+    $audit = "INSERT INTO tbl_audit (USER_ID, AUDIT_ACTIVITY) VALUES ('$idaudit', '$descriptionaudit' )";
+    $query_audit = mysqli_query($conn, $audit);
 
     if ($result) {
         // SUCCESS
         $_SESSION['alert'] = true;
         $_SESSION['alert-icon'] = "success";
         $_SESSION['alert-title'] = "Success";
-        $_SESSION['alert-text'] = "Product retrieved successfully";
-        header("Location: ../pages/admin_product.php");
+        $_SESSION['alert-text'] = "Promotion retrieved successfully";
+        header("Location: ../pages/archive_promotion.php");
     } else {
         // ERROR
         $_SESSION['alert'] = true;
         $_SESSION['alert-icon'] = "error";
         $_SESSION['alert-title'] = "Error";
         $_SESSION['alert-text'] = "Something went wrong";
-        header("Location: ../pages/admin_product.php");
+        header("Location: ../pages/archive_promotion.php");
     }
 }

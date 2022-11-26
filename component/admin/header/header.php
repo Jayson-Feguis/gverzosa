@@ -1,16 +1,16 @@
 <?php
-    include('../utils/db_config.php');
-    include('../utils/routes.php');
-    if (!isset($_SESSION['user_name'])) {
-        header('location: login.php');
-    }
+include('../utils/db_config.php');
+include('../utils/routes.php');
+if (!isset($_SESSION['user_name'])) {
+    header('location: login.php');
+}
 
-    if (isset($_GET['logout'])) {
-        session_destroy();
-        unset($_SESSION['user_name']);
-        header("location: login.php");
-    }
-?> 
+if (isset($_GET['logout'])) {
+    session_destroy();
+    unset($_SESSION['user_name']);
+    header("location: login.php");
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -238,7 +238,7 @@
                 </button>
                 <ul id="dropdown-example3" class="hidden py-2 space-y-2">
                     <li>
-                        <a href="#" class="flex items-center p-2 pl-11 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100">Archive</a>
+                        <a href="admin_archive.php" class="flex items-center p-2 pl-11 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100">Archive</a>
                     </li>
                     <li>
                         <a href="admin_backup.php" class="flex items-center p-2 pl-11 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100">Backup</a>

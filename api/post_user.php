@@ -25,7 +25,7 @@ if (isset($_POST['edituser'])) {
 
 
     $idaudit =  $_SESSION['user_id']; //id
-    $descriptionaudit = "Edited user name" . $fname; // description plus banner name
+    $descriptionaudit = "Edited user id " . $id; // description plus banner name
     $audit = "INSERT INTO tbl_audit (USER_ID, AUDIT_ACTIVITY) VALUES ('$idaudit', '$descriptionaudit' )";
     $query_audit = mysqli_query($conn, $audit);
 
@@ -99,7 +99,7 @@ if (isset($_POST['edituser'])) {
     $result = mysqli_query($conn, $sql);
 
     $idaudit =  $_SESSION['user_id']; //id
-    $descriptionaudit = "Deleted user id" . $userid; // description plus banner name
+    $descriptionaudit = "Deleted user id " . $userid; // description plus banner name
     $audit = "INSERT INTO tbl_audit (USER_ID, AUDIT_ACTIVITY) VALUES ('$idaudit', '$descriptionaudit' )";
     $query_audit = mysqli_query($conn, $audit);
 
@@ -132,7 +132,7 @@ if (isset($_POST['edituser'])) {
 
 
     $idaudit =  $_SESSION['user_id']; //id
-    $descriptionaudit = "Added user" . $fname; // description plus banner name
+    $descriptionaudit = "Added user " . $fname . ' ' . $lname; // description plus banner name
     $audit = "INSERT INTO tbl_audit (USER_ID, AUDIT_ACTIVITY) VALUES ('$idaudit', '$descriptionaudit' )";
     $query_audit = mysqli_query($conn, $audit);
 
@@ -184,15 +184,15 @@ if (isset($_POST['edituser'])) {
             header("Location: ../pages/admin_user.php");
         }
     }
-} else if (isset($_POST['retrieveuser'])) {
-    $userid = $_POST['useridArchive'];
+} else if (isset($_POST['archiveuser'])) {
+    $userid = $_POST['userid'];
     $userstatus = 1;
 
-    $sql = "UPDATE tbl_user SET USER_STATUS = '$userstatus' WHERE USER_ID = '$productid'";
+    $sql = "UPDATE tbl_user SET USER_STATUS = '$userstatus' WHERE USER_ID = '$userid'";
     $result = mysqli_query($conn, $sql);
 
     $idaudit =  $_SESSION['user_id']; //id
-    $descriptionaudit = "Retrieved user" . $fname; // description plus banner name
+    $descriptionaudit = "Retrieved user id " . $userid; // description plus banner name
     $audit = "INSERT INTO tbl_audit (USER_ID, AUDIT_ACTIVITY) VALUES ('$idaudit', '$descriptionaudit' )";
     $query_audit = mysqli_query($conn, $audit);
 
@@ -203,13 +203,13 @@ if (isset($_POST['edituser'])) {
         $_SESSION['alert-icon'] = "success";
         $_SESSION['alert-title'] = "Success";
         $_SESSION['alert-text'] = "User retrieved successfully";
-        header("Location: ../pages/admin_product.php");
+        header("Location: ../pages/archive_user.php");
     } else {
         // ERROR
         $_SESSION['alert'] = true;
         $_SESSION['alert-icon'] = "error";
         $_SESSION['alert-title'] = "Error";
         $_SESSION['alert-text'] = "Something went wrong";
-        header("Location: ../pages/admin_product.php");
+        header("Location: ../pages/archive_user.php");
     }
 }
