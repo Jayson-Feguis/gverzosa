@@ -10,7 +10,24 @@ if (isset($_GET['logout'])) {
     unset($_SESSION['user_name']);
     header("location: login.php");
 }
+
+if ($_SESSION['user_type'] == 2 || $_SESSION['user_type'] == 3) {
+    if ($_SERVER['REQUEST_URI'] != "/gverzosa/pages/admin_dashboard.php") {
+        if ($_SERVER['REQUEST_URI'] != "/gverzosa/pages/admin_appointment.php") {
+            if ($_SERVER['REQUEST_URI'] != "/gverzosa/pages/admin_product.php") {
+                if ($_SERVER['REQUEST_URI'] != "/gverzosa/pages/admin_promotion.php") {
+                    if ($_SERVER['REQUEST_URI'] != "/gverzosa/pages/admin_category.php") {
+                        if ($_SERVER['REQUEST_URI'] != "/gverzosa/pages/admin_service.php") {
+                            header("location: login.php");
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -134,7 +151,18 @@ if (isset($_GET['logout'])) {
     <nav class="bg-secondary fixed z-[5]">
         <div class="container flex flex-wrap items-center justify-between mx-auto">
             <a class="flex items-center">
-                <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white"><?php echo $_SESSION['user_name']; ?></span>
+                <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
+                    <?php
+                    if ($_SESSION['user_type'] == 1) {
+                        echo 'Super Admin';
+                    } else if ($_SESSION['user_type'] == 2) {
+                        echo 'Admin';
+                    }
+                    if ($_SESSION['user_type'] == 3) {
+                        echo 'Employee';
+                    }
+                    ?>
+                </span>
             </a>
             <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="mobile-menu-2">
                 <ul class="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg  md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 ">
@@ -171,82 +199,138 @@ if (isset($_GET['logout'])) {
                 </a>
             </li>
         </ul>
-        <ul class="relative">
-            <li>
-                <button type="button" class="flex items-center p-2 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100" aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
-                    <img src="https://img.icons8.com/fluency/48/null/overtime.png" width="30px" height="30px" /> <span class="flex-1 ml-3 text-left whitespace-nowrap" sidebar-toggle-item>Appointment</span>
-                    <svg sidebar-toggle-item class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-                    </svg>
-                </button>
-                <ul id="dropdown-example" class="hidden py-2 space-y-2">
-                    <li>
-                        <a href="admin_appointment.php" class="flex items-center p-2 pl-11 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100">Appointment</a>
-                    </li>
-                    <li>
-                        <a href="admin_appointment_report.php" class="flex items-center p-2 pl-11 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100">Report</a>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <button type="button" class="flex items-center p-2 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100" aria-controls="dropdown-example2" data-collapse-toggle="dropdown-example2">
-                    <img src="https://img.icons8.com/fluency/48/null/home-salon.png" width="30px" height="30px" />
-                    <span class="flex-1 ml-3 text-left whitespace-nowrap" sidebar-toggle-item>Web Information</span>
-                    <svg sidebar-toggle-item class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-                    </svg>
-                </button>
-                <ul id="dropdown-example2" class="hidden py-2 space-y-2">
-                    <li>
-                        <a href="admin_customer.php" class="flex items-center p-2 pl-11 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100">Customers</a>
-                    </li>
-                    <li>
-                        <a href="admin_feedback.php" class="flex items-center p-2 pl-11 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100">Feedback</a>
-                    </li>
-                    <li>
-                        <a href="admin_product.php" class="flex items-center p-2 pl-11 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100">Products</a>
-                    </li>
-                    <li>
-                        <a href="admin_promotion.php" class="flex items-center p-2 pl-11 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100">Promotions</a>
-                    </li>
-                    <button type="button" class="flex items-center p-2 pl-11 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100" aria-controls="dropdown-example4" data-collapse-toggle="dropdown-example4">
-                        <span class="flex-1 text-left whitespace-nowrap" sidebar-toggle-item>Services</span>
-                        <svg sidebar-toggle-item class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-                        </svg>
-                    </button>
-                    <ul id="dropdown-example4" class="hidden py-2  pl-7 space-y-2">
+        <?php
+        if ($_SESSION['user_type'] == 1) {
+            echo '
+                    <ul class="relative">
                         <li>
-                            <a href="admin_category.php" class="flex items-center p-2 pl-7 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100">Category</a>
+                            <button type="button" class="flex items-center p-2 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100" aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
+                                <img src="https://img.icons8.com/fluency/48/null/overtime.png" width="30px" height="30px" /> <span class="flex-1 ml-3 text-left whitespace-nowrap" sidebar-toggle-item>Appointment</span>
+                                <svg sidebar-toggle-item class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                                </svg>
+                            </button>
+                            <ul id="dropdown-example" class="hidden py-2 space-y-2">
+                                <li>
+                                    <a href="admin_appointment.php" class="flex items-center p-2 pl-11 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100">Appointment</a>
+                                </li>
+                                <li>
+                                    <a href="admin_appointment_report.php" class="flex items-center p-2 pl-11 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100">Report</a>
+                                </li>
+                            </ul>
                         </li>
                         <li>
-                            <a href="admin_service.php" class="flex items-center p-2 pl-7 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100">Sub Category</a>
+                            <button type="button" class="flex items-center p-2 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100" aria-controls="dropdown-example2" data-collapse-toggle="dropdown-example2">
+                                <img src="https://img.icons8.com/fluency/48/null/home-salon.png" width="30px" height="30px" />
+                                <span class="flex-1 ml-3 text-left whitespace-nowrap" sidebar-toggle-item>Web Information</span>
+                                <svg sidebar-toggle-item class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                                </svg>
+                            </button>
+                            <ul id="dropdown-example2" class="hidden py-2 space-y-2">
+                                <li>
+                                    <a href="admin_customer.php" class="flex items-center p-2 pl-11 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100">Customers</a>
+                                </li>
+                                <li>
+                                    <a href="admin_feedback.php" class="flex items-center p-2 pl-11 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100">Feedback</a>
+                                </li>
+                                <li>
+                                    <a href="admin_product.php" class="flex items-center p-2 pl-11 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100">Products</a>
+                                </li>
+                                <li>
+                                    <a href="admin_promotion.php" class="flex items-center p-2 pl-11 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100">Promotions</a>
+                                </li>
+                                <button type="button" class="flex items-center p-2 pl-11 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100" aria-controls="dropdown-example4" data-collapse-toggle="dropdown-example4">
+                                    <span class="flex-1 text-left whitespace-nowrap" sidebar-toggle-item>Services</span>
+                                    <svg sidebar-toggle-item class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                                    </svg>
+                                </button>
+                                <ul id="dropdown-example4" class="hidden py-2  pl-7 space-y-2">
+                                    <li>
+                                        <a href="admin_category.php" class="flex items-center p-2 pl-7 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100">Category</a>
+                                    </li>
+                                    <li>
+                                        <a href="admin_service.php" class="flex items-center p-2 pl-7 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100">Sub Category</a>
+                                    </li>
+                                </ul>
+                                <li>
+                                    <a href="admin_user.php" class="flex items-center p-2 pl-11 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100">Users</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <button type="button" class="flex items-center p-2 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100" aria-controls="dropdown-example3" data-collapse-toggle="dropdown-example3">
+                                <img src="https://img.icons8.com/fluency/48/null/settings.png" width="30px" height="30px" />
+                                <span class="flex-1 ml-3 text-left whitespace-nowrap" sidebar-toggle-item>Settings</span>
+                                <svg sidebar-toggle-item class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                                </svg>
+                            </button>
+                            <ul id="dropdown-example3" class="hidden py-2 space-y-2">
+                                <li>
+                                    <a href="#" class="flex items-center p-2 pl-11 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100">Archive</a>
+                                </li>
+                                <li>
+                                    <a href="admin_backup.php" class="flex items-center p-2 pl-11 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100">Backup</a>
+                                </li>
+                                <li>
+                                    <a href="admin_log.php" class="flex items-center p-2 pl-11 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100">Logs</a>
+                                </li>
+                            </ul>
                         </li>
                     </ul>
-                    <li>
-                        <a href="admin_user.php" class="flex items-center p-2 pl-11 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100">Users</a>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <button type="button" class="flex items-center p-2 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100" aria-controls="dropdown-example3" data-collapse-toggle="dropdown-example3">
-                    <img src="https://img.icons8.com/fluency/48/null/settings.png" width="30px" height="30px" />
-                    <span class="flex-1 ml-3 text-left whitespace-nowrap" sidebar-toggle-item>Settings</span>
-                    <svg sidebar-toggle-item class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-                    </svg>
-                </button>
-                <ul id="dropdown-example3" class="hidden py-2 space-y-2">
-                    <li>
-                        <a href="admin_archive.php" class="flex items-center p-2 pl-11 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100">Archive</a>
-                    </li>
-                    <li>
-                        <a href="admin_backup.php" class="flex items-center p-2 pl-11 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100">Backup</a>
-                    </li>
-                    <li>
-                        <a href="admin_log.php" class="flex items-center p-2 pl-11 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100">Logs</a>
-                    </li>
-                </ul>
-            </li>
-        </ul>
+                ';
+        } else if ($_SESSION['user_type'] == 2 || $_SESSION['user_type'] == 3) {
+            echo '
+                    <ul class="relative">
+                        <li>
+                            <button type="button" class="flex items-center p-2 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100" aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
+                                <img src="https://img.icons8.com/fluency/48/null/overtime.png" width="30px" height="30px" /> <span class="flex-1 ml-3 text-left whitespace-nowrap" sidebar-toggle-item>Appointment</span>
+                                <svg sidebar-toggle-item class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                                </svg>
+                            </button>
+                            <ul id="dropdown-example" class="hidden py-2 space-y-2">
+                                <li>
+                                    <a href="admin_appointment.php" class="flex items-center p-2 pl-11 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100">Appointment</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <button type="button" class="flex items-center p-2 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100" aria-controls="dropdown-example2" data-collapse-toggle="dropdown-example2">
+                                <img src="https://img.icons8.com/fluency/48/null/home-salon.png" width="30px" height="30px" />
+                                <span class="flex-1 ml-3 text-left whitespace-nowrap" sidebar-toggle-item>Web Information</span>
+                                <svg sidebar-toggle-item class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                                </svg>
+                            </button>
+                            <ul id="dropdown-example2" class="hidden py-2 space-y-2">
+                                <li>
+                                    <a href="admin_product.php" class="flex items-center p-2 pl-11 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100">Products</a>
+                                </li>
+                                <li>
+                                    <a href="admin_promotion.php" class="flex items-center p-2 pl-11 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100">Promotions</a>
+                                </li>
+                                <button type="button" class="flex items-center p-2 pl-11 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100" aria-controls="dropdown-example4" data-collapse-toggle="dropdown-example4">
+                                    <span class="flex-1 text-left whitespace-nowrap" sidebar-toggle-item>Services</span>
+                                    <svg sidebar-toggle-item class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                                    </svg>
+                                </button>
+                                <ul id="dropdown-example4" class="hidden py-2  pl-7 space-y-2">
+                                    <li>
+                                        <a href="admin_category.php" class="flex items-center p-2 pl-7 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100">Category</a>
+                                    </li>
+                                    <li>
+                                        <a href="admin_service.php" class="flex items-center p-2 pl-7 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100">Sub Category</a>
+                                    </li>
+                                </ul>
+                            </ul>
+                        </li>
+                    </ul>
+                ';
+        }
+        ?>
+
     </div>
