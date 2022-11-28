@@ -1,21 +1,21 @@
 <?php
-    include('../component/admin/header/header.php');
+include('../component/admin/header/header.php');
 ?>
-<?php 
-    if(isset($_SESSION['alert'])){
-        echo "<script>
+<?php
+if (isset($_SESSION['alert'])) {
+    echo "<script>
                 Swal.fire({
-                    icon: '".$_SESSION['alert-icon']."',
-                    title: '".$_SESSION['alert-title']."',
-                    text: '".$_SESSION['alert-text']."',
+                    icon: '" . $_SESSION['alert-icon'] . "',
+                    title: '" . $_SESSION['alert-title'] . "',
+                    text: '" . $_SESSION['alert-text'] . "',
                     showConfirmButton: false
                 })
             </script>";
-    }
-    unset($_SESSION['alert']);
-    unset($_SESSION['alert-icon']);
-    unset($_SESSION['alert-title']);
-    unset($_SESSION['alert-text']);
+}
+unset($_SESSION['alert']);
+unset($_SESSION['alert-icon']);
+unset($_SESSION['alert-title']);
+unset($_SESSION['alert-text']);
 ?>
 <div class="flex-col w-full min-h-screen pl-[270px] mt-[90px] pr-[20px] pb-[150px] overflow-auto">
     <div class="text-left w-full mb-5">
@@ -32,63 +32,25 @@
                         <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                             <h1 class="font-bold text-primary text-center text-[20px] py-[20px]">Add an appointment</h1>
                             <label for="fullname">Full Name</label>
-                            <input 
-                                id="fullname"
-                                type="text"
-                                class="block border border-grey-light w-full p-3 rounded mb-4"
-                                name="fullname"
-                                placeholder="ex. Juan Dela Cruz"
-                                required
-                            />
+                            <input id="fullname" type="text" class="block border border-grey-light w-full p-3 rounded mb-4" name="fullname" placeholder="ex. Juan Dela Cruz" required />
                             <label for="email">Email</label>
-                            <input 
-                                id="email"
-                                type="email"
-                                class="block border border-grey-light w-full p-3 rounded mb-4"
-                                name="email"
-                                placeholder="ex. youremail@example.com"
-                                required
-                            />
+                            <input id="email" type="email" class="block border border-grey-light w-full p-3 rounded mb-4" name="email" placeholder="ex. youremail@example.com" required />
                             <label for="mobilenumber">Mobile Number</label>
-                            <input 
-                                id="mobilenumber"
-                                type="phone"
-                                class="block border border-grey-light w-full p-3 rounded mb-4"
-                                name="mobilenumber"
-                                placeholder="09123456789"
-                                pattern="[0,9]{2}[0-9]{9}"
-                                required
-                            />
+                            <input id="mobilenumber" type="phone" class="block border border-grey-light w-full p-3 rounded mb-4" name="mobilenumber" placeholder="09123456789" pattern="[0,9]{2}[0-9]{9}" required />
                             <label for="date">Appointment Date</label>
-                            <input 
-                                id="date"
-                                type="date"
-                                class="block border border-grey-light w-full p-3 rounded mb-4"
-                                name="date"
-                                placeholder="11/17/2022"
-                                min="<?php echo date("Y-m-d"); ?>"
-                                required
-                            />
+                            <input id="date" type="date" class="block border border-grey-light w-full p-3 rounded mb-4" name="date" placeholder="11/17/2022" min="<?php echo date("Y-m-d"); ?>" required />
                             <label for="time">Appointment Time (opening hours 10:00 - 21:00)</label>
-                            <input 
-                                id="time"
-                                type="time"
-                                class="block border border-grey-light w-full p-3 rounded mb-4"
-                                name="time"
-                                min="10:00:00" max="21:00:00"
-                                placeholder="09:00"
-                                required
-                            />
+                            <input id="time" type="time" class="block border border-grey-light w-full p-3 rounded mb-4" name="time" min="10:00:00" max="21:00:00" placeholder="09:00" required />
                             <label for="service">What kind of service we'll set up for you?</label>
                             <select name="service" id="service" class="block border border-grey-light w-full p-3 rounded mb-4">
                                 <?php
-                                    $services_query = "SELECT SERVICE_ID, SERVICE_NAME FROM tbl_service Where SERVICE_STATUS = 1";
-                                    $services_result = $conn -> query($services_query );
-                                    if($services_result){
-                                        while($rows = mysqli_fetch_array($services_result)){
-                                        echo '<option value="'.$rows['SERVICE_ID'].'">'.$rows['SERVICE_NAME'].'</option>';
-                                        }
+                                $services_query = "SELECT SERVICE_ID, SERVICE_NAME FROM tbl_service Where SERVICE_STATUS = 1";
+                                $services_result = $conn->query($services_query);
+                                if ($services_result) {
+                                    while ($rows = mysqli_fetch_array($services_result)) {
+                                        echo '<option value="' . $rows['SERVICE_ID'] . '">' . $rows['SERVICE_NAME'] . '</option>';
                                     }
+                                }
                                 ?>
                             </select>
                         </div>
@@ -111,65 +73,27 @@
                             <input type="text" id="editappointmentid" name="editappointmentid" class=" hidden bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="appointmentid" required>
                             <h1 class="font-bold text-primary text-center text-[20px] py-[20px]">Edit Appointment</h1>
                             <label for="editfullname">Full Name</label>
-                                <input 
-                                    id="editfullname"
-                                    type="text"
-                                    class="block border border-grey-light w-full p-3 rounded mb-4"
-                                    name="editfullname"
-                                    placeholder="ex. Juan Dela Cruz"
-                                    required
-                                />
-                                <label for="editemail">Email</label>
-                                <input 
-                                    id="editemail"
-                                    type="email"
-                                    class="block border border-grey-light w-full p-3 rounded mb-4"
-                                    name="editemail"
-                                    placeholder="ex. youremail@example.com"
-                                    required
-                                />
-                                <label for="editmobilenumber">Mobile Number</label>
-                                <input 
-                                    id="editmobilenumber"
-                                    type="phone"
-                                    class="block border border-grey-light w-full p-3 rounded mb-4"
-                                    name="editmobilenumber"
-                                    placeholder="09123456789"
-                                    pattern="[0,9]{2}[0-9]{9}"
-                                    required
-                                />
-                                <label for="editdate">Booked Date</label>
-                                <input 
-                                    id="editdate"
-                                    type="date"
-                                    class="block border border-grey-light w-full p-3 rounded mb-4"
-                                    name="editdate"
-                                    placeholder="11/17/2022"
-                                    min="<?php echo date("Y-m-d"); ?>"
-                                    required
-                                />
-                                <label for="edittime">Booked Time</label>
-                                <input 
-                                    id="edittime"
-                                    type="time"
-                                    class="block border border-grey-light w-full p-3 rounded mb-4"
-                                    name="edittime"
-                                    min="10:00:00" max="21:00:00"
-                                    placeholder="09:00:00"
-                                    required
-                                />
-                                <label for="editservice">Service</label>
-                                <select name="editservice" id="editservice" class="block border border-grey-light w-full p-3 rounded mb-4">
-                                    <?php
-                                        $services_query = "SELECT SERVICE_ID, SERVICE_NAME FROM tbl_service Where SERVICE_STATUS = 1";
-                                        $services_result = $conn -> query($services_query );
-                                        if($services_result){
-                                            while($rows = mysqli_fetch_array($services_result)){
-                                            echo '<option value="'.$rows['SERVICE_ID'].'">'.$rows['SERVICE_NAME'].'</option>';
-                                            }
-                                        }
-                                    ?>
-                                </select>
+                            <input id="editfullname" type="text" class="block border border-grey-light w-full p-3 rounded mb-4" name="editfullname" placeholder="ex. Juan Dela Cruz" required />
+                            <label for="editemail">Email</label>
+                            <input id="editemail" type="email" class="block border border-grey-light w-full p-3 rounded mb-4" name="editemail" placeholder="ex. youremail@example.com" required />
+                            <label for="editmobilenumber">Mobile Number</label>
+                            <input id="editmobilenumber" type="phone" class="block border border-grey-light w-full p-3 rounded mb-4" name="editmobilenumber" placeholder="09123456789" pattern="[0,9]{2}[0-9]{9}" required />
+                            <label for="editdate">Booked Date</label>
+                            <input id="editdate" type="date" class="block border border-grey-light w-full p-3 rounded mb-4" name="editdate" placeholder="11/17/2022" min="<?php echo date("Y-m-d"); ?>" required />
+                            <label for="edittime">Booked Time</label>
+                            <input id="edittime" type="time" class="block border border-grey-light w-full p-3 rounded mb-4" name="edittime" min="10:00:00" max="21:00:00" placeholder="09:00:00" required />
+                            <label for="editservice">Service</label>
+                            <select name="editservice" id="editservice" class="block border border-grey-light w-full p-3 rounded mb-4">
+                                <?php
+                                $services_query = "SELECT SERVICE_ID, SERVICE_NAME FROM tbl_service Where SERVICE_STATUS = 1";
+                                $services_result = $conn->query($services_query);
+                                if ($services_result) {
+                                    while ($rows = mysqli_fetch_array($services_result)) {
+                                        echo '<option value="' . $rows['SERVICE_ID'] . '">' . $rows['SERVICE_NAME'] . '</option>';
+                                    }
+                                }
+                                ?>
+                            </select>
                             <label for="editremarks">Remarks</label>
                             <textarea type="text" id="editappointmentremarks" name="editappointmentremarks" rows="4" class="block border border-grey-light w-full p-3 rounded mb-4" placeholder="Type here ..." required></textarea>
                             <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
@@ -263,8 +187,8 @@
         </div>
     </div>
     <?php
-        $query = "SELECT tbl_appointment.*, tbl_service.SERVICE_NAME, tbl_service.SERVICE_ID FROM tbl_appointment INNER JOIN tbl_service ON tbl_appointment.SERVICE_ID = tbl_service.SERVICE_ID ORDER BY tbl_appointment.APP_APPLY_DATE DESC";
-        $query_run = mysqli_query($conn, $query);
+    $query = "SELECT tbl_appointment.*, tbl_service.SERVICE_NAME, tbl_service.SERVICE_ID FROM tbl_appointment INNER JOIN tbl_service ON tbl_appointment.SERVICE_ID = tbl_service.SERVICE_ID ORDER BY tbl_appointment.APP_APPLY_DATE DESC";
+    $query_run = mysqli_query($conn, $query);
     ?>
     <table id="data-table" class="responsive-table display" style="width:100%">
         <thead>
@@ -288,63 +212,59 @@
             if (mysqli_num_rows($query_run) > 0) {
                 while ($row = mysqli_fetch_assoc($query_run)) {
             ?>
-                <tr>
-                    <td style="display: none;"><?php echo $row['APP_ID']; ?> </td>
-                    <td><?php echo $row['APP_NAME']; ?> </td>
-                    <td><?php echo $row['APP_EMAIL']; ?> </td>
-                    <td><?php echo $row['APP_MOBILE_NUMBER']; ?> </td>
-                    <td><?php echo date('F j, Y, g:i a', strtotime($row['APP_APPLY_DATE'])); ?> </td>
-                    <td><?php echo date('F j, Y, g:i a', strtotime($row['START_DATE'])); ?> </td>
-                    <td style="display: none;"><?php echo $row['START_DATE']; ?> </td>
-                    <td><?php if($row['APP_STATUS'] == 0){
-                        echo '<span class="bg-yellow-200 p-2 text-[14px] border border-gray-500 rounded-sm">Pending</span>';
-                    }else if($row['APP_STATUS'] == 1){
-                        echo '<span class="bg-green-500 text-white p-2 text-[14px] border border-gray-500 rounded-sm">Accepted</span>';
-                    }else if($row['APP_STATUS'] == 2){
-                        echo '<span class="bg-red-800 text-white p-2 text-[14px] border border-gray-500 rounded-sm">Rejected</span>';
-                    }
-                    else if($row['APP_STATUS'] == 3){
-                        echo '<span class="bg-gray-200 p-2 text-[14px] border border-gray-500 rounded-sm">Cancelled</span>';
-                    } 
-                    else if($row['APP_STATUS'] == 4){
-                        echo '<span class="p-2 text-[14px] border text-gray-400 border-gray-300 rounded-sm">Deleted</span>';
-                    } ?> </td>
-                    <td><?php echo $row['SERVICE_NAME']; ?> </td>
-                    <td style="display: none;"><?php echo $row['SERVICE_ID']; ?> </td>
-                    <td><?php echo $row['REMARKS']; ?> </td>
-                    <td class="flex gap-1 flex-wrap min-w-[120px] h-full">
-                        <?php if($row['APP_STATUS'] == 0){
-                            echo '<button type="button" title="Accept" class="acceptAppointment bg-transparent hover:bg-gray-300 text-blue-700 font-semibold hover:text-white py-[5px] px-2   border border-gray-500 hover:border-border-gray-300 rounded">
+                    <tr>
+                        <td style="display: none;"><?php echo $row['APP_ID']; ?> </td>
+                        <td><?php echo $row['APP_NAME']; ?> </td>
+                        <td><?php echo $row['APP_EMAIL']; ?> </td>
+                        <td><?php echo $row['APP_MOBILE_NUMBER']; ?> </td>
+                        <td><?php echo date('F j, Y, g:i a', strtotime($row['APP_APPLY_DATE'])); ?> </td>
+                        <td><?php echo date('F j, Y, g:i a', strtotime($row['START_DATE'])); ?> </td>
+                        <td style="display: none;"><?php echo $row['START_DATE']; ?> </td>
+                        <td><?php if ($row['APP_STATUS'] == 0) {
+                                echo '<span class="bg-yellow-200 p-2 text-[14px] border border-gray-500 rounded-sm">Pending</span>';
+                            } else if ($row['APP_STATUS'] == 1) {
+                                echo '<span class="bg-green-500 text-white p-2 text-[14px] border border-gray-500 rounded-sm">Accepted</span>';
+                            } else if ($row['APP_STATUS'] == 2) {
+                                echo '<span class="bg-red-800 text-white p-2 text-[14px] border border-gray-500 rounded-sm">Rejected</span>';
+                            } else if ($row['APP_STATUS'] == 3) {
+                                echo '<span class="bg-gray-200 p-2 text-[14px] border border-gray-500 rounded-sm">Cancelled</span>';
+                            } else if ($row['APP_STATUS'] == 4) {
+                                echo '<span class="p-2 text-[14px] border text-gray-400 border-gray-300 rounded-sm">Deleted</span>';
+                            } ?> </td>
+                        <td><?php echo $row['SERVICE_NAME']; ?> </td>
+                        <td style="display: none;"><?php echo $row['SERVICE_ID']; ?> </td>
+                        <td><?php echo $row['REMARKS']; ?> </td>
+                        <td class="flex gap-1 flex-wrap min-w-[120px] h-full">
+                            <?php if ($row['APP_STATUS'] == 0) {
+                                echo '<button type="button" title="Accept" class="acceptAppointment bg-transparent hover:bg-gray-300 text-blue-700 font-semibold hover:text-white py-[5px] px-2   border border-gray-500 hover:border-border-gray-300 rounded">
                                     <i class="fa fa-check text-[16px]" aria-hidden="true"></i>
                                 </button>
                                 <button type="button" title="Reject" class="rejectAppointment bg-transparent hover:bg-gray-300 text-blue-700 font-semibold hover:text-white py-[5px] px-2   border border-gray-500 hover:border-border-gray-300 rounded">
                                     <i class="fa fa-ban text-[16px]" aria-hidden="true"></i>
                                 </button>';
-                        }else if($row['APP_STATUS'] == 1){
-                            echo '<button type="button" title="Cancel" class="cancelAppointment bg-transparent hover:bg-gray-300 text-blue-700 font-semibold hover:text-white py-[5px] px-2   border border-gray-500 hover:border-border-gray-300 rounded">
+                            } else if ($row['APP_STATUS'] == 1) {
+                                echo '<button type="button" title="Cancel" class="cancelAppointment bg-transparent hover:bg-gray-300 text-blue-700 font-semibold hover:text-white py-[5px] px-2   border border-gray-500 hover:border-border-gray-300 rounded">
                                 <i class="fa fa-times-circle-o text-[16px]" aria-hidden="true"></i>
                                 </button>';
-                        }else if($row['APP_STATUS'] == 2){
-                            // echo '<button type="button" title="Cancel" class="cancelAppointment bg-transparent hover:bg-gray-300 text-blue-700 font-semibold hover:text-white py-[5px] px-2   border border-gray-500 hover:border-border-gray-300 rounded">
-                            //     <i class="fa fa-times-circle-o text-[16px]" aria-hidden="true"></i>
-                            //     </button>';
-                        }
-                        else if($row['APP_STATUS'] == 3){
-                        } 
-                        else if($row['APP_STATUS'] == 4){
-                            echo '<button type="button" title="Restore" class="restoreAppointment bg-transparent hover:bg-gray-300 text-blue-700 font-semibold hover:text-white py-[5px] px-2 border border-gray-500 hover:border-border-gray-300 rounded">
+                            } else if ($row['APP_STATUS'] == 2) {
+                                // echo '<button type="button" title="Cancel" class="cancelAppointment bg-transparent hover:bg-gray-300 text-blue-700 font-semibold hover:text-white py-[5px] px-2   border border-gray-500 hover:border-border-gray-300 rounded">
+                                //     <i class="fa fa-times-circle-o text-[16px]" aria-hidden="true"></i>
+                                //     </button>';
+                            } else if ($row['APP_STATUS'] == 3) {
+                            } else if ($row['APP_STATUS'] == 4) {
+                                echo '<button type="button" title="Restore" class="restoreAppointment bg-transparent hover:bg-gray-300 text-blue-700 font-semibold hover:text-white py-[5px] px-2 border border-gray-500 hover:border-border-gray-300 rounded">
                                     <i class="fa fa-undo text-[16px]" aria-hidden="true"></i>
                                 </button>';
-                        } ?> 
-                        <button type="button" title="Edit" class="editAppointment bg-transparent hover:bg-gray-300 text-blue-700 font-semibold hover:text-white py-[5px] px-2 border border-gray-500 hover:border-border-gray-300 rounded">
-                            <i class="fa fa-pencil text-[16px]" aria-hidden="true"></i>
-                        </button>
-                    </td>
-                </tr>
+                            } ?>
+                            <button type="button" title="Edit" class="editAppointment bg-transparent hover:bg-gray-300 text-blue-700 font-semibold hover:text-white py-[5px] px-2 border border-gray-500 hover:border-border-gray-300 rounded">
+                                <i class="fa fa-pencil text-[16px]" aria-hidden="true"></i>
+                            </button>
+                        </td>
+                    </tr>
             <?php
                 }
             } else {
-                echo "No record found";
+                echo "";
             }
             ?>
         </tbody>
@@ -384,14 +304,14 @@
         // EDIT
         $(document).ready(function() {
             var table = $('#data-table').DataTable();
-            $('#data-table tbody').on('click', '.editAppointment', function () {
+            $('#data-table tbody').on('click', '.editAppointment', function() {
                 var data = table.row($(this).parents('tr')).data();
                 const [date, time] = data[6].split(" ");
                 $("#modal-edit").removeClass("hidden");
                 $('#editappointmentid').val(data[0]);
                 $('#editfullname').val(data[1]);
                 $('#editemail').val(data[2]);
-                $('#editmobilenumber').val('0'+data[3]);
+                $('#editmobilenumber').val('0' + data[3]);
                 $('#editdate').val(date);
                 $('#edittime').val(time);
                 $('#editservice').val(data[9]).change();
@@ -401,7 +321,7 @@
         // DELETE
         $(document).ready(function() {
             var table = $('#data-table').DataTable();
-            $('#data-table tbody').on('click', '.deleteAppointment', function () {
+            $('#data-table tbody').on('click', '.deleteAppointment', function() {
                 var data = table.row($(this).parents('tr')).data();
                 $("#modal-delete").removeClass("hidden");
                 $('#appointmentidDelete').val(data[0]);
@@ -410,7 +330,7 @@
         // ACCEPT
         $(document).ready(function() {
             var table = $('#data-table').DataTable();
-            $('#data-table tbody').on('click', '.acceptAppointment', function () {
+            $('#data-table tbody').on('click', '.acceptAppointment', function() {
                 var data = table.row($(this).parents('tr')).data();
                 $("#modal-accept").removeClass("hidden");
                 $('#appointmentidAccept').val(data[0]);
@@ -422,20 +342,20 @@
         // REJECT
         $(document).ready(function() {
             var table = $('#data-table').DataTable();
-            $('#data-table tbody').on('click', '.rejectAppointment', function () {
+            $('#data-table tbody').on('click', '.rejectAppointment', function() {
                 var data = table.row($(this).parents('tr')).data();
                 $("#modal-reject").removeClass("hidden");
                 $('#appointmentidReject').val(data[0]);
                 $('#appointmentfullnameReject').val(data[1]);
                 $('#appointmentemailReject').val(data[2]);
                 $('#appointmentremarksReject').val(data[10]);
-                
+
             });
         });
         // CANCEL
         $(document).ready(function() {
             var table = $('#data-table').DataTable();
-            $('#data-table tbody').on('click', '.cancelAppointment', function () {
+            $('#data-table tbody').on('click', '.cancelAppointment', function() {
                 var data = table.row($(this).parents('tr')).data();
                 $("#modal-cancel").removeClass("hidden");
                 $('#appointmentidCancel').val(data[0]);

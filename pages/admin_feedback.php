@@ -109,7 +109,7 @@ function getCustomerName($id, $conn)
             <?php
                 }
             } else {
-                echo "No record found";
+                echo "";
             }
             ?>
         </tbody>

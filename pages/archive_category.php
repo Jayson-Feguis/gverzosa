@@ -72,7 +72,7 @@ unset($_SESSION['alert-text']);
             <?php
                 }
             } else {
-                echo "No record found";
+                echo "";
             }
             ?>
         </tbody>

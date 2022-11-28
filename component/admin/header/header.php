@@ -269,7 +269,7 @@ if ($_SESSION['user_type'] == 2 || $_SESSION['user_type'] == 3) {
                             </button>
                             <ul id="dropdown-example3" class="hidden py-2 space-y-2">
                                 <li>
-                                    <a href="#" class="flex items-center p-2 pl-11 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100">Archive</a>
+                                    <a href="admin_archive.php" class="flex items-center p-2 pl-11 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100">Archive</a>
                                 </li>
                                 <li>
                                     <a href="admin_backup.php" class="flex items-center p-2 pl-11 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100">Backup</a>
