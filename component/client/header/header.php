@@ -76,7 +76,7 @@ if ($_SERVER['REQUEST_URI'] == "/gverzosa/") {
                 $(".nav-container").removeClass("py-10").addClass("py-5");
                 if (!$(".nav-items a").hasClass("text-secondary")) {
                     $(".nav-items a").addClass("text-defaultwhite");
-                    alert(hello)
+
                 }
             } else {
                 $("nav").removeClass("bg-primary text-defaultwhite bg-opacity-100").addClass("bg-defaultwhite text-primary bg-opacity-0");
@@ -103,10 +103,10 @@ if ($_SERVER['REQUEST_URI'] == "/gverzosa/") {
                 // HOME PAGE
                 if ($_SERVER['REQUEST_URI'] == "/gverzosa/") {
                 ?>
-                    <a class=" hover:cursor-pointer hover:text-secondary transition-color duration-300" href="#home">Home</a>
-                    <a class="hover:cursor-pointer hover:text-secondary transition-color duration-300" href="#about">About Us</a>
-                    <a class="hover:cursor-pointer hover:text-secondary transition-color duration-300" href="#services">Services</a>
-                    <a class="hover:cursor-pointer hover:text-secondary transition-color duration-300" href="#products">Products</a>
+                    <a class="home hover:cursor-pointer hover:text-secondary transition-color duration-300" href="#home">Home</a>
+                    <a class="about hover:cursor-pointer hover:text-secondary transition-color duration-300" href="#about">About Us</a>
+                    <a class="services hover:cursor-pointer hover:text-secondary transition-color duration-300" href="#services">Services</a>
+                    <a class="products hover:cursor-pointer hover:text-secondary transition-color duration-300" href="#products">Products</a>
                     <button id="btn-book" onclick="openBookModal()" class="bg-secondary text-defaultwhite text-[20px] font-bold py-[5px] px-[10px] rounded-md font-Montserrat transition-all duration-300 hover:bg-tertiary">Book Now</button>
 
                 <?php
@@ -201,4 +201,47 @@ if ($_SERVER['REQUEST_URI'] == "/gverzosa/") {
         function closeBookModal() {
             $("#modal-book-now").addClass("hidden");
         }
+    </script>
+
+
+    <script>
+        $(document).ready(function() {
+            $(window).scroll(function() {
+                var scroll = $(window).scrollTop();
+                if (scroll == 0) {
+                    $(".home").css("color", "#7BC228");
+                    $(".services").css("color", "#4B3D40");
+                    $(".products").css("color", "#4B3D40");
+                    $(".about").css("color", "#4B3D40");
+                } else if (scroll >= 1 && scroll <= 2316) {
+                    $(".home").css("color", "#7BC228");
+                    $(".services").css("color", "#F7FBF1");
+                    $(".products").css("color", "#F7FBF1");
+                    $(".about").css("color", "#F7FBF1");
+                } else if (scroll >= 2317 && scroll <= 4976) {
+                    $(".home").css("color", "#F7FBF1");
+                    $(".services").css("color", "#F7FBF1");
+                    $(".products").css("color", "#F7FBF1");
+                    $(".about").css("color", "#7BC228");
+                } else if (scroll >= 4977 && scroll <= 6180) {
+                    $(".home").css("color", "#F7FBF1");
+                    $(".about").css("color", "#F7FBF1");
+                    $(".services").css("color", "#7BC228");
+                    $(".products").css("color", "#F7FBF1");
+                } else if (scroll >= 6181 && scroll <= 7781) {
+                    $(".home").css("color", "#F7FBF1");
+                    $(".about").css("color", "#F7FBF1");
+                    $(".services").css("color", "#F7FBF1");
+                    $(".products").css("color", "#7BC228");
+                }
+
+            })
+        })
+
+        $(window).scroll(example);
+
+        function example() {
+            var tempScrollTop = $(window).scrollTop();
+            console.log("Scroll from Top: " + tempScrollTop.toString());
+        };
     </script>
