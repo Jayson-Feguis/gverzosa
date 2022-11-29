@@ -75,6 +75,58 @@ include('component/client/header/header.php');
         display: block;
         width: 100%;
     }
+
+    /*event in day or week view*/
+    .dhx_cal_event.pending_event div{
+        background-color: #EAB308 !important;
+        color: white !important;
+    }
+    .dhx_cal_event.accepted_event div{
+        background-color: #22C55E !important;
+        color: white !important;
+    }
+    .dhx_cal_event.rejected_event div{
+        background-color: #ED4343 !important;
+        color: white !important;
+    }
+    .dhx_cal_event.canceled_event div{
+        background-color: #9CA3AF !important;
+        color: white !important;
+    }
+    /*multi-day event in month view*/
+    .dhx_cal_event_line.pending_event div{
+        background-color: #EAB308 !important;
+        color: white !important;
+    }
+    .dhx_cal_event_line.accepted_event div{
+        background-color: #22C55E !important;
+        color: white !important;
+    }
+    .dhx_cal_event_line.rejected_event div{
+        background-color: #ED4343 !important;
+        color: white !important;
+    }
+    .dhx_cal_event_line.canceled_event div{
+        background-color: #9CA3AF !important;
+        color: white !important;
+    }
+    /*event with fixed time, in month view*/
+    .dhx_cal_event_clear.pending_event div{
+        background-color: #EAB308 !important;
+        color: white !important;
+    }
+    .dhx_cal_event_clear.accepted_event div{
+        background-color: #22C55E !important;
+        color: white !important;
+    }
+    .dhx_cal_event_clear.rejected_event div{
+        background-color: #ED4343 !important;
+        color: white !important;
+    }
+    .dhx_cal_event_clear.canceled_event div{
+        background-color: #9CA3AF !important;
+        color: white !important;
+    }
 </style>
 
 <?php
@@ -117,13 +169,29 @@ unset($_SESSION['alert-text']);
             <div class="swiper-pagination" id="swiper-pagination-home"></div>
         </div>
     </section>
-
-
+    <section id='home-section3' class="div-center bg-tertiary flex-col w-full py-[7rem]">
+        <h1 class="font-Dancing text-[64px] font-bold text-defaultwhite">
+            Schedule
+        </h1>
+        <div id="scheduler_here" class="dhx_cal_container employees-container max-w-[1536] min-h-[800px] px-[10px] sm:px-[30px]">
+        <div class="dhx_cal_navline">
+            <div class="dhx_cal_prev_button">&nbsp;</div>
+            <div class="dhx_cal_next_button">&nbsp;</div>
+            <div class="dhx_cal_today_button"></div>
+            <div class="dhx_cal_date"></div>
+            <div class="dhx_cal_tab" name="day_tab"></div>
+            <div class="dhx_cal_tab" name="week_tab"></div>
+            <div class="dhx_cal_tab" name="month_tab"></div>
+        </div>
+        <div class="dhx_cal_header"></div>
+        <div class="dhx_cal_data"></div>
+    </div>
+    </section>
     <section id='about' class="div-center flex-col w-full py-[7rem]">
         <h1 class="font-Dancing text-[64px] font-bold text-primary pb-[50px]">
             History
         </h1>
-        <p class="font-Montserrat text-[18px]">
+        <p class="font-Montserrat text-[18px] employees-container max-w-[1536] px-[10px] sm:px-[30px]">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias, temporibus ratione pariatur magnam asperiores eos iusto perferendis, voluptatibus blanditiis, iure consequatur molestiae necessitatibus corporis a quasi provident recusandae expedita officia!
             <br />
             <br />
@@ -392,6 +460,29 @@ unset($_SESSION['alert-text']);
             el: "#swiper-pagination-product",
             dynamicBullets: true,
         },
+    });
+
+    scheduler.setLoadMode("day");
+    scheduler.templates.event_class = function (start, end, event) {
+        if (event.type == "0") {
+            return "pending_event";
+        }
+        else if(event.type == "1"){
+            return "accepted_event";
+        }
+        else if(event.type == "2"){
+            return "rejected_event";
+        }
+        else if(event.type == "3"){
+            return "canceled_event";
+        } 
+    };
+    scheduler.init("scheduler_here", new Date(), "day");
+    scheduler.load("api/get_schedule.php");
+
+    var dp = scheduler.createDataProcessor({
+        url: "api/get_schedule.php",
+        mode: "JSON"
     });
 </script>
 <?php

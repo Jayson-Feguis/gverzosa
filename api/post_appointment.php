@@ -12,7 +12,7 @@ if (isset($_POST['addappointment'])) {
     $service = $_POST['service'];
     $newDateTime = date('Y-m-d H:i:s', strtotime("$date $time"));
     $service_name = '';
-    $descriptive_datetime = date('M-d-Y h:i a', strtotime("$date $time"));
+    $descriptive_datetime = date('h:i a', strtotime("$time"));
     $email_subject = "G. Verzosa - Booked an appointment successfully";
     $email_message = "We would like to inform you that your appointment status is PENDING. Wait for the admin to accept your appointment. Thank you for choosing our sevice and have a great day.";
 
@@ -22,7 +22,7 @@ if (isset($_POST['addappointment'])) {
         $service_name = $row['SERVICE_NAME'];
     }
 
-    $text = $fullname . " booked a service of " . $service_name . ". \n\nBooked Date: " . $descriptive_datetime . " \nNumber: " . $mobile_number . "\nEmail: " . $email;
+    $text = $descriptive_datetime." ".$fullname." - ".$service_name;
 
     $sql_appointment = "INSERT tbl_appointment (APP_NAME, APP_EMAIL, APP_MOBILE_NUMBER, START_DATE, END_DATE, TEXT, SERVICE_ID) values ('$fullname', '$email', '$mobile_number', '$newDateTime', '$newDateTime', '$text', '$service')";
     $result = mysqli_query($conn, $sql_appointment);

@@ -20,7 +20,6 @@
         background-color: #9CA3AF !important;
         color: white !important;
     }
- 
     /*multi-day event in month view*/
     .dhx_cal_event_line.pending_event div{
         background-color: #EAB308 !important;
@@ -38,7 +37,6 @@
         background-color: #9CA3AF !important;
         color: white !important;
     }
- 
     /*event with fixed time, in month view*/
     .dhx_cal_event_clear.pending_event div{
         background-color: #EAB308 !important;
@@ -56,7 +54,6 @@
         background-color: #9CA3AF !important;
         color: white !important;
     }
-
 </style>
 
 <div class="flex-col w-full min-h-screen overflow-auto pl-[270px] mt-[90px] pr-[20px] pb-[150px]">
@@ -144,7 +141,7 @@
         <div class="dhx_cal_data"></div>
     </div>
     <script>
-        scheduler.setLoadMode("week");
+        scheduler.setLoadMode("day");
         scheduler.templates.event_class = function (start, end, event) {
             if (event.type == "0") {
                 return "pending_event";
@@ -159,11 +156,11 @@
                 return "canceled_event";
             } 
         };
-        scheduler.init("scheduler_here", new Date(), "week");
-        scheduler.load("../api/get_appointment.php");
+        scheduler.init("scheduler_here", new Date(), "day");
+        scheduler.load("api/get_appointment.php");
 
         var dp = scheduler.createDataProcessor({
-            url: "../api/get_appointment.php",
+            url: "api/get_appointment.php",
             mode: "JSON"
         });
     </script>
