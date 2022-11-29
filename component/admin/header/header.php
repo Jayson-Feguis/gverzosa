@@ -149,7 +149,7 @@ if ($_SESSION['user_type'] == 2 || $_SESSION['user_type'] == 3) {
 
 <body class="bg-defaultwhite block flex">
     <nav class="bg-secondary fixed z-[5]">
-        <div class="container flex flex-wrap items-center justify-between mx-auto">
+        <div class="flex flex-wrap items-center w-full justify-between px-[50px]">
             <a class="flex items-center">
                 <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
                     <?php

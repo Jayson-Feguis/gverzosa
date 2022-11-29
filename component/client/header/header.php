@@ -39,6 +39,9 @@ if ($_SERVER['REQUEST_URI'] == "/gverzosa/") {
     <?php
     }
     ?>
+    <!-- SCHEDULER -->
+    <script src="https://cdn.dhtmlx.com/scheduler/edge/dhtmlxscheduler.js"></script>
+    <link href="https://cdn.dhtmlx.com/scheduler/edge/dhtmlxscheduler_material.css" rel="stylesheet" type="text/css" charset="utf-8" />
     <!-- FONTAWESOME -->
     <script src="https://kit.fontawesome.com/a1cbcf93f0.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -145,7 +148,6 @@ if ($_SERVER['REQUEST_URI'] == "/gverzosa/") {
                             <input id="date" type="date" class="block border border-grey-light w-full p-3 rounded mb-4" name="date" placeholder="11/17/2022" min="<?php echo date("Y-m-d"); ?>" required />
                             <label for="time">Appointment Time (opening hours 10:00 - 21:00)</label>
                             <input id="time" type="time" list="times" class="block border border-grey-light w-full p-3 rounded mb-4" name="time" placeholder="09:00" required />
-
                             <datalist id="times">
                                 <option>10:00:00</option>
                                 <option>10:30:00</option>
