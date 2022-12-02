@@ -211,7 +211,7 @@ unset($_SESSION['alert-text']);
             </h1>
             <div class="div-center flex-wrap gap-[50px]">
                 <?php
-                $employees_query = "SELECT * FROM tbl_user Where USER_STATUS = 1";
+                $employees_query = "SELECT * FROM tbl_user Where USER_STATUS = 1 && USER_SHOW = 1";
                 $employees_result = $conn->query($employees_query);
                 if ($employees_result) {
                     while ($rows = mysqli_fetch_array($employees_result)) {
@@ -227,27 +227,41 @@ unset($_SESSION['alert-text']);
             </div>
         </div>
     </section>
-
     <section id='about_section3' class="div-center flex-col w-full py-[7rem]">
         <div class="getintouch-container div-center flex-col w-full">
             <h1 class="font-Dancing text-[64px] font-bold text-primary pb-[50px]">
                 Get in Touch
             </h1>
             <div class="div-center flex-wrap gap-[50px]">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d766.7361757170355!2d121.05217880038407!3d14.580053770809352!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397c83f5c33f2b5%3A0xae6f16159cb45cce!2sG.%20Verzosa%20Salon%20%26%20Spa%20For%20Men%20And%20Women!5e1!3m2!1sen!2sph!4v1669553316457!5m2!1sen!2sph" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                <div class="flex flex-col gap-[40px]">
-                    <div class="flex items-center">
-                        <i class="w-[50px] text-center text-secondary text-[32px] fa fa-map-marker"></i>
-                        <h6 class="text-[20px]">244 Kalentong Romualdez St., Brgy. Daang Bakal, Mandaluyong City</h6>
+                <div class="div-center w-full flex-wrap"> 
+                    <div class="flex flex-col gap-5">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d766.7361757170355!2d121.05217880038407!3d14.580053770809352!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397c83f5c33f2b5%3A0xae6f16159cb45cce!2sG.%20Verzosa%20Salon%20%26%20Spa%20For%20Men%20And%20Women!5e1!3m2!1sen!2sph!4v1669553316457!5m2!1sen!2sph" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        <div class="flex flex-col gap-[10px]">
+                            <div class="flex items-center">
+                                <i class="w-[35px] text-center text-secondary text-[24px] fa fa-map-marker"></i>
+                                <h6 class="text-[14px]">244 Kalentong Romualdez St., Brgy. Daang Bakal, Mandaluyong City</h6>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="w-[35px] text-center text-secondary text-[24px] fa fa-envelope"></i>
+                                <h6 class="text-[14px]">gverzosasalonandspa@gmail.com</h6>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="w-[35px] text-center text-secondary text-[24px] fa fa-phone"></i>
+                                <h6 class="text-[14px]">0977 804 9383</h6>
+                            </div>
+                        </div>
                     </div>
-                    <div class="flex items-center">
-                        <i class="w-[50px] text-center text-secondary text-[32px] fa fa-envelope"></i>
-                        <h6 class="text-[20px]">gverzosasalonandspa@gmail.com</h6>
-                    </div>
-                    <div class="flex items-center">
-                        <i class="w-[50px] text-center text-secondary text-[32px] fa fa-phone"></i>
-                        <h6 class="text-[20px]">0977 804 9383</h6>
-                    </div>
+                    <form action="api/send_email.php" method="post" class="w-full md:w-[500px] px-4 pt-5 pb-4 sm:p-6 sm:pb-4 grow-1 flex flex-col">
+                        <label for="fullname">Full Name</label>
+                        <input type="text" id="fullname" name="fullname" class="flex grow-1 border border-grey-light w-full p-3 rounded mb-4" placeholder="ex. Juan" required>
+                        <label for="email">Email</label>
+                        <input id="email" type="email" class="block border border-grey-light w-full p-3 rounded mb-4" name="email" placeholder="ex. youremail@example.com" required />
+                        <label for="mobilenumber">Mobile Number</label>
+                        <input id="mobilenumber" type="phone" class="block border border-grey-light w-full p-3 rounded mb-4" name="mobilenumber" placeholder="09123456789" pattern="[0,9]{2}[0-9]{9}" required />
+                        <label for="feedback">Feedback</label>
+                        <textarea type="text" rows="6" id="feedback" name="feedback" class="flex grow-1 border border-grey-light w-full p-3 rounded mb-4" placeholder="Type your feedback here" required></textarea>
+                        <button type="submit" name="sendfeedback" class="inline-flex transition-all duration-300 justify-center rounded-md border border-transparent bg-secondary px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-opacity-70 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:w-auto sm:text-sm div-center">Send <i class="fa fa-paper-plane ml-2" aria-hidden="true"></i></button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -282,13 +296,13 @@ unset($_SESSION['alert-text']);
         <div class="swiper mySwiper" id="swiper-service">
             <div class="swiper-wrapper" id="swiper-wrapper-service">
                 <?php
-                $promotion_query = "SELECT BANNER_IMAGE FROM tbl_banner WHERE BANNER_STATUS = 1";
-                $promotion_result = $conn->query($promotion_query);
-                if ($promotion_result) {
-                    while ($row_service = mysqli_fetch_array($promotion_result)) {
-                        echo '<div id="swiper-slide-service" class="swiper-slide w-[100%] min-h-[500px] flex-wrap" style="background-image: url(../images/' . $row_service['BANNER_IMAGE'] . '); background-size: auto 100%; background-position: center;"></div>';
+                    $promotion_query = "SELECT BANNER_IMAGE FROM tbl_banner WHERE BANNER_STATUS = 1";
+                    $promotion_result = $conn->query($promotion_query);
+                    if ($promotion_result) {
+                        while ($row_service = mysqli_fetch_array($promotion_result)) {
+                            echo '<div id="swiper-slide-service" class="swiper-slide w-[100%] min-h-[500px] flex-wrap" style="background-image: url(../images/' . $row_service['BANNER_IMAGE'] . '); background-size: auto 100%; background-position: center;"></div>';
+                        }
                     }
-                }
                 ?>
             </div>
             <div class="swiper-button-next" id="swiper-button-next-service"></div>
