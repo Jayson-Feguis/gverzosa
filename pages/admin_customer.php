@@ -193,7 +193,7 @@ unset($_SESSION['alert-text']);
                         <td><?php echo $row['CUSTOMER_MOBILE_NUMBER']; ?> </td>
                         <td><?php echo $row['CUSTOMER_ADDRESS']; ?> </td>
                         <td><?php echo $row['CUSTOMER_DATETIME_CREATED']; ?> </td>
-                        <td class="text-center">
+                        <td class="text-center w-[150px]">
                             <button type="button" class="editCustomer bg-transparent hover:bg-gray-300 text-blue-700 font-semibold hover:text-white py-[5px] px-2 border border-gray-500 hover:border-border-gray-300 rounded">
                                 <i class="fa fa-pencil text-[16px]" aria-hidden="true"></i>
                             </button>

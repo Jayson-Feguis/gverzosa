@@ -73,11 +73,11 @@ function loginUrl(){
                     <div class="flex justify-center items-start flex-col gap-[25px] w-[170px]">
                         <h6 class="font-bold">Social Media</h6>
                         <ul class="social-media  flex flex-col gap-[10px]">
-                            <a class="hover:cursor-pointer hover:text-secondary transition-all duration-300">
+                            <a href="https://www.facebook.com/gverzosasalon" target="_blank" class="hover:cursor-pointer hover:text-secondary transition-all duration-300">
                                 <i class="fa fa-facebook w-[20px] text-center" aria-hidden="true"></i>
                                 <span>Facebook</span>
                             </a>
-                            <a class="hover:cursor-pointer hover:text-secondary transition-all duration-300">
+                            <a href="https://www.instagram.com/g.verzosasalonandspa" target="_blank" class="hover:cursor-pointer hover:text-secondary transition-all duration-300">
                                 <i class="fa fa-instagram w-[20px] text-center" aria-hidden="true"></i>
                                 <span>Instagram</span>
                             </a>
