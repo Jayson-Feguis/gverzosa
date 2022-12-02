@@ -284,7 +284,7 @@ unset($_SESSION['alert-text']);
             </h1>
             <div class="div-center flex-wrap gap-[50px]">
                 <?php
-                $feedback_query = "SELECT tbl_customer.CUSTOMER_PICTURE, tbl_customer.CUSTOMER_NAME, tbl_feedback.FEEDBACK_CONTENT FROM tbl_feedback INNER JOIN tbl_customer ON tbl_feedback.CUSTOMER_ID = tbl_customer.CUSTOMER_ID LIMIT 3";
+                $feedback_query = "SELECT tbl_customer.CUSTOMER_PICTURE, tbl_customer.CUSTOMER_NAME, tbl_feedback.FEEDBACK_CONTENT FROM tbl_feedback INNER JOIN tbl_customer ON tbl_feedback.CUSTOMER_ID = tbl_customer.CUSTOMER_ID WHERE tbl_feedback.FEEDBACK_STATUS = 1 LIMIT 3";
                 $feedback_result = $conn->query($feedback_query);
                 if ($feedback_result) {
                     while ($rows = mysqli_fetch_array($feedback_result)) {
