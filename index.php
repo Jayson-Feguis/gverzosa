@@ -77,53 +77,64 @@ include('component/client/header/header.php');
     }
 
     /*event in day or week view*/
-    .dhx_cal_event.pending_event div{
+    .dhx_cal_event.pending_event div {
         background-color: #EAB308 !important;
         color: white !important;
     }
-    .dhx_cal_event.accepted_event div{
+
+    .dhx_cal_event.accepted_event div {
         background-color: #22C55E !important;
         color: white !important;
     }
-    .dhx_cal_event.rejected_event div{
+
+    .dhx_cal_event.rejected_event div {
         background-color: #ED4343 !important;
         color: white !important;
     }
-    .dhx_cal_event.canceled_event div{
+
+    .dhx_cal_event.canceled_event div {
         background-color: #9CA3AF !important;
         color: white !important;
     }
+
     /*multi-day event in month view*/
-    .dhx_cal_event_line.pending_event div{
+    .dhx_cal_event_line.pending_event div {
         background-color: #EAB308 !important;
         color: white !important;
     }
-    .dhx_cal_event_line.accepted_event div{
+
+    .dhx_cal_event_line.accepted_event div {
         background-color: #22C55E !important;
         color: white !important;
     }
-    .dhx_cal_event_line.rejected_event div{
+
+    .dhx_cal_event_line.rejected_event div {
         background-color: #ED4343 !important;
         color: white !important;
     }
-    .dhx_cal_event_line.canceled_event div{
+
+    .dhx_cal_event_line.canceled_event div {
         background-color: #9CA3AF !important;
         color: white !important;
     }
+
     /*event with fixed time, in month view*/
-    .dhx_cal_event_clear.pending_event div{
+    .dhx_cal_event_clear.pending_event div {
         background-color: #EAB308 !important;
         color: white !important;
     }
-    .dhx_cal_event_clear.accepted_event div{
+
+    .dhx_cal_event_clear.accepted_event div {
         background-color: #22C55E !important;
         color: white !important;
     }
-    .dhx_cal_event_clear.rejected_event div{
+
+    .dhx_cal_event_clear.rejected_event div {
         background-color: #ED4343 !important;
         color: white !important;
     }
-    .dhx_cal_event_clear.canceled_event div{
+
+    .dhx_cal_event_clear.canceled_event div {
         background-color: #9CA3AF !important;
         color: white !important;
     }
@@ -174,18 +185,18 @@ unset($_SESSION['alert-text']);
             Schedule
         </h1>
         <div id="scheduler_here" class="dhx_cal_container employees-container max-w-[1536] min-h-[800px] px-[10px] sm:px-[30px]">
-        <div class="dhx_cal_navline">
-            <div class="dhx_cal_prev_button">&nbsp;</div>
-            <div class="dhx_cal_next_button">&nbsp;</div>
-            <div class="dhx_cal_today_button"></div>
-            <div class="dhx_cal_date"></div>
-            <div class="dhx_cal_tab" name="day_tab"></div>
-            <div class="dhx_cal_tab" name="week_tab"></div>
-            <div class="dhx_cal_tab" name="month_tab"></div>
+            <div class="dhx_cal_navline">
+                <div class="dhx_cal_prev_button">&nbsp;</div>
+                <div class="dhx_cal_next_button">&nbsp;</div>
+                <div class="dhx_cal_today_button"></div>
+                <div class="dhx_cal_date"></div>
+                <div class="dhx_cal_tab" name="day_tab"></div>
+                <div class="dhx_cal_tab" name="week_tab"></div>
+                <div class="dhx_cal_tab" name="month_tab"></div>
+            </div>
+            <div class="dhx_cal_header"></div>
+            <div class="dhx_cal_data"></div>
         </div>
-        <div class="dhx_cal_header"></div>
-        <div class="dhx_cal_data"></div>
-    </div>
     </section>
     <section id='about' class="div-center flex-col w-full py-[7rem]">
         <h1 class="font-Dancing text-[64px] font-bold text-primary pb-[50px]">
@@ -216,7 +227,7 @@ unset($_SESSION['alert-text']);
                 if ($employees_result) {
                     while ($rows = mysqli_fetch_array($employees_result)) {
                         echo '<div class="card-container bg-defaultwhite rounded-lg p-[50px] div-center flex-col drop-shadow-md">
-                                    <img src="../images/' . $rows['USER_PICTURE'] . '" alt="sample" class="rounded-full w-[150px]"/>
+                                    <img src="./images/' . $rows['USER_PICTURE'] . '" alt="sample" class="rounded-full w-[150px]"/>
                                     <h6 class="text-primary text-[24px]">
                                     ' . $rows['USER_FNAME'] . ' ' . $rows['USER_LNAME'] . '
                                     </h6>
@@ -233,7 +244,7 @@ unset($_SESSION['alert-text']);
                 Get in Touch
             </h1>
             <div class="div-center flex-wrap gap-[50px]">
-                <div class="div-center w-full flex-wrap"> 
+                <div class="div-center w-full flex-wrap">
                     <div class="flex flex-col gap-5">
                         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d766.7361757170355!2d121.05217880038407!3d14.580053770809352!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397c83f5c33f2b5%3A0xae6f16159cb45cce!2sG.%20Verzosa%20Salon%20%26%20Spa%20For%20Men%20And%20Women!5e1!3m2!1sen!2sph!4v1669553316457!5m2!1sen!2sph" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                         <div class="flex flex-col gap-[10px]">
@@ -273,7 +284,7 @@ unset($_SESSION['alert-text']);
             </h1>
             <div class="div-center flex-wrap gap-[50px]">
                 <?php
-                $feedback_query = "SELECT tbl_customer.CUSTOMER_PICTURE, tbl_customer.CUSTOMER_NAME, tbl_feedback.FEEDBACK_CONTENT FROM tbl_feedback INNER JOIN tbl_customer ON tbl_feedback.CUSTOMER_ID = tbl_customer.CUSTOMER_ID LIMIT 3";
+                $feedback_query = "SELECT tbl_customer.CUSTOMER_PICTURE, tbl_customer.CUSTOMER_NAME, tbl_feedback.FEEDBACK_CONTENT FROM tbl_feedback INNER JOIN tbl_customer ON tbl_feedback.CUSTOMER_ID = tbl_customer.CUSTOMER_ID WHERE tbl_feedback.FEEDBACK_STATUS = 1 LIMIT 3";
                 $feedback_result = $conn->query($feedback_query);
                 if ($feedback_result) {
                     while ($rows = mysqli_fetch_array($feedback_result)) {
@@ -296,13 +307,13 @@ unset($_SESSION['alert-text']);
         <div class="swiper mySwiper" id="swiper-service">
             <div class="swiper-wrapper" id="swiper-wrapper-service">
                 <?php
-                    $promotion_query = "SELECT BANNER_IMAGE FROM tbl_banner WHERE BANNER_STATUS = 1";
-                    $promotion_result = $conn->query($promotion_query);
-                    if ($promotion_result) {
-                        while ($row_service = mysqli_fetch_array($promotion_result)) {
-                            echo '<div id="swiper-slide-service" class="swiper-slide w-[100%] min-h-[500px] flex-wrap" style="background-image: url(../images/' . $row_service['BANNER_IMAGE'] . '); background-size: auto 100%; background-position: center;"></div>';
-                        }
+                $promotion_query = "SELECT BANNER_IMAGE FROM tbl_banner WHERE BANNER_STATUS = 1";
+                $promotion_result = $conn->query($promotion_query);
+                if ($promotion_result) {
+                    while ($row_service = mysqli_fetch_array($promotion_result)) {
+                        echo '<div id="swiper-slide-service" class="swiper-slide w-[100%] min-h-[500px] flex-wrap" style="background-image: url(./images/' . $row_service['BANNER_IMAGE'] . '); background-size: auto 100%; background-position: center;"></div>';
                     }
+                }
                 ?>
             </div>
             <div class="swiper-button-next" id="swiper-button-next-service"></div>
@@ -363,7 +374,7 @@ unset($_SESSION['alert-text']);
                                 <div class=" w-full h-[50px] div-center p-2">
                                     <h1 class="font-[18px] text-primary text-center"><?php echo $rows['PRODUCT_NAME'] ?></h1>
                                 </div>
-                                <div class="aspect-[9/9] h-[250px] w-full" style="background-image: url(../images/<?php echo $rows['PRODUCT_PICTURE'] ?>); background-size: cover; background-position: center;" alt="<?php echo $rows['PRODUCT_NAME'] ?>"></div>
+                                <div class="aspect-[9/9] h-[250px] w-full" style="background-image: url(./images/<?php echo $rows['PRODUCT_PICTURE'] ?>); background-size: cover; background-position: center;" alt="<?php echo $rows['PRODUCT_NAME'] ?>"></div>
                                 <div class=" w-full h-[60px] flex justify-end items-end p-2">
                                     <h1 class="font-[18px] text-secondary text-center font-bold">P<span class="text-[24px]"><?php echo $rows['PRODUCT_PRICE'] ?></span></h1>
                                 </div>
@@ -393,7 +404,7 @@ unset($_SESSION['alert-text']);
                         <div class=" w-full h-[50px] div-center p-2">
                             <h1 class="font-[18px] text-center"><?php echo $rows['PRODUCT_NAME'] ?></h1>
                         </div>
-                        <div class="aspect-[9/9] h-[250px] w-full" style="background-image: url(../images/<?php echo $rows['PRODUCT_PICTURE'] ?>); background-size: cover; background-position: center;" alt="<?php echo $rows['PRODUCT_NAME'] ?>"></div>
+                        <div class="aspect-[9/9] h-[250px] w-full" style="background-image: url(./images/<?php echo $rows['PRODUCT_PICTURE'] ?>); background-size: cover; background-position: center;" alt="<?php echo $rows['PRODUCT_NAME'] ?>"></div>
                         <div class=" w-full h-[60px] flex justify-end items-end p-2">
                             <h1 class="font-[18px] text-center font-bold">P<span class="text-[24px]"><?php echo $rows['PRODUCT_PRICE'] ?></span></h1>
                         </div>
@@ -477,19 +488,16 @@ unset($_SESSION['alert-text']);
     });
 
     scheduler.setLoadMode("day");
-    scheduler.templates.event_class = function (start, end, event) {
+    scheduler.templates.event_class = function(start, end, event) {
         if (event.type == "0") {
             return "pending_event";
-        }
-        else if(event.type == "1"){
+        } else if (event.type == "1") {
             return "accepted_event";
-        }
-        else if(event.type == "2"){
+        } else if (event.type == "2") {
             return "rejected_event";
-        }
-        else if(event.type == "3"){
+        } else if (event.type == "3") {
             return "canceled_event";
-        } 
+        }
     };
     scheduler.init("scheduler_here", new Date(), "day");
     scheduler.load("api/get_schedule.php");
