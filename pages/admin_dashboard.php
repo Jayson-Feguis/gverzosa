@@ -157,10 +157,10 @@
             } 
         };
         scheduler.init("scheduler_here", new Date(), "day");
-        scheduler.load("api/get_appointment.php");
+        scheduler.load("../api/get_appointment.php");
 
         var dp = scheduler.createDataProcessor({
-            url: "api/get_appointment.php",
+            url: "../api/get_appointment.php",
             mode: "JSON"
         });
     </script>

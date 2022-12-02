@@ -213,3 +213,50 @@ if (isset($_POST['edituser'])) {
         header("Location: ../pages/archive_user.php");
     }
 }
+else if (isset($_POST['showstatus']) && isset($_POST['userid'])) {
+    $userid = $_POST['userid'];
+    $usershow = $_POST['showstatus'];
+    $descriptionaudit = '';
+
+    if($usershow == '0'){
+        $usershow = '1';
+    }else if($usershow == '1'){
+        $usershow = '0';
+    }
+
+    $sql = "UPDATE tbl_user SET USER_SHOW = '$usershow' WHERE USER_ID = '$userid'";
+    $result = mysqli_query($conn, $sql);
+
+    $idaudit =  $_SESSION['user_id']; //id
+    if($usershow == 0){
+        $descriptionaudit = "Deactivate user id " . $userid; // description plus banner name
+    }else{
+        $descriptionaudit = "Activate user id " . $userid; // description plus banner name
+    }
+    
+    $audit = "INSERT INTO tbl_audit (USER_ID, AUDIT_ACTIVITY) VALUES ('$idaudit', '$descriptionaudit' )";
+    $query_audit = mysqli_query($conn, $audit);
+
+
+    if ($query_audit) {
+        // SUCCESS
+        $_SESSION['alert'] = true;
+        $_SESSION['alert-icon'] = "success";
+        $_SESSION['alert-title'] = "Success";
+        $_SESSION['alert-text'] = "User updated successfully";
+    } else {
+        // ERROR
+        $_SESSION['alert'] = true;
+        $_SESSION['alert-icon'] = "error";
+        $_SESSION['alert-title'] = "Error";
+        $_SESSION['alert-text'] = "Something went wrong";
+    }
+}
+// else{
+//      // ERROR
+//      $_SESSION['alert'] = true;
+//      $_SESSION['alert-icon'] = "error";
+//      $_SESSION['alert-title'] = "Error";
+//      $_SESSION['alert-text'] = "Something went wrong";
+//      header("Location: ../pages/archive_user.php");
+// }

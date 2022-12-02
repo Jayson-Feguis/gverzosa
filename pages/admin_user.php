@@ -127,7 +127,6 @@ function userType($num)
                         <div class="bg-gray-50 px-4 py-3 gap-5 sm:flex sm:flex-row-reverse sm:px-6">
                             <button type="submit" name="deleteuser" class="text-white bg-red-500 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:red-blue-800">Delete</button>
                             <button type="button" onclick="closeModaldel()" class="mt-3 inline-flex w-full transition-all duration-300 justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">Cancel</button>
-
                         </div>
                     </form>
                 </div>
@@ -153,6 +152,8 @@ function userType($num)
                 <th>User Type</th>
                 <th style="display: none;">User Type</th>
                 <th>Date Created</th>
+                <th style="display: none;">User Show</th>
+                <th>Show User</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -176,19 +177,33 @@ function userType($num)
                         <td><?php echo userType($row['USER_TYPE']); ?></td>
                         <td style="display: none;"><?php echo $row['USER_TYPE']; ?> </td>
                         <td><?php echo $row['USER_DATETIME_CREATED']; ?> </td>
-                        <td class="text-center">
-                            <button type="button" class="editUser bg-transparent hover:bg-gray-300 text-blue-700 font-semibold hover:text-white py-[5px] px-2 border border-gray-500 hover:border-border-gray-300 rounded">
-                                <i class="fa fa-pencil text-[16px]" aria-hidden="true"></i>
-                            </button>
-                            <button type="button" class="deleteUser bg-transparent hover:bg-gray-300 text-blue-700 font-semibold hover:text-white py-[5px] px-2 border border-gray-500 hover:border-border-gray-300 rounded">
-                                <i class="fa fa-trash-o text-[16px]" aria-hidden="true"></i>
-                            </button>
+                        <td style="display: none;"><?php echo $row['USER_SHOW']; ?> </td>
+                        <td id="user-show-<?php echo $row['USER_ID']; ?>">
+                        <?php if ($row['USER_SHOW'] == 0) {
+                                    echo '<span class="bg-gray-200 p-2 text-[14px] border border-gray-500 rounded-sm">Deactivated</span>';
+                                } else if ($row['USER_SHOW'] == 1) {
+                                    echo '<span class="bg-green-500 text-white p-2 text-[14px] border border-gray-500 rounded-sm">Activated</span>';
+                                }?>
+                    </td>
+                        <td class="text-center flex items-center gap-1"><label class="inline-flex relative items-center cursor-pointer">
+                                <?php if ($row['USER_SHOW'] == 0) {
+                                    echo ' <input type="checkbox" value="" id="showuser" name="showuser" onclick="showUser('.$row['USER_ID'].','.$row['USER_SHOW'].')" class="showUser sr-only peer">';
+                                } else if ($row['USER_SHOW'] == 1) {
+                                    echo ' <input type="checkbox" value="" id="showuser" name="showuser" onclick="showUser('.$row['USER_ID'].','.$row['USER_SHOW'].')" class="showUser sr-only peer" checked>';
+                                }?>
+                                
+                                    <div class="w-11 h-6 peer-focus:outline-none dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-300 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                                </label>
+                                <button type="button" class="editUser bg-transparent hover:bg-gray-300 text-blue-700 font-semibold hover:text-white py-[5px] px-2 border border-gray-500 hover:border-border-gray-300 rounded">
+                                    <i class="fa fa-pencil text-[16px]" aria-hidden="true"></i>
+                                </button>
+                                <button type="button" class="deleteUser bg-transparent hover:bg-gray-300 text-blue-700 font-semibold hover:text-white py-[5px] px-2 border border-gray-500 hover:border-border-gray-300 rounded">
+                                    <i class="fa fa-trash-o text-[16px]" aria-hidden="true"></i>
+                                </button>
                         </td>
                     </tr>
             <?php
                 }
-            } else {
-                echo "";
             }
             ?>
         </tbody>
@@ -211,22 +226,6 @@ function userType($num)
         }
 
         $(document).ready(function() {
-
-            // TINANGGAL KO KASE DI NACLICLICK YUNG BUTTON PAG NASA PAGE 2 and so on ----------------
-
-            // $('.editProduct').on('click', function() {
-            //     $("#modal-edit").removeClass("hidden");
-            //     $tr = $(this).closest('tr');
-            //     var data = $tr.children("td").map(function() {
-            //         return $(this).text();
-            //     }).get();
-            //     console.log(data);
-            //     $('#productid').val(data[0]);
-            //     $('#productname').val(data[1]);
-            //     $('#productdescription').val(data[3]);
-            //     $('#productprice').val(parseFloat(data[4]));
-
-            // });
             var table = $('#data-table').DataTable();
             $('#data-table tbody').on('click', '.editUser', function() {
                 var data = table.row($(this).parents('tr')).data();
@@ -253,27 +252,12 @@ function userType($num)
         });
 
         $(document).ready(function() {
-
-            // TINANGGAL KO KASE DI NACLICLICK YUNG BUTTON PAG NASA PAGE 2 and so on ----------------
-
-            // $('.deleteProduct').on('click', function() {
-            //     $("#modal-delete").removeClass("hidden");
-            //     $tr = $(this).closest('tr');
-            //     var data = $tr.children("td").map(function() {
-            //         return $(this).text();
-            //     }).get();
-            //     console.log(data[0]);
-            //     $('#productidDelete').val(data[0]);
-
-            // });
-
             var table = $('#data-table').DataTable();
             $('#data-table tbody').on('click', '.deleteUser', function() {
                 var data = table.row($(this).parents('tr')).data();
                 $("#modal-delete").removeClass("hidden");
                 $('#userDelete').val(data[0]);
             });
-
         });
 
         $(document).ready(function() {
@@ -281,5 +265,16 @@ function userType($num)
                 $("#modal-add").removeClass("hidden");
             });
         });
+
+        function showUser(id, status) {
+            $.ajax({
+              url: '../api/post_user.php',
+              type: "POST",
+              data: {userid: id, showstatus: status},
+              success: function(data){
+                window.location = location;
+              }
+            });
+        }
     </script>
 </div>
