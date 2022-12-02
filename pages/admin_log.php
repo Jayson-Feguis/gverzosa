@@ -20,7 +20,7 @@ function getUserName($id, $conn)
 
     <?php
 
-    $query = "SELECT * FROM tbl_audit ";
+    $query = "SELECT * FROM tbl_audit ORDER BY AUDIT_ID DESC ";
     $query_run = mysqli_query($conn, $query);
     ?>
     <table id="data-table-audit" class="display" style="width:100%">
