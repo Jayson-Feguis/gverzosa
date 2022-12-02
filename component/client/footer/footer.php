@@ -13,7 +13,7 @@ function loginUrl(){
 }
 
 ?>
-
+        <script src="https://unpkg.com/flowbite@1.5.4/dist/flowbite.js"></script>
         <footer class="bg-primary div-center font-Montserrat text-defaultwhite md:py-[100px]">
             <div class="footer-container flex flex-wrap w-full max-w-[1536px] py-[30px]">
                 <div class="logo w-full md:w-[33%] div-center flex-col font-black">
