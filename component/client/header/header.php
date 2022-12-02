@@ -39,6 +39,8 @@ if ($_SERVER['REQUEST_URI'] == "/gverzosa/") {
     <?php
     }
     ?>
+    <!-- FLOWBITE -->
+    <link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.4/dist/flowbite.min.css" />
     <!-- SCHEDULER -->
     <script src="https://cdn.dhtmlx.com/scheduler/edge/dhtmlxscheduler.js"></script>
     <link href="https://cdn.dhtmlx.com/scheduler/edge/dhtmlxscheduler_material.css" rel="stylesheet" type="text/css" charset="utf-8" />
@@ -73,17 +75,20 @@ if ($_SERVER['REQUEST_URI'] == "/gverzosa/") {
             var scroll = $(window).scrollTop();
             if (scroll >= 100) {
                 $("nav").removeClass("bg-defaultwhite text-primary bg-opacity-0").addClass("bg-primary text-defaultwhite bg-opacity-100");
+                $(".nav-mobile").removeClass("bg-defaultwhite text-primary bg-opacity-0").addClass("bg-primary text-defaultwhite bg-opacity-100");
                 $(".nav-container").removeClass("py-10").addClass("py-5");
                 if (!$(".nav-items a").hasClass("text-secondary")) {
                     $(".nav-items a").addClass("text-defaultwhite");
-
+                    $(".burger-menu").addClass("text-defaultwhite");
                 }
             } else {
                 $("nav").removeClass("bg-primary text-defaultwhite bg-opacity-100").addClass("bg-defaultwhite text-primary bg-opacity-0");
+                $(".nav-mobile").removeClass("bg-primary text-defaultwhite bg-opacity-100").addClass("bg-defaultwhite text-primary");
                 $(".nav-container").removeClass("py-5").addClass("py-10");
                 $(".nav-items a").removeClass("text-defaultwhite");
                 if (!$(".nav-items a").hasClass("text-secondary")) {
                     $(".nav-items a").removeClass("text-defaultwhite");
+                    $(".burger-menu").removeClass("text-defaultwhite");
                 }
             }
         });
@@ -93,12 +98,15 @@ if ($_SERVER['REQUEST_URI'] == "/gverzosa/") {
 
 <body class="bg-defaultwhite block">
     <nav class="div-center fixed z-[9999] transition-all duration-300">
-        <div class="nav-container py-10 transition-all duration-300">
+        <div class="nav-container justify-between px-5 py-10 transition-all duration-300">
             <div class="logo div-center flex-col font-black">
                 <h1 class="font-Dancing text-[2rem]">G. Verzosa</h1>
                 <h5 class="font-Montserrat text-[1rem]">Salon & Spa</5>
             </div>
-            <ul class="nav-items flex justify-center items-center gap-[28px] uppercase">
+            <button data-collapse-toggle="navbarr" type="button" class="inline-flex items-center p-2 ml-3 text-md text-gray-500 rounded-lg md:hidden focus:outline-none" aria-controls="navbarr" aria-expanded="false">
+                <i class="fa fa-bars burger-menu text-[24px]" aria-hidden="true"></i>
+            </button>
+            <ul class="nav-items justify-center items-center gap-[28px] uppercase hidden md:flex">
                 <?php
                 // HOME PAGE
                 if ($_SERVER['REQUEST_URI'] == "/gverzosa/") {
@@ -119,11 +127,35 @@ if ($_SERVER['REQUEST_URI'] == "/gverzosa/") {
                     <button id="btn-book" onclick="openBookModal()" class="bg-secondary text-defaultwhite text-[20px] font-bold py-[5px] px-[10px] rounded-md font-Montserrat transition-all duration-300 hover:bg-tertiary">Book Now</button>
                 <?php
                 }
-
                 ?>
             </ul>
         </div>
     </nav>
+    <div id="navbarr" class="nav-mobile div-center z-[10] text-[24px] md:hidden fixed top-0 left-0 bg-white w-screen h-screen">
+        <ul class="nav-items justify-center items-center gap-[28px] uppercase flex flex-col md:hidden">
+            <?php
+            // HOME PAGE
+            if ($_SERVER['REQUEST_URI'] == "/gverzosa/") {
+            ?>
+                <a class="home hover:cursor-pointer hover:text-secondary transition-color duration-300" href="#home">Home</a>
+                <a class="about hover:cursor-pointer hover:text-secondary transition-color duration-300" href="#about">About Us</a>
+                <a class="services hover:cursor-pointer hover:text-secondary transition-color duration-300" href="#services">Services</a>
+                <a class="products hover:cursor-pointer hover:text-secondary transition-color duration-300" href="#products">Products</a>
+                <button id="btn-book" onclick="openBookModal()" class="bg-secondary text-defaultwhite text-[20px] font-bold py-[5px] px-[10px] rounded-md font-Montserrat transition-all duration-300 hover:bg-tertiary">Book Now</button>
+
+            <?php
+            } else if ($_SERVER['REQUEST_URI'] == "/gverzosa/pages/login.php") {
+            ?>
+                <a class="hover:cursor-pointer hover:text-secondary transition-color duration-300" href="../">Home</a>
+                <a class="hover:cursor-pointer hover:text-secondary transition-color duration-300" href="../#about">About Us</a>
+                <a class="hover:cursor-pointer hover:text-secondary transition-color duration-300" href="../#services">Services</a>
+                <a class="hover:cursor-pointer hover:text-secondary transition-color duration-300" href="../#products">Products</a>
+                <button id="btn-book" onclick="openBookModal()" class="bg-secondary text-defaultwhite text-[20px] font-bold py-[5px] px-[10px] rounded-md font-Montserrat transition-all duration-300 hover:bg-tertiary">Book Now</button>
+            <?php
+            }
+            ?>
+        </ul>
+    </div>
     <div id="modal-book-now" class="relative z-[10000] hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
         <div class="fixed inset-0 bg-primary bg-opacity-75 transition-opacity"></div>
         <div class="fixed inset-0 z-10 overflow-y-auto">
@@ -218,23 +250,22 @@ if ($_SERVER['REQUEST_URI'] == "/gverzosa/") {
                     $(".services").css("color", "#F7FBF1");
                     $(".products").css("color", "#F7FBF1");
                     $(".about").css("color", "#F7FBF1");
-                } else if (scroll >= 2317 && scroll <= 4976) {
+                } else if (scroll >= 2317 && scroll <= 6570) {
                     $(".home").css("color", "#F7FBF1");
                     $(".services").css("color", "#F7FBF1");
                     $(".products").css("color", "#F7FBF1");
                     $(".about").css("color", "#7BC228");
-                } else if (scroll >= 4977 && scroll <= 6180) {
+                } else if (scroll >= 6571 && scroll <= 8188) {
                     $(".home").css("color", "#F7FBF1");
                     $(".about").css("color", "#F7FBF1");
                     $(".services").css("color", "#7BC228");
                     $(".products").css("color", "#F7FBF1");
-                } else if (scroll >= 6181 && scroll <= 7781) {
+                } else if (scroll >= 8189 && scroll <= 10685) {
                     $(".home").css("color", "#F7FBF1");
                     $(".about").css("color", "#F7FBF1");
                     $(".services").css("color", "#F7FBF1");
                     $(".products").css("color", "#7BC228");
                 }
-
             })
         })
 
