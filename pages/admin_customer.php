@@ -144,6 +144,8 @@ unset($_SESSION['alert-text']);
                     <form action="../api/post_customer.php" method="post" enctype="multipart/form-data">
                         <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                             <input type="text" id="customerfeedbackid" name="feedbackcustomerid" class=" hidden bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="userid" required>
+                            <input type="text" id="customerfeedbackname" name="feedbackcustomername" class="  bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name" required>
+
                             <h1 class="font-bold text-primary text-center text-[20px] py-[20px]">Customer's Feedback</h1>
                             <label for="feedbackcontent">Feedback Content</label>
                             <textarea type="text" id="feedbackcontent" name="feedbackcontent" rows="4" class="block border border-grey-light w-full p-3 rounded mb-4" placeholder="Type here ..." required></textarea>
@@ -313,6 +315,7 @@ unset($_SESSION['alert-text']);
                 var data = table.row($(this).parents('tr')).data();
                 $("#modal-feedback").removeClass("hidden");
                 $('#customerfeedbackid').val(data[0]);
+                $('#customerfeedbackname').val(data[1]);
             });
         });
     </script>

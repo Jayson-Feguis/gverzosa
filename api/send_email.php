@@ -9,7 +9,10 @@ if (isset($_POST['sendfeedback'])) {
     $mobile_number = $_POST['mobilenumber'];
     $feedback = $_POST['feedback'];
     $email_subject = "G. Verzosa - Feedback";
-    
+    $status = 0;
+    $id = 1;
+    $sql = "INSERT tbl_feedback (FEEDBACK_CONTENT, FEEDBACK_STATUS, CUSTOMER_ID, CUSTOMER_NAME) VALUES ('$feedback ', '$status', '$id', '$fullname')";
+    $result = mysqli_query($conn, $sql);
     $send_email = sendEmailFeedback($fullname, $email, $mobile_number, $email_subject, $feedback);
     if ($send_email != 1) {
         // ERROR
@@ -26,5 +29,4 @@ if (isset($_POST['sendfeedback'])) {
         $_SESSION['alert-text'] = "Feedback sent successfully";
         header("Location: ../");
     }
-    
 }

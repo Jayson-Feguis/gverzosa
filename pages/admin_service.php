@@ -33,7 +33,7 @@ function getServiceCategory($id, $conn)
 ?>
 <div class="flex-col w-full min-h-screen pl-[270px] mt-[90px] pr-[20px] pb-[150px] overflow-auto">
     <?php
-    if ($_SESSION['user_type'] != 3) {
+    if ($_SESSION['user_type'] != 2) {
         echo '<div class="text-left w-full mb-5">
                     <button class="addSevice bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 border border-blue-700 rounded">
                         Add Service
@@ -149,7 +149,7 @@ function getServiceCategory($id, $conn)
                 <th>Price</th>
                 <th>Date Created</th>
                 <?php
-                if ($_SESSION['user_type'] != 3) {
+                if ($_SESSION['user_type'] != 2) {
                     echo '<th>Actions</th>';
                 }
                 ?>
@@ -171,7 +171,7 @@ function getServiceCategory($id, $conn)
                         <td><?php echo $row['SERVICE_PRICE']; ?></td>
                         <td><?php echo $row['SERVICE_DATETIME_CREATED']; ?> </td>
                         <?php
-                        if ($_SESSION['user_type'] != 3) {
+                        if ($_SESSION['user_type'] != 2) {
                             echo '<td>
                                         <button type="button" class="editService bg-transparent hover:bg-gray-300 text-blue-700 font-semibold hover:text-white py-[5px] px-2 border border-gray-500 hover:border-border-gray-300 rounded">
                                             <i class="fa fa-pencil text-[16px]" aria-hidden="true"></i>
