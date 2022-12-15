@@ -11,7 +11,7 @@ if (isset($_GET['logout'])) {
     header("location: login.php");
 }
 
-if ($_SESSION['user_type'] == 2 || $_SESSION['user_type'] == 3) {
+if ($_SESSION['user_type'] == 2) {
     if ($_SERVER['REQUEST_URI'] != "/gverzosa/pages/admin_dashboard.php") {
         if ($_SERVER['REQUEST_URI'] != "/gverzosa/pages/admin_appointment.php") {
             if ($_SERVER['REQUEST_URI'] != "/gverzosa/pages/admin_product.php") {
@@ -154,13 +154,11 @@ if ($_SESSION['user_type'] == 2 || $_SESSION['user_type'] == 3) {
                 <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
                     <?php
                     if ($_SESSION['user_type'] == 1) {
-                        echo 'Super Admin';
-                    } else if ($_SESSION['user_type'] == 2) {
                         echo 'Admin';
-                    }
-                    if ($_SESSION['user_type'] == 3) {
+                    } else if ($_SESSION['user_type'] == 2) {
                         echo 'Employee';
                     }
+
                     ?>
                 </span>
             </a>
@@ -281,7 +279,7 @@ if ($_SESSION['user_type'] == 2 || $_SESSION['user_type'] == 3) {
                         </li>
                     </ul>
                 ';
-        } else if ($_SESSION['user_type'] == 2 || $_SESSION['user_type'] == 3) {
+        } else if ($_SESSION['user_type'] == 2) {
             echo '
                     <ul class="relative">
                         <li>

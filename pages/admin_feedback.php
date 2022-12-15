@@ -84,6 +84,7 @@ function getCustomerName($id, $conn)
                 <th>Customer Name</th>
                 <th>Feedback</th>
                 <th>Date Created</th>
+                <th>Show User</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -94,14 +95,30 @@ function getCustomerName($id, $conn)
             ?>
                     <tr>
                         <td><?php echo $row['FEEDBACK_ID']; ?> </td>
-                        <td><?php echo getCustomerName($row['CUSTOMER_ID'], $conn); ?> </td>
+                        <td><?php echo $row['CUSTOMER_NAME'];  ?> </td>
                         <td><?php echo $row['FEEDBACK_CONTENT']; ?> </td>
                         <td><?php echo $row['FEEDBACK_DATETIME_CREATED']; ?> </td>
-                        <td class="text-center">
-                            <button type="button" class="editFeedback bg-transparent hover:bg-gray-300 text-blue-700 font-semibold hover:text-white py-[5px] px-2 border border-gray-500 hover:border-border-gray-300 rounded">
+                        <td id="user-show-<?php echo $row['FEEDBACK_ID']; ?>">
+                            <?php if ($row['FEEDBACK_SHOW'] == 0) {
+                                echo '<span class="bg-gray-200 p-2 text-[14px] border border-gray-500 rounded-sm">Deactivated</span>';
+                            } else if ($row['FEEDBACK_SHOW'] == 1) {
+                                echo '<span class="bg-green-500 text-white p-2 text-[14px] border border-gray-500 rounded-sm">Activated</span>';
+                            } ?>
+                        </td>
+
+                        <td class="text-center flex items-center gap-1"><label class="inline-flex relative items-center cursor-pointer">
+                                <?php if ($row['FEEDBACK_SHOW'] == 0) {
+                                    echo ' <input type="checkbox" value="" id="showuser" name="showuser" onclick="showUser(' . $row['FEEDBACK_ID'] . ',' . $row['FEEDBACK_SHOW'] . ')" class="showUser sr-only peer">';
+                                } else if ($row['FEEDBACK_SHOW'] == 1) {
+                                    echo ' <input type="checkbox" value="" id="showuser" name="showuser" onclick="showUser(' . $row['FEEDBACK_ID'] . ',' . $row['FEEDBACK_SHOW'] . ')" class="showUser sr-only peer" checked>';
+                                } ?>
+
+                                <div class="w-11 h-6 peer-focus:outline-none dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-300 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                            </label>
+                            <button type="button" class="editUser bg-transparent hover:bg-gray-300 text-blue-700 font-semibold hover:text-white py-[5px] px-2 border border-gray-500 hover:border-border-gray-300 rounded">
                                 <i class="fa fa-pencil text-[16px]" aria-hidden="true"></i>
                             </button>
-                            <button type="button" class="deleteFeedback bg-transparent hover:bg-gray-300 text-blue-700 font-semibold hover:text-white py-[5px] px-2 border border-gray-500 hover:border-border-gray-300 rounded">
+                            <button type="button" class="deleteUser bg-transparent hover:bg-gray-300 text-blue-700 font-semibold hover:text-white py-[5px] px-2 border border-gray-500 hover:border-border-gray-300 rounded">
                                 <i class="fa fa-trash-o text-[16px]" aria-hidden="true"></i>
                             </button>
                         </td>
@@ -187,5 +204,22 @@ function getCustomerName($id, $conn)
                 $("#modal-add").removeClass("hidden");
             });
         });
+
+
+
+
+        function showUser(id, status) {
+            $.ajax({
+                url: '../api/post_customer.php',
+                type: "POST",
+                data: {
+                    userid: id,
+                    showstatus: status
+                },
+                success: function(data) {
+                    window.location = location;
+                }
+            });
+        }
     </script>
 </div>

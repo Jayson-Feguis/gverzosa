@@ -72,7 +72,7 @@ function getCustomerName($id, $conn)
             ?>
                     <tr>
                         <td style="display: none;"><?php echo $row['FEEDBACK_ID']; ?> </td>
-                        <td><?php echo getCustomerName($row['CUSTOMER_ID'], $conn); ?> </td>
+                        <td><?php echo $row['CUSTOMER_NAME']; ?> </td>
                         <td><?php echo $row['FEEDBACK_CONTENT']; ?> </td>
                         <td><?php echo $row['FEEDBACK_DATETIME_CREATED']; ?> </td>
                         <td class="text-center">

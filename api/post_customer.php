@@ -198,8 +198,10 @@ if (isset($_POST['editcustomer'])) {
 } else if (isset($_POST['feedbackcustomer'])) {
     $id = $_POST['feedbackcustomerid'];
     $content = $_POST['feedbackcontent'];
+    $name = $_POST['feedbackcustomername'];
     $status = 1;
-    $sql = "INSERT tbl_feedback (FEEDBACK_CONTENT, FEEDBACK_STATUS, CUSTOMER_ID) VALUES ('$content', '$status', '$id')";
+
+    $sql = "INSERT tbl_feedback (FEEDBACK_CONTENT, FEEDBACK_STATUS, CUSTOMER_ID, CUSTOMER_NAME) VALUES ('$content', '$status', '$id', '$name')";
     $result = mysqli_query($conn, $sql);
 
 
@@ -308,5 +310,43 @@ if (isset($_POST['editcustomer'])) {
         $_SESSION['alert-title'] = "Error";
         $_SESSION['alert-text'] = "Something went wrong";
         header("Location: ../pages/archive_feedback.php");
+    }
+} else if (isset($_POST['showstatus']) && isset($_POST['userid'])) {
+    $userid = $_POST['userid'];
+    $usershow = $_POST['showstatus'];
+    $descriptionaudit = '';
+
+    if ($usershow == '0') {
+        $usershow = '1';
+    } else if ($usershow == '1') {
+        $usershow = '0';
+    }
+
+    $sql = "UPDATE tbl_feedback SET FEEDBACK_SHOW = '$usershow' WHERE FEEDBACK_ID = '$userid'";
+    $result = mysqli_query($conn, $sql);
+
+    $idaudit =  $_SESSION['user_id']; //id
+    if ($usershow == 0) {
+        $descriptionaudit = "Deactivate user id " . $userid; // description plus banner name
+    } else {
+        $descriptionaudit = "Activate user id " . $userid; // description plus banner name
+    }
+
+    $audit = "INSERT INTO tbl_audit (USER_ID, AUDIT_ACTIVITY) VALUES ('$idaudit', '$descriptionaudit' )";
+    $query_audit = mysqli_query($conn, $audit);
+
+
+    if ($query_audit) {
+        // SUCCESS
+        $_SESSION['alert'] = true;
+        $_SESSION['alert-icon'] = "success";
+        $_SESSION['alert-title'] = "Success";
+        $_SESSION['alert-text'] = "Feedback updated successfully";
+    } else {
+        // ERROR
+        $_SESSION['alert'] = true;
+        $_SESSION['alert-icon'] = "error";
+        $_SESSION['alert-title'] = "Error";
+        $_SESSION['alert-text'] = "Something went wrong";
     }
 }

@@ -99,14 +99,14 @@ if ($_SERVER['REQUEST_URI'] == "/gverzosa/") {
 <body class="bg-defaultwhite block">
     <nav class="div-center fixed z-[9999] transition-all duration-300">
         <div class="nav-container justify-between px-5 py-10 transition-all duration-300">
-            <div class="logo div-center flex-col font-black">
-                <h1 class="font-Dancing text-[2rem]">G. Verzosa</h1>
-                <h5 class="font-Montserrat text-[1rem]">Salon & Spa</5>
+            <div class="logo div-center pl-[50px] flex-col font-black">
+                <h1 class="drop-shadow font-Dancing text-[2rem]">G. Verzosa</h1>
+                <h5 class="drop-shadow font-Montserrat text-[1rem]">Salon & Spa</5>
             </div>
             <button data-collapse-toggle="navbarr" type="button" class="inline-flex items-center p-2 ml-3 text-md text-gray-500 rounded-lg md:hidden focus:outline-none" aria-controls="navbarr" aria-expanded="false">
                 <i class="fa fa-bars burger-menu text-[24px]" aria-hidden="true"></i>
             </button>
-            <ul class="nav-items justify-center items-center gap-[28px] uppercase hidden md:flex">
+            <ul class="nav-items justify-center items-center gap-[28px] pr-[40px] uppercase hidden md:flex">
                 <?php
                 // HOME PAGE
                 if ($_SERVER['REQUEST_URI'] == "/gverzosa/") {
@@ -131,7 +131,7 @@ if ($_SERVER['REQUEST_URI'] == "/gverzosa/") {
             </ul>
         </div>
     </nav>
-    <div id="navbarr" class="nav-mobile div-center z-[10] text-[24px] md:hidden fixed top-0 left-0 bg-white w-screen h-screen">
+    <div id="navbarr" class="hidden nav-mobile div-center z-[10] text-[24px] md:hidden fixed top-0 left-0 bg-white w-screen h-screen">
         <ul class="nav-items justify-center items-center gap-[28px] uppercase flex flex-col md:hidden">
             <?php
             // HOME PAGE
@@ -178,7 +178,7 @@ if ($_SERVER['REQUEST_URI'] == "/gverzosa/") {
                             <input id="mobilenumber" type="phone" class="block border border-grey-light w-full p-3 rounded mb-4" name="mobilenumber" placeholder="09123456789" pattern="[0,9]{2}[0-9]{9}" required />
                             <label for="date">Appointment Date</label>
                             <input id="date" type="date" class="block border border-grey-light w-full p-3 rounded mb-4" name="date" placeholder="11/17/2022" min="<?php echo date("Y-m-d"); ?>" required />
-                            <label for="time">Appointment Time (opening hours 10:00 - 21:00)</label>
+                            <label for="time">Appointment Time (opening hours 10:00 am - 9:00 pm)</label>
                             <input id="time" type="time" list="times" class="block border border-grey-light w-full p-3 rounded mb-4" name="time" placeholder="09:00" required />
                             <datalist id="times">
                                 <option>10:00:00</option>
@@ -240,6 +240,8 @@ if ($_SERVER['REQUEST_URI'] == "/gverzosa/") {
         $(document).ready(function() {
             $(window).scroll(function() {
                 var scroll = $(window).scrollTop();
+
+                console.log(scroll)
                 if (scroll == 0) {
                     $(".home").css("color", "#7BC228");
                     $(".services").css("color", "#4B3D40");
@@ -250,17 +252,17 @@ if ($_SERVER['REQUEST_URI'] == "/gverzosa/") {
                     $(".services").css("color", "#F7FBF1");
                     $(".products").css("color", "#F7FBF1");
                     $(".about").css("color", "#F7FBF1");
-                } else if (scroll >= 2317 && scroll <= 6570) {
+                } else if (scroll >= 2317 && scroll <= 5111) {
                     $(".home").css("color", "#F7FBF1");
                     $(".services").css("color", "#F7FBF1");
                     $(".products").css("color", "#F7FBF1");
                     $(".about").css("color", "#7BC228");
-                } else if (scroll >= 6571 && scroll <= 8188) {
+                } else if (scroll >= 5112 && scroll <= 6705) {
                     $(".home").css("color", "#F7FBF1");
                     $(".about").css("color", "#F7FBF1");
                     $(".services").css("color", "#7BC228");
                     $(".products").css("color", "#F7FBF1");
-                } else if (scroll >= 8189 && scroll <= 10685) {
+                } else if (scroll >= 6706 && scroll <= 10685) {
                     $(".home").css("color", "#F7FBF1");
                     $(".about").css("color", "#F7FBF1");
                     $(".services").css("color", "#F7FBF1");
