@@ -236,7 +236,7 @@ unset($_SESSION['alert-text']);
 
     <section id='about_section2' class="div-center bg-tertiary flex-col w-full py-[7rem]">
         <div class="employees-container div-center flex-col w-full">
-            <?php $feedback_query = "SELECT tbl_customer.CUSTOMER_PICTURE, tbl_customer.CUSTOMER_NAME, tbl_feedback.FEEDBACK_CONTENT FROM tbl_feedback INNER JOIN tbl_customer ON tbl_feedback.CUSTOMER_ID = tbl_customer.CUSTOMER_ID WHERE tbl_feedback.FEEDBACK_STATUS = 1 && tbl_feedback.FEEDBACK_SHOW = 1 LIMIT 3";
+            <?php $feedback_query = "SELECT  * FROM tbl_feedback WHERE tbl_feedback.FEEDBACK_STATUS = 1 && tbl_feedback.FEEDBACK_SHOW = 1 LIMIT 3";
             $feedback_result = $conn->query($feedback_query);
 
             $rows = mysqli_fetch_array($feedback_result);
@@ -249,7 +249,7 @@ unset($_SESSION['alert-text']);
             <?php } ?>
             <div class="div-center flex-wrap gap-[50px]">
                 <?php
-                $feedback_query = "SELECT tbl_customer.CUSTOMER_PICTURE, tbl_customer.CUSTOMER_NAME, tbl_feedback.FEEDBACK_CONTENT FROM tbl_feedback INNER JOIN tbl_customer ON tbl_feedback.CUSTOMER_ID = tbl_customer.CUSTOMER_ID WHERE tbl_feedback.FEEDBACK_STATUS = 1 && tbl_feedback.FEEDBACK_SHOW = 1 LIMIT 3";
+                $feedback_query = "SELECT  * FROM tbl_feedback WHERE tbl_feedback.FEEDBACK_STATUS = 1 && tbl_feedback.FEEDBACK_SHOW = 1 LIMIT 3";
                 $feedback_result = $conn->query($feedback_query);
                 if ($feedback_result) {
                     while ($rows = mysqli_fetch_array($feedback_result)) {
@@ -408,6 +408,8 @@ unset($_SESSION['alert-text']);
                         </div>
                     </div>
                     <form action="api/send_email.php" method="post" class="w-full md:w-[500px] px-4 pt-5 pb-4 sm:p-6 sm:pb-4 grow-1 flex flex-col">
+                        <input type="text" id="picture" name="picture" value="profile.png" class=" hidden flex grow-1 border border-grey-light w-full p-3 rounded mb-4" placeholder="ex. Juan" required>
+
                         <label for="fullname">Full Name</label>
                         <input type="text" id="fullname" name="fullname" class="flex grow-1 border border-grey-light w-full p-3 rounded mb-4" placeholder="ex. Juan" required>
                         <label for="email">Email</label>

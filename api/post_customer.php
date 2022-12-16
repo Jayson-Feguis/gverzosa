@@ -199,9 +199,10 @@ if (isset($_POST['editcustomer'])) {
     $id = $_POST['feedbackcustomerid'];
     $content = $_POST['feedbackcontent'];
     $name = $_POST['feedbackcustomername'];
+    $picture = $_POST['feedbackcustomerpicture'];
     $status = 1;
 
-    $sql = "INSERT tbl_feedback (FEEDBACK_CONTENT, FEEDBACK_STATUS, CUSTOMER_ID, CUSTOMER_NAME) VALUES ('$content', '$status', '$id', '$name')";
+    $sql = "INSERT tbl_feedback (FEEDBACK_CONTENT, FEEDBACK_STATUS, CUSTOMER_ID, CUSTOMER_NAME, CUSTOMER_PICTURE) VALUES ('$content', '$status', '$id', '$name', '$picture')";
     $result = mysqli_query($conn, $sql);
 
 

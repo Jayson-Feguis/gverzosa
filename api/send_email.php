@@ -6,12 +6,13 @@ date_default_timezone_set('Asia/Manila');
 if (isset($_POST['sendfeedback'])) {
     $fullname = $_POST['fullname'];
     $email = $_POST['email'];
+    $pic = $_POST['picture'];
     $mobile_number = $_POST['mobilenumber'];
     $feedback = $_POST['feedback'];
     $email_subject = "G. Verzosa - Feedback";
-    $status = 0;
+    $status = 1;
     $id = 1;
-    $sql = "INSERT tbl_feedback (FEEDBACK_CONTENT, FEEDBACK_STATUS, CUSTOMER_ID, CUSTOMER_NAME) VALUES ('$feedback ', '$status', '$id', '$fullname')";
+    $sql = "INSERT tbl_feedback (FEEDBACK_CONTENT, FEEDBACK_STATUS, CUSTOMER_ID, CUSTOMER_NAME, CUSTOMER_PICTURE) VALUES ('$feedback ', '$status', '$id', '$fullname', '$pic')";
     $result = mysqli_query($conn, $sql);
     $send_email = sendEmailFeedback($fullname, $email, $mobile_number, $email_subject, $feedback);
     if ($send_email != 1) {
