@@ -95,6 +95,11 @@ if ($_SERVER['REQUEST_URI'] == "/gverzosa/") {
         });
     </script>
 
+    <style>
+        nav .nav-container ul li.active a {
+            color: #7BC228;
+        }
+    </style>
 
 </head>
 
@@ -114,10 +119,10 @@ if ($_SERVER['REQUEST_URI'] == "/gverzosa/") {
                 if ($_SERVER['REQUEST_URI'] == "/gverzosa/") {
                 ?>
 
-                    <li> <a href="#home" class="home  hover:cursor-pointer hover:text-secondary transition-color duration-300">Home</a> </li>
-                    <li> <a class="about  hover:cursor-pointer hover:text-secondary transition-color duration-300" href="#about">About Us</a> </li>
-                    <li> <a class="services hover:cursor-pointer hover:text-secondary transition-color duration-300" href="#services">Services</a> </li>
-                    <li> <a class="products hover:cursor-pointer hover:text-secondary transition-color duration-300" href="#products">Products</a> </li>
+                    <li class="active home"> <a href="#home" class=" home  hover:cursor-pointer hover:text-secondary transition-color duration-300">Home</a> </li>
+                    <li class="about"> <a class="about  hover:cursor-pointer hover:text-secondary transition-color duration-300" href="#about">About Us</a> </li>
+                    <li class="services"> <a class="services hover:cursor-pointer hover:text-secondary transition-color duration-300" href="#services">Services</a> </li>
+                    <li class="products"> <a class="products hover:cursor-pointer hover:text-secondary transition-color duration-300" href="#products">Products</a> </li>
                     <button id="btn-book" onclick="openBookModal()" class="bg-secondary text-defaultwhite text-[20px] font-bold py-[5px] px-[10px] rounded-md font-Montserrat transition-all duration-300 hover:bg-tertiary">Book Now</button>
 
                 <?php
@@ -255,17 +260,17 @@ if ($_SERVER['REQUEST_URI'] == "/gverzosa/") {
         //             $(".services").css("color", "#F7FBF1");
         //             $(".products").css("color", "#F7FBF1");
         //             $(".about").css("color", "#F7FBF1");
-        //         } else if (scroll >= 2317 && scroll <= 4833) {
+        //         } else if (scroll >= 3203 && scroll <= 4833) {
         //             $(".home").css("color", "#F7FBF1");
         //             $(".services").css("color", "#F7FBF1");
         //             $(".products").css("color", "#F7FBF1");
         //             $(".about").css("color", "#7BC228");
-        //         } else if (scroll >= 4834 && scroll <= 6705) {
+        //         } else if (scroll >= 4834 && scroll <= 6427) {
         //             $(".home").css("color", "#F7FBF1");
         //             $(".about").css("color", "#F7FBF1");
         //             $(".services").css("color", "#7BC228");
         //             $(".products").css("color", "#F7FBF1");
-        //         } else if (scroll >= 6706 && scroll <= 10685) {
+        //         } else if (scroll >= 6428 && scroll <= 10685) {
         //             $(".home").css("color", "#F7FBF1");
         //             $(".about").css("color", "#F7FBF1");
         //             $(".services").css("color", "#F7FBF1");
@@ -304,43 +309,65 @@ if ($_SERVER['REQUEST_URI'] == "/gverzosa/") {
         // };  
 
 
+        // $(window).scroll(function() {
+        //     var position = window.pageYOffset;
+        //     $('section').each(function() {
+        //         var target = $(this).offset().top;
+        //         var id = $(this).attr('id');
+        //         var navLinks = $('#navigation ul li a');
+        //         console.log('labas', id)
+        //         if (position >= target) {
+        //             console.log('loob', id)
+        //             if (id == 'services2' || id == 'home-section3' || id == 'home' || position == 0) {
+
+        //                 $(".home").css("color", "#7BC228");
+        //                 $(".services").css("color", "#F7FBF1");
+        //                 $(".products").css("color", "#F7FBF1");
+        //                 $(".about").css("color", "#F7FBF1");
+        //             } else if (id == 'about' || id == 'about_section2') {
+        //                 $(".home").css("color", "#F7FBF1");
+        //                 $(".services").css("color", "#F7FBF1");
+        //                 $(".products").css("color", "#F7FBF1");
+        //                 $(".about").css("color", "#7BC228");
+        //             } else if (id == 'services' || id == 'services_section2') {
+        //                 $(".home").css("color", "#F7FBF1");
+        //                 $(".about").css("color", "#F7FBF1");
+        //                 $(".services").css("color", "#7BC228");
+        //                 $(".products").css("color", "#F7FBF1");
+        //             } else if (id == 'products' || id == 'products_section1') {
+        //                 $(".home").css("color", "#F7FBF1");
+        //                 $(".about").css("color", "#F7FBF1");
+        //                 $(".services").css("color", "#F7FBF1");
+        //                 $(".products").css("color", "#7BC228");
+        //             } else {
+        //                 $(".home").css("color", "#F7FBF1");
+        //                 $(".about").css("color", "#F7FBF1");
+        //                 $(".services").css("color", "#F7FBF1");
+        //                 $(".products").css("color", "#F7FBF1");
+        //             }
+        //         }
+        //     });
+        // });
         $(window).scroll(function() {
-            var position = window.pageYOffset;
-            $('section').each(function() {
-                var target = $(this).offset().top;
-                var id = $(this).attr('id');
-                var navLinks = $('#navigation ul li a');
-
-                if (position >= target) {
-
-                    if (id == 'services2' || id == 'home-section3' || id == 'home' || position == 0) {
-
-                        $(".home").css("color", "#7BC228");
-                        $(".services").css("color", "#F7FBF1");
-                        $(".products").css("color", "#F7FBF1");
-                        $(".about").css("color", "#F7FBF1");
-                    } else if (id == 'about' || id == 'about_section2') {
-                        $(".home").css("color", "#F7FBF1");
-                        $(".services").css("color", "#F7FBF1");
-                        $(".products").css("color", "#F7FBF1");
-                        $(".about").css("color", "#7BC228");
-                    } else if (id == 'services' || id == 'services_section2') {
-                        $(".home").css("color", "#F7FBF1");
-                        $(".about").css("color", "#F7FBF1");
-                        $(".services").css("color", "#7BC228");
-                        $(".products").css("color", "#F7FBF1");
-                    } else if (id == 'products' || id == 'products_section1') {
-                        $(".home").css("color", "#F7FBF1");
-                        $(".about").css("color", "#F7FBF1");
-                        $(".services").css("color", "#F7FBF1");
-                        $(".products").css("color", "#7BC228");
-                    } else {
-                        $(".home").css("color", "#F7FBF1");
-                        $(".about").css("color", "#F7FBF1");
-                        $(".services").css("color", "#F7FBF1");
-                        $(".products").css("color", "#F7FBF1");
+            const sections = document.querySelectorAll("section");
+            const navLi = document.querySelectorAll("nav .nav-container ul li");
+            window.addEventListener("scroll", () => {
+                let current = "";
+                sections.forEach((section) => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    if (pageYOffset >= sectionTop - sectionHeight / 3) {
+                        current = section.getAttribute("id");
                     }
-                }
+                });
+
+                navLi.forEach((li) => {
+                    li.classList.remove("active");
+                    if (li.classList.contains(current)) {
+                        li.classList.add("active");
+                    }
+                });
             });
+
         });
     </script>

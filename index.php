@@ -159,7 +159,7 @@ unset($_SESSION['alert-text']);
 <div class="div-center flex-col w-full">
     <section id='home' class="relative div-center w-[100%] min-h-[100vh] flex-wrap bg-no-repeat bg-cover bg-right" style="background-image: url(./images/main_bg.jpg);">
     </section>
-    <section id='services2' class="div-center flex-col w-full pt-[7rem]">
+    <section id='home' class="div-center flex-col w-full pt-[7rem]">
         <div class="swiper mySwiper" id="swiper-service">
             <div class="swiper-wrapper" id="swiper-wrapper-service">
                 <?php
@@ -177,7 +177,7 @@ unset($_SESSION['alert-text']);
             <div class="swiper-pagination" id="swiper-pagination-service"></div>
         </div>
     </section>
-    <section id='home-section3' class="div-center bg-tertiary flex-col w-full py-[7rem]">
+    <section id='home' class="div-center bg-tertiary flex-col w-full py-[7rem]">
         <h1 class="font-Dancing text-[64px] font-bold text-defaultwhite">
             Schedule
         </h1>
@@ -210,7 +210,7 @@ unset($_SESSION['alert-text']);
 
         </p>
     </section>
-    <section id='about_section2' class="div-center bg-tertiary flex-col w-full py-[7rem]">
+    <section id='about' class="div-center bg-tertiary flex-col w-full py-[7rem]">
         <div class="employees-container div-center flex-col w-full">
             <h1 class="font-Dancing text-[64px] text-center font-bold text-defaultwhite pb-[50px]">
                 Employees Profile
@@ -234,7 +234,7 @@ unset($_SESSION['alert-text']);
         </div>
     </section>
 
-    <section id='about_section2' class="div-center bg-tertiary flex-col w-full py-[7rem]">
+    <section id='about' class="div-center bg-tertiary flex-col w-full py-[7rem]">
         <div class="employees-container div-center flex-col w-full">
             <?php $feedback_query = "SELECT  * FROM tbl_feedback WHERE tbl_feedback.FEEDBACK_STATUS = 1 && tbl_feedback.FEEDBACK_SHOW = 1 LIMIT 3";
             $feedback_result = $conn->query($feedback_query);
@@ -289,7 +289,7 @@ unset($_SESSION['alert-text']);
             <div class="swiper-pagination" id="swiper-pagination-home"></div>
         </div>
     </section>
-    <section id='services_section2' class="div-center flex-col w-full py-[7rem] max-w-[1536px]">
+    <section id='services' class="div-center flex-col w-full py-[7rem] max-w-[1536px]">
         <h1 class="font-Dancing text-[64px] font-bold text-primary mb-[70px]">
             Pricelist
         </h1>
@@ -357,7 +357,7 @@ unset($_SESSION['alert-text']);
             <div class="swiper-pagination" id="swiper-pagination-product"></div>
         </div>
     </section>
-    <section id='products_section1' class="div-center flex-col w-full py-[7rem] max-w-[1536px]">
+    <section id='products' class="div-center flex-col w-full py-[7rem] max-w-[1536px]">
         <h1 class="font-Dancing text-[64px] font-bold text-primary mb-[70px]">
             Products
         </h1>
