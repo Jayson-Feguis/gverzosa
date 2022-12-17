@@ -20,8 +20,6 @@ unset($_SESSION['alert-text']);
 function userType($num)
 {
     if ($num == 1) {
-        return "Super Administrator";
-    } else if ($num == 2) {
         return "Administrator";
     } else {
         return "Employee";
