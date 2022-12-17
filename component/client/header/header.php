@@ -50,6 +50,7 @@ if ($_SERVER['REQUEST_URI'] == "/gverzosa/") {
     <!-- JQUERY -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- SWEET ALERT -->
+
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <!-- TAILWIND CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -77,27 +78,28 @@ if ($_SERVER['REQUEST_URI'] == "/gverzosa/") {
                 $("nav").removeClass("bg-defaultwhite text-primary bg-opacity-0").addClass("bg-primary text-defaultwhite bg-opacity-100");
                 $(".nav-mobile").removeClass("bg-defaultwhite text-primary bg-opacity-0").addClass("bg-primary text-defaultwhite bg-opacity-100");
                 $(".nav-container").removeClass("py-10").addClass("py-5");
-                if (!$(".nav-items a").hasClass("text-secondary")) {
-                    $(".nav-items a").addClass("text-defaultwhite");
-                    $(".burger-menu").addClass("text-defaultwhite");
-                }
+                // if (!$(".nav-items a").hasClass("text-secondary")) {
+                //     $(".nav-items a").addClass("text-defaultwhite");
+                //     $(".burger-menu").addClass("text-defaultwhite");
+                // }
             } else {
                 $("nav").removeClass("bg-primary text-defaultwhite bg-opacity-100").addClass("bg-defaultwhite text-primary bg-opacity-0");
                 $(".nav-mobile").removeClass("bg-primary text-defaultwhite bg-opacity-100").addClass("bg-defaultwhite text-primary");
                 $(".nav-container").removeClass("py-5").addClass("py-10");
                 $(".nav-items a").removeClass("text-defaultwhite");
-                if (!$(".nav-items a").hasClass("text-secondary")) {
-                    $(".nav-items a").removeClass("text-defaultwhite");
-                    $(".burger-menu").removeClass("text-defaultwhite");
-                }
+                // if (!$(".nav-items a").hasClass("text-secondary")) {
+                //     $(".nav-items a").removeClass("text-defaultwhite");
+                //     $(".burger-menu").removeClass("text-defaultwhite");
+                // }
             }
         });
     </script>
 
+
 </head>
 
-<body class="bg-defaultwhite block">
-    <nav class="div-center fixed z-[9999] transition-all duration-300">
+<body data-spy="scroll" data-target="mainNav" data-offset="50 class=" bg-defaultwhite block">
+    <nav class=" mainNav div-center fixed z-[9999] transition-all duration-300">
         <div class="nav-container justify-between px-5 py-10 transition-all duration-300">
             <div class="logo div-center pl-[50px] flex-col font-black">
                 <h1 class="drop-shadow font-Dancing text-[2rem]">G. Verzosa</h1>
@@ -111,10 +113,11 @@ if ($_SERVER['REQUEST_URI'] == "/gverzosa/") {
                 // HOME PAGE
                 if ($_SERVER['REQUEST_URI'] == "/gverzosa/") {
                 ?>
-                    <a class="home hover:cursor-pointer hover:text-secondary transition-color duration-300" href="#home">Home</a>
-                    <a class="about hover:cursor-pointer hover:text-secondary transition-color duration-300" href="#about">About Us</a>
-                    <a class="services hover:cursor-pointer hover:text-secondary transition-color duration-300" href="#services">Services</a>
-                    <a class="products hover:cursor-pointer hover:text-secondary transition-color duration-300" href="#products">Products</a>
+
+                    <li> <a href="#home" class="home  hover:cursor-pointer hover:text-secondary transition-color duration-300">Home</a> </li>
+                    <li> <a class="about  hover:cursor-pointer hover:text-secondary transition-color duration-300" href="#about">About Us</a> </li>
+                    <li> <a class="services hover:cursor-pointer hover:text-secondary transition-color duration-300" href="#services">Services</a> </li>
+                    <li> <a class="products hover:cursor-pointer hover:text-secondary transition-color duration-300" href="#products">Products</a> </li>
                     <button id="btn-book" onclick="openBookModal()" class="bg-secondary text-defaultwhite text-[20px] font-bold py-[5px] px-[10px] rounded-md font-Montserrat transition-all duration-300 hover:bg-tertiary">Book Now</button>
 
                 <?php
@@ -137,10 +140,10 @@ if ($_SERVER['REQUEST_URI'] == "/gverzosa/") {
             // HOME PAGE
             if ($_SERVER['REQUEST_URI'] == "/gverzosa/") {
             ?>
-                <a class="home hover:cursor-pointer hover:text-secondary transition-color duration-300" href="#home">Home</a>
-                <a class="about hover:cursor-pointer hover:text-secondary transition-color duration-300" href="#about">About Us</a>
-                <a class="services hover:cursor-pointer hover:text-secondary transition-color duration-300" href="#services">Services</a>
-                <a class="products hover:cursor-pointer hover:text-secondary transition-color duration-300" href="#products">Products</a>
+                <li> <a class="home hover:cursor-pointer hover:text-secondary transition-color duration-300" href="#home">Home</a></li>
+                <li> <a class="about hover:cursor-pointer hover:text-secondary transition-color duration-300" href="#about">About Us</a></li>
+                <li> <a class="services hover:cursor-pointer hover:text-secondary transition-color duration-300" href="#services">Services</a></li>
+                <li> <a class="products hover:cursor-pointer hover:text-secondary transition-color duration-300" href="#products">Products</a></li>
                 <button id="btn-book" onclick="openBookModal()" class="bg-secondary text-defaultwhite text-[20px] font-bold py-[5px] px-[10px] rounded-md font-Montserrat transition-all duration-300 hover:bg-tertiary">Book Now</button>
 
             <?php
@@ -237,44 +240,107 @@ if ($_SERVER['REQUEST_URI'] == "/gverzosa/") {
 
 
     <script>
-        $(document).ready(function() {
-            $(window).scroll(function() {
-                var scroll = $(window).scrollTop();
+        // $(document).ready(function() {
+        //     $(window).scroll(function() {
+        //         var scroll = $(window).scrollTop();
 
-                console.log(scroll)
-                if (scroll == 0) {
-                    $(".home").css("color", "#7BC228");
-                    $(".services").css("color", "#4B3D40");
-                    $(".products").css("color", "#4B3D40");
-                    $(".about").css("color", "#4B3D40");
-                } else if (scroll >= 1 && scroll <= 2316) {
-                    $(".home").css("color", "#7BC228");
-                    $(".services").css("color", "#F7FBF1");
-                    $(".products").css("color", "#F7FBF1");
-                    $(".about").css("color", "#F7FBF1");
-                } else if (scroll >= 2317 && scroll <= 5111) {
-                    $(".home").css("color", "#F7FBF1");
-                    $(".services").css("color", "#F7FBF1");
-                    $(".products").css("color", "#F7FBF1");
-                    $(".about").css("color", "#7BC228");
-                } else if (scroll >= 5112 && scroll <= 6705) {
-                    $(".home").css("color", "#F7FBF1");
-                    $(".about").css("color", "#F7FBF1");
-                    $(".services").css("color", "#7BC228");
-                    $(".products").css("color", "#F7FBF1");
-                } else if (scroll >= 6706 && scroll <= 10685) {
-                    $(".home").css("color", "#F7FBF1");
-                    $(".about").css("color", "#F7FBF1");
-                    $(".services").css("color", "#F7FBF1");
-                    $(".products").css("color", "#7BC228");
+        //         console.log(scroll)
+        //         if (scroll == 0) {
+        //             $(".home").css("color", "#7BC228");
+        //             $(".services").css("color", "#4B3D40");
+        //             $(".products").css("color", "#4B3D40");
+        //             $(".about").css("color", "#4B3D40");
+        //         } else if (scroll >= 1 && scroll <= 2316) {
+        //             $(".home").css("color", "#7BC228");
+        //             $(".services").css("color", "#F7FBF1");
+        //             $(".products").css("color", "#F7FBF1");
+        //             $(".about").css("color", "#F7FBF1");
+        //         } else if (scroll >= 2317 && scroll <= 4833) {
+        //             $(".home").css("color", "#F7FBF1");
+        //             $(".services").css("color", "#F7FBF1");
+        //             $(".products").css("color", "#F7FBF1");
+        //             $(".about").css("color", "#7BC228");
+        //         } else if (scroll >= 4834 && scroll <= 6705) {
+        //             $(".home").css("color", "#F7FBF1");
+        //             $(".about").css("color", "#F7FBF1");
+        //             $(".services").css("color", "#7BC228");
+        //             $(".products").css("color", "#F7FBF1");
+        //         } else if (scroll >= 6706 && scroll <= 10685) {
+        //             $(".home").css("color", "#F7FBF1");
+        //             $(".about").css("color", "#F7FBF1");
+        //             $(".services").css("color", "#F7FBF1");
+        //             $(".products").css("color", "#7BC228");
+        //         }
+        //     })
+        // })
+
+
+        // const sections = document.querySelectorAll("section");
+        // const navLi = document.querySelectorAll("nav .nav-container ul li");
+        // window.addEventListener("scroll", () => {
+        //     let current = "";
+        //     sections.forEach((section) => {
+        //         const sectionTop = section.offsetTop;
+        //         const sectionHeight = section.clientHeight;
+        //         if (pageYOffset >= sectionTop - sectionHeight / 3) {
+        //             current = section.getAttribute("id");
+        //         }
+        //     });
+
+        //     navLi.forEach((li) => {
+        //         li.classList.remove("active");
+        //         if (li.classList.contains(current)) {
+        //             li.classList.add("active");
+        //         }
+        //     });
+        // });
+
+
+        // $(window).scroll(example);
+
+        // function example() {
+        //     var tempScrollTop = $(window).scrollTop();
+        //     console.log("Scroll from Top: " + tempScrollTop.toString());
+        // };  
+
+
+        $(window).scroll(function() {
+            var position = window.pageYOffset;
+            $('section').each(function() {
+                var target = $(this).offset().top;
+                var id = $(this).attr('id');
+                var navLinks = $('#navigation ul li a');
+
+                if (position >= target) {
+
+                    if (id == 'services2' || id == 'home-section3' || id == 'home' || position == 0) {
+
+                        $(".home").css("color", "#7BC228");
+                        $(".services").css("color", "#F7FBF1");
+                        $(".products").css("color", "#F7FBF1");
+                        $(".about").css("color", "#F7FBF1");
+                    } else if (id == 'about' || id == 'about_section2') {
+                        $(".home").css("color", "#F7FBF1");
+                        $(".services").css("color", "#F7FBF1");
+                        $(".products").css("color", "#F7FBF1");
+                        $(".about").css("color", "#7BC228");
+                    } else if (id == 'services' || id == 'services_section2') {
+                        $(".home").css("color", "#F7FBF1");
+                        $(".about").css("color", "#F7FBF1");
+                        $(".services").css("color", "#7BC228");
+                        $(".products").css("color", "#F7FBF1");
+                    } else if (id == 'products' || id == 'products_section1') {
+                        $(".home").css("color", "#F7FBF1");
+                        $(".about").css("color", "#F7FBF1");
+                        $(".services").css("color", "#F7FBF1");
+                        $(".products").css("color", "#7BC228");
+                    } else {
+                        $(".home").css("color", "#F7FBF1");
+                        $(".about").css("color", "#F7FBF1");
+                        $(".services").css("color", "#F7FBF1");
+                        $(".products").css("color", "#F7FBF1");
+                    }
                 }
-            })
-        })
-
-        $(window).scroll(example);
-
-        function example() {
-            var tempScrollTop = $(window).scrollTop();
-            console.log("Scroll from Top: " + tempScrollTop.toString());
-        };
+            });
+        });
     </script>
