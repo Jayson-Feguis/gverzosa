@@ -2,7 +2,7 @@
 function loginUrl()
 {
     if ($_SERVER['REQUEST_URI'] == "/") {
-        return "gverzosa/pages/login.php";
+        return "pages/login.php";
     } else if ($_SERVER['REQUEST_URI'] == "/pages/login.php") {
         return "pages/login.php";
     } else {
