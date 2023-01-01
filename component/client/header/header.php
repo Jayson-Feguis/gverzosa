@@ -6,7 +6,7 @@ if ($_SERVER['REQUEST_URI'] == "/gverzosa/") {
     include('../utils/db_config.php');
     include('../utils/routes.php');
 }
-
+echo $_SERVER['REQUEST_URI'];
 ?>
 
 <!DOCTYPE html>
@@ -74,7 +74,6 @@ if ($_SERVER['REQUEST_URI'] == "/gverzosa/") {
         };
 
         $(window).scroll(function() {
-            console.log($(window.location.pathname))
             var scroll = $(window).scrollTop();
             if (scroll >= 100) {
                 $("nav").removeClass("bg-defaultwhite text-primary bg-opacity-0").addClass("bg-primary text-defaultwhite bg-opacity-100");
