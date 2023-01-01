@@ -1,9 +1,9 @@
 <?php
 function loginUrl()
 {
-    if ($_SERVER['REQUEST_URI'] == "/gverzosa/") {
+    if ($_SERVER['REQUEST_URI'] == "/") {
         return "gverzosa/pages/login.php";
-    } else if ($_SERVER['REQUEST_URI'] == "/gverzosa/pages/login.php") {
+    } else if ($_SERVER['REQUEST_URI'] == "/pages/login.php") {
         return "pages/login.php";
     } else {
         return "pages/login.php";
@@ -25,7 +25,7 @@ function loginUrl()
                 <ul class="nav-link flex flex-col gap-[10px]">
                     <?php
                     // HOME PAGE
-                    if ($_SERVER['REQUEST_URI'] == "/gverzosa/") {
+                    if ($_SERVER['REQUEST_URI'] == "/") {
                     ?>
                         <a class="hover:cursor-pointer hover:text-secondary transition-all duration-300" href="#home">Home</a>
                         <a class="hover:cursor-pointer hover:text-secondary transition-all duration-300" href="#about">About Us</a>
@@ -34,7 +34,7 @@ function loginUrl()
                     <?php
                     }
                     // ABOUT US PAGE
-                    else if ($_SERVER['REQUEST_URI'] == "/gverzosa/pages/login.php") {
+                    else if ($_SERVER['REQUEST_URI'] == "/pages/login.php") {
                     ?>
                         <a class="hover:cursor-pointer hover:text-secondary transition-all duration-300" href="../">Home</a>
                         <a class="hover:cursor-pointer hover:text-secondary transition-all duration-300" href="../#about">About Us</a>
