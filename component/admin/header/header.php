@@ -12,12 +12,12 @@ if (isset($_GET['logout'])) {
 }
 
 if ($_SESSION['user_type'] == 2) {
-    if ($_SERVER['REQUEST_URI'] != "/gverzosa/pages/admin_dashboard.php") {
-        if ($_SERVER['REQUEST_URI'] != "/gverzosa/pages/admin_appointment.php") {
-            if ($_SERVER['REQUEST_URI'] != "/gverzosa/pages/admin_product.php") {
-                if ($_SERVER['REQUEST_URI'] != "/gverzosa/pages/admin_promotion.php") {
-                    if ($_SERVER['REQUEST_URI'] != "/gverzosa/pages/admin_category.php") {
-                        if ($_SERVER['REQUEST_URI'] != "/gverzosa/pages/admin_service.php") {
+    if ($_SERVER['REQUEST_URI'] != "/pages/admin_dashboard.php") {
+        if ($_SERVER['REQUEST_URI'] != "/pages/admin_appointment.php") {
+            if ($_SERVER['REQUEST_URI'] != "/pages/admin_product.php") {
+                if ($_SERVER['REQUEST_URI'] != "/pages/admin_promotion.php") {
+                    if ($_SERVER['REQUEST_URI'] != "/pages/admin_category.php") {
+                        if ($_SERVER['REQUEST_URI'] != "/pages/admin_service.php") {
                             header("location: login.php");
                         }
                     }
@@ -44,7 +44,7 @@ if ($_SESSION['user_type'] == 2) {
     <!-- SWIPER JS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
     <?php
-    if ($_SERVER['REQUEST_URI'] == "/gverzosa/") {
+    if ($_SERVER['REQUEST_URI'] == "/") {
     ?>
         <!-- STYLE -->
         <link rel="stylesheet" type="text/css" href="style/header.css" />

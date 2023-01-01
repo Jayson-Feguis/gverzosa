@@ -509,10 +509,10 @@ unset($_SESSION['alert-text']);
         }
     };
     scheduler.init("scheduler_here", new Date(), "day");
-    scheduler.load("./api/get_schedule.php");
+    scheduler.load("api/get_schedule.php");
 
     var dp = scheduler.createDataProcessor({
-        url: "./api/get_schedule.php",
+        url: "api/get_schedule.php",
         mode: "JSON"
     });
 </script>
