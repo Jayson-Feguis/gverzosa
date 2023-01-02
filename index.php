@@ -202,7 +202,7 @@ unset($_SESSION['alert-text']);
         <h1 class="font-Dancing text-[64px] font-bold text-primary pb-[50px]">
             History
         </h1>
-        <p class="font-Montserrat text-[18px] employees-container max-w-[1536] px-[10px] sm:px-[30px]">
+        <p class="font-Montserrat text-[18px] employees-container max-w-[1536] px-[10px] sm:px-[30px] text-center  w-full">
 
 
 
