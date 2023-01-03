@@ -183,7 +183,7 @@ if ($_SERVER['REQUEST_URI'] == "/") {
                             <label for="email">Email</label>
                             <input id="email" type="email" class="block border border-grey-light w-full p-3 rounded mb-4" name="email" placeholder="ex. youremail@example.com" required />
                             <label for="mobilenumber">Mobile Number</label>
-                            <input id="mobilenumber" type="number" class="block border border-grey-light w-full p-3 rounded mb-4" name="mobilenumber" placeholder="09123456789" pattern="[0,9]{2}[0-9]{9}" maxlength="11" required />
+                            <input id="mobilenumber" type="phone" class="block border border-grey-light w-full p-3 rounded mb-4" name="mobilenumber" placeholder="09123456789" pattern="[0,9]{2}[0-9]{9}" maxlength="11" required />
                             <label for="date">Appointment Date</label>
                             <input id="date" type="date" class="block border border-grey-light w-full p-3 rounded mb-4" name="date" placeholder="11/17/2022" min="<?php echo date("Y-m-d"); ?>" required />
                             <label for="time">Appointment Time (opening hours 10:00 am - 9:00 pm)</label>
