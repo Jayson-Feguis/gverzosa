@@ -415,7 +415,7 @@ unset($_SESSION['alert-text']);
                         <label for="email">Email</label>
                         <input id="email" type="email" class="block border border-grey-light w-full p-3 rounded mb-4" name="email" placeholder="ex. youremail@example.com" required />
                         <label for="mobilenumber">Mobile Number</label>
-                        <input id="mobilenumber" type="phone" class="block border border-grey-light w-full p-3 rounded mb-4" name="mobilenumber" placeholder="09123456789" pattern="[0,9]{2}[0-9]{9}" required />
+                        <input id="mobilenumber" type="phone" class="block border border-grey-light w-full p-3 rounded mb-4" name="mobilenumber" placeholder="09123456789" pattern="[0,9]{2}[0-9]{9}"  maxlength="11" required />
                         <label for="feedback">Feedback</label>
                         <textarea type="text" rows="6" id="feedback" name="feedback" class="flex grow-1 border border-grey-light w-full p-3 rounded mb-4" placeholder="Type your feedback here" required></textarea>
                         <button type="submit" name="sendfeedback" class="inline-flex transition-all duration-300 justify-center rounded-md border border-transparent bg-secondary px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-opacity-70 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:w-auto sm:text-sm div-center">Send <i class="fa fa-paper-plane ml-2" aria-hidden="true"></i></button>
