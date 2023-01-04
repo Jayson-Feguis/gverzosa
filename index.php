@@ -206,7 +206,7 @@ unset($_SESSION['alert-text']);
 
 
 
-            G.Verzosa Salon and Spa are operating since 2015 and it was owned by Guiler Verzosa, located at 420 P.Martinez St. Unit C16 City Residences Brgy.
+            G.Verzosa Salon and Spa are operating since 2015 and it was owned by Guiler Verzosa, l1ocated at 420 P.Martinez St. Unit C16 City Residences Brgy.
 
         </p>
     </section>
