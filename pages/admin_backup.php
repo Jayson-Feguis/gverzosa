@@ -19,11 +19,11 @@
 ?>
 
 <div class="flex-col w-full min-h-screen pl-[270px] mt-[90px] pr-[20px] pb-[150px] overflow-auto">
-    <div class="text-left w-full mb-5">
+    <!-- <div class="text-left w-full mb-5">
         <button onclick="openModal(<?php echo $_SESSION['user_id'];?>)" class="addBackup bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 border border-blue-700 rounded">
             Backup Database
         </button>
-    </div>
+    </div> -->
     <div id="modal-backup" class="relative z-[10000] hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
         <div class="fixed inset-0 bg-primary bg-opacity-75 transition-opacity"></div>
         <div class="fixed inset-0 z-10 overflow-y-auto">
@@ -42,7 +42,7 @@
         </div>
     </div>
     <?php
-        $backup_query = "SELECT CONCAT(tbl_user.USER_FNAME, ' ', tbl_user.USER_LNAME) as FULLNAME, tbl_backup.* FROM tbl_backup INNER JOIN tbl_user ON tbl_backup.USER_ID = tbl_user.USER_ID";
+        $backup_query = "SELECT CONCAT(tbl_user.USER_FNAME, ' ', tbl_user.USER_LNAME) as FULLNAME, tbl_backup.* FROM tbl_backup INNER JOIN tbl_user ON tbl_backup.USER_ID = tbl_user.USER_ID ORDER BY BACKUP_ID DESC";
         $backup_result = mysqli_query($conn, $backup_query);
     ?>
     <table id="data-table" class="display" style="width:100%">

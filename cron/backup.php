@@ -1,9 +1,14 @@
 <?php
-include_once('../utils/db_config.php');
-date_default_timezone_set('Asia/Manila');
+    include_once('../utils/db_config.php');
 
-if(isset($_POST['backup'])){
-    $user_id = $_POST['userID'];
+    $user_id = 1;
+
+    $sql_user = "SELECT * FROM tbl_user LIMIT 1";
+    $result_user = $conn -> query($sql_user);
+
+    while($row = mysqli_fetch_array($result_user)){
+        $user_id =  $row['USER_ID'];
+    }
     
     // Get connection object and set the charset
     $conn->set_charset("utf8");
@@ -59,7 +64,7 @@ if(isset($_POST['backup'])){
     if(!empty($sqlScript))
     {
         // Save the SQL script to a backup file
-        $file_name = $database_name . '_backup_' . time() . '.sql';
+        $file_name = 'backup_' . time() . '.sql';
         $backup_file_name = '../backup/'.$file_name;
         $fileHandler = fopen($backup_file_name, 'w+');
         $number_of_lines = fwrite($fileHandler, $sqlScript);
@@ -68,45 +73,10 @@ if(isset($_POST['backup'])){
         $sql_backup = "INSERT tbl_backup (USER_ID, BACKUP_FILE) values ('$user_id', '$file_name')";
         $result_backup = mysqli_query($conn, $sql_backup);
 
-        $idaudit =  $_SESSION['user_id']; //id
+        
         $descriptionaudit = "Backed up Database " ; // description plus banner name
-        $audit = "INSERT INTO tbl_audit (USER_ID, AUDIT_ACTIVITY) VALUES ('$idaudit', '$descriptionaudit' )";
+        $audit = "INSERT INTO tbl_audit (USER_ID, AUDIT_ACTIVITY) VALUES ('$user_id', '$descriptionaudit' )";
         $query_audit = mysqli_query($conn, $audit);
+    }
+?>
 
-        if($result_backup){
-            $_SESSION['alert'] = true;
-            $_SESSION['alert-icon'] = "success";
-            $_SESSION['alert-title'] = "Success";
-            $_SESSION['alert-text'] = 'Database backed up successfully';
-            header("Location: ../pages/admin_backup.php");
-            
-            // Download the SQL backup file to the browser
-            // header('Content-Description: File Transfer');
-            // header('Content-Type: application/octet-stream');
-            // header('Content-Disposition: attachment; filename=' . basename($backup_file_name));
-            // header('Content-Transfer-Encoding: binary');
-            // header('Expires: 0');
-            // header('Cache-Control: must-revalidate');
-            // header('Pragma: public');
-            // header('Content-Length: ' . filesize($backup_file_name));
-            // ob_clean();
-            // flush();
-            // readfile($backup_file_name);
-            // exec('rm ' . $backup_file_name);
-        }
-        else{
-            $_SESSION['alert'] = true;
-            $_SESSION['alert-icon'] = "error";
-            $_SESSION['alert-title'] = "Oops!";
-            $_SESSION['alert-text'] = 'Something went wrong';
-            header("Location: ../pages/admin_backup.php");
-        }
-    }
-    else{
-        $_SESSION['alert'] = true;
-        $_SESSION['alert-icon'] = "error";
-        $_SESSION['alert-title'] = "Oops!";
-        $_SESSION['alert-text'] = 'Something went wrong';
-        header("Location: ../pages/admin_backup.php");
-    }
-}

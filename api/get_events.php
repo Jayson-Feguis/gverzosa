@@ -1,5 +1,6 @@
 <?php 
     include_once('../utils/db_config.php');
+    date_default_timezone_set('Asia/Manila');
     $db = $conn;
     switch ($_SERVER["REQUEST_METHOD"]) {
         case "GET":

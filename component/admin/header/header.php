@@ -1,6 +1,7 @@
 <?php
 include('../utils/db_config.php');
 include('../utils/routes.php');
+include('../utils/utils.php');
 if (!isset($_SESSION['user_name'])) {
     header('location: login.php');
 }
@@ -12,12 +13,12 @@ if (isset($_GET['logout'])) {
 }
 
 if ($_SESSION['user_type'] == 2) {
-    if ($_SERVER['REQUEST_URI'] != "/gverzosa/pages/admin_dashboard.php") {
-        if ($_SERVER['REQUEST_URI'] != "/gverzosa/pages/admin_appointment.php") {
-            if ($_SERVER['REQUEST_URI'] != "/gverzosa/pages/admin_product.php") {
-                if ($_SERVER['REQUEST_URI'] != "/gverzosa/pages/admin_promotion.php") {
-                    if ($_SERVER['REQUEST_URI'] != "/gverzosa/pages/admin_category.php") {
-                        if ($_SERVER['REQUEST_URI'] != "/gverzosa/pages/admin_service.php") {
+    if ($_SERVER['REQUEST_URI'] != PATH."/pages/admin_dashboard.php") {
+        if ($_SERVER['REQUEST_URI'] != PATH."/pages/admin_appointment.php") {
+            if ($_SERVER['REQUEST_URI'] != PATH."/pages/admin_product.php") {
+                if ($_SERVER['REQUEST_URI'] != PATH."/pages/admin_promotion.php") {
+                    if ($_SERVER['REQUEST_URI'] != PATH."/pages/admin_category.php") {
+                        if ($_SERVER['REQUEST_URI'] != PATH."/pages/admin_service.php") {
                             header("location: login.php");
                         }
                     }
@@ -44,7 +45,7 @@ if ($_SESSION['user_type'] == 2) {
     <!-- SWIPER JS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
     <?php
-    if ($_SERVER['REQUEST_URI'] == "/gverzosa/") {
+    if ($_SERVER['REQUEST_URI'] == PATH."/") {
     ?>
         <!-- STYLE -->
         <link rel="stylesheet" type="text/css" href="style/header.css" />
@@ -92,7 +93,9 @@ if ($_SESSION['user_type'] == 2) {
                     [10, 25, 50, -1],
                     [10, 25, 50, 'All'],
                 ],
-                responsive: true
+                responsive: true,
+                ordering: false,
+                order: [ 0, 'desc' ]
             });
 
         });
@@ -107,7 +110,9 @@ if ($_SESSION['user_type'] == 2) {
                 dom: 'Bfrtip',
                 buttons: [
                     'copy', 'csv', 'excel', 'pdf', 'print'
-                ]
+                ],
+                ordering: false,
+                order: [ 0, 'desc' ]
             });
 
         });
@@ -165,7 +170,7 @@ if ($_SESSION['user_type'] == 2) {
             <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="mobile-menu-2">
                 <ul class="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg  md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 ">
                     <li>
-                        <a href="logout.php" name="logout" class="block bg-secondary px-4 py-2 text-sm text-white rounded-lg hover:bg-white hover:text-black ">Sign out</a>
+                        <a href="logout.php" name="logout" class="block bg-white px-4 py-2 text-sm text-black rounded-lg hover:bg-primary hover:text-white transition-ease duration-300">Sign out</a>
                     </li>
                 </ul>
             </div>
@@ -253,7 +258,7 @@ if ($_SESSION['user_type'] == 2) {
                                     </li>
                                 </ul>
                                 <li>
-                                    <a href="admin_user.php" class="flex items-center p-2 pl-11 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100">Users</a>
+                                    <a href="admin_employee.php" class="flex items-center p-2 pl-11 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100">Employees</a>
                                 </li>
                             </ul>
                         </li>

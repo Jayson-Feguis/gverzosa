@@ -193,13 +193,13 @@ function countUser($conn)
                         </div>
                     </div>
                 </a>
-                <a href="archive_user.php">
+                <a href="archive_employee.php">
                     <div class="div-center gap-[20px] bg-yellow-500 px-10 py-5 rounded-md text-white ">
                         <div class="text-[48px] div-center">
                             <i class="fa fa-users" aria-hidden="true"></i>
                         </div>
                         <div class="div-center flex-col">
-                            <h1 class="font-bold">Users</h1>
+                            <h1 class="font-bold">Employees</h1>
                             <h1 class="text-[32px]"><?php echo countUser($conn); ?></h1>
                         </div>
                     </div>

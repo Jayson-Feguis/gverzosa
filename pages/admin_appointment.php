@@ -18,11 +18,11 @@ unset($_SESSION['alert-title']);
 unset($_SESSION['alert-text']);
 ?>
 <div class="flex-col w-full min-h-screen pl-[270px] mt-[90px] pr-[20px] pb-[150px] overflow-auto">
-    <div class="text-left w-full mb-5">
+    <!-- <div class="text-left w-full mb-5">
         <button onclick="openModalAdd()" class="addAppointment bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 border border-blue-700 rounded">
             Add Appointment
         </button>
-    </div>
+    </div> -->
     <div id="modal-add" class="relative z-[10000] hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
         <div class="fixed inset-0 bg-primary bg-opacity-75 transition-opacity"></div>
         <div class="fixed inset-0 z-10 overflow-y-auto">
@@ -193,7 +193,7 @@ unset($_SESSION['alert-text']);
     <table id="data-table" class="responsive-table display" style="width:100%">
         <thead>
             <tr>
-                <th style="display: none;">Appointment ID</th>
+                <th>Appointment ID</th>
                 <th>Full Name</th>
                 <th>Email</th>
                 <th>Mobile Number</th>
@@ -213,7 +213,7 @@ unset($_SESSION['alert-text']);
                 while ($row = mysqli_fetch_assoc($query_run)) {
             ?>
                     <tr>
-                        <td style="display: none;"><?php echo $row['APP_ID']; ?> </td>
+                        <td><?php echo $row['APP_ID']; ?> </td>
                         <td><?php echo $row['APP_NAME']; ?> </td>
                         <td><?php echo $row['APP_EMAIL']; ?> </td>
                         <td><?php echo $row['APP_MOBILE_NUMBER']; ?> </td>

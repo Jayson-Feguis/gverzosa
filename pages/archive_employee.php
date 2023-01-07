@@ -54,7 +54,7 @@ function userType($num)
     <table id="data-table" class="display" style="width:100%">
         <thead>
             <tr>
-                <th style="display: none;">User ID</th>
+                <th>Employee ID</th>
                 <th>Firstname</th>
                 <th style="display: none;">Picture</th>
                 <th>Lastname</th>
@@ -75,7 +75,7 @@ function userType($num)
                 while ($row = mysqli_fetch_assoc($query_run)) {
             ?>
                     <tr>
-                        <td style="display: none;"><?php echo $row['USER_ID']; ?> </td>
+                        <td><?php echo $row['USER_ID']; ?> </td>
                         <td><?php echo $row['USER_FNAME']; ?> </td>
                         <td style="display: none;"><?php echo $row['USER_PICTURE']; ?> </td>
                         <td><?php echo $row['USER_LNAME']; ?> </td>
