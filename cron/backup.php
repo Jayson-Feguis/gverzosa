@@ -77,6 +77,10 @@
         $descriptionaudit = "Backed up Database " ; // description plus banner name
         $audit = "INSERT INTO tbl_audit (USER_ID, AUDIT_ACTIVITY) VALUES ('$user_id', '$descriptionaudit' )";
         $query_audit = mysqli_query($conn, $audit);
+
+        if($query_audit){
+            echo 'Backup Success';
+        }
     }
 ?>
 

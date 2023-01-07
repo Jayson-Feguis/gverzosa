@@ -46,6 +46,9 @@
                     } 
             }
         }
+
+        
+        echo 'Cancel Appointment Success';
     }
     
 
