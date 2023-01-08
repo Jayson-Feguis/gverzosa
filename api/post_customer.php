@@ -45,7 +45,7 @@ if (isset($_POST['editcustomer'])) {
             $_SESSION['alert'] = true;
             $_SESSION['alert-icon'] = "error";
             $_SESSION['alert-title'] = "Error";
-            $_SESSION['alert-text'] = "Something1 went wrong" . mysqli_error($conn);
+            $_SESSION['alert-text'] = "Something went wrong" . mysqli_error($conn);
             header("Location: ../pages/admin_customer.php");
         }
     }
@@ -72,14 +72,14 @@ if (isset($_POST['editcustomer'])) {
                 $_SESSION['alert'] = true;
                 $_SESSION['alert-icon'] = "success";
                 $_SESSION['alert-title'] = "Success";
-                $_SESSION['alert-text'] = "Customer updated successfully" . $editcustomerimagetext;
+                $_SESSION['alert-text'] = "Customer updated successfully";
                 header("Location: ../pages/admin_customer.php");
             } else {
                 // ERROR
                 $_SESSION['alert'] = true;
                 $_SESSION['alert-icon'] = "error";
                 $_SESSION['alert-title'] = "Error";
-                $_SESSION['alert-text'] = "Something2 went wrong";
+                $_SESSION['alert-text'] = "Something went wrong";
                 header("Location: ../pages/admin_customer.php");
             }
         } else {
@@ -151,7 +151,7 @@ if (isset($_POST['editcustomer'])) {
             $_SESSION['alert'] = true;
             $_SESSION['alert-icon'] = "success";
             $_SESSION['alert-title'] = "Success";
-            $_SESSION['alert-text'] = 'User added successfully';
+            $_SESSION['alert-text'] = 'Customer added successfully';
             header("Location: ../pages/admin_customer.php");
         } else {
             // ERROR

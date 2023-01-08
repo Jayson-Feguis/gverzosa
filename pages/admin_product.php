@@ -42,7 +42,7 @@ unset($_SESSION['alert-text']);
                             <label for="addproductdescription">Product Description</label>
                             <textarea type="text" id="addproductdescription" name="addproductdescription" class="block border border-grey-light w-full p-3 rounded mb-4" placeholder="ex. Use for hair" required></textarea>
                             <label for="addproductprice">Product Price</label>
-                            <input type="number" id="addproductprice" name="addproductprice" class="block border border-grey-light w-full p-3 rounded mb-4" placeholder="ex. 20" step=".01" required>
+                            <input type="number" id="addproductprice" step="0.01" name="addproductprice" class="block border border-grey-light w-full p-3 rounded mb-4" placeholder="ex. 20" required>
                             <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
                                 <button type="submit" name="addproduct" class="inline-flex w-full transition-all duration-300 justify-center rounded-md border border-transparent bg-secondary px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-opacity-70 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm">Confirm</button>
                                 <button type="button" onclick="closeModalAdd()" class="mt-3 inline-flex w-full transition-all duration-300 justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">Cancel</button>
@@ -71,7 +71,7 @@ unset($_SESSION['alert-text']);
                             <label for="productdescription">Product Description</label>
                             <textarea type="text" id="productdescription" name="productdescription" class="block border border-grey-light w-full p-3 rounded mb-4" placeholder="productdescription" required></textarea>
                             <label for="productprice">Product Price</label>
-                            <input type="number" id="productprice" name="productprice" class="block border border-grey-light w-full p-3 rounded mb-4" placeholder="20" step=".01" required>
+                            <input type="number" id="productprice" step="0.01" name="productprice" class="block border border-grey-light w-full p-3 rounded mb-4" placeholder="20" required>
                             <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
                                 <button type="submit" name="editproduct" class="inline-flex w-full transition-all duration-300 justify-center rounded-md border border-transparent bg-secondary px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-opacity-70 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm">Save</button>
                                 <button type="button" onclick="closeModal()" class="mt-3 inline-flex w-full transition-all duration-300 justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">Cancel</button>
@@ -112,7 +112,7 @@ unset($_SESSION['alert-text']);
                 <th style="display: none;">Product Picture</th>
                 <th>Picture</th>
                 <th>Description</th>
-                <th>Price</th>
+                <th>Price(₱)</th>
                 <th>Date Created</th>
                 <?php
                 if ($_SESSION['user_type'] != 2) {
@@ -239,4 +239,35 @@ unset($_SESSION['alert-text']);
             });
         });
     </script>
+
+    <script>
+        // Get the input field
+        var input = document.getElementById("productprice");
+
+        // Execute a function when the user releases a key on the keyboard
+        input.addEventListener("keyup", function(event) {
+            // Cancel the default action, if needed
+            event.preventDefault();
+            // Check if the input value contains more than 2 decimal places
+            if (input.value.indexOf('.') != -1 && input.value.split('.')[1].length > 2) {
+                // If it does, truncate the value to 2 decimal places
+                input.value = input.value.substring(0, input.value.indexOf('.') + 3);
+            }
+        });
+
+
+        var inputs = document.getElementById("addproductprice");
+
+        // Execute a function when the user releases a key on the keyboard
+        inputs.addEventListener("keyup", function(events) {
+            // Cancel the default action, if needed
+            events.preventDefault();
+            // Check if the input value contains more than 2 decimal places
+            if (inputs.value.indexOf('.') != -1 && inputs.value.split('.')[1].length > 2) {
+                // If it does, truncate the value to 2 decimal places
+                inputs.value = inputs.value.substring(0, inputs.value.indexOf('.') + 3);
+            }
+        });
+    </script>
+
 </div>

@@ -51,7 +51,7 @@ unset($_SESSION['alert-text']);
                 <th style="display: none;">Product Picture</th>
                 <th>Picture</th>
                 <th>Description</th>
-                <th>Price</th>
+                <th>Price(₱)</th>
                 <th>Date Created</th>
                 <th>Actions</th>
             </tr>

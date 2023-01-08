@@ -62,7 +62,7 @@ function getCustomerName($id, $conn)
                 <th style="display: none;">Service Picture</th>
                 <th>Picture</th>
                 <th>Category</th>
-                <th>Price</th>
+                <th>Price(₱)</th>
                 <th>Date Created</th>
                 <th>Actions</th>
             </tr>
