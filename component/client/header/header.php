@@ -190,14 +190,14 @@
                             <label for="fullname">Full Name</label>
                             <input id="fullname" type="text" class="block border border-grey-light w-full p-3 rounded mb-4" name="fullname" placeholder="ex. Juan Dela Cruz" required />
                             <label for="email">Email</label>
-                            <input id="email" type="email" class="block border border-grey-light w-full p-3 rounded mb-4" name="email" placeholder="ex. youremail@example.com" required />
+                            <input id="email" type="email" onchange="handleOnChange(this.value)" class="block border border-grey-light w-full p-3 rounded mb-4" name="email" placeholder="ex. youremail@example.com" required />
                             <label for="mobilenumber">Mobile Number</label>
                             <div class='relative w-full'>
                                 <div class='absolute top-0 left-0 h-full div-center pl-3 pr-2'>
                                     +63
                                 </div>
                                 <input id="mobilenumber" type="phone" class="block border border-grey-light w-full p-3 rounded mb-4 pl-12" name="mobilenumber" placeholder="9123456789" pattern="[9]{1}[0-9]{9}" maxlength="10" required />
-                            </div>
+                            </div>                                                                          
                             <label for="date">Appointment Date</label>
                             <input id="date" type="date" class="block border border-grey-light w-full p-3 rounded mb-4" name="date" placeholder="11/17/2022" min="<?php echo date("Y-m-d"); ?>" required />
                             <label for="time">Appointment Time <br/>(Opening Hours 10:00 am - 9:00 pm)</label>
@@ -247,6 +247,13 @@
         </div>
     </div>
     <script>
+        function handleOnChange(value) {
+            // Email validation REGEX
+            var pattern = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            if(!pattern.test(value)){
+                document.getElementById('email').setCustomValidity("Please enter a valid email address (e.g. juan@example.com)");
+            }
+        }
         function openBookModal() {
             $("#modal-book-now").removeClass("hidden");
         }
