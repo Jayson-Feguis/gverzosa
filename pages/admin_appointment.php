@@ -225,7 +225,7 @@ unset($_SESSION['alert-text']);
                             } else if ($row['APP_STATUS'] == 1) {
                                 echo '<span class="bg-green-500 text-white p-2 text-[14px] border border-gray-500 rounded-sm">Accepted</span>';
                             } else if ($row['APP_STATUS'] == 2) {
-                                echo '<span class="bg-red-800 text-white p-2 text-[14px] border border-gray-500 rounded-sm">Rejected</span>';
+                                // echo '<span class="bg-red-800 text-white p-2 text-[14px] border border-gray-500 rounded-sm">Rejected</span>';
                             } else if ($row['APP_STATUS'] == 3) {
                                 echo '<span class="bg-gray-200 p-2 text-[14px] border border-gray-500 rounded-sm">Cancelled</span>';
                             } else if ($row['APP_STATUS'] == 4) {
@@ -238,10 +238,10 @@ unset($_SESSION['alert-text']);
                             <?php if ($row['APP_STATUS'] == 0) {
                                 echo '<button type="button" title="Accept" class="acceptAppointment bg-transparent hover:bg-gray-300 text-blue-700 font-semibold hover:text-white py-[5px] px-2   border border-gray-500 hover:border-border-gray-300 rounded">
                                     <i class="fa fa-check text-[16px]" aria-hidden="true"></i>
-                                </button>
-                                <button type="button" title="Reject" class="rejectAppointment bg-transparent hover:bg-gray-300 text-blue-700 font-semibold hover:text-white py-[5px] px-2   border border-gray-500 hover:border-border-gray-300 rounded">
-                                    <i class="fa fa-ban text-[16px]" aria-hidden="true"></i>
                                 </button>';
+                            //     echo '<button type="button" title="Reject" class="rejectAppointment bg-transparent hover:bg-gray-300 text-blue-700 font-semibold hover:text-white py-[5px] px-2   border border-gray-500 hover:border-border-gray-300 rounded">
+                            //     <i class="fa fa-ban text-[16px]" aria-hidden="true"></i>
+                            // </button>'
                             } else if ($row['APP_STATUS'] == 1) {
                                 echo '<button type="button" title="Cancel" class="cancelAppointment bg-transparent hover:bg-gray-300 text-blue-700 font-semibold hover:text-white py-[5px] px-2   border border-gray-500 hover:border-border-gray-300 rounded">
                                 <i class="fa fa-times-circle-o text-[16px]" aria-hidden="true"></i>

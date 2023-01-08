@@ -36,7 +36,7 @@ function getServiceCategory($id, $conn)
     if ($_SESSION['user_type'] != 2) {
         echo '<div class="text-left w-full mb-5">
                     <button class="addSevice bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 border border-blue-700 rounded">
-                        Add Service
+                        Add Service Sub Category
                     </button>
                 </div>';
     }
@@ -51,7 +51,7 @@ function getServiceCategory($id, $conn)
                             <h1 class="font-bold text-primary text-center text-[20px] py-[20px]"> Add Service</h1>
                             <label for="addserviceimage">Service Image</label>
                             <input type="file" name="addserviceimage" id="addserviceimage" accept="image/*" class="block border border-grey-light w-full p-3 rounded mb-4" required>
-                            <label for="addservicename">Service Name</label>
+                            <label for="addservicename">Service Sub Category</label>
                             <input type="text" id="addservicename" name="addservicename" class="block border border-grey-light w-full p-3 rounded mb-4" placeholder="ex. cut" required>
                             <label for="addserviceprice">Service Price</label>
                             <input type="text" id="addserviceprice" name="addserviceprice" type="number" step="0.01" class="block border border-grey-light w-full p-3 rounded mb-4" placeholder="ex. 20.10" required>
@@ -91,7 +91,7 @@ function getServiceCategory($id, $conn)
                             <img id="img_serviceimage" src="" class="w-[200px]">
                             <input type="file" name="serviceimage" id="serviceimage" accept="image/*" class="block border border-grey-light w-full p-3 rounded mb-4" required>
                             <input type="text" id="serviceimagetext" name="serviceimagetext" class="hidden border border-grey-light w-full p-3 rounded mb-4" placeholder="ex. Juan" required>
-                            <label for="servicename">Service Name</label>
+                            <label for="servicename">Service Sub Category</label>
                             <input type="text" id="servicename" name="servicename" class="block border border-grey-light w-full p-3 rounded mb-4" required>
                             <label for="serviceprice">Service Price</label>
                             <input type="text" id="serviceprice" name="serviceprice" type="number" step="0.01" class="block border border-grey-light w-full p-3 rounded mb-4" placeholder="ex. 20.10" required>
@@ -123,10 +123,10 @@ function getServiceCategory($id, $conn)
             <div class="flex min-h-full justify-center p-4 text-center items-center sm:p-0">
                 <div class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
                     <form action="../api/post_service.php" method="post">
-                        <h1 class="font-bold text-primary text-center text-[20px] py-[20px]">Are you sure do want to delete this promotion?</h1>
+                        <h1 class="font-bold text-primary text-center text-[20px] py-[20px]">Are you sure do want to archive this promotion?</h1>
                         <input type="text" type="text" id="serviceidDelete" name="serviceidDelete" class="hidden bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="productid" required>
                         <div class="bg-gray-50 px-4 py-3 gap-5 sm:flex sm:flex-row-reverse sm:px-6">
-                            <button type="submit" name="deleteservice" class="text-white bg-red-500 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:red-blue-800">Delete</button>
+                            <button type="submit" name="deleteservice" class="text-white bg-red-500 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:red-blue-800">Archive</button>
                             <button type="button" onclick="closeModaldel()" class="mt-3 inline-flex w-full transition-all duration-300 justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">Cancel</button>
                         </div>
                     </form>
@@ -142,7 +142,7 @@ function getServiceCategory($id, $conn)
         <thead>
             <tr>
                 <th>Service ID</th>
-                <th>Service Name</th>
+                <th>Service Sub Category</th>
                 <th style="display: none;">Service Picture</th>
                 <th>Picture</th>
                 <th>Category</th>
@@ -177,7 +177,7 @@ function getServiceCategory($id, $conn)
                                             <i class="fa fa-pencil text-[16px]" aria-hidden="true"></i>
                                         </button>
                                         <button type="button" class="deleteService bg-transparent hover:bg-gray-300 text-blue-700 font-semibold hover:text-white py-[5px] px-2 border border-gray-500 hover:border-border-gray-300 rounded">
-                                            <i class="fa fa-trash-o text-[16px]" aria-hidden="true"></i>
+                                        <i class="fa fa-archive" aria-hidden="true"></i>
                                         </button>
                                     </td>';
                         }

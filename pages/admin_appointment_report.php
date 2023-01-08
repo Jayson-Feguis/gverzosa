@@ -40,7 +40,7 @@ unset($_SESSION['alert-text']);
     <table id="data-table" class="responsive-table display" style="width:100%">
         <thead>
             <tr>
-                <th style="display: none;">Appointment ID</th>
+                <th>Appointment ID</th>
                 <th>Full Name</th>
                 <th>Email</th>
                 <th>Mobile Number</th>
@@ -59,7 +59,7 @@ unset($_SESSION['alert-text']);
                 while ($row = mysqli_fetch_assoc($query_run)) {
             ?>
                     <tr>
-                        <td style="display: none;"><?php echo $row['APP_ID']; ?> </td>
+                        <td><?php echo $row['APP_ID']; ?> </td>
                         <td><?php echo $row['APP_NAME']; ?> </td>
                         <td><?php echo $row['APP_EMAIL']; ?> </td>
                         <td><?php echo $row['APP_MOBILE_NUMBER']; ?> </td>
