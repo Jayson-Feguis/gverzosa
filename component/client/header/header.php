@@ -169,6 +169,7 @@ if ($_SERVER['REQUEST_URI'] == "/gverzosa/") {
         <div class="fixed inset-0 z-10 overflow-y-auto">
             <div class="flex min-h-full justify-center p-4 text-center items-center sm:p-0">
                 <div class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+
                     <form action=<?php
                                     if ($_SERVER['REQUEST_URI'] == "/gverzosa/") {
                                         echo './api/post_book.php';
@@ -177,6 +178,10 @@ if ($_SERVER['REQUEST_URI'] == "/gverzosa/") {
                                     }
                                     ?> method="post">
                         <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                            <div id="warning" class="mx-5 hidden bg-orange-100 border-l-4 border-orange-500 text-orange-700 p-4" role="alert">
+                                <p class="font-bold">Be Warned</p>
+                                <p id="idp"></p>
+                            </div>
                             <h1 class="font-bold text-primary text-center text-[20px] py-[20px]">Book an appointment</h1>
                             <label for="fullname">Full Name</label>
                             <input id="fullname" type="text" class="block border border-grey-light w-full p-3 rounded mb-4" name="fullname" placeholder="ex. Juan Dela Cruz" required />
@@ -241,6 +246,60 @@ if ($_SERVER['REQUEST_URI'] == "/gverzosa/") {
         function closeBookModal() {
             $("#modal-book-now").addClass("hidden");
         }
+    </script>
+
+
+
+    <script>
+        const pElement = document.querySelector('p');
+        const pId = pElement.getAttribute('idp');
+        const divElement = document.querySelector('#warning');
+
+        document.getElementById('date').addEventListener('change', function() {
+            var selectedDate = this.value;
+            var selectedTime = document.getElementById('time').value;
+            if (selectedTime) {
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', 'check_time.php');
+                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                xhr.onload = function() {
+
+                    if (xhr.responseText === "true") {
+                        pElement.textContent = "Warning: There are customers who selected this appointment date and time.";
+                        divElement.classList.remove('hidden');
+                    } else {
+                        pElement.textContent = "wala";
+                        divElement.classList.add('hidden');
+                    }
+                };
+                xhr.send('selectedDate=' + encodeURIComponent(selectedDate) + '&selectedTime=' + encodeURIComponent(selectedTime));
+            }
+        });
+
+        document.getElementById('time').addEventListener('change', function() {
+            var selectedDate = document.getElementById('date').value;
+            var selectedTime = this.value;
+            if (selectedDate) {
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', 'check_time.php');
+                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                xhr.onload = function() {
+                    if (xhr.status == 200) {
+
+                        if (xhr.responseText === "true") {
+                            pElement.textContent = "Warning: There are customers who selected this appointment date and time. ";
+                            divElement.classList.remove('hidden');
+                        } else {
+                            pElement.textContent = "";
+                            divElement.classList.add('hidden');
+                        }
+
+
+                    }
+                };
+                xhr.send('selectedDate=' + encodeURIComponent(selectedDate) + '&selectedTime=' + encodeURIComponent(selectedTime));
+            }
+        });
     </script>
 
 
