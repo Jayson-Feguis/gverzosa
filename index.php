@@ -413,7 +413,7 @@ unset($_SESSION['alert-text']);
                         <label for="fullname">Full Name</label>
                         <input type="text" id="fullname" name="fullname" class="flex grow-1 border border-grey-light w-full p-3 rounded mb-4" placeholder="ex. Juan" required>
                         <label for="email">Email</label>
-                        <input id="email" type="email" class="block border border-grey-light w-full p-3 rounded mb-4" name="email" placeholder="ex. youremail@example.com" required />
+                        <input id="email" type="text" pattern="/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/" class="block border border-grey-light w-full p-3 rounded mb-4" name="email" placeholder="ex. youremail@example.com" required />
                         <label for="mobilenumber">Mobile Number</label>
                         <input id="mobilenumber" type="phone" class="block border border-grey-light w-full p-3 rounded mb-4" name="mobilenumber" placeholder="09123456789" pattern="[0,9]{2}[0-9]{9}" required />
                         <label for="feedback">Feedback</label>
@@ -428,6 +428,7 @@ unset($_SESSION['alert-text']);
 <!-- SWIPER JS -->
 <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
 <!-- INITIALIZE SWIPER -->
+
 <script>
     var swiper = new Swiper("#swiper-home", {
         effect: "coverflow",

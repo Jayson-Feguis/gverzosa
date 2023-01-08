@@ -125,10 +125,10 @@ function countUser($conn)
 
 <div class="flex-row w-full min-h-screen overflow-auto pl-[270px] mt-[90px] pr-[20px] pb-[150px]">
     <div>
-        <h1 class="text-[20px] font-bold text-secondary">Archives</h1>
-        <div class="w-full flex justify-start gap-[20px] flex-wrap">
+        <h1 class="text-[40px] font-bold text-secondary">Archives</h1>
+        <div class="w-full grid grid-cols-1 gap-4 mb-5">
             <a href="archive_customer.php">
-                <div class="div-center gap-[20px] bg-yellow-500 px-10 py-5 rounded-md text-white flex-1">
+                <div class="div-center gap-[20px] bg-green-500  px-10 py-5 w-full  rounded-md text-white flex-1">
                     <div class="text-[48px] div-center">
                         <i class="fa fa-user" aria-hidden="true"></i>
                     </div>
@@ -137,74 +137,106 @@ function countUser($conn)
                         <h1 class="text-[32px]"><?php echo countCustomer($conn); ?></h1>
                     </div>
                 </div>
-
-                <a href="archive_feedback.php">
-                    <div class="div-center gap-[20px] bg-green-500 px-10 py-5 rounded-md text-white flex-1">
-                        <div class="text-[48px] div-center">
-                            <i class="fa fa-comments" aria-hidden="true"></i>
-                        </div>
-                        <div class="div-center flex-col">
-                            <h1 class="font-bold">Feedbacks</h1>
-                            <h1 class="text-[32px]"><?php echo countFeedback($conn); ?></h1>
-                        </div>
-                    </div>
-                </a>
-                <a href="archive_product.php">
-                    <div class="div-center gap-[20px] bg-red-500 px-10 py-5 rounded-md text-white flex-1">
-                        <div class="text-[48px] div-center">
-                            <i class="fa fa-scissors" aria-hidden="true"></i>
-                        </div>
-                        <div class="div-center flex-col">
-                            <h1 class="font-bold">Products</h1>
-                            <h1 class="text-[32px]"><?php echo countProduct($conn); ?></h1>
-                        </div>
-                    </div>
-                </a>
-                <a href="archive_promotion.php">
-                    <div class="div-center gap-[20px] bg-yellow-500 px-10 py-5 rounded-md text-white flex-1">
-                        <div class="text-[48px] div-center">
-                            <i class="fa fa-picture-o" aria-hidden="true"></i>
-                        </div>
-                        <div class="div-center flex-col">
-                            <h1 class="font-bold">Promotions</h1>
-                            <h1 class="text-[32px]"><?php echo countPromotion($conn); ?></h1>
-                        </div>
-                    </div>
-                </a>
-                <a href="archive_category.php">
-                    <div class="div-center gap-[20px] bg-green-500 px-10 py-5 rounded-md text-white flex-1">
-                        <div class="text-[48px] div-center">
-                            <i class="fa fa-scissors" aria-hidden="true"></i>
-                        </div>
-                        <div class="div-center flex-col">
-                            <h1 class="font-bold">Service Category</h1>
-                            <h1 class="text-[32px]"><?php echo countCategory($conn); ?></h1>
-                        </div>
-                    </div>
-                </a>
-                <a href="archive_service.php">
-                    <div class="div-center gap-[20px] bg-red-500 px-10 py-5 rounded-md text-white flex-1">
-                        <div class="text-[48px] div-center">
-                            <i class="fa fa-scissors" aria-hidden="true"></i>
-                        </div>
-                        <div class="div-center flex-col">
-                            <h1 class="font-bold">Service Sub Category</h1>
-                            <h1 class="text-[32px]"><?php echo countService($conn); ?></h1>
-                        </div>
-                    </div>
-                </a>
-                <a href="archive_user.php">
-                    <div class="div-center gap-[20px] bg-yellow-500 px-10 py-5 rounded-md text-white ">
-                        <div class="text-[48px] div-center">
-                            <i class="fa fa-users" aria-hidden="true"></i>
-                        </div>
-                        <div class="div-center flex-col">
-                            <h1 class="font-bold">Users</h1>
-                            <h1 class="text-[32px]"><?php echo countUser($conn); ?></h1>
-                        </div>
-                    </div>
-                </a>
+            </a>
         </div>
+        <div class="w-full grid grid-cols-1 gap-4 mb-5">
+            <a href="archive_feedback.php">
+                <div class="div-center gap-[20px] bg-green-500 px-10 py-5 rounded-md text-white flex-1">
+                    <div class="text-[48px] div-center">
+                        <i class="fa fa-comments" aria-hidden="true"></i>
+                    </div>
+                    <div class="div-center flex-col">
+                        <h1 class="font-bold">Feedbacks</h1>
+                        <h1 class="text-[32px]"><?php echo countFeedback($conn); ?></h1>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="w-full grid grid-cols-1 gap-4 mb-5">
+            <a href="archive_product.php">
+                <div class="div-center gap-[20px] bg-green-500  px-10 py-5 rounded-md text-white flex-1">
+                    <div class="text-[48px] div-center">
+                        <i class="fa fa-scissors" aria-hidden="true"></i>
+                    </div>
+                    <div class="div-center flex-col">
+                        <h1 class="font-bold">Products</h1>
+                        <h1 class="text-[32px]"><?php echo countProduct($conn); ?></h1>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="w-full grid grid-cols-1 gap-4 mb-5">
+            <a href="archive_promotion.php">
+                <div class="div-center gap-[20px] bg-green-500  px-10 py-5 rounded-md text-white flex-1">
+                    <div class="text-[48px] div-center">
+                        <i class="fa fa-picture-o" aria-hidden="true"></i>
+                    </div>
+                    <div class="div-center flex-col">
+                        <h1 class="font-bold">Promotions</h1>
+                        <h1 class="text-[32px]"><?php echo countPromotion($conn); ?></h1>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="w-full grid grid-cols-1 gap-4 mb-5">
+            <a href="archive_category.php">
+                <div class="div-center gap-[20px] bg-green-500  px-10 py-5 rounded-md text-white flex-1">
+                    <div class="text-[48px] div-center">
+                        <i class="fa fa-scissors" aria-hidden="true"></i>
+                    </div>
+                    <div class="div-center flex-col">
+                        <h1 class="font-bold">Service Category</h1>
+                        <h1 class="text-[32px]"><?php echo countCategory($conn); ?></h1>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="w-full grid grid-cols-1 gap-4 mb-5">
+
+            <a href="archive_category.php">
+                <div class="div-center gap-[20px] bg-green-500 px-10 py-5 rounded-md text-white flex-1">
+                    <div class="text-[48px] div-center">
+                        <i class="fa fa-scissors" aria-hidden="true"></i>
+                    </div>
+                    <div class="div-center flex-col">
+                        <h1 class="font-bold">Service Category</h1>
+                        <h1 class="text-[32px]"><?php echo countCategory($conn); ?></h1>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="w-full grid grid-cols-1 gap-4 mb-5">
+
+            <a href="archive_service.php">
+                <div class="div-center gap-[20px] bg-green-500  px-10 py-5 rounded-md text-white flex-1">
+                    <div class="text-[48px] div-center">
+                        <i class="fa fa-scissors" aria-hidden="true"></i>
+                    </div>
+                    <div class="div-center flex-col">
+                        <h1 class="font-bold">Service Sub Category</h1>
+                        <h1 class="text-[32px]"><?php echo countService($conn); ?></h1>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="w-full grid grid-cols-1 gap-4 mb-5">
+
+            <a href="archive_user.php">
+                <div class="div-center gap-[20px] bg-green-500  px-10 py-5 rounded-md text-white ">
+                    <div class="text-[48px] div-center">
+                        <i class="fa fa-users" aria-hidden="true"></i>
+                    </div>
+                    <div class="div-center flex-col">
+                        <h1 class="font-bold">Users</h1>
+                        <h1 class="text-[32px]"><?php echo countUser($conn); ?></h1>
+                    </div>
+                </div>
+            </a>
+        </div>
+
     </div>
 </div>
 <?php
