@@ -11,7 +11,7 @@
     $cancel_status = 3;
     $date_now = date("Y-m-d");
     $time_now = date('H:i:s');
-    $closing_time = date('H:i:s', strtotime(CLOSING_TIME));
+    // $closing_time = date('H:i:s', strtotime(CLOSING_TIME));
 
     $app_query = "SELECT APP_ID, APP_NAME, APP_EMAIL, REMARKS, START_DATE FROM tbl_appointment WHERE APP_STATUS = 0";
     $app_result = $conn->query($app_query);
