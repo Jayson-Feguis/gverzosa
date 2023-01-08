@@ -54,7 +54,7 @@ function getServiceCategory($id, $conn)
                             <label for="addservicename">Service Sub Category</label>
                             <input type="text" id="addservicename" name="addservicename" class="block border border-grey-light w-full p-3 rounded mb-4" placeholder="ex. cut" required>
                             <label for="addserviceprice">Service Price</label>
-                            <input type="text" id="addserviceprice" name="addserviceprice" type="number" step="0.01" class="block border border-grey-light w-full p-3 rounded mb-4" placeholder="ex. 20.10" required>
+                            <input type="number" id="addserviceprice" name="addserviceprice" type="number" step="0.01" class="block border border-grey-light w-full p-3 rounded mb-4" placeholder="ex. 20.10" required>
                             <label for="addservicecategory">Service Category</label>
                             <select name="addservicecategory" id="addservicecategory" class="block border border-grey-light w-full p-3 rounded mb-4">
                                 <?php
@@ -94,7 +94,7 @@ function getServiceCategory($id, $conn)
                             <label for="servicename">Service Sub Category</label>
                             <input type="text" id="servicename" name="servicename" class="block border border-grey-light w-full p-3 rounded mb-4" required>
                             <label for="serviceprice">Service Price</label>
-                            <input type="text" id="serviceprice" name="serviceprice" type="number" step="0.01" class="block border border-grey-light w-full p-3 rounded mb-4" placeholder="ex. 20.10" required>
+                            <input type="number" id="serviceprice" name="serviceprice" type="number" step="0.01" class="block border border-grey-light w-full p-3 rounded mb-4" placeholder="ex. 20.10" required>
                             <label for="servicecategory">Service Category</label>
                             <select name="servicecategory" id="servicecategory" class="block border border-grey-light w-full p-3 rounded mb-4">
                                 <?php
@@ -146,7 +146,7 @@ function getServiceCategory($id, $conn)
                 <th style="display: none;">Service Picture</th>
                 <th>Picture</th>
                 <th>Category</th>
-                <th>Price</th>
+                <th>Price(₱)</th>
                 <th>Date Created</th>
                 <?php
                 if ($_SESSION['user_type'] != 2) {
@@ -191,6 +191,38 @@ function getServiceCategory($id, $conn)
             ?>
         </tbody>
     </table>
+
+
+
+    <script>
+        // Get the input field
+        var input = document.getElementById("serviceprice");
+
+        // Execute a function when the user releases a key on the keyboard
+        input.addEventListener("keyup", function(event) {
+            // Cancel the default action, if needed
+            event.preventDefault();
+            // Check if the input value contains more than 2 decimal places
+            if (input.value.indexOf('.') != -1 && input.value.split('.')[1].length > 2) {
+                // If it does, truncate the value to 2 decimal places
+                input.value = input.value.substring(0, input.value.indexOf('.') + 3);
+            }
+        });
+
+
+        var inputs = document.getElementById("addserviceprice");
+
+        // Execute a function when the user releases a key on the keyboard
+        inputs.addEventListener("keyup", function(events) {
+            // Cancel the default action, if needed
+            events.preventDefault();
+            // Check if the input value contains more than 2 decimal places
+            if (inputs.value.indexOf('.') != -1 && inputs.value.split('.')[1].length > 2) {
+                // If it does, truncate the value to 2 decimal places
+                inputs.value = inputs.value.substring(0, inputs.value.indexOf('.') + 3);
+            }
+        });
+    </script>
     <script>
         function openModal() {
             $("#modal-edit").removeClass("hidden");
