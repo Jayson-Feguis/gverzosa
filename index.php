@@ -159,24 +159,6 @@ unset($_SESSION['alert-text']);
 <div class="div-center flex-col w-full">
     <section id='home' class="relative div-center w-[100%] min-h-[100vh] flex-wrap bg-no-repeat bg-cover bg-right" style="background-image: url(./images/main_bg.jpg);">
     </section>
-    <section id='home' class="div-center flex-col w-full pt-[7rem]">
-        <div class="swiper mySwiper" id="swiper-service">
-            <div class="swiper-wrapper" id="swiper-wrapper-service">
-                <?php
-                $promotion_query = "SELECT BANNER_IMAGE FROM tbl_banner WHERE BANNER_STATUS = 1";
-                $promotion_result = $conn->query($promotion_query);
-                if ($promotion_result) {
-                    while ($row_service = mysqli_fetch_array($promotion_result)) {
-                        echo '<div id="swiper-slide-service" class="swiper-slide w-[100%] min-h-[500px] flex-wrap" style="background-image: url(./images/' . $row_service['BANNER_IMAGE'] . '); background-size: auto 100%; background-position: center;"></div>';
-                    }
-                }
-                ?>
-            </div>
-            <div class="swiper-button-next" id="swiper-button-next-service"></div>
-            <div class="swiper-button-prev" id="swiper-button-prev-service"></div>
-            <div class="swiper-pagination" id="swiper-pagination-service"></div>
-        </div>
-    </section>
     <section id='home' class="div-center bg-tertiary flex-col w-full py-[7rem]">
         <h1 class="font-Dancing text-[64px] font-bold text-defaultwhite">
             Schedule
@@ -193,6 +175,24 @@ unset($_SESSION['alert-text']);
             </div>
             <div class="dhx_cal_header"></div>
             <div class="dhx_cal_data"></div>
+        </div>
+    </section>
+    <section id='home' class="div-center flex-col w-full pt-[7rem]">
+        <div class="swiper mySwiper" id="swiper-service">
+            <div class="swiper-wrapper" id="swiper-wrapper-service">
+                <?php
+                $promotion_query = "SELECT BANNER_IMAGE FROM tbl_banner WHERE BANNER_STATUS = 1";
+                $promotion_result = $conn->query($promotion_query);
+                if ($promotion_result) {
+                    while ($row_service = mysqli_fetch_array($promotion_result)) {
+                        echo '<div id="swiper-slide-service" class="swiper-slide w-[100%] min-h-[500px] flex-wrap" style="background-image: url(./images/' . $row_service['BANNER_IMAGE'] . '); background-size: auto 100%; background-position: center;"></div>';
+                    }
+                }
+                ?>
+            </div>
+            <div class="swiper-button-next" id="swiper-button-next-service"></div>
+            <div class="swiper-button-prev" id="swiper-button-prev-service"></div>
+            <div class="swiper-pagination" id="swiper-pagination-service"></div>
         </div>
     </section>
     <section id='about' class="div-center flex-col w-full py-[7rem]">
@@ -221,10 +221,20 @@ unset($_SESSION['alert-text']);
                 $employees_result = $conn->query($employees_query);
                 if ($employees_result) {
                     while ($rows = mysqli_fetch_array($employees_result)) {
-                        echo '<div class="card-container bg-defaultwhite rounded-lg p-[50px] div-center flex-col drop-shadow-md">
+                        $user_type = '';
+                        if($rows['USER_TYPE'] === '1'){
+                            $user_type = 'Owner';
+                        }
+                        else{
+                            $user_type = 'Employee';
+                        }
+                        echo '<div class="card-container w-[300px] h-[300px] bg-defaultwhite rounded-lg p-[20px] div-center flex-col drop-shadow-md">
                                     <img src="./images/' . $rows['USER_PICTURE'] . '" alt="sample" class="rounded-full w-[150px]"/>
-                                    <h6 class="text-primary text-[24px]">
+                                    <h6 class="text-primary text-[24px] text-center">
                                     ' . $rows['USER_FNAME'] . ' ' . $rows['USER_LNAME'] . '
+                                    </h6>
+                                    <h6 class="text-primary text-[16px] text-center">
+                                    ' . $user_type . '
                                     </h6>
                                 </div>';
                     }
@@ -390,8 +400,8 @@ unset($_SESSION['alert-text']);
             </h1>
             <div class="div-center flex-wrap gap-[50px]">
                 <div class="div-center w-full flex-wrap">
-                    <div class="flex flex-col gap-5">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d766.7361757170355!2d121.05217880038407!3d14.580053770809352!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397c83f5c33f2b5%3A0xae6f16159cb45cce!2sG.%20Verzosa%20Salon%20%26%20Spa%20For%20Men%20And%20Women!5e1!3m2!1sen!2sph!4v1669553316457!5m2!1sen!2sph" class="lg:w-[400px] lg:h-[400px] sm:w-[100px] sm:h-[140px] xs:w-[100px] sm:h-[140px] " style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <div class="div-center flex-col gap-5">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d766.7361757170355!2d121.05217880038407!3d14.580053770809352!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397c83f5c33f2b5%3A0xae6f16159cb45cce!2sG.%20Verzosa%20Salon%20%26%20Spa%20For%20Men%20And%20Women!5e1!3m2!1sen!2sph!4v1669553316457!5m2!1sen!2sph" class="lg:h-[400px] w-full h-[300px]" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                         <div class="flex flex-col gap-[10px]">
                             <div class="flex items-center">
                                 <i class="w-[35px] text-center text-secondary text-[24px] fa fa-map-marker"></i>
@@ -407,7 +417,7 @@ unset($_SESSION['alert-text']);
                             </div>
                         </div>
                     </div>
-                    <form action="api/send_email.php" method="post" class="w-full md:w-[500px] px-4 pt-5 pb-4 sm:p-6 sm:pb-4 grow-1 flex flex-col">
+                    <!-- <form action="api/send_email.php" method="post" class="w-full md:w-[500px] px-4 pt-5 pb-4 sm:p-6 sm:pb-4 grow-1 flex flex-col">
                         <input type="text" id="picture" name="picture" value="profile.png" class=" hidden flex grow-1 border border-grey-light w-full p-3 rounded mb-4" placeholder="ex. Juan" required>
 
                         <label for="fullname">Full Name</label>
@@ -419,7 +429,7 @@ unset($_SESSION['alert-text']);
                         <label for="feedback">Feedback</label>
                         <textarea type="text" rows="6" id="feedback" name="feedback" class="flex grow-1 border border-grey-light w-full p-3 rounded mb-4" placeholder="Type your feedback here" required></textarea>
                         <button type="submit" name="sendfeedback" class="inline-flex transition-all duration-300 justify-center rounded-md border border-transparent bg-secondary px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-opacity-70 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:w-auto sm:text-sm div-center">Send <i class="fa fa-paper-plane ml-2" aria-hidden="true"></i></button>
-                    </form>
+                    </form> -->
                 </div>
             </div>
         </div>
@@ -496,6 +506,57 @@ unset($_SESSION['alert-text']);
             dynamicBullets: true,
         },
     });
+    // define configs
+    const compactHeader = {
+        rows: [
+            { 
+                cols: [
+                    "prev",
+                    "date",
+                    "next",
+                ]
+            },
+            { 
+                cols: [
+                    "day",
+                    "week",
+                    "month",
+                    "spacer",
+                    "today"
+                ]
+            }
+        ]
+    };
+    
+    const fullHeader = [
+        "day",
+        "week",
+        "month",
+        "date",
+        "prev",
+        "today",
+        "next"
+    ];
+    
+    // add a switch to select an appropriate config for a current screen size
+    
+    function resetConfig(){
+        let header;
+        if (window.innerWidth < 1000) {
+            header = compactHeader;
+        } else {
+            header = fullHeader;
+    
+        }
+        scheduler.config.header = header;
+        return true;
+    }
+    
+    // apply the config initially and each time scheduler repaints or resizes:
+    
+    resetConfig();
+    scheduler.attachEvent("onBeforeViewChange", resetConfig);
+    scheduler.attachEvent("onSchedulerResize", resetConfig);
 
     scheduler.setLoadMode("day");
     scheduler.templates.event_class = function(start, end, event) {

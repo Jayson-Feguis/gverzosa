@@ -1,6 +1,7 @@
 <?php
 include_once('../utils/db_config.php');
 include_once('../utils/helper.php');
+date_default_timezone_set('Asia/Manila');
 
 if (isset($_POST['editcategory'])) {
     $id = $_POST['categoryid'];

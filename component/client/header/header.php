@@ -1,11 +1,13 @@
 <?php
-if ($_SERVER['REQUEST_URI'] == "/gverzosa/") {
-    include('utils/db_config.php');
-    include('utils/routes.php');
-} else {
-    include('../utils/db_config.php');
-    include('../utils/routes.php');
-}
+    if ($_SERVER['REQUEST_URI'] =="/gverzosa/") {
+        include('utils/db_config.php');
+        include('utils/routes.php');
+        include('utils/utils.php');
+    } else {
+        include('../utils/db_config.php');
+        include('../utils/routes.php');
+        include('../utils/utils.php');
+    }
 ?>
 
 <!DOCTYPE html>
@@ -23,7 +25,7 @@ if ($_SERVER['REQUEST_URI'] == "/gverzosa/") {
     <!-- SWIPER JS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
     <?php
-    if ($_SERVER['REQUEST_URI'] == "/gverzosa/") {
+    if ($_SERVER['REQUEST_URI'] == PATH."/") {
     ?>
         <!-- STYLE -->
         <link rel="stylesheet" type="text/css" href="style/header.css" />
@@ -55,6 +57,7 @@ if ($_SERVER['REQUEST_URI'] == "/gverzosa/") {
     <!-- TAILWIND CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
+        
         tailwind.config = {
             theme: {
                 extend: {
@@ -96,6 +99,12 @@ if ($_SERVER['REQUEST_URI'] == "/gverzosa/") {
     </script>
 
     <style>
+        * {
+            font-family: "Montserrat", sans-serif;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
         nav .nav-container ul li.active a {
             color: #7BC228;
         }
@@ -110,13 +119,13 @@ if ($_SERVER['REQUEST_URI'] == "/gverzosa/") {
                 <h1 class="drop-shadow font-Dancing text-[2rem]">G. Verzosa</h1>
                 <h5 class="drop-shadow font-Montserrat text-[1rem]">Salon & Spa</5>
             </div>
-            <button data-collapse-toggle="navbarr" type="button" class="inline-flex items-center p-2 ml-3 text-md text-gray-500 rounded-lg md:hidden focus:outline-none" aria-controls="navbarr" aria-expanded="false">
+            <button data-collapse-toggle="navbarr" type="button" onclick="openDrawer()" class="inline-flex items-center p-2 ml-3 text-md text-gray-500 rounded-lg lg:hidden focus:outline-none" aria-controls="navbarr" aria-expanded="false">
                 <i class="fa fa-bars burger-menu text-[24px]" aria-hidden="true"></i>
             </button>
-            <ul class="nav-items justify-center items-center gap-[28px] pr-[40px] uppercase hidden md:flex">
+            <ul class="nav-items justify-center items-center gap-[28px] pr-[40px] uppercase hidden lg:flex">
                 <?php
                 // HOME PAGE
-                if ($_SERVER['REQUEST_URI'] == "/gverzosa/") {
+                if ($_SERVER['REQUEST_URI'] == PATH."/") {
                 ?>
 
                     <li class="active home"> <a href="#home" class=" home  hover:cursor-pointer hover:text-secondary transition-color duration-300">Home</a> </li>
@@ -126,7 +135,7 @@ if ($_SERVER['REQUEST_URI'] == "/gverzosa/") {
                     <button id="btn-book" onclick="openBookModal()" class="bg-secondary text-defaultwhite text-[20px] font-bold py-[5px] px-[10px] rounded-md font-Montserrat transition-all duration-300 hover:bg-tertiary">Book Now</button>
 
                 <?php
-                } else if ($_SERVER['REQUEST_URI'] == "/gverzosa/pages/login.php") {
+                } else if ($_SERVER['REQUEST_URI'] == PATH."/pages/login.php") {
                 ?>
                     <a class="hover:cursor-pointer hover:text-secondary transition-color duration-300" href="../">Home</a>
                     <a class="hover:cursor-pointer hover:text-secondary transition-color duration-300" href="../#about">About Us</a>
@@ -139,26 +148,26 @@ if ($_SERVER['REQUEST_URI'] == "/gverzosa/") {
             </ul>
         </div>
     </nav>
-    <div id="navbarr" class="hidden nav-mobile div-center z-[10] text-[24px] md:hidden fixed top-0 left-0 bg-white w-screen h-screen">
-        <ul class="nav-items justify-center items-center gap-[28px] uppercase flex flex-col md:hidden">
+    <div id="navbarr" class="hidden nav-mobile div-center z-[10] text-[24px] lg:hidden fixed top-0 left-0 bg-white w-screen h-screen">
+        <ul class="nav-items justify-center items-center gap-[28px] uppercase flex flex-col h-screen lg:hidden">
             <?php
             // HOME PAGE
-            if ($_SERVER['REQUEST_URI'] == "/gverzosa/") {
+            if ($_SERVER['REQUEST_URI'] == PATH."/") {
             ?>
-                <li> <a class="home hover:cursor-pointer hover:text-secondary transition-color duration-300" href="#home">Home</a></li>
-                <li> <a class="about hover:cursor-pointer hover:text-secondary transition-color duration-300" href="#about">About Us</a></li>
-                <li> <a class="services hover:cursor-pointer hover:text-secondary transition-color duration-300" href="#services">Services</a></li>
-                <li> <a class="products hover:cursor-pointer hover:text-secondary transition-color duration-300" href="#products">Products</a></li>
-                <button id="btn-book" onclick="openBookModal()" class="bg-secondary text-defaultwhite text-[20px] font-bold py-[5px] px-[10px] rounded-md font-Montserrat transition-all duration-300 hover:bg-tertiary">Book Now</button>
+                <li class="active home"> <a onclick="closeDrawer()" class="home hover:cursor-pointer hover:text-secondary transition-color duration-300" href="#home">Home</a></li>
+                <li class="about"> <a onclick="closeDrawer()" class="about hover:cursor-pointer hover:text-secondary transition-color duration-300" href="#about">About Us</a></li>
+                <li class="services"> <a onclick="closeDrawer()" class="services hover:cursor-pointer hover:text-secondary transition-color duration-300" href="#services">Services</a></li>
+                <li class="products"> <a onclick="closeDrawer()" class="products hover:cursor-pointer hover:text-secondary transition-color duration-300" href="#products">Products</a></li>
+                <button id="btn-book" onclick="openBookModal1()" class="bg-secondary text-defaultwhite text-[20px] font-bold py-[5px] px-[10px] rounded-md font-Montserrat transition-all duration-300 hover:bg-tertiary">Book Now</button>
 
             <?php
-            } else if ($_SERVER['REQUEST_URI'] == "/gverzosa/pages/login.php") {
+            } else if ($_SERVER['REQUEST_URI'] == PATH."/pages/login.php") {
             ?>
-                <a class="hover:cursor-pointer hover:text-secondary transition-color duration-300" href="../">Home</a>
-                <a class="hover:cursor-pointer hover:text-secondary transition-color duration-300" href="../#about">About Us</a>
-                <a class="hover:cursor-pointer hover:text-secondary transition-color duration-300" href="../#services">Services</a>
-                <a class="hover:cursor-pointer hover:text-secondary transition-color duration-300" href="../#products">Products</a>
-                <button id="btn-book" onclick="openBookModal()" class="bg-secondary text-defaultwhite text-[20px] font-bold py-[5px] px-[10px] rounded-md font-Montserrat transition-all duration-300 hover:bg-tertiary">Book Now</button>
+                <a onclick="closeDrawer()" class="hover:cursor-pointer hover:text-secondary transition-color duration-300" href="../">Home</a>
+                <a onclick="closeDrawer()" class="hover:cursor-pointer hover:text-secondary transition-color duration-300" href="../#about">About Us</a>
+                <a onclick="closeDrawer()" class="hover:cursor-pointer hover:text-secondary transition-color duration-300" href="../#services">Services</a>
+                <a onclick="closeDrawer()" class="hover:cursor-pointer hover:text-secondary transition-color duration-300" href="../#products">Products</a>
+                <button id="btn-book" onclick="openBookModal1()" class="bg-secondary text-defaultwhite text-[20px] font-bold py-[5px] px-[10px] rounded-md font-Montserrat transition-all duration-300 hover:bg-tertiary">Book Now</button>
             <?php
             }
             ?>
@@ -171,10 +180,10 @@ if ($_SERVER['REQUEST_URI'] == "/gverzosa/") {
                 <div class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
 
                     <form action=<?php
-                                    if ($_SERVER['REQUEST_URI'] == "/gverzosa/") {
+                                    if ($_SERVER['REQUEST_URI'] == PATH."/") {
                                         echo './api/post_book.php';
                                     } else {
-                                        echo '../../../gverzosa/api/post_book.php';
+                                        echo '../../..'.PATH.'/api/post_book.php';
                                     }
                                     ?> method="post">
                         <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
@@ -186,12 +195,17 @@ if ($_SERVER['REQUEST_URI'] == "/gverzosa/") {
                             <label for="fullname">Full Name</label>
                             <input id="fullname" type="text" class="block border border-grey-light w-full p-3 rounded mb-4" name="fullname" placeholder="ex. Juan Dela Cruz" required />
                             <label for="email">Email</label>
-                            <input id="email" type="email" class="block border border-grey-light w-full p-3 rounded mb-4" name="email" placeholder="ex. youremail@example.com" required />
+                            <input id="email" type="email" onkeyup="handleOnChange(this.value)" class="block border border-grey-light w-full p-3 rounded mb-4" name="email" placeholder="ex. youremail@example.com" required />
                             <label for="mobilenumber">Mobile Number</label>
-                            <input id="mobilenumber" type="phone" class="block border border-grey-light w-full p-3 rounded mb-4" name="mobilenumber" placeholder="09123456789" pattern="[0,9]{2}[0-9]{9}" required />
+                            <div class='relative w-full'>
+                                <div class='absolute top-0 left-0 h-full div-center pl-3 pr-2'>
+                                    +63
+                                </div>
+                                <input id="mobilenumber" type="phone" class="block border border-grey-light w-full p-3 rounded mb-4 pl-12" name="mobilenumber" placeholder="9123456789" pattern="[9]{1}[0-9]{9}" maxlength="10" required />
+                            </div>                                                                          
                             <label for="date">Appointment Date</label>
                             <input id="date" type="date" class="block border border-grey-light w-full p-3 rounded mb-4" name="date" placeholder="11/17/2022" min="<?php echo date("Y-m-d"); ?>" required />
-                            <label for="time">Appointment Time (opening hours 10:00 am - 9:00 pm)</label>
+                            <label for="time">Appointment Time <br/>(Opening Hours 10:00 am - 9:00 pm)</label>
                             <input id="time" type="time" list="times" class="block border border-grey-light w-full p-3 rounded mb-4" name="time" placeholder="09:00" required />
                             <datalist id="times">
                                 <option>10:00:00</option>
@@ -214,7 +228,6 @@ if ($_SERVER['REQUEST_URI'] == "/gverzosa/") {
                                 <option>19:30:00</option>
                                 <option>20:00:00</option>
                                 <option>20:30:00</option>
-                                <option>21:00:00</option>
                             </datalist>
                             <label for="service">What kind of service we'll set up for you?</label>
                             <select name="service" id="service" class="block border border-grey-light w-full p-3 rounded mb-4">
@@ -239,28 +252,56 @@ if ($_SERVER['REQUEST_URI'] == "/gverzosa/") {
         </div>
     </div>
     <script>
+        function handleOnChange(value) {
+            // Email validation REGEX
+            var pattern = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            if(!pattern.test(value)){
+                document.getElementById('email').setCustomValidity("Please enter a valid email address (e.g. juan@example.com)");
+            }
+            else{
+                document.getElementById('email').setCustomValidity("");
+            }
+        }
         function openBookModal() {
             $("#modal-book-now").removeClass("hidden");
+        }
+
+        function openBookModal1() {
+            $("#modal-book-now").removeClass("hidden");
+            $('#navbarr').toggle();
         }
 
         function closeBookModal() {
             $("#modal-book-now").addClass("hidden");
         }
-    </script>
-
-
-
-    <script>
+        function openDrawer() {
+            $('#navbarr').toggle();
+        }
+        function closeDrawer(){
+            $('#navbarr').toggle();
+           
+            //console.log($('#navbarr').attr('aria-expanded'));
+            // $("#navbarr").addClass("hidden");
+        }
         const pElement = document.querySelector('p');
         const pId = pElement.getAttribute('idp');
         const divElement = document.querySelector('#warning');
+        var path = '';
+        if (window.location.pathname =="/gverzosa/") {
+            path = 'check_time.php';
+            
+        } else {
+            path = '../check_time.php';
+            
+        }
 
         document.getElementById('date').addEventListener('change', function() {
             var selectedDate = this.value;
             var selectedTime = document.getElementById('time').value;
+            
             if (selectedTime) {
                 var xhr = new XMLHttpRequest();
-                xhr.open('POST', 'check_time.php');
+                xhr.open('POST', path);
                 xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
                 xhr.onload = function() {
 
@@ -281,7 +322,7 @@ if ($_SERVER['REQUEST_URI'] == "/gverzosa/") {
             var selectedTime = this.value;
             if (selectedDate) {
                 var xhr = new XMLHttpRequest();
-                xhr.open('POST', 'check_time.php');
+                xhr.open('POST', path);
                 xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
                 xhr.onload = function() {
                     if (xhr.status == 200) {

@@ -41,8 +41,8 @@
                 // SUCCESS
                 $_SESSION['alert'] = true;
                 $_SESSION['alert-icon'] = "success";
-                $_SESSION['alert-title'] = "Success";
-                $_SESSION['alert-text'] = "Booked an appointment successfully. Thanks for choosing us.";
+                $_SESSION['alert-title'] = "Appointment Received!";
+                $_SESSION['alert-text'] = "Wait for confirmation. Thank you!";
                 header("Location: ../");
             }
         }else{

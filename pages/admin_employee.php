@@ -30,7 +30,7 @@ function userType($num)
 <div class="flex-col w-full min-h-screen pl-[270px] mt-[90px] pr-[20px] pb-[150px] overflow-auto">
     <div class="text-left w-full mb-5">
         <button class="addUser bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 border border-blue-700 rounded">
-            Add User
+            Add Employee
         </button>
     </div>
     <div id="modal-add" class="relative z-[10000] hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
@@ -137,7 +137,7 @@ function userType($num)
     <table id="data-table" class="display" style="width:100%">
         <thead>
             <tr>
-                <th>User ID</th>
+                <th>Employee ID</th>
                 <th>Firstname</th>
                 <th style="display: none;">Picture</th>
                 <th>Lastname</th>

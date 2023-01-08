@@ -139,7 +139,7 @@ function countUser($conn)
                 </div>
             </a>
         </div>
-        <div class="w-full grid grid-cols-1 gap-4 mb-5">
+        <!-- <div class="w-full grid grid-cols-1 gap-4 mb-5">
             <a href="archive_feedback.php">
                 <div class="div-center gap-[20px] bg-green-500 px-10 py-5 rounded-md text-white flex-1">
                     <div class="text-[48px] div-center">
@@ -151,7 +151,7 @@ function countUser($conn)
                     </div>
                 </div>
             </a>
-        </div>
+        </div> -->
 
         <div class="w-full grid grid-cols-1 gap-4 mb-5">
             <a href="archive_product.php">
@@ -193,21 +193,7 @@ function countUser($conn)
                 </div>
             </a>
         </div>
-
-        <div class="w-full grid grid-cols-1 gap-4 mb-5">
-
-            <a href="archive_category.php">
-                <div class="div-center gap-[20px] bg-green-500 px-10 py-5 rounded-md text-white flex-1">
-                    <div class="text-[48px] div-center">
-                        <i class="fa fa-scissors" aria-hidden="true"></i>
-                    </div>
-                    <div class="div-center flex-col">
-                        <h1 class="font-bold">Service Category</h1>
-                        <h1 class="text-[32px]"><?php echo countCategory($conn); ?></h1>
-                    </div>
-                </div>
-            </a>
-        </div>
+        
         <div class="w-full grid grid-cols-1 gap-4 mb-5">
 
             <a href="archive_service.php">
@@ -224,13 +210,13 @@ function countUser($conn)
         </div>
         <div class="w-full grid grid-cols-1 gap-4 mb-5">
 
-            <a href="archive_user.php">
+            <a href="archive_employee.php">
                 <div class="div-center gap-[20px] bg-green-500  px-10 py-5 rounded-md text-white ">
                     <div class="text-[48px] div-center">
                         <i class="fa fa-users" aria-hidden="true"></i>
                     </div>
                     <div class="div-center flex-col">
-                        <h1 class="font-bold">Users</h1>
+                        <h1 class="font-bold">Employees</h1>
                         <h1 class="text-[32px]"><?php echo countUser($conn); ?></h1>
                     </div>
                 </div>

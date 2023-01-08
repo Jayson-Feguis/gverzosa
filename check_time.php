@@ -5,7 +5,7 @@ function checkAppointmentTime($selectedDate, $selectedTime, $con)
 {
 
     $newDateTime = date('Y-m-d H:i:s', strtotime("$selectedDate $selectedTime"));
-    $validate = "SELECT * FROM  tbl_appointment WHERE START_DATE = '$newDateTime'";
+    $validate = "SELECT * FROM  tbl_appointment WHERE START_DATE = '$newDateTime' AND (APP_STATUS = 0 || APP_STATUS = 1)";
     $query_validate = mysqli_query($con, $validate);
 
     if (mysqli_num_rows($query_validate) > 0) {
