@@ -26,8 +26,7 @@
     <!-- SWIPER JS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
     <?php
-    echo '<script>console('.PATH.')</script>';
-    if ($_SERVER['REQUEST_URI'] == PATH."/") {
+    if ($_SERVER['REQUEST_URI'] == "/") {
     ?>
         <!-- STYLE -->
         <link rel="stylesheet" type="text/css" href="style/header.css" />
@@ -127,7 +126,7 @@
             <ul class="nav-items justify-center items-center gap-[28px] pr-[40px] uppercase hidden lg:flex">
                 <?php
                 // HOME PAGE
-                if ($_SERVER['REQUEST_URI'] == PATH."/") {
+                if ($_SERVER['REQUEST_URI'] == "/") {
                 ?>
 
                     <li class="active home"> <a href="#home" class=" home  hover:cursor-pointer hover:text-secondary transition-color duration-300">Home</a> </li>
@@ -137,7 +136,7 @@
                     <button id="btn-book" onclick="openBookModal()" class="bg-secondary text-defaultwhite text-[20px] font-bold py-[5px] px-[10px] rounded-md font-Montserrat transition-all duration-300 hover:bg-tertiary">Book Now</button>
 
                 <?php
-                } else if ($_SERVER['REQUEST_URI'] == PATH."/pages/login.php") {
+                } else if ($_SERVER['REQUEST_URI'] == "/pages/login.php") {
                 ?>
                     <a class="hover:cursor-pointer hover:text-secondary transition-color duration-300" href="../">Home</a>
                     <a class="hover:cursor-pointer hover:text-secondary transition-color duration-300" href="../#about">About Us</a>
@@ -154,7 +153,7 @@
         <ul class="nav-items justify-center items-center gap-[28px] uppercase flex flex-col h-screen lg:hidden">
             <?php
             // HOME PAGE
-            if ($_SERVER['REQUEST_URI'] == PATH."/") {
+            if ($_SERVER['REQUEST_URI'] == "/") {
             ?>
                 <li class="active home"> <a onclick="closeDrawer()" class="home hover:cursor-pointer hover:text-secondary transition-color duration-300" href="#home">Home</a></li>
                 <li class="about"> <a onclick="closeDrawer()" class="about hover:cursor-pointer hover:text-secondary transition-color duration-300" href="#about">About Us</a></li>
@@ -163,7 +162,7 @@
                 <button id="btn-book" onclick="openBookModal1()" class="bg-secondary text-defaultwhite text-[20px] font-bold py-[5px] px-[10px] rounded-md font-Montserrat transition-all duration-300 hover:bg-tertiary">Book Now</button>
 
             <?php
-            } else if ($_SERVER['REQUEST_URI'] == PATH."/pages/login.php") {
+            } else if ($_SERVER['REQUEST_URI'] == "/pages/login.php") {
             ?>
                 <a onclick="closeDrawer()" class="hover:cursor-pointer hover:text-secondary transition-color duration-300" href="../">Home</a>
                 <a onclick="closeDrawer()" class="hover:cursor-pointer hover:text-secondary transition-color duration-300" href="../#about">About Us</a>
@@ -181,10 +180,10 @@
             <div class="flex min-h-full justify-center p-4 text-center items-center sm:p-0">
                 <div class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
                     <form action=<?php
-                                    if ($_SERVER['REQUEST_URI'] == PATH."/") {
+                                    if ($_SERVER['REQUEST_URI'] == "/") {
                                         echo './api/post_book.php';
                                     } else {
-                                        echo '../../..'.PATH.'/api/post_book.php';
+                                        echo '../../..'.'/api/post_book.php';
                                     }
                                     ?> method="post">
                         <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">

@@ -24,13 +24,13 @@ if (isset($_POST['login'])) {
         $_SESSION['user_type'] = $row['USER_TYPE'];
         $_SESSION['fname_name'] = $row['USER_FNAME'];
         $_SESSION['lname_name'] = $row['USER_LNAME'];
-        header('Location: '.PATH.'/pages/admin_dashboard.php');
+        header('Location: ../pages/admin_dashboard.php');
     } else {
         // ERROR
         $_SESSION['alert'] = true;
         $_SESSION['alert-icon'] = "error";
         $_SESSION['alert-title'] = "Oops!";
         $_SESSION['alert-text'] = "Invalid username and password";
-        header('Location: '.PATH.'/pages/login.php');
+        header('Location: ../pages/login.php');
     }
 }
