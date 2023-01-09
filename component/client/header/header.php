@@ -1,5 +1,5 @@
 <?php
-    if ($_SERVER['REQUEST_URI'] == "/gverzosa/") {
+    if ($_SERVER['REQUEST_URI'] == "/") {
         include('utils/db_config.php');
         include('utils/routes.php');
         include('utils/utils.php');
