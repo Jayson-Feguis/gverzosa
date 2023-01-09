@@ -31,8 +31,16 @@ if (isset($_POST['book'])) {
 
     $sql_appointment = "INSERT tbl_appointment (APP_NAME, APP_EMAIL, APP_MOBILE_NUMBER, START_DATE, END_DATE, TEXT, SERVICE_ID) values ('$fullname', '$email', '$mobile_number', '$newDateTime', '$newDateTime', '$text', '$service')";
     $result = mysqli_query($conn, $sql_appointment);
-    $sqls = "INSERT INTO tbl_customer (CUSTOMER_NAME, CUSTOMER_EMAIL, CUSTOMER_MOBILE_NUMBER, CUSTOMER_STATUS) VALUES ('$fullname', '$email', '$mobile_number',  '$status')";
-    $results = mysqli_query($conn, $sqls);
+
+    $validate = "SELECT * FROM  tbl_customer WHERE CUSTOMER_NAME = '$fullname' AND CUSTOMER_EMAIL = '$email' AND CUSTOMER_MOBILE_NUMBER = '$mobile_number' ";
+    $query_validate = mysqli_query($conn, $validate);
+
+
+    if (mysqli_num_rows($query_validate) == 0) {
+        $sqls = "INSERT INTO tbl_customer (CUSTOMER_NAME, CUSTOMER_EMAIL, CUSTOMER_MOBILE_NUMBER, CUSTOMER_STATUS) VALUES ('$fullname', '$email', '$mobile_number',  '$status')";
+        $results = mysqli_query($conn, $sqls);
+    }
+
 
     if ($result) {
         $send_email = sendEmail($fullname, $email, $email_subject, $email_message);
