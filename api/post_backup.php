@@ -1,5 +1,6 @@
 <?php
 include_once('../utils/db_config.php');
+date_default_timezone_set('Asia/Manila');
 
 if(isset($_POST['backup'])){
     $user_id = $_POST['userID'];

@@ -42,7 +42,7 @@
         </div>
     </div>
     <?php
-        $backup_query = "SELECT CONCAT(tbl_user.USER_FNAME, ' ', tbl_user.USER_LNAME) as FULLNAME, tbl_backup.* FROM tbl_backup INNER JOIN tbl_user ON tbl_backup.USER_ID = tbl_user.USER_ID";
+        $backup_query = "SELECT CONCAT(tbl_user.USER_FNAME, ' ', tbl_user.USER_LNAME) as FULLNAME, tbl_backup.* FROM tbl_backup INNER JOIN tbl_user ON tbl_backup.USER_ID = tbl_user.USER_ID ORDER BY BACKUP_ID DESC";
         $backup_result = mysqli_query($conn, $backup_query);
     ?>
     <table id="data-table" class="display" style="width:100%">

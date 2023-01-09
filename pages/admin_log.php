@@ -26,7 +26,7 @@ function getUserName($id, $conn)
     <table id="data-table-audit" class="display" style="width:100%">
         <thead>
             <tr>
-                <th style="display: none;">audit id</th>
+                <th>Log ID</th>
                 <th>User</th>
                 <th>Activity</th>
                 <th>Date Created</th>
@@ -39,7 +39,7 @@ function getUserName($id, $conn)
                 while ($row = mysqli_fetch_assoc($query_run)) {
             ?>
                     <tr>
-                        <td style="display: none;"><?php echo $row['AUDIT_ID']; ?> </td>
+                        <td><?php echo $row['AUDIT_ID']; ?> </td>
                         <td><?php echo getUserName($_SESSION['user_id'], $conn); ?> </td>
                         <td><?php echo $row['AUDIT_ACTIVITY']; ?> </td>
                         <td><?php echo $row['AUDIT_DATETIME_CREATED']; ?> </td>

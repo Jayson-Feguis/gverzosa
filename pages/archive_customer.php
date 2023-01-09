@@ -49,12 +49,9 @@ unset($_SESSION['alert-text']);
             <tr>
                 <th>Customer ID</th>
                 <th>Name</th>
-                <th style="display: none;">Picture</th>
-                <th>Gender</th>
-                <th>Picture</th>
                 <th>Email</th>
                 <th>Mobile Number</th>
-                <th>Address</th>
+
                 <th>Date Created</th>
                 <th>Actions</th>
             </tr>
@@ -67,14 +64,13 @@ unset($_SESSION['alert-text']);
                     <tr>
                         <td><?php echo $row['CUSTOMER_ID']; ?> </td>
                         <td><?php echo $row['CUSTOMER_NAME']; ?> </td>
-                        <td style="display: none;"><?php echo $row['CUSTOMER_PICTURE']; ?> </td>
-                        <td><?php echo $row['CUSTOMER_GENDER']; ?> </td>
+
                         <td>
                             <div class="w-[200px] h-[40px] bg-contain bg-no-repeat" style="background-image: url('../images/<?php echo $row['CUSTOMER_PICTURE']; ?>');"></div>
                         </td>
                         <td><?php echo $row['CUSTOMER_EMAIL']; ?> </td>
-                        <td><?php echo $row['CUSTOMER_MOBILE_NUMBER']; ?> </td>
-                        <td><?php echo $row['CUSTOMER_ADDRESS']; ?> </td>
+                        <td>0<?php echo $row['CUSTOMER_MOBILE_NUMBER']; ?> </td>
+
                         <td><?php echo $row['CUSTOMER_DATETIME_CREATED']; ?> </td>
                         <td class="text-center">
                             <button type="button" class="archiveCustomer bg-transparent hover:bg-gray-300 text-blue-700 font-semibold hover:text-white py-[5px] px-2 border border-gray-500 hover:border-border-gray-300 rounded">
