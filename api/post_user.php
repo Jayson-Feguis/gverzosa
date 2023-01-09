@@ -1,7 +1,7 @@
 <?php
 include_once('../utils/db_config.php');
 include_once('../utils/helper.php');
-
+date_default_timezone_set('Asia/Manila');
 if (isset($_POST['edituser'])) {
 
     $id = $_POST['edituserid'];
@@ -40,14 +40,14 @@ if (isset($_POST['edituser'])) {
             $_SESSION['alert-icon'] = "success";
             $_SESSION['alert-title'] = "Success";
             $_SESSION['alert-text'] = "Product updated successfully";
-            header("Location: ../pages/admin_user.php");
+            header("Location: ../pages/admin_employee.php");
         } else {
             // ERROR
             $_SESSION['alert'] = true;
             $_SESSION['alert-icon'] = "error";
             $_SESSION['alert-title'] = "Error";
             $_SESSION['alert-text'] = "Something went wrong" . mysqli_error($conn);
-            header("Location: ../pages/admin_user.php");
+            header("Location: ../pages/admin_employee.php");
         }
     }
     // ELSE, UPDATE ALL INFORMATION TOGETHER WITH PRODUCT PICTURE
@@ -62,7 +62,7 @@ if (isset($_POST['edituser'])) {
                 $_SESSION['alert-icon'] = "error";
                 $_SESSION['alert-title'] = "Error";
                 $_SESSION['alert-text'] = "Failed to upload image";
-                header("Location: ../pages/admin_user.php");
+                header("Location: ../pages/admin_employee.php");
             }
 
             $sql = "UPDATE tbl_user SET USER_FNAME = '$fname', USER_PICTURE = '$upload_image',  USER_LNAME = '$lname', USER_MOBILE_NUMBER = '$number', USER_EMAIL = '$email', USER_TYPE = '$type', USER_USERNAME = '$username', USER_PASSWORD = '$password' WHERE USER_ID = '$id'";
@@ -74,21 +74,21 @@ if (isset($_POST['edituser'])) {
                 $_SESSION['alert-icon'] = "success";
                 $_SESSION['alert-title'] = "Success";
                 $_SESSION['alert-text'] = "User updated successfully" . $edituserimage;
-                header("Location: ../pages/admin_user.php");
+                header("Location: ../pages/admin_employee.php");
             } else {
                 // ERROR
                 $_SESSION['alert'] = true;
                 $_SESSION['alert-icon'] = "error";
                 $_SESSION['alert-title'] = "Error";
                 $_SESSION['alert-text'] = "Something went wrong";
-                header("Location: ../pages/admin_user.php");
+                header("Location: ../pages/admin_employee.php");
             }
         } else {
             $_SESSION['alert'] = true;
             $_SESSION['alert-icon'] = "info";
             $_SESSION['alert-title'] = "Error";
             $_SESSION['alert-text'] = "Please upload an image | " . $edituserimage;
-            header("Location: ../pages/admin_user.php");
+            header("Location: ../pages/admin_employee.php");
         }
     }
 } else if (isset($_POST['deleteuser'])) {
@@ -109,14 +109,14 @@ if (isset($_POST['edituser'])) {
         $_SESSION['alert-icon'] = "success";
         $_SESSION['alert-title'] = "Success";
         $_SESSION['alert-text'] = "User deleted successfully";
-        header("Location: ../pages/admin_user.php");
+        header("Location: ../pages/admin_employee.php");
     } else {
         // ERROR
         $_SESSION['alert'] = true;
         $_SESSION['alert-icon'] = "error";
         $_SESSION['alert-title'] = "Error";
         $_SESSION['alert-text'] = "Something went wrong";
-        header("Location: ../pages/admin_user.php");
+        header("Location: ../pages/admin_employee.php");
     }
 } else if (isset($_POST['adduser'])) {
 
@@ -144,7 +144,7 @@ if (isset($_POST['edituser'])) {
         $_SESSION['alert-icon'] = "error";
         $_SESSION['alert-title'] = "Error";
         $_SESSION['alert-text'] = "Username already exist";
-        header("Location: ../pages/admin_user.php");
+        header("Location: ../pages/admin_employee.php");
     } else {
 
         if (isset($_FILES['adduserimage']['name'])) {
@@ -155,7 +155,7 @@ if (isset($_POST['edituser'])) {
                 $_SESSION['alert-icon'] = "error";
                 $_SESSION['alert-title'] = "Error";
                 $_SESSION['alert-text'] = "Failed to upload image";
-                header("Location: ../pages/admin_user.php");
+                header("Location: ../pages/admin_employee.php");
             }
 
             $sql = "INSERT INTO tbl_user (USER_FNAME, USER_LNAME, USER_EMAIL, USER_MOBILE_NUMBER, USER_USERNAME, USER_PASSWORD, USER_TYPE, USER_PICTURE, USER_STATUS) VALUES ('$fname', '$lname', '$email', '$number', '$username', '$password', '$type', '$upload_image', '$status')";
@@ -167,21 +167,21 @@ if (isset($_POST['edituser'])) {
                 $_SESSION['alert-icon'] = "success";
                 $_SESSION['alert-title'] = "Success";
                 $_SESSION['alert-text'] = 'User added successfully';
-                header("Location: ../pages/admin_user.php");
+                header("Location: ../pages/admin_employee.php");
             } else {
                 // ERROR
                 $_SESSION['alert'] = true;
                 $_SESSION['alert-icon'] = "error";
                 $_SESSION['alert-title'] = "Error";
                 $_SESSION['alert-text'] = "Something went wrong";
-                header("Location: ../pages/admin_user.php");
+                header("Location: ../pages/admin_employee.php");
             }
         } else {
             $_SESSION['alert'] = true;
             $_SESSION['alert-icon'] = "info";
             $_SESSION['alert-title'] = "Error";
             $_SESSION['alert-text'] = "Please upload an image";
-            header("Location: ../pages/admin_user.php");
+            header("Location: ../pages/admin_employee.php");
         }
     }
 } else if (isset($_POST['archiveuser'])) {

@@ -1,12 +1,12 @@
 <?php
 function loginUrl()
 {
-    if ($_SERVER['REQUEST_URI'] == "/gverzosa/") {
-        return "gverzosa/pages/login.php";
-    } else if ($_SERVER['REQUEST_URI'] == "/gverzosa/pages/login.php") {
-        return "pages/login.php";
+    if ($_SERVER['REQUEST_URI'] == "/") {
+        return "/pages/login.php";
+    } else if ($_SERVER['REQUEST_URI'] == "/pages/login.php") {
+        return "/pages/login.php";
     } else {
-        return "pages/login.php";
+        return "/pages/login.php";
     }
 }
 
@@ -20,12 +20,12 @@ function loginUrl()
             <button id="btn-book" onclick="openBookModal()" class="bg-secondary mt-5 text-defaultwhite text-[20px] font-bold py-[5px] px-[10px] rounded-md font-Montserrat transition-all duration-300 hover:bg-tertiary">Book Now</button>
         </div>
         <div class="links w-full sm:w-[50%] md:w-[33%] flex justify-start items-center flex-col py-[30px]">
-            <div class="flex justify-start items-start flex-col gap-[25px] w-[170px]">
+            <div class="flex justify-start items-center md:items-start flex-col gap-[25px] w-[170px]">
                 <h6 class="font-bold">Links</h6>
-                <ul class="nav-link flex flex-col gap-[10px]">
+                <ul class="nav-link flex items-center md:items-start flex-col gap-[10px]">
                     <?php
                     // HOME PAGE
-                    if ($_SERVER['REQUEST_URI'] == "/gverzosa/") {
+                    if ($_SERVER['REQUEST_URI'] == "/") {
                     ?>
                         <a class="hover:cursor-pointer hover:text-secondary transition-all duration-300" href="#home">Home</a>
                         <a class="hover:cursor-pointer hover:text-secondary transition-all duration-300" href="#about">About Us</a>
@@ -34,7 +34,7 @@ function loginUrl()
                     <?php
                     }
                     // ABOUT US PAGE
-                    else if ($_SERVER['REQUEST_URI'] == "/gverzosa/pages/login.php") {
+                    else if ($_SERVER['REQUEST_URI'] == "/pages/login.php") {
                     ?>
                         <a class="hover:cursor-pointer hover:text-secondary transition-all duration-300" href="../">Home</a>
                         <a class="hover:cursor-pointer hover:text-secondary transition-all duration-300" href="../#about">About Us</a>
@@ -47,12 +47,12 @@ function loginUrl()
                 </ul>
                 <h6 class="font-bold pt-[20px]">Are you an admin?</h6>
                 <ul class="nav-link flex flex-col gap-[10px]">
-                    <a class="hover:cursor-pointer hover:text-secondary transition-all duration-300 " href="../<?php echo loginUrl(); ?>">Login as admin</a>
+                    <a class="hover:cursor-pointer hover:text-secondary transition-all duration-300 " href="..<?php echo loginUrl(); ?>">Login as admin</a>
                 </ul>
             </div>
         </div>
         <div class="links w-full sm:w-[50%] md:w-[33%] flex justify-center items-start py-[30px]">
-            <div class="flex justify-center items-start flex-col gap-[25px] w-[170px]">
+            <div class="flex justify-center items-center md:items-start flex-col gap-[25px] w-[170px]">
                 <h6 class="font-bold">Social Media</h6>
                 <ul class="social-media  flex flex-col gap-[10px]">
                     <a href="https://www.facebook.com/gverzosasalon" target="_blank" class="hover:cursor-pointer hover:text-secondary transition-all duration-300">

@@ -1,5 +1,7 @@
 <?php
 include_once('../utils/db_config.php');
+include_once('../utils/utils.php');
+date_default_timezone_set('Asia/Manila');
 
 if (isset($_POST['login'])) {
     $username = $_POST['username'];
@@ -22,13 +24,13 @@ if (isset($_POST['login'])) {
         $_SESSION['user_type'] = $row['USER_TYPE'];
         $_SESSION['fname_name'] = $row['USER_FNAME'];
         $_SESSION['lname_name'] = $row['USER_LNAME'];
-        header('Location: /gverzosa/pages/admin_dashboard.php');
+        header('Location: ../pages/admin_dashboard.php');
     } else {
         // ERROR
         $_SESSION['alert'] = true;
         $_SESSION['alert-icon'] = "error";
         $_SESSION['alert-title'] = "Oops!";
         $_SESSION['alert-text'] = "Invalid username and password";
-        header('Location: /gverzosa/pages/login.php');
+        header('Location: ../pages/login.php');
     }
 }

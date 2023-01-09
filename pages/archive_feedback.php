@@ -58,7 +58,7 @@ function getCustomerName($id, $conn)
     <table id="data-table" class="display" style="width:100%">
         <thead>
             <tr>
-                <th style="display: none;">Feedback id</th>
+                <th>Feedback id</th>
                 <th>Customer Name</th>
                 <th>Feedback</th>
                 <th>Date Created</th>
@@ -71,7 +71,7 @@ function getCustomerName($id, $conn)
                 while ($row = mysqli_fetch_assoc($query_run)) {
             ?>
                     <tr>
-                        <td style="display: none;"><?php echo $row['FEEDBACK_ID']; ?> </td>
+                        <td><?php echo $row['FEEDBACK_ID']; ?> </td>
                         <td><?php echo $row['CUSTOMER_NAME']; ?> </td>
                         <td><?php echo $row['FEEDBACK_CONTENT']; ?> </td>
                         <td><?php echo $row['FEEDBACK_DATETIME_CREATED']; ?> </td>
