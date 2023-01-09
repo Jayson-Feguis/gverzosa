@@ -157,7 +157,8 @@ unset($_SESSION['alert-title']);
 unset($_SESSION['alert-text']);
 ?>
 <div class="div-center flex-col w-full">
-    <section id='home' class="relative div-center w-[100%] min-h-[100vh] flex-wrap bg-no-repeat bg-cover bg-right" style="background-image: url(./images/main_bg.jpg);">
+    <section id='home' class="relative div-center lg:justify-end w-[100%] min-h-[100vh] flex-wrap bg-no-repeat bg-cover bg-right" style="background-image: url(./placeholder/main_bg1.jpg);">
+        <img src="placeholder/logo.png" alt="Logo" class="px-20 md:w-[700px] lg:w-[40vw] lg:mr-[10vw]"/>
     </section>
     <section id='home' class="div-center bg-tertiary flex-col w-full py-[7rem]">
         <h1 class="font-Dancing text-[64px] font-bold text-defaultwhite">

@@ -9,6 +9,7 @@ if (isset($_POST['editservice'])) {
     $price = $_POST['serviceprice'];
     $category = $_POST['servicecategory'];
     $old_image = '';
+    $category_id = '';
 
 
     // check if service name is existing
@@ -31,13 +32,22 @@ if (isset($_POST['editservice'])) {
             }
         }
 
+        // Get Category based on category name
+        $sql_category = "SELECT CATEGORY_ID FROM tbl_category WHERE CATEGORY_NAME = '$category'";
+        $res_category = mysqli_query($conn, $sql_category);
+        if ($res_category) {
+            while ($rows_category = mysqli_fetch_assoc($res_category)) {
+                $category_id = $rows_category['CATEGORY_ID'];
+            }
+        }
+
         $idaudit =  $_SESSION['user_id']; //id
         $descriptionaudit = "Edited service sub category " . $id; // description plus banner name
         $audit = "INSERT INTO tbl_audit (USER_ID, AUDIT_ACTIVITY) VALUES ('$idaudit', '$descriptionaudit' )";
         $query_audit = mysqli_query($conn, $audit);
         // CHECK IF THE EXISTING IMAGE IS EQUAL TO IMAGE PAYLOAD, IF YES, DONT UPDATE IMAGE
         if ($old_image == $image &&  $image != "") {
-            $sql = "UPDATE tbl_service SET SERVICE_NAME = '$name',  SERVICE_PRICE = '$price', CATEGORY_ID = '$category' WHERE SERVICE_ID = '$id'";
+            $sql = "UPDATE tbl_service SET SERVICE_NAME = '$name',  SERVICE_PRICE = '$price', CATEGORY_ID = '$category_id' WHERE SERVICE_ID = '$id'";
             $result = mysqli_query($conn, $sql);
 
             if ($result) {

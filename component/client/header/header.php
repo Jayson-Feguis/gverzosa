@@ -115,11 +115,11 @@
 <body data-spy="scroll" data-target="mainNav" data-offset="50 class=" bg-defaultwhite block">
     <nav class=" mainNav div-center fixed z-[9999] transition-all duration-300">
         <div class="nav-container justify-between px-5 py-10 transition-all duration-300">
-            <div class="logo div-center pl-[50px] flex-col font-black">
+            <div class="logo div-center sm:pl-[50px] flex-col font-black">
                 <h1 class="drop-shadow font-Dancing text-[2rem]">G. Verzosa</h1>
                 <h5 class="drop-shadow font-Montserrat text-[1rem]">Salon & Spa</5>
             </div>
-            <button data-collapse-toggle="navbarr" type="button" onclick="openDrawer()" class="inline-flex items-center p-2 ml-3 text-md text-gray-500 rounded-lg lg:hidden focus:outline-none" aria-controls="navbarr" aria-expanded="false">
+            <button data-collapse-toggle="navbarr" type="button" onclick="openDrawer()" class="inline-flex sm:pr-[50px] items-center p-2 ml-3 text-md text-gray-500 rounded-lg lg:hidden focus:outline-none" aria-controls="navbarr" aria-expanded="false">
                 <i class="fa fa-bars burger-menu text-[24px]" aria-hidden="true"></i>
             </button>
             <ul class="nav-items justify-center items-center gap-[28px] pr-[40px] uppercase hidden lg:flex">
