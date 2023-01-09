@@ -99,7 +99,6 @@ function userType($num)
                             <label for="editusertype">User Type</label>
                             <select name="editusertype" id="editusertype" class="block border border-grey-light w-full p-3 rounded mb-4" required>
                                 <option value="" disabled selected>Select User Type</option>
-
                                 <option value="1">Admin</option>
                                 <option value="2">Employee</option>
                             </select>

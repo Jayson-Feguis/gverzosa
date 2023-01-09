@@ -102,7 +102,7 @@ function getServiceCategory($id, $conn)
                                 $services_result = $conn->query($services_query);
                                 if ($services_result) {
                                     while ($rows = mysqli_fetch_array($services_result)) {
-                                        echo '<option value="' . $rows['CATEGORY_ID'] . '">' . $rows['CATEGORY_NAME'] . '</option>';
+                                        echo '<option value="' . $rows['CATEGORY_NAME'] . '">' . $rows['CATEGORY_NAME'] . '</option>';
                                     }
                                 }
                                 ?>
@@ -269,7 +269,7 @@ function getServiceCategory($id, $conn)
                 $('#serviceid').val(data[0]);
                 $('#servicename').val(data[1]);
                 $('#serviceprice').val(data[5]);
-                $('#servicecategory').val(data[4]).change();
+                $('#servicecategory').val(data[4]);
                 console.log(data);
             });
             $("#serviceimage").change(function() {
