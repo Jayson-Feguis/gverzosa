@@ -9,7 +9,7 @@
         include('../utils/routes.php');
         include('../utils/utils.php');
     }
-    echo $_SERVER['REQUEST_URI'];
+    
 ?>
 
 <!DOCTYPE html>
@@ -41,6 +41,7 @@
         <!-- SCRIPT -->
         <script src="../script/client.js"></script>
     <?php
+    echo '<script>console.log'.$_SERVER['REQUEST_URI'].')</script>';
     }
     ?>
     <!-- FLOWBITE -->
