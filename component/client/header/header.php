@@ -41,7 +41,6 @@
         <!-- SCRIPT -->
         <script src="../script/client.js"></script>
     <?php
-    echo '<script>console.log('.$_SERVER['REQUEST_URI'].')</script>';
     }
     ?>
     <!-- FLOWBITE -->
@@ -114,7 +113,9 @@
     </style>
 
 </head>
-
+<?php 
+echo '<script>console.log('.$_SERVER['REQUEST_URI'].')</script>';
+?>
 <body data-spy="scroll" data-target="mainNav" data-offset="50 class=" bg-defaultwhite block">
     <nav class=" mainNav div-center fixed z-[9999] transition-all duration-300">
         <div class="nav-container justify-between px-5 py-10 transition-all duration-300">
