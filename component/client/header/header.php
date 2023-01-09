@@ -41,7 +41,7 @@
         <!-- SCRIPT -->
         <script src="../script/client.js"></script>
     <?php
-    echo '<script>console.log'.$_SERVER['REQUEST_URI'].')</script>';
+    echo '<script>console.log('.$_SERVER['REQUEST_URI'].')</script>';
     }
     ?>
     <!-- FLOWBITE -->
