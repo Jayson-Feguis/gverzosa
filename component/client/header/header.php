@@ -1,3 +1,17 @@
+<?php 
+    echo $_SERVER['REQUEST_URI'];
+    if ($_SERVER['REQUEST_URI'] == "/") {
+        echo "Hello";
+        include('utils/db_config.php');
+        include('utils/routes.php');
+        include('utils/utils.php');
+    } else {
+        echo "WORLD";
+        include('../utils/db_config.php');
+        include('../utils/routes.php');
+        include('../utils/utils.php');
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,18 +26,6 @@
     <!-- SWIPER JS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
     <?php
-    echo $_SERVER['REQUEST_URI'];
-    if ($_SERVER['REQUEST_URI'] == "/") {
-        echo "Hello";
-        include('utils/db_config.php');
-        include('utils/routes.php');
-        include('utils/utils.php');
-    } else {
-        echo "WORLD";
-        include('../utils/db_config.php');
-        include('../utils/routes.php');
-        include('../utils/utils.php');
-    }
     if ($_SERVER['REQUEST_URI'] == "/") {
     ?>
         <!-- STYLE -->
