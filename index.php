@@ -1,5 +1,5 @@
 <?php
-include('component/client/header/header.php');
+    include('component/client/header/header.php');
 ?>
 <style>
     #swiper-home {
