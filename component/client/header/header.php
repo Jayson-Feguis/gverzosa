@@ -1,12 +1,9 @@
 <?php 
-    echo $_SERVER['REQUEST_URI'];
     if ($_SERVER['REQUEST_URI'] == "/") {
-        echo "Hello";
         include('utils/db_config.php');
         include('utils/routes.php');
         include('utils/utils.php');
     } else {
-        echo "WORLD";
         include('../utils/db_config.php');
         include('../utils/routes.php');
         include('../utils/utils.php');
