@@ -1,5 +1,5 @@
 <?php
-    if ($_SERVER['REQUEST_URI'] == "/") {
+    if ($_SERVER['REQUEST_URI'] == "") {
         include('utils/db_config.php');
         include('utils/routes.php');
         include('utils/utils.php');
@@ -448,7 +448,6 @@
         //         }
         //     });
         // });
-        console.log(window.location.pathname);
         $(window).scroll(function() {
             const sections = document.querySelectorAll("section");
             const navLi = document.querySelectorAll("nav .nav-container ul li");
