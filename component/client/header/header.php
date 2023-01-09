@@ -9,6 +9,7 @@
         include('../utils/routes.php');
         include('../utils/utils.php');
     }
+    echo $_SERVER['REQUEST_URI'];
 ?>
 
 <!DOCTYPE html>
