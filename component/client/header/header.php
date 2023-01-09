@@ -1,5 +1,5 @@
 <?php
-    if ($_SERVER['REQUEST_URI'] =="/gverzosa/") {
+    if ($_SERVER['REQUEST_URI'] =="/") {
         include('utils/db_config.php');
         include('utils/routes.php');
         include('utils/utils.php');
@@ -286,7 +286,7 @@
         const pId = pElement.getAttribute('idp');
         const divElement = document.querySelector('#warning');
         var path = '';
-        if (window.location.pathname =="/gverzosa/") {
+        if (window.location.pathname == "/") {
             path = 'check_time.php';
             
         } else {
