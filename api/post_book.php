@@ -43,7 +43,7 @@ if (isset($_POST['book'])) {
 
 
     if ($result) {
-        $send_email = sendEmail($fullname, $email, $email_subject, $email_message);
+        $send_email = sendEmail($fullname, $email, $email_subject, $email_message, $mobile_number, $newDateTime, $service_name);
         if ($send_email != 1) {
             // ERROR
             $_SESSION['alert'] = true;

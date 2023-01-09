@@ -203,7 +203,7 @@ unset($_SESSION['alert-text']);
                             <div class="w-[200px] h-[40px] bg-contain bg-no-repeat" style="background-image: url('../images/<?php echo $row['CUSTOMER_PICTURE']; ?>');"></div>
                         </td>
                         <td><?php echo $row['CUSTOMER_EMAIL']; ?> </td>
-                        <td><?php echo $row['CUSTOMER_MOBILE_NUMBER']; ?> </td>
+                        <td>0<?php echo $row['CUSTOMER_MOBILE_NUMBER']; ?> </td>
                         <td><?php echo $row['CUSTOMER_ADDRESS']; ?> </td>
                         <td><?php echo $row['CUSTOMER_DATETIME_CREATED']; ?> </td>
                         <td class="text-center w-[150px]">

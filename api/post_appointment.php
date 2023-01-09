@@ -33,7 +33,7 @@ if (isset($_POST['addappointment'])) {
     $query_audit = mysqli_query($conn, $audit);
 
     if ($result) {
-        $send_email = sendEmail($fullname, $email, $email_subject, $email_message);
+        $send_email = sendEmail($fullname, $email, $email_subject, $email_message, $mobile_number, $newDateTime, $service_name);
         if ($send_email != 1) {
             // ERROR
             $_SESSION['alert'] = true;
@@ -98,9 +98,26 @@ if (isset($_POST['addappointment'])) {
     $accepted_status = 1;
     $email_subject = "G. Verzosa - Your booking is Accepted";
     $email_message = "We would like to inform you that your appointment has been BOOKED. Thank you for choosing our sevice and have a great day.";
+    $mobile_number = '';
+    $newDateTime = '';
+    $service_name = '';
 
     $sql = "UPDATE tbl_appointment SET APP_STATUS = '$accepted_status', REMARKS = '$appointmentremarks' WHERE APP_ID = '$appointmentid'";
     $result = mysqli_query($conn, $sql);
+
+    $sql_app = "SELECT * FROM tbl_appointment WHERE APP_ID = '$appointmentid' LIMIT 1";
+    $result_app = $conn->query($sql_app);
+    while ($row = mysqli_fetch_array($result_app)) {
+        $mobile_number = $row['APP_MOBILE_NUMBER'];
+        $newDateTime = $row['START_DATE'];
+        $service_name = $row['SERVICE_ID'];
+
+        $sql_ser = "SELECT * FROM tbl_service WHERE SERVICE_ID = '$service_name' LIMIT 1";
+        $result_aser= $conn->query($sql_ser);
+        while ($row = mysqli_fetch_array($result_ser)) {
+            $service_name = $row['SERVICE_NAME'];
+        }
+    }
 
 
     $idaudit =  $_SESSION['user_id']; //id
@@ -109,7 +126,7 @@ if (isset($_POST['addappointment'])) {
     $query_audit = mysqli_query($conn, $audit);
 
     if ($result) {
-        $send_email = sendEmail($appointmentfullname, $appointmentemail, $email_subject, $email_message);
+        $send_email = sendEmail($appointmentfullname, $appointmentemail, $email_subject, $email_message, $mobile_number, $newDateTime, $service_name);
         if ($send_email != 1) {
             // ERROR
             $_SESSION['alert'] = true;

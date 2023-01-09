@@ -178,7 +178,6 @@
         <div class="fixed inset-0 z-10 overflow-y-auto">
             <div class="flex min-h-full justify-center p-4 text-center items-center sm:p-0">
                 <div class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
-
                     <form action=<?php
                                     if ($_SERVER['REQUEST_URI'] == PATH."/") {
                                         echo './api/post_book.php';

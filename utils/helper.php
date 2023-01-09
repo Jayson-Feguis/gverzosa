@@ -24,7 +24,7 @@
         }
     }
 
-    function sendEmail($name, $email, $subject, $message){
+    function sendEmail($name, $email, $subject, $message, $mobile_number, $dateTime, $service){
         $mail = new PHPMailer(true);
 
         try{
@@ -32,7 +32,7 @@
             $mail -> Host = 'smtp.gmail.com';
             $mail -> SMTPAuth = true;
             $mail -> Username = 'gverzosasalon@gmail.com';
-            $mail -> Password = 'maflzsmydcrwpgas';
+            $mail -> Password = 'yqzjazwxxcedxosk';
             $mail -> SMTPSecure = 'ssl';
             $mail -> Port = 465;
 
@@ -141,7 +141,7 @@
             }
             </style>
               </head>
-              <body style="background-image: url(https://scontent.fcrk1-5.fna.fbcdn.net/v/t39.30808-6/311860161_540126878124119_3288179552662448415_n.jpg?stp=dst-jpg_s960x960&_nc_cat=105&ccb=1-7&_nc_sid=e3f864&_nc_eui2=AeERaMTvrWLri_HWU2_kLl_rWtPIiJVjB_da08iIlWMH9wwuzcwdAhFk9Bnq50ZDZY5v8FvKxVklDFnp1ZvFRasT&_nc_ohc=injjQdFU07sAX8Sfa7f&tn=inhvjoaPWTBY76OC&_nc_ht=scontent.fcrk1-5.fna&oh=00_AfBLiKAS8aPTvFhyZ4tlwjyjC3Wfrvi1sbnKsEeI17TppA&oe=637DE7D8); background-position: top right; font-family: sans-serif; -webkit-font-smoothing: antialiased; font-size: 14px; line-height: 1.4; margin: 0; padding: 0; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%;">
+              <body style="background-image: url(https://scontent.fcrk1-5.fna.fbcdn.net/v/t39.30808-6/311860161_540126878124119_3288179552662448415_n.jpg?stp=dst-jpg_s960x960&_nc_cat=105&ccb=1-7&_nc_sid=e3f864&_nc_eui2=AeERaMTvrWLri_HWU2_kLl_rWtPIiJVjB_da08iIlWMH9wwuzcwdAhFk9Bnq50ZDZY5v8FvKxVklDFnp1ZvFRasT&_nc_ohc=NuEvuFU3YucAX_DRXJW&tn=inhvjoaPWTBY76OC&_nc_ht=scontent.fcrk1-5.fna&oh=00_AfBZWkIaWILv6EZzHaXpjcHC0cjvJF5IUKWwz01ZYx478A&oe=63C12458); background-position: top right; font-family: sans-serif; -webkit-font-smoothing: antialiased; font-size: 14px; line-height: 1.4; margin: 0; padding: 0; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%">
                 <span class="preheader" style="color: transparent; display: none; height: 0; max-height: 0; max-width: 0; opacity: 0; overflow: hidden; mso-hide: all; visibility: hidden; width: 0;">This is preheader text. Some clients will show this text as a preview.</span>
                 <table role="presentation" border="0" cellpadding="0" cellspacing="0" class="body" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;" width="100%">
                   <tr>
@@ -163,6 +163,15 @@
                                     <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; margin-bottom: 15px;">'.$message.'</p>
                                   </td>
                                 </tr>
+                                <tr>
+                                <td style="font-family: sans-serif; font-size: 14px; vertical-align: top;" valign="top">
+                                  <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; margin-bottom: 15px;">Name: '.$name.',</p>
+                                  <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; margin-bottom: 15px;">Email: '.$email.'</p>
+                                  <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; margin-bottom: 15px;">Mobile Number: '.$mobile_number.',</p>
+                                  <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; margin-bottom: 15px;">Appointment Date: '.$dateTime.'</p>
+                                  <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; margin-bottom: 15px;">Service: '.$service.'</p>
+                                </td>
+                              </tr>
                               </table>
                             </td>
                           </tr>
