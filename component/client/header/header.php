@@ -180,7 +180,7 @@
                                     if ($_SERVER['REQUEST_URI'] == "/") {
                                         echo './api/post_book.php';
                                     } else {
-                                        echo '../../..'.'/api/post_book.php';
+                                        echo '../../../api/post_book.php';
                                     }
                                     ?> method="post">
                         <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
