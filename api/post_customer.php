@@ -6,31 +6,39 @@ date_default_timezone_set('Asia/Manila');
 if (isset($_POST['editcustomer'])) {
 
     $id = $_POST['editcustomerid'];
-    $editcustomerimagetext = $_POST['editcustomerimagetext'];
     $name = $_POST['editcustomername'];
-    $email = $_POST['editcustomername'];
+    $email = $_POST['editcustomeremail'];
     $number = $_POST['editcustomernumber'];
-    $address = $_POST['editcustomeraddress'];
-    $gender = $_POST['editcustomergender'];
-    $old_image = '';
 
-    $sql_image = "SELECT * FROM tbl_customer WHERE CUSTOMER_ID = '$id'";
-    $res_image = mysqli_query($conn, $sql_image);
-    if ($res_image) {
-        while ($rows_image = mysqli_fetch_assoc($res_image)) {
-            $old_image = $rows_image['CUSTOMER_PICTURE'];
-        }
-    }
+
+    $validate = "SELECT * FROM  tbl_customer WHERE ( CUSTOMER_NAME = '$name' AND CUSTOMER_EMAIL = '$email' AND CUSTOMER_MOBILE_NUMBER = '$number' )AND CUSTOMER_ID != '$id' ";
+    $query_validate = mysqli_query($conn, $validate);
 
 
 
-    $idaudit =  $_SESSION['user_id']; //id
-    $descriptionaudit = "Edited customer id " . $id; // description plus banner name
-    $audit = "INSERT INTO tbl_audit (USER_ID, AUDIT_ACTIVITY) VALUES ('$idaudit', '$descriptionaudit' )";
-    $query_audit = mysqli_query($conn, $audit);
-    // CHECK IF THE EXISTING IMAGE IS EQUAL TO IMAGE PAYLOAD, IF YES, DONT UPDATE IMAGE
-    if ($old_image ==  $editcustomerimagetext &&  $editcustomerimagetext != "") {
-        $sql = "UPDATE tbl_customer SET CUSTOMER_NAME = '$name', CUSTOMER_ADDRESS = '$address', CUSTOMER_MOBILE_NUMBER = '$number', CUSTOMER_GENDER = '$gender' WHERE CUSTOMER_ID = '$id'";
+
+
+
+    if (mysqli_num_rows($query_validate) > 0) {
+        $_SESSION['alert'] = true;
+        $_SESSION['alert-icon'] = "error";
+        $_SESSION['alert-title'] = "Error";
+        $_SESSION['alert-text'] = "Customer is already exist.";
+        header("Location: ../pages/admin_customer.php");
+        // echo mysqli_num_rows($query_validate) . "if   ";
+        // echo $name . " " . $id . " " . $email . " " . $number;
+    } else {
+
+        // echo mysqli_num_rows($query_validate) . "else";
+
+        // echo $name . " " . $id . " " . $email . " " . $number . " " . $email;
+        $idaudit =  $_SESSION['user_id']; //id
+        $descriptionaudit = "Edited customer id " . $id; // description plus banner name
+        $audit = "INSERT INTO tbl_audit (USER_ID, AUDIT_ACTIVITY) VALUES ('$idaudit', '$descriptionaudit' )";
+        $query_audit = mysqli_query($conn, $audit);
+        // CHECK IF THE EXISTING IMAGE IS EQUAL TO IMAGE PAYLOAD, IF YES, DONT UPDATE IMAGE
+
+        $sql = "UPDATE tbl_customer SET CUSTOMER_NAME = '$name',  CUSTOMER_MOBILE_NUMBER = '$number', CUSTOMER_GENDER = '$gender' WHERE CUSTOMER_ID = '$id'";
         $result = mysqli_query($conn, $sql);
 
         if ($result) {
@@ -46,47 +54,6 @@ if (isset($_POST['editcustomer'])) {
             $_SESSION['alert-icon'] = "error";
             $_SESSION['alert-title'] = "Error";
             $_SESSION['alert-text'] = "Something went wrong" . mysqli_error($conn);
-            header("Location: ../pages/admin_customer.php");
-        }
-    }
-    // ELSE, UPDATE ALL INFORMATION TOGETHER WITH PRODUCT PICTURE
-    else {
-        // CHECK IF THERE'S AN IMAGE IN THE PAYLOAD
-        if (isset($_FILES['editcustomerimage']['name'])) {
-            // UPLOAD IMAGE
-            $upload_image = uploadImage($_FILES['editcustomerimage']['name'], $_FILES['editcustomerimage']['tmp_name'], "Customer");
-
-            if (!$upload_image) {
-                $_SESSION['alert'] = true;
-                $_SESSION['alert-icon'] = "error";
-                $_SESSION['alert-title'] = "Error";
-                $_SESSION['alert-text'] = "Failed to upload image";
-                header("Location: ../pages/admin_customer.php");
-            }
-
-            $sql = "UPDATE tbl_customer SET CUSTOMER_PICTURE = '$upload_image', CUSTOMER_NAME = '$name', CUSTOMER_ADDRESS = '$address', CUSTOMER_MOBILE_NUMBER = '$number', CUSTOMER_GENDER = '$gender' WHERE CUSTOMER_ID = '$id'";
-            $result = mysqli_query($conn, $sql);
-
-            if ($result) {
-                // SUCCESS
-                $_SESSION['alert'] = true;
-                $_SESSION['alert-icon'] = "success";
-                $_SESSION['alert-title'] = "Success";
-                $_SESSION['alert-text'] = "Customer updated successfully";
-                header("Location: ../pages/admin_customer.php");
-            } else {
-                // ERROR
-                $_SESSION['alert'] = true;
-                $_SESSION['alert-icon'] = "error";
-                $_SESSION['alert-title'] = "Error";
-                $_SESSION['alert-text'] = "Something went wrong";
-                header("Location: ../pages/admin_customer.php");
-            }
-        } else {
-            $_SESSION['alert'] = true;
-            $_SESSION['alert-icon'] = "info";
-            $_SESSION['alert-title'] = "Error";
-            $_SESSION['alert-text'] = "Please upload an image";
             header("Location: ../pages/admin_customer.php");
         }
     }
@@ -123,27 +90,37 @@ if (isset($_POST['editcustomer'])) {
     $name = $_POST['addcustomername'];
     $email = $_POST['addcustomeremail'];
     $number = $_POST['addcustomernumber'];
-    $address = $_POST['addcustomeraddress'];
-    $gender = $_POST['addcustomergender'];
+
     $status = 1;
 
-    $idaudit =  $_SESSION['user_id']; //id
-    $descriptionaudit = "Added customer " . $name; // description plus banner name
-    $audit = "INSERT INTO tbl_audit (USER_ID, AUDIT_ACTIVITY) VALUES ('$idaudit', '$descriptionaudit' )";
-    $query_audit = mysqli_query($conn, $audit);
+    $validate = "SELECT * FROM  tbl_customer WHERE CUSTOMER_NAME = '$name' AND CUSTOMER_EMAIL = '$email' AND CUSTOMER_MOBILE_NUMBER = '$number' ";
+    $query_validate = mysqli_query($conn, $validate);
 
-    if (isset($_FILES['addcustomerimage']['name'])) {
-        $upload_image = uploadImage($_FILES['addcustomerimage']['name'], $_FILES['addcustomerimage']['tmp_name'], "Customer");
 
-        if (!$upload_image) {
-            $_SESSION['alert'] = true;
-            $_SESSION['alert-icon'] = "error";
-            $_SESSION['alert-title'] = "Error";
-            $_SESSION['alert-text'] = "Failed to upload image";
-            header("Location: ../pages/admin_customer.php");
-        }
 
-        $sql = "INSERT INTO tbl_customer (CUSTOMER_NAME, CUSTOMER_EMAIL, CUSTOMER_MOBILE_NUMBER, CUSTOMER_GENDER, CUSTOMER_ADDRESS, CUSTOMER_PICTURE, CUSTOMER_STATUS) VALUES ('$name', '$email', '$number', '$gender', '$address', '$upload_image', '$status')";
+
+
+
+    if (mysqli_num_rows($query_validate) > 0) {
+
+
+
+        $_SESSION['alert'] = true;
+        $_SESSION['alert-icon'] = "error";
+        $_SESSION['alert-title'] = "Error";
+        $_SESSION['alert-text'] = "Customer is already exist.";
+        header("Location: ../pages/admin_customer.php");
+    } else {
+
+
+        $idaudit =  $_SESSION['user_id']; //id
+        $descriptionaudit = "Added customer " . $name; // description plus banner name
+        $audit = "INSERT INTO tbl_audit (USER_ID, AUDIT_ACTIVITY) VALUES ('$idaudit', '$descriptionaudit' )";
+        $query_audit = mysqli_query($conn, $audit);
+
+
+
+        $sql = "INSERT INTO tbl_customer (CUSTOMER_NAME, CUSTOMER_EMAIL, CUSTOMER_MOBILE_NUMBER, CUSTOMER_STATUS) VALUES ('$name', '$email', '$number',  '$status')";
         $result = mysqli_query($conn, $sql);
 
         if ($result) {
@@ -161,12 +138,6 @@ if (isset($_POST['editcustomer'])) {
             $_SESSION['alert-text'] = "Something went wrong" . $conn->error;
             header("Location: ../pages/admin_customer.php");
         }
-    } else {
-        $_SESSION['alert'] = true;
-        $_SESSION['alert-icon'] = "info";
-        $_SESSION['alert-title'] = "Error";
-        $_SESSION['alert-text'] = "Please upload an image";
-        header("Location: ../pages/admin_customer.php");
     }
 } else if (isset($_POST['archivecustomer'])) {
     $id = $_POST['customerid'];
