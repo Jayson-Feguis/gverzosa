@@ -286,7 +286,7 @@
         const pId = pElement.getAttribute('idp');
         const divElement = document.querySelector('#warning');
         var path = '';
-        if (window.location.pathname =="/gverzosa/") {
+        if (window.location.pathname == "/") {
             path = 'check_time.php';
             
         } else {
