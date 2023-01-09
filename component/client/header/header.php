@@ -26,6 +26,7 @@
     <!-- SWIPER JS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
     <?php
+    echo '<script>console('.PATH.')</script>';
     if ($_SERVER['REQUEST_URI'] == PATH."/") {
     ?>
         <!-- STYLE -->
