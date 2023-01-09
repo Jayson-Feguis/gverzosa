@@ -33,8 +33,6 @@ unset($_SESSION['alert-text']);
                     <form action="../api/post_customer.php" method="post" enctype="multipart/form-data">
                         <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                             <h1 class="font-bold text-primary text-center text-[20px] py-[20px]">Add Customer</h1>
-                            <label for="addcustomerimage">Customer Image</label>
-                            <input type="file" name="addcustomerimage" id="addcustomerimage" accept="image/*" class="block border border-grey-light w-full p-3 rounded mb-4" required>
                             <label for="addcustomername">Customer Name</label>
                             <input type="text" id="addcustomername" name="addcustomername" class="block border border-grey-light w-full p-3 rounded mb-4" placeholder="ex. Juan delacruz" required>
                             <label for="addcustomeremail">Email</label>
@@ -45,26 +43,8 @@ unset($_SESSION['alert-text']);
                                     +63
                                 </div>
                                 <input type="phone" id="addcustomernumber" name="addcustomernumber" class="block border border-grey-light w-full p-3 rounded mb-4 pl-12" placeholder="9123456789" pattern="[9]{1}[0-9]{9}" maxlength="10" required>
-                            </div>     
-                            <label for="addcustomeraddress">Address</label>
-                            <input type="text" id="addcustomeraddress" name="addcustomeraddress" class="block border border-grey-light w-full p-3 rounded mb-4" placeholder="ex. Juan" required>
-                            <label for="addcustomerlname">Gender</label>
-                            <div class="flex flex-row justify-flex-start">
-                                <div class="flex-row">
-                                    <div class="form-check">
-                                        <input class="form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="radio" name="addcustomergender" value="Male" id="customergender">
-                                        <label class="form-check-label inline-block text-gray-800" for="customergender">
-                                            Male
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="radio" name="addcustomergender" value="Female" id="flexRadioDefault2">
-                                        <label class="form-check-label inline-block text-gray-800" for="flexRadioDefault2">
-                                            Female
-                                        </label>
-                                    </div>
-                                </div>
                             </div>
+
                             <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
                                 <button type="submit" name="addcustomer" class="inline-flex w-full transition-all duration-300 justify-center rounded-md border border-transparent bg-secondary px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-opacity-70 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm">Confirm</button>
                                 <button type="button" onclick="closeModalAdd()" class="mt-3 inline-flex w-full transition-all duration-300 justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">Cancel</button>
@@ -84,10 +64,7 @@ unset($_SESSION['alert-text']);
                         <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                             <input type="text" id="editcustomerid" name="editcustomerid" class=" hidden bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="userid" required>
                             <h1 class="font-bold text-primary text-center text-[20px] py-[20px]">Edit Customer</h1>
-                            <label for="editcustomerimage">Customer Image</label>
-                            <img id="img_editcustomerimage" src="" class="w-[200px]">
-                            <input type="file" name="editcustomerimage" id="editcustomerimage" accept="image/*" class="block border border-grey-light w-full p-3 rounded mb-4" required>
-                            <input type="text" id="editcustomerimagetext" name="editcustomerimagetext" class="hidden border border-grey-light w-full p-3 rounded mb-4" placeholder="ex. Juan" required>
+
                             <label for="editcustomername">Customer Name</label>
                             <input type="text" id="editcustomername" name="editcustomername" class="block border border-grey-light w-full p-3 rounded mb-4" required>
                             <label for="editcustomeremail">Email</label>
@@ -98,26 +75,9 @@ unset($_SESSION['alert-text']);
                                     +63
                                 </div>
                                 <input type="phone" id="editcustomernumber" name="editcustomernumber" class="block border border-grey-light w-full p-3 rounded mb-4 pl-12" placeholder="9123456789" pattern="[9]{1}[0-9]{9}" maxlength="10" required>
-                            </div>   
-                            <label for="editcustomeraddress">Address</label>
-                            <input type="text" id="editcustomeraddress" name="editcustomeraddress" class="block border border-grey-light w-full p-3 rounded mb-4" required>
-                            <label for="editcustomerlname">Gender</label>
-                            <div class="flex flex-row justify-flex-start">
-                                <div class="flex-row">
-                                    <div class="form-check">
-                                        <input class="form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="radio" name="editcustomergender" value="Male" id="Male">
-                                        <label class="form-check-label inline-block text-gray-800" for="Male">
-                                            Male
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="radio" name="editcustomergender" value="Female" id="Female">
-                                        <label class="form-check-label inline-block text-gray-800" for="Female">
-                                            Female
-                                        </label>
-                                    </div>
-                                </div>
                             </div>
+
+
                             <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
                                 <button type="submit" name="editcustomer" class="inline-flex w-full transition-all duration-300 justify-center rounded-md border border-transparent bg-secondary px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-opacity-70 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm">Save</button>
                                 <button type="button" onclick="closeModal()" class="mt-3 inline-flex w-full transition-all duration-300 justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">Cancel</button>
@@ -179,14 +139,11 @@ unset($_SESSION['alert-text']);
             <tr>
                 <th>Customer ID</th>
                 <th>Name</th>
-                <th style="display: none;">Picture</th>
-                <th>Gender</th>
-                <th>Picture</th>
                 <th>Email</th>
                 <th>Mobile Number</th>
-                <th>Address</th>
                 <th>Date Created</th>
                 <th>Actions</th>
+                <th style="display: none;">num</th>
             </tr>
         </thead>
         <tbody>
@@ -197,14 +154,9 @@ unset($_SESSION['alert-text']);
                     <tr>
                         <td><?php echo $row['CUSTOMER_ID']; ?> </td>
                         <td><?php echo $row['CUSTOMER_NAME']; ?> </td>
-                        <td style="display: none;"><?php echo $row['CUSTOMER_PICTURE']; ?> </td>
-                        <td><?php echo $row['CUSTOMER_GENDER']; ?> </td>
-                        <td>
-                            <div class="w-[200px] h-[40px] bg-contain bg-no-repeat" style="background-image: url('../images/<?php echo $row['CUSTOMER_PICTURE']; ?>');"></div>
-                        </td>
                         <td><?php echo $row['CUSTOMER_EMAIL']; ?> </td>
                         <td>0<?php echo $row['CUSTOMER_MOBILE_NUMBER']; ?> </td>
-                        <td><?php echo $row['CUSTOMER_ADDRESS']; ?> </td>
+
                         <td><?php echo $row['CUSTOMER_DATETIME_CREATED']; ?> </td>
                         <td class="text-center w-[150px]">
                             <button type="button" class="editCustomer bg-transparent hover:bg-gray-300 text-blue-700 font-semibold hover:text-white py-[5px] px-2 border border-gray-500 hover:border-border-gray-300 rounded">
@@ -217,6 +169,7 @@ unset($_SESSION['alert-text']);
                                 <i class="fa fa-comment text-[16px]" aria-hidden="true"></i>
                             </button> -->
                         </td>
+                        <td style="display: none;"><?php echo $row['CUSTOMER_MOBILE_NUMBER']; ?> </td>
                     </tr>
             <?php
                 }
@@ -265,28 +218,18 @@ unset($_SESSION['alert-text']);
             var table = $('#data-table').DataTable();
             $('#data-table tbody').on('click', '.editCustomer', function() {
                 var data = table.row($(this).parents('tr')).data();
-                const dT = new ClipboardEvent('').clipboardData || new DataTransfer();
-                dT.items.add(new File(['foo'], data[2]));
+
                 $("#modal-edit").removeClass("hidden");
-                editcustomerimage.files = dT.files;
-                $('#img_editcustomerimage').attr("src", "../images/" + data[2]);
-                $('#editcustomerimagetext').val(data[2]);
+
+                console.log($('#editcustomeremail').val(data[2]))
                 $('#editcustomerid').val(data[0]);
                 $('#editcustomername').val(data[1]);
-                $('#editcustomeremail').val(data[5]);
+                $('#editcustomeremail').val(data[2]);
                 $('#editcustomernumber').val(data[6]);
-                $('#editcustomeraddress').val(data[7]);
-                $('#editcustomergender').val(data[3]);
-                if (data[3] === 'Male') {
-                    $('#Male').attr('checked', true);
-                } else {
-                    $('#Female').attr('checked', true);
-                }
+
             });
 
-            $("#editcustomerimage").change(function() {
-                $('#editcustomerimagetext').val($("#editcustomerimage").val());
-            });
+
         });
 
         $(document).ready(function() {
