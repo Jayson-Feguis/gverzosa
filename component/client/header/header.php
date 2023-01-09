@@ -5,9 +5,9 @@
         include('utils/routes.php');
         include('utils/utils.php');
     //} else {
-        include('../utils/db_config.php');
-        include('../utils/routes.php');
-        include('../utils/utils.php');
+        // include('../utils/db_config.php');
+        // include('../utils/routes.php');
+        // include('../utils/utils.php');
     //}
     echo PATH."Hello";
 ?>
