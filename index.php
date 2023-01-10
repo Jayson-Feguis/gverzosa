@@ -243,11 +243,14 @@ unset($_SESSION['alert-text']);
                 if ($employees_result) {
                     while ($rows = mysqli_fetch_array($employees_result)) {
                         $user_type = '';
-                        if($rows['USER_TYPE'] === '1'){
-                            $user_type = 'Owner';
+                        if($rows['USER_TYPE'] == '1' || $rows['USER_TYPE'] == 1){
+                            $user_type = 'Administrator';
+                        }
+                        else if($rows['USER_TYPE'] == '2' || $rows['USER_TYPE'] == 2){
+                            $user_type = 'Employee';
                         }
                         else{
-                            $user_type = 'Employee';
+                            $user_type = 'Owner';
                         }
                         echo '<div class="card-container w-[300px] h-[300px] bg-defaultwhite rounded-lg p-[20px] div-center flex-col drop-shadow-md">
                                     <img src="./images/' . $rows['USER_PICTURE'] . '" alt="sample" class="rounded-full w-[150px]"/>
