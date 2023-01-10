@@ -57,7 +57,7 @@ if (isset($_POST['book'])) {
             $_SESSION['alert'] = true;
             $_SESSION['alert-icon'] = "success";
             $_SESSION['alert-title'] = "Appointment Received!";
-            $_SESSION['alert-text'] = "Wait for confirmation. Thank you!".$send_email;
+            $_SESSION['alert-text'] = "Wait for confirmation. Thank you!";
             header("Location: ../");
         }
     } else {
