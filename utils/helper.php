@@ -6,6 +6,10 @@
     require '../phpmailer/src/PHPMailer.php';
     require '../phpmailer/src/SMTP.php';
 
+    function getDateNow(){
+      return date('Y-m-d H:i:s');
+    }
+
     function uploadImage($file, $file_temp, $type){
         $image = $file; // $_FILES['addproductimage']['name']
         if($image != ""){
