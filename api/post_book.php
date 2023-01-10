@@ -45,21 +45,22 @@ if (isset($_POST['book'])) {
 
     if ($result) {
         $send_email = sendEmail($fullname, $email, $email_subject, $email_message, $mobile_number, $newDateTime, $service_name);
-        if ($send_email != 1) {
-            // ERROR
-            $_SESSION['alert'] = true;
-            $_SESSION['alert-icon'] = "error";
-            $_SESSION['alert-title'] = "Error";
-            $_SESSION['alert-text'] = "Something went wrong";
-            header("Location: ../");
-        } else if ($send_email == 1) {
-            // SUCCESS
-            $_SESSION['alert'] = true;
-            $_SESSION['alert-icon'] = "success";
-            $_SESSION['alert-title'] = "Appointment Received!";
-            $_SESSION['alert-text'] = "Wait for confirmation. Thank you!";
-            header("Location: ../");
-        }
+        echo $send_email;
+        // if ($send_email != 1) {
+        //     // ERROR
+        //     $_SESSION['alert'] = true;
+        //     $_SESSION['alert-icon'] = "error";
+        //     $_SESSION['alert-title'] = "Error";
+        //     $_SESSION['alert-text'] = "Something went wrong";
+        //     header("Location: ../");
+        // } else if ($send_email == 1) {
+        //     // SUCCESS
+        //     $_SESSION['alert'] = true;
+        //     $_SESSION['alert-icon'] = "success";
+        //     $_SESSION['alert-title'] = "Appointment Received!";
+        //     $_SESSION['alert-text'] = "Wait for confirmation. Thank you!";
+        //     header("Location: ../");
+        // }
     } else {
         $_SESSION['alert'] = true;
         $_SESSION['alert-icon'] = "error";

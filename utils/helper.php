@@ -36,8 +36,8 @@
             $mail -> Host = 'smtp.gmail.com';
             $mail -> SMTPAuth = true;
             $mail -> Username = 'gverzosa10@gmail.com';
-            $mail -> Password = 'bqnuonsnaaryuktn';
-            $mail -> SMTPSecure = 'ssl';
+            $mail -> Password = 'wejvoatyoqatqgxe';
+            $mail -> SMTPSecure = 'tls';
             $mail -> Port = 587;
 
             $mail -> setFrom('gverzosa10@gmail.com');
@@ -224,8 +224,8 @@
           $mail -> Host = 'smtp.gmail.com';
           $mail -> SMTPAuth = true;
           $mail -> Username = 'gverzosa10@gmail.com';
-          $mail -> Password = 'bqnuonsnaaryuktn';
-          $mail -> SMTPSecure = 'ssl';
+          $mail -> Password = 'wejvoatyoqatqgxe';
+          $mail -> SMTPSecure = 'tls';
           $mail -> Port = 587;
 
           $mail -> setFrom('gverzosa10@gmail.com');
