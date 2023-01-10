@@ -22,7 +22,7 @@ if ($_SESSION['user_type'] == 2) {
                             header("location: login.php");
                         }
                     }
-                }
+                }F
             }
         }
     }
@@ -271,11 +271,11 @@ if ($_SESSION['user_type'] == 2) {
                     </button>
                     <ul id="dropdown-example3" class="hidden py-2 space-y-2">
                         <li>
-                            <a href="admin_archive.php" class="flex items-center p-2 pl-8 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100">Archive</a>
+                            <a href="admin_archive.php" class="flex items-center p-2 pl-8 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100">Archive/Restore</a>
                         </li>
                        
                         <li>
-                            <a href="admin_log.php" class="flex items-center p-2 pl-8 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100">Logs</a>
+                            <a href="admin_log.php" class="flex items-center p-2 pl-8 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100">System Logs</a>
                         </li>
                     </ul>
                 </li>

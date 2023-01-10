@@ -162,7 +162,7 @@ unset($_SESSION['alert-text']);
     </section>
     <section id='home' class="div-center bg-tertiary flex-col w-full py-[7rem]">
         <h1 class="font-Dancing text-[64px] font-bold text-defaultwhite">
-            Schedule
+            Appointment Schedule
         </h1>
         <div id="scheduler_here" class="dhx_cal_container employees-container w-[80%] max-w-[1536] min-h-[800px] px-[10px] sm:px-[30px]">
             <div class="dhx_cal_navline">
@@ -197,8 +197,28 @@ unset($_SESSION['alert-text']);
         </div>
     </section>
     <section id='about' class="div-center flex-col w-full py-[7rem]">
-        <div class=" p-10">
+        <!-- <div class=" p-10">
             <img src="history_image.jpg" class="w-[400px] h-[400px] " />
+        </div> -->
+        <div class="swiper mySwiper my-[50px]" id="swiper-home">
+            <div class="swiper-wrapper" id="swiper-wrapper-service">
+                <div class="swiper-slide div-center" id="swiper-slide-home">
+                    <img src="./placeholder/History1.jpg" alt="History1" />
+                </div>
+                <div class="swiper-slide div-center" id="swiper-slide-home">
+                    <img src="./placeholder/History2.jpg" alt="History2" />
+                </div>
+                <div class="swiper-slide div-center" id="swiper-slide-home">
+                    <img src="./placeholder/History3.jpg" alt="History3" />
+                </div>
+                <div class="swiper-slide div-center" id="swiper-slide-home">
+                    <img src="./placeholder/History4.jpg" alt="History4" />
+                </div>
+                <div class="swiper-slide div-center" id="swiper-slide-home">
+                    <img src="./placeholder/History5.jpg" alt="History5" />
+                </div>
+            </div>
+            <div class="swiper-pagination" id="swiper-pagination-home"></div>
         </div>
         <h1 class="font-Dancing text-[64px] font-bold text-primary pb-[50px]">
             History
