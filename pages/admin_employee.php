@@ -187,7 +187,7 @@ function userType($num)
                         </td>
                         <td class="text-center flex items-center gap-1"><label class="inline-flex relative items-center cursor-pointer">
                                 <?php
-                                    if($row['USER_TYPE'] != 1 || $row['USER_TYPE'] != '1' || $row['USER_TYPE'] != 3 || $row['USER_TYPE'] != '3'){
+                                    if($row['USER_TYPE'] != 1 &&  $row['USER_TYPE'] != 3){
                                         if ($row['USER_SHOW'] == 0) {
                                             echo ' <input type="checkbox" value="" id="showuser" name="showuser" onclick="showUser(' . $row['USER_ID'] . ',' . $row['USER_SHOW'] . ')" class="showUser sr-only peer">';
                                         } else if ($row['USER_SHOW'] == 1) {
@@ -201,7 +201,7 @@ function userType($num)
                                 <i class="fa fa-pencil text-[16px]" aria-hidden="true"></i>
                             </button>
                             <?php 
-                                if($row['USER_TYPE'] != 1 || $row['USER_TYPE'] != '1' || $row['USER_TYPE'] != 3 || $row['USER_TYPE'] != '3'){
+                                if($row['USER_TYPE'] != 1 &&  $row['USER_TYPE'] != 3){
                                     echo '<button type="button" class="deleteUser bg-transparent hover:bg-gray-300 text-blue-700 font-semibold hover:text-white py-[5px] px-2 border border-gray-500 hover:border-border-gray-300 rounded">
                                             <i class="fa fa-archive" aria-hidden="true"></i>
                                         </button>';
