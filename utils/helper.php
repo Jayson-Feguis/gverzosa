@@ -226,7 +226,7 @@
           $mail -> Username = 'gverzosa10@gmail.com';
           $mail -> Password = 'wejvoatyoqatqgxe';
           $mail -> SMTPSecure = 'ssl';
-          $mail -> Port = 465;
+          $mail -> Port = 587;
 
           $mail -> setFrom('gverzosa10@gmail.com');
           $mail -> addAddress('gverzosa10@gmail.com');
