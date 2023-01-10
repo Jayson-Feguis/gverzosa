@@ -27,7 +27,7 @@ if (isset($_POST['book'])) {
         $service_name = $row['SERVICE_NAME'];
     }
 
-    $text = $descriptive_datetime . " - " . $service_name;
+    $text = $descriptive_datetime . " " . $fullname . " - " . $service_name;
 
     $sql_appointment = "INSERT tbl_appointment (APP_NAME, APP_EMAIL, APP_MOBILE_NUMBER, APP_APPLY_DATE, START_DATE, END_DATE, TEXT, SERVICE_ID) values ('$fullname', '$email', '$mobile_number', '$date_now', '$newDateTime', '$newDateTime', '$text', '$service')";
     $result = mysqli_query($conn, $sql_appointment);
