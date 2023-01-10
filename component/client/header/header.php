@@ -187,7 +187,7 @@
                                 <p class="font-bold">Be Warned</p>
                                 <p id="idp"></p>
                             </div>
-                            <h1 class="font-bold text-primary text-center text-[20px] py-[20px]">Book an appointment 1</h1>
+                            <h1 class="font-bold text-primary text-center text-[20px] py-[20px]">Book an appointment</h1>
                             <label for="fullname">Full Name</label>
                             <input id="fullname" type="text" class="block border border-grey-light w-full p-3 rounded mb-4" name="fullname" placeholder="ex. Juan Dela Cruz" required />
                             <label for="email">Email</label>
