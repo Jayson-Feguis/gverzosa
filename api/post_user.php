@@ -127,6 +127,11 @@ if (isset($_POST['edituser'])) {
     $username =  $_POST['addusername'];
     $password =  $_POST['adduserpassword'];
     $type = $_POST['adusertype'];
+    $user_show = 0;
+
+    if($type == 1 || $type == 3 || $type == '1' || $type == '3' ){
+        $user_show = 1;
+    }
 
     $status = 1;
 
@@ -158,7 +163,7 @@ if (isset($_POST['edituser'])) {
                 header("Location: ../pages/admin_employee.php");
             }
 
-            $sql = "INSERT INTO tbl_user (USER_FNAME, USER_LNAME, USER_EMAIL, USER_MOBILE_NUMBER, USER_USERNAME, USER_PASSWORD, USER_TYPE, USER_PICTURE, USER_STATUS) VALUES ('$fname', '$lname', '$email', '$number', '$username', '$password', '$type', '$upload_image', '$status')";
+            $sql = "INSERT INTO tbl_user (USER_FNAME, USER_LNAME, USER_EMAIL, USER_MOBILE_NUMBER, USER_USERNAME, USER_PASSWORD, USER_TYPE, USER_PICTURE, USER_STATUS, USER_SHOW) VALUES ('$fname', '$lname', '$email', '$number', '$username', '$password', '$type', '$upload_image', '$status', '$user_show')";
             $result = mysqli_query($conn, $sql);
 
             if ($result) {
