@@ -168,7 +168,7 @@ if (isset($_POST['addappointment'])) {
     $query_audit = mysqli_query($conn, $audit);
 
     if ($result) {
-        $send_email = sendEmail($appointmentfullname, $appointmentemail, $email_subject, $email_message);
+        // $send_email = sendEmail($appointmentfullname, $appointmentemail, $email_subject, $email_message);
         if ($send_email != 1) {
             // ERROR
             $_SESSION['alert'] = true;
@@ -210,7 +210,7 @@ if (isset($_POST['addappointment'])) {
     $query_audit = mysqli_query($conn, $audit);
 
     if ($result) {
-        $send_email = sendEmail($appointmentfullname, $appointmentemail, $email_subject, $email_message);
+        // $send_email = sendEmail($appointmentfullname, $appointmentemail, $email_subject, $email_message);
         if ($send_email != 1) {
             // ERROR
             $_SESSION['alert'] = true;
