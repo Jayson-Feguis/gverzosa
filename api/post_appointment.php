@@ -113,7 +113,7 @@ if (isset($_POST['addappointment'])) {
         $service_name = $row['SERVICE_ID'];
 
         $sql_ser = "SELECT * FROM tbl_service WHERE SERVICE_ID = '$service_name' LIMIT 1";
-        $result_aser= $conn->query($sql_ser);
+        $result_ser= $conn->query($sql_ser);
         while ($row_ser = mysqli_fetch_array($result_ser)) {
             $service_name = $row_ser['SERVICE_NAME'];
         }
