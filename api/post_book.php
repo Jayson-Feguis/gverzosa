@@ -18,7 +18,7 @@ if (isset($_POST['book'])) {
     $gender = "Not yet indicated";
     $address = "Not yet indicated";
     $status = 1;
-
+    $date_now = getDateNow();
 
 
     $sql_service = "SELECT SERVICE_NAME FROM tbl_service WHERE SERVICE_ID = '$service'";
@@ -29,7 +29,7 @@ if (isset($_POST['book'])) {
 
     $text = $descriptive_datetime . " " . $fullname . " - " . $service_name;
 
-    $sql_appointment = "INSERT tbl_appointment (APP_NAME, APP_EMAIL, APP_MOBILE_NUMBER, START_DATE, END_DATE, TEXT, SERVICE_ID) values ('$fullname', '$email', '$mobile_number', '$newDateTime', '$newDateTime', '$text', '$service')";
+    $sql_appointment = "INSERT tbl_appointment (APP_NAME, APP_EMAIL, APP_MOBILE_NUMBER, APP_APPLY_DATE, START_DATE, END_DATE, TEXT, SERVICE_ID) values ('$fullname', '$email', '$mobile_number', '$date_now', '$newDateTime', '$newDateTime', '$text', '$service')";
     $result = mysqli_query($conn, $sql_appointment);
 
     $validate = "SELECT * FROM  tbl_customer WHERE CUSTOMER_NAME = '$fullname' AND CUSTOMER_EMAIL = '$email' AND CUSTOMER_MOBILE_NUMBER = '$mobile_number' ";
