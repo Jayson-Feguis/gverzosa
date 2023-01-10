@@ -1,9 +1,11 @@
 <?php
 include_once('../utils/db_config.php');
+include_once('../utils/helper.php');
 date_default_timezone_set('Asia/Manila');
 
 if(isset($_POST['backup'])){
     $user_id = $_POST['userID'];
+    $date_now = getDateNow();
     
     // Get connection object and set the charset
     $conn->set_charset("utf8");
@@ -65,7 +67,7 @@ if(isset($_POST['backup'])){
         $number_of_lines = fwrite($fileHandler, $sqlScript);
         fclose($fileHandler); 
 
-        $sql_backup = "INSERT tbl_backup (USER_ID, BACKUP_FILE) values ('$user_id', '$file_name')";
+        $sql_backup = "INSERT tbl_backup (USER_ID, BACKUP_DATE, BACKUP_FILE) values ('$user_id', '$date_now', '$file_name')";
         $result_backup = mysqli_query($conn, $sql_backup);
 
         $idaudit =  $_SESSION['user_id']; //id

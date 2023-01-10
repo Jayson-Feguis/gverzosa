@@ -1,7 +1,9 @@
 <?php
     include_once('../utils/db_config.php');
+    include_once('../utils/helper.php');
 
     $user_id = 1;
+    $date_now = getDateNow();
 
     $sql_user = "SELECT * FROM tbl_user LIMIT 1";
     $result_user = $conn -> query($sql_user);
@@ -70,7 +72,7 @@
         $number_of_lines = fwrite($fileHandler, $sqlScript);
         fclose($fileHandler); 
 
-        $sql_backup = "INSERT tbl_backup (USER_ID, BACKUP_FILE) values ('$user_id', '$file_name')";
+        $sql_backup = "INSERT tbl_backup (USER_ID, BACKUP_DATE, BACKUP_FILE) values ('$user_id', '$date_now', '$file_name')";
         $result_backup = mysqli_query($conn, $sql_backup);
 
         
