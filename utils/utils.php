@@ -6,6 +6,6 @@
 
     // production
     define('PATH', '');
-    define('URL', 'http://gverzosa.store/');
+    define('URL', 'https://gverzosa.store');
     define('CLOSING_TIME', '20:45:00');
 ?>
