@@ -163,6 +163,9 @@ if ($_SESSION['user_type'] == 2) {
                     } else if ($_SESSION['user_type'] == 2) {
                         echo 'Employee';
                     }
+                    else {
+                        echo 'Owner';
+                    }
 
                     ?>
                 </span>
@@ -197,7 +200,7 @@ if ($_SESSION['user_type'] == 2) {
         </div>
 
         <?php
-        if ($_SESSION['user_type'] == 1) {
+        if ($_SESSION['user_type'] == 1 || $_SESSION['user_type'] == 3) {
             echo '
                     <ul class="relative">
                     <li>

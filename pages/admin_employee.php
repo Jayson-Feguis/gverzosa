@@ -22,8 +22,10 @@ function userType($num)
 {
     if ($num == 1) {
         return "Administrator";
-    } else {
+    } else if ($num == 2) {
         return "Employee";
+    }else{
+        return "Owner";
     }
 }
 ?>
@@ -60,6 +62,7 @@ function userType($num)
                                 <option value="" disabled selected>Select User Type</option>
                                 <option value="1">Admin</option>
                                 <option value="2">Employee</option>
+                                <option value="3">Owner</option>
                             </select>
                             <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
                                 <button type="submit" name="adduser" class="inline-flex w-full transition-all duration-300 justify-center rounded-md border border-transparent bg-secondary px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-opacity-70 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm">Confirm</button>
@@ -101,6 +104,7 @@ function userType($num)
                                 <option value="" disabled selected>Select User Type</option>
                                 <option value="1">Admin</option>
                                 <option value="2">Employee</option>
+                                <option value="3">Owner</option>
                             </select>
                             <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
                                 <button type="submit" name="edituser" class="inline-flex w-full transition-all duration-300 justify-center rounded-md border border-transparent bg-secondary px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-opacity-70 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm">Save</button>
@@ -182,20 +186,27 @@ function userType($num)
                             } ?>
                         </td>
                         <td class="text-center flex items-center gap-1"><label class="inline-flex relative items-center cursor-pointer">
-                                <?php if ($row['USER_SHOW'] == 0) {
-                                    echo ' <input type="checkbox" value="" id="showuser" name="showuser" onclick="showUser(' . $row['USER_ID'] . ',' . $row['USER_SHOW'] . ')" class="showUser sr-only peer">';
-                                } else if ($row['USER_SHOW'] == 1) {
-                                    echo ' <input type="checkbox" value="" id="showuser" name="showuser" onclick="showUser(' . $row['USER_ID'] . ',' . $row['USER_SHOW'] . ')" class="showUser sr-only peer" checked>';
-                                } ?>
-
+                                <?php
+                                    if($row['USER_TYPE'] != 1 || $row['USER_TYPE'] != '1'){
+                                        if ($row['USER_SHOW'] == 0) {
+                                            echo ' <input type="checkbox" value="" id="showuser" name="showuser" onclick="showUser(' . $row['USER_ID'] . ',' . $row['USER_SHOW'] . ')" class="showUser sr-only peer">';
+                                        } else if ($row['USER_SHOW'] == 1) {
+                                            echo ' <input type="checkbox" value="" id="showuser" name="showuser" onclick="showUser(' . $row['USER_ID'] . ',' . $row['USER_SHOW'] . ')" class="showUser sr-only peer" checked>';
+                                        } 
+                                    }
+                                ?>
                                 <div class="w-11 h-6 peer-focus:outline-none dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-300 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
                             </label>
                             <button type="button" class="editUser bg-transparent hover:bg-gray-300 text-blue-700 font-semibold hover:text-white py-[5px] px-2 border border-gray-500 hover:border-border-gray-300 rounded">
                                 <i class="fa fa-pencil text-[16px]" aria-hidden="true"></i>
                             </button>
-                            <button type="button" class="deleteUser bg-transparent hover:bg-gray-300 text-blue-700 font-semibold hover:text-white py-[5px] px-2 border border-gray-500 hover:border-border-gray-300 rounded">
-                                <i class="fa fa-archive" aria-hidden="true"></i>
-                            </button>
+                            <?php 
+                                if($row['USER_TYPE'] != 1 || $row['USER_TYPE'] != '1'){
+                                    echo '<button type="button" class="deleteUser bg-transparent hover:bg-gray-300 text-blue-700 font-semibold hover:text-white py-[5px] px-2 border border-gray-500 hover:border-border-gray-300 rounded">
+                                            <i class="fa fa-archive" aria-hidden="true"></i>
+                                        </button>';
+                                }
+                            ?>
                         </td>
                     </tr>
             <?php

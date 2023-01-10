@@ -21,8 +21,10 @@ function userType($num)
 {
     if ($num == 1) {
         return "Administrator";
-    } else {
+    } else if ($num == 2) {
         return "Employee";
+    }else{
+        return "Owner";
     }
 }
 
