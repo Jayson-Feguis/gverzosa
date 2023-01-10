@@ -124,7 +124,7 @@ if (isset($_POST['addappointment'])) {
     $audit = "INSERT INTO tbl_audit (USER_ID, AUDIT_ACTIVITY) VALUES ('$idaudit', '$descriptionaudit' )";
     $query_audit = mysqli_query($conn, $audit);
 
-    if ($result) {
+    if ($result_aser) {
         $send_email = sendEmail($appointmentfullname, $appointmentemail, $email_subject, $email_message, $mobile_number, $newDateTime, $service_name);
         if ($send_email != 1) {
             // ERROR
