@@ -94,10 +94,7 @@ unset($_SESSION['alert-text']);
         function generateReport() {
             var from = document.getElementById('fromDate').value;
             var to = document.getElementById('toDate').value;
-            <?php 
-                echo 'window.open('.URL.'`/pages/print_appointment_report.php?from=${from}&to=${to}`);';
-            ?>
-            
+            window.open(`https://gverzosa.store/pages/print_appointment_report.php?from=${from}&to=${to}`);
         }
     </script>
 </div>
