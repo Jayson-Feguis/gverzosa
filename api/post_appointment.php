@@ -111,20 +111,21 @@ if (isset($_POST['addappointment'])) {
         $mobile_number = $row['APP_MOBILE_NUMBER'];
         $newDateTime = $row['START_DATE'];
         $service_name = $row['SERVICE_ID'];
+
+        $sql_ser = "SELECT * FROM tbl_service WHERE SERVICE_ID = '$service_name' LIMIT 1";
+        $result_aser= $conn->query($sql_ser);
+        while ($row_ser = mysqli_fetch_array($result_ser)) {
+            $service_name = $row_ser['SERVICE_NAME'];
+        }
     }
 
-    $sql_ser = "SELECT * FROM tbl_service WHERE SERVICE_ID = '$service_name' LIMIT 1";
-    $result_aser= $conn->query($sql_ser);
-    while ($row = mysqli_fetch_array($result_ser)) {
-        $service_name = $row['SERVICE_NAME'];
-    }
 
     $idaudit =  $_SESSION['user_id']; //id
     $descriptionaudit = "Accepted an appointment id " . $appointmentid; // description plus banner name
     $audit = "INSERT INTO tbl_audit (USER_ID, AUDIT_ACTIVITY) VALUES ('$idaudit', '$descriptionaudit' )";
     $query_audit = mysqli_query($conn, $audit);
 
-    if ($result_aser) {
+    if ($result) {
         $send_email = sendEmail($appointmentfullname, $appointmentemail, $email_subject, $email_message, $mobile_number, $newDateTime, $service_name);
         if ($send_email != 1) {
             // ERROR
