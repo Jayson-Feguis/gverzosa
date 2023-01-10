@@ -35,12 +35,12 @@
             $mail -> isSMTP();
             $mail -> Host = 'smtp.gmail.com';
             $mail -> SMTPAuth = true;
-            $mail -> Username = 'gverzosasalon@gmail.com';
-            $mail -> Password = 'ndvrfsdwpqgxbued';
+            $mail -> Username = 'gverzosa10@gmail.com';
+            $mail -> Password = 'bqnuonsnaaryuktn';
             $mail -> SMTPSecure = 'ssl';
             $mail -> Port = 465;
 
-            $mail -> setFrom('gverzosasalon@gmail.com');
+            $mail -> setFrom('gverzosa10@gmail.com');
             $mail -> addAddress($email);
 
             $mail -> isHTML(true);
@@ -223,13 +223,13 @@
           $mail -> isSMTP();
           $mail -> Host = 'smtp.gmail.com';
           $mail -> SMTPAuth = true;
-          $mail -> Username = 'gverzosasalon@gmail.com';
-          $mail -> Password = 'maflzsmydcrwpgas';
+          $mail -> Username = 'gverzosa10@gmail.com';
+          $mail -> Password = 'bqnuonsnaaryuktn';
           $mail -> SMTPSecure = 'ssl';
           $mail -> Port = 465;
 
-          $mail -> setFrom('gverzosasalon@gmail.com');
-          $mail -> addAddress('gverzosasalon@gmail.com');
+          $mail -> setFrom('gverzosa10@gmail.com');
+          $mail -> addAddress('gverzosa10@gmail.com');
 
           $mail -> isHTML(true);
           $mail -> Subject = $subject;
