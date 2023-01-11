@@ -256,9 +256,9 @@ unset($_SESSION['alert-text']);
                                     <i class="fa fa-undo text-[16px]" aria-hidden="true"></i>
                                 </button>';
                             } ?>
-                            <button type="button" title="Edit" class="editAppointment bg-transparent hover:bg-gray-300 text-blue-700 font-semibold hover:text-white py-[5px] px-2 border border-gray-500 hover:border-border-gray-300 rounded">
+                            <!-- <button type="button" title="Edit" class="editAppointment bg-transparent hover:bg-gray-300 text-blue-700 font-semibold hover:text-white py-[5px] px-2 border border-gray-500 hover:border-border-gray-300 rounded">
                                 <i class="fa fa-pencil text-[16px]" aria-hidden="true"></i>
-                            </button>
+                            </button> -->
                         </td>
                     </tr>
             <?php
