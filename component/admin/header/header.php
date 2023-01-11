@@ -254,7 +254,7 @@ if ($_SESSION['user_type'] == 2) {
                             </li>
                         </ul>
                         <li>
-                            <a href="admin_employee.php" class="flex items-center p-2 pl-8 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100">Employees</a>
+                            <a href="admin_employee.php" class="flex items-center p-2 pl-8 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100">Users</a>
                         </li>
                     </ul>
                 </li>
